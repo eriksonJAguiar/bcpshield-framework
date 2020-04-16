@@ -3,6 +3,7 @@ package main
 import (
 	"fmt"
 	"math"
+	"time"
 
 	"github.com/montanaflynn/stats"
 	"golang.org/x/exp/rand"
@@ -192,19 +193,19 @@ func diffPriv(query float64, data []float64, epsilon float64) float64 {
 
 }
 
-// func randomGenerate(min float64, max float64, amount int) []float64 {
-// 	rand.Seed(time.Now().UnixNano())
-// 	var rdnum []float64
+func randomGenerate(min float64, max float64, amount int) []float64 {
+	rand.Seed(uint64(time.Now().UnixNano()))
+	var rdnum []float64
 
-// 	for i := 0; i < amount; i++ {
-// 		rdnum = append(rdnum, (min + (rand.Float64() * (max - min))))
-// 	}
+	for i := 0; i < amount; i++ {
+		rdnum = append(rdnum, (min + (rand.Float64() * (max - min))))
+	}
 
-// 	return rdnum
-// }
+	return rdnum
+}
 
 func main() {
-	database := []float64{1, 4, 2, 7, 9, 10, 26}
+	database := randomGenerate(0, 1, 1000)
 	qr := query(database)
 	pdfNoise := diffPriv(qr, database, 1)
 	fmt.Println("The noise query is: ")
