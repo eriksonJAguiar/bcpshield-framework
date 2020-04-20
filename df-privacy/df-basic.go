@@ -1,7 +1,6 @@
-package main
+package diffPriv
 
 import (
-	"fmt"
 	"math"
 	"time"
 
@@ -202,12 +201,4 @@ func randomGenerate(min float64, max float64, amount int) []float64 {
 	}
 
 	return rdnum
-}
-
-func main() {
-	database := randomGenerate(0, 1, 1000)
-	qr := query(database)
-	pdfNoise := diffPriv(qr, database, 1)
-	fmt.Println("The noise query is: ")
-	fmt.Println(pdfNoise)
 }
