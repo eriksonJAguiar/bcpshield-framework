@@ -1,0 +1,77 @@
+# Copyright IBM Corp. All Rights Reserved.
+#
+# SPDX-License-Identifier: Apache-2.0
+#
+
+version: '2'
+
+volumes:
+  orderer2.healthcare.com:
+  orderer3.healthcare.com:
+  orderer4.healthcare.com:
+  orderer5.healthcare.com:
+
+networks:
+  health_network:
+
+services:
+
+  orderer2.healthcare.com:
+    extends:
+      file: base/peer-base.yaml
+      service: orderer-base
+    container_name: orderer2.healthcare.com
+    networks:
+    - health_network
+    volumes:
+        - ./channel-artifacts/genesis.block:/var/hyperledger/orderer/orderer.genesis.block
+        - ./crypto-config/ordererOrganizations/healthcare.com/orderers/orderer2.healthcare.com/msp:/var/hyperledger/orderer/msp
+        - ./crypto-config/ordererOrganizations/healthcare.com/orderers/orderer2.healthcare.com/tls/:/var/hyperledger/orderer/tls
+        - orderer2.healthcare.com:/var/hyperledger/production/orderer
+    ports:
+    - 8050:7050
+
+  orderer3.healthcare.com:
+    extends:
+      file: base/peer-base.yaml
+      service: orderer-base
+    container_name: orderer3.healthcare.com
+    networks:
+    - health_network
+    volumes:
+        - ./channel-artifacts/genesis.block:/var/hyperledger/orderer/orderer.genesis.block
+        - ./crypto-config/ordererOrganizations/healthcare.com/orderers/orderer3.healthcare.com/msp:/var/hyperledger/orderer/msp
+        - ./crypto-config/ordererOrganizations/healthcare.com/orderers/orderer3.healthcare.com/tls/:/var/hyperledger/orderer/tls
+        - orderer3.healthcare.com:/var/hyperledger/production/orderer
+    ports:
+    - 9050:7050
+
+  orderer4.healthcare.com:
+    extends:
+      file: base/peer-base.yaml
+      service: orderer-base
+    container_name: orderer4.healthcare.com
+    networks:
+    - health_network
+    volumes:
+        - ./channel-artifacts/genesis.block:/var/hyperledger/orderer/orderer.genesis.block
+        - ./crypto-config/ordererOrganizations/healthcare.com/orderers/orderer4.healthcare.com/msp:/var/hyperledger/orderer/msp
+        - ./crypto-config/ordererOrganizations/healthcare.com/orderers/orderer4.healthcare.com/tls/:/var/hyperledger/orderer/tls
+        - orderer4.healthcare.com:/var/hyperledger/production/orderer
+    ports:
+    - 10050:7050
+
+  orderer5.healthcare.com:
+    extends:
+      file: base/peer-base.yaml
+      service: orderer-base
+    container_name: orderer5.healthcare.com
+    networks:
+    - health_network
+    volumes:
+        - ./channel-artifacts/genesis.block:/var/hyperledger/orderer/orderer.genesis.block
+        - ./crypto-config/ordererOrganizations/healthcare.com/orderers/orderer5.healthcare.com/msp:/var/hyperledger/orderer/msp
+        - ./crypto-config/ordererOrganizations/healthcare.com/orderers/orderer5.healthcare.com/tls/:/var/hyperledger/orderer/tls
+        - orderer5.healthcare.com:/var/hyperledger/production/orderer
+    ports:
+    - 11050:7050

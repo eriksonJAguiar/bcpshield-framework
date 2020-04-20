@@ -1,0 +1,60 @@
+{
+    "name": "first-network-hprovider",
+    "version": "1.0.0",
+    "client": {
+        "organization": "HProvider",
+        "connection": {
+            "timeout": {
+                "peer": {
+                    "endorser": "300"
+                }
+            }
+        }
+    },
+    "organizations": {
+        "HProvider": {
+            "mspid": "HProviderMSP",
+            "peers": [
+                "peer0.hprovider.healthcare.com",
+                "peer1.hprovider.healthcare.com"
+            ],
+            "certificateAuthorities": [
+                "ca.hprovider.healthcare.com"
+            ]
+        }
+    },
+    "peers": {
+        "peer0.hprovider.healthcare.com": {
+            "url": "grpcs://localhost:7051",
+            "tlsCACerts": {
+                "pem": "-----BEGIN CERTIFICATE-----\nMIICeDCCAh+gAwIBAgIQJZBkYuqWGIufhqHUs1hGGjAKBggqhkjOPQQDAjCBhjEL\nMAkGA1UEBhMCVVMxEzARBgNVBAgTCkNhbGlmb3JuaWExFjAUBgNVBAcTDVNhbiBG\ncmFuY2lzY28xITAfBgNVBAoTGGhwcm92aWRlci5oZWFsdGhjYXJlLmNvbTEnMCUG\nA1UEAxMedGxzY2EuaHByb3ZpZGVyLmhlYWx0aGNhcmUuY29tMB4XDTIwMDMyMzIx\nNTAwMFoXDTMwMDMyMTIxNTAwMFowgYYxCzAJBgNVBAYTAlVTMRMwEQYDVQQIEwpD\nYWxpZm9ybmlhMRYwFAYDVQQHEw1TYW4gRnJhbmNpc2NvMSEwHwYDVQQKExhocHJv\ndmlkZXIuaGVhbHRoY2FyZS5jb20xJzAlBgNVBAMTHnRsc2NhLmhwcm92aWRlci5o\nZWFsdGhjYXJlLmNvbTBZMBMGByqGSM49AgEGCCqGSM49AwEHA0IABCVg4PR8Joei\nn+NHDrHZNwaWwsikHuVN//9q2dEXzSrBaDC+uVvI+EeL5r1yk7S+oij9NC1eLcAx\napHbSoIoWHqjbTBrMA4GA1UdDwEB/wQEAwIBpjAdBgNVHSUEFjAUBggrBgEFBQcD\nAgYIKwYBBQUHAwEwDwYDVR0TAQH/BAUwAwEB/zApBgNVHQ4EIgQgJKVwHcowof04\nKL2wf+t3XIUBJTkNDslmhCuycVCGWUkwCgYIKoZIzj0EAwIDRwAwRAIgRBE+MwQH\n78ts5vT+fLNyQfqWK8Kp2F8JppErysXHjVUCIDyAi+gdmAp8MViZMyzhu6DapoaU\nXJXfew4KyhrXCKVz\n-----END CERTIFICATE-----\n"
+            },
+            "grpcOptions": {
+                "ssl-target-name-override": "peer0.hprovider.healthcare.com",
+                "hostnameOverride": "peer0.hprovider.healthcare.com"
+            }
+        },
+        "peer1.hprovider.healthcare.com": {
+            "url": "grpcs://localhost:8051",
+            "tlsCACerts": {
+                "pem": "-----BEGIN CERTIFICATE-----\nMIICeDCCAh+gAwIBAgIQJZBkYuqWGIufhqHUs1hGGjAKBggqhkjOPQQDAjCBhjEL\nMAkGA1UEBhMCVVMxEzARBgNVBAgTCkNhbGlmb3JuaWExFjAUBgNVBAcTDVNhbiBG\ncmFuY2lzY28xITAfBgNVBAoTGGhwcm92aWRlci5oZWFsdGhjYXJlLmNvbTEnMCUG\nA1UEAxMedGxzY2EuaHByb3ZpZGVyLmhlYWx0aGNhcmUuY29tMB4XDTIwMDMyMzIx\nNTAwMFoXDTMwMDMyMTIxNTAwMFowgYYxCzAJBgNVBAYTAlVTMRMwEQYDVQQIEwpD\nYWxpZm9ybmlhMRYwFAYDVQQHEw1TYW4gRnJhbmNpc2NvMSEwHwYDVQQKExhocHJv\ndmlkZXIuaGVhbHRoY2FyZS5jb20xJzAlBgNVBAMTHnRsc2NhLmhwcm92aWRlci5o\nZWFsdGhjYXJlLmNvbTBZMBMGByqGSM49AgEGCCqGSM49AwEHA0IABCVg4PR8Joei\nn+NHDrHZNwaWwsikHuVN//9q2dEXzSrBaDC+uVvI+EeL5r1yk7S+oij9NC1eLcAx\napHbSoIoWHqjbTBrMA4GA1UdDwEB/wQEAwIBpjAdBgNVHSUEFjAUBggrBgEFBQcD\nAgYIKwYBBQUHAwEwDwYDVR0TAQH/BAUwAwEB/zApBgNVHQ4EIgQgJKVwHcowof04\nKL2wf+t3XIUBJTkNDslmhCuycVCGWUkwCgYIKoZIzj0EAwIDRwAwRAIgRBE+MwQH\n78ts5vT+fLNyQfqWK8Kp2F8JppErysXHjVUCIDyAi+gdmAp8MViZMyzhu6DapoaU\nXJXfew4KyhrXCKVz\n-----END CERTIFICATE-----\n"
+            },
+            "grpcOptions": {
+                "ssl-target-name-override": "peer1.hprovider.healthcare.com",
+                "hostnameOverride": "peer1.hprovider.healthcare.com"
+            }
+        }
+    },
+    "certificateAuthorities": {
+        "ca.hprovider.healthcare.com": {
+            "url": "https://localhost:7054",
+            "caName": "ca.hprovider.healthcare.com",
+            "tlsCACerts": {
+                "pem": "-----BEGIN CERTIFICATE-----\nMIICczCCAhmgAwIBAgIQFfwTmO9K1rS5E/mGwig/aTAKBggqhkjOPQQDAjCBgzEL\nMAkGA1UEBhMCVVMxEzARBgNVBAgTCkNhbGlmb3JuaWExFjAUBgNVBAcTDVNhbiBG\ncmFuY2lzY28xITAfBgNVBAoTGGhwcm92aWRlci5oZWFsdGhjYXJlLmNvbTEkMCIG\nA1UEAxMbY2EuaHByb3ZpZGVyLmhlYWx0aGNhcmUuY29tMB4XDTIwMDMyMzIxNTAw\nMFoXDTMwMDMyMTIxNTAwMFowgYMxCzAJBgNVBAYTAlVTMRMwEQYDVQQIEwpDYWxp\nZm9ybmlhMRYwFAYDVQQHEw1TYW4gRnJhbmNpc2NvMSEwHwYDVQQKExhocHJvdmlk\nZXIuaGVhbHRoY2FyZS5jb20xJDAiBgNVBAMTG2NhLmhwcm92aWRlci5oZWFsdGhj\nYXJlLmNvbTBZMBMGByqGSM49AgEGCCqGSM49AwEHA0IABIYL2wzJ/EJlFRmc+QU+\nKQcc87YC/rkfPa1dTCAv1HJ5pXULZWDJgZWstBklwPtkWzAL7jokNLa+zZ4SmSrT\nJnKjbTBrMA4GA1UdDwEB/wQEAwIBpjAdBgNVHSUEFjAUBggrBgEFBQcDAgYIKwYB\nBQUHAwEwDwYDVR0TAQH/BAUwAwEB/zApBgNVHQ4EIgQgr+uojGDw49MOjnIbAcbd\nVo58QiCiR5gquORUt+hCS2swCgYIKoZIzj0EAwIDSAAwRQIhALK74FyvM+2O2ozr\noAg5jtuHyva+jd32LNRduDy4ROT4AiB/K2p5djhM4uGRMMWTB40RlhpbHK7BqkYx\nzaG2Nww8wA==\n-----END CERTIFICATE-----\n"
+            },
+            "httpOptions": {
+                "verify": false
+            }
+        }
+    }
+}

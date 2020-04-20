@@ -1,0 +1,250 @@
+# Copyright IBM Corp. All Rights Reserved.
+#
+# SPDX-License-Identifier: Apache-2.0
+#
+
+version: '2'
+
+services:
+
+  orderer.healthcare.com:
+    container_name: orderer.healthcare.com
+    extends:
+      file: peer-base.yaml
+      service: orderer-base
+    volumes:
+        - ../channel-artifacts/genesis.block:/var/hyperledger/orderer/orderer.genesis.block
+        - ../crypto-config/ordererOrganizations/healthcare.com/orderers/orderer.healthcare.com/msp:/var/hyperledger/orderer/msp
+        - ../crypto-config/ordererOrganizations/healthcare.com/orderers/orderer.healthcare.com/tls/:/var/hyperledger/orderer/tls
+        - orderer.healthcare.com:/var/hyperledger/production/orderer
+    ports:
+      - 7050:7050
+
+  peer0.hprovider.healthcare.com:
+    container_name: peer0.hprovider.healthcare.com
+    extends:
+      file: peer-base.yaml
+      service: peer-base
+    environment:
+      - CORE_PEER_ID=peer0.hprovider.healthcare.com
+      - CORE_PEER_ADDRESS=peer0.hprovider.healthcare.com:7051
+      - CORE_PEER_LISTENADDRESS=0.0.0.0:7051
+      - CORE_PEER_CHAINCODEADDRESS=peer0.hprovider.healthcare.com:7052
+      - CORE_PEER_CHAINCODELISTENADDRESS=0.0.0.0:7052
+      - CORE_PEER_GOSSIP_BOOTSTRAP=peer1.hprovider.healthcare.com:8051
+      - CORE_PEER_GOSSIP_EXTERNALENDPOINT=peer0.hprovider.healthcare.com:7051
+      - CORE_PEER_LOCALMSPID=HProviderMSP
+    volumes:
+        - /var/run/:/host/var/run/
+        - ../crypto-config/peerOrganizations/hprovider.healthcare.com/peers/peer0.hprovider.healthcare.com/msp:/etc/hyperledger/fabric/msp
+        - ../crypto-config/peerOrganizations/hprovider.healthcare.com/peers/peer0.hprovider.healthcare.com/tls:/etc/hyperledger/fabric/tls
+        - peer0.hprovider.healthcare.com:/var/hyperledger/production
+    ports:
+      - 7051:7051
+
+  peer1.hprovider.healthcare.com:
+    container_name: peer1.hprovider.healthcare.com
+    extends:
+      file: peer-base.yaml
+      service: peer-base
+    environment:
+      - CORE_PEER_ID=peer1.hprovider.healthcare.com
+      - CORE_PEER_ADDRESS=peer1.hprovider.healthcare.com:8051
+      - CORE_PEER_LISTENADDRESS=0.0.0.0:8051
+      - CORE_PEER_CHAINCODEADDRESS=peer1.hprovider.healthcare.com:8052
+      - CORE_PEER_CHAINCODELISTENADDRESS=0.0.0.0:8052
+      - CORE_PEER_GOSSIP_EXTERNALENDPOINT=peer1.hprovider.healthcare.com:8051
+      - CORE_PEER_GOSSIP_BOOTSTRAP=peer0.hprovider.healthcare.com:7051
+      - CORE_PEER_LOCALMSPID=HProviderMSP
+    volumes:
+        - /var/run/:/host/var/run/
+        - ../crypto-config/peerOrganizations/hprovider.healthcare.com/peers/peer1.hprovider.healthcare.com/msp:/etc/hyperledger/fabric/msp
+        - ../crypto-config/peerOrganizations/hprovider.healthcare.com/peers/peer1.hprovider.healthcare.com/tls:/etc/hyperledger/fabric/tls
+        - peer1.hprovider.healthcare.com:/var/hyperledger/production
+
+    ports:
+      - 8051:8051
+
+  peer0.research.healthcare.com:
+    container_name: peer0.research.healthcare.com
+    extends:
+      file: peer-base.yaml
+      service: peer-base
+    environment:
+      - CORE_PEER_ID=peer0.research.healthcare.com
+      - CORE_PEER_ADDRESS=peer0.research.healthcare.com:9051
+      - CORE_PEER_LISTENADDRESS=0.0.0.0:9051
+      - CORE_PEER_CHAINCODEADDRESS=peer0.research.healthcare.com:9052
+      - CORE_PEER_CHAINCODELISTENADDRESS=0.0.0.0:9052
+      - CORE_PEER_GOSSIP_EXTERNALENDPOINT=peer0.research.healthcare.com:9051
+      - CORE_PEER_GOSSIP_BOOTSTRAP=peer1.research.healthcare.com:10051
+      - CORE_PEER_LOCALMSPID=ResearchMSP
+    volumes:
+        - /var/run/:/host/var/run/
+        - ../crypto-config/peerOrganizations/research.healthcare.com/peers/peer0.research.healthcare.com/msp:/etc/hyperledger/fabric/msp
+        - ../crypto-config/peerOrganizations/research.healthcare.com/peers/peer0.research.healthcare.com/tls:/etc/hyperledger/fabric/tls
+        - peer0.research.healthcare.com:/var/hyperledger/production
+    ports:
+      - 9051:9051
+
+  peer1.research.healthcare.com:
+    container_name: peer1.research.healthcare.com
+    extends:
+      file: peer-base.yaml
+      service: peer-base
+    environment:
+      - CORE_PEER_ID=peer1.research.healthcare.com
+      - CORE_PEER_ADDRESS=peer1.research.healthcare.com:10051
+      - CORE_PEER_LISTENADDRESS=0.0.0.0:10051
+      - CORE_PEER_CHAINCODEADDRESS=peer1.research.healthcare.com:10052
+      - CORE_PEER_CHAINCODELISTENADDRESS=0.0.0.0:10052
+      - CORE_PEER_GOSSIP_EXTERNALENDPOINT=peer1.research.healthcare.com:10051
+      - CORE_PEER_GOSSIP_BOOTSTRAP=peer0.research.healthcare.com:9051
+      - CORE_PEER_LOCALMSPID=ResearchMSP
+    volumes:
+        - /var/run/:/host/var/run/
+        - ../crypto-config/peerOrganizations/research.healthcare.com/peers/peer1.research.healthcare.com/msp:/etc/hyperledger/fabric/msp
+        - ../crypto-config/peerOrganizations/research.healthcare.com/peers/peer1.research.healthcare.com/tls:/etc/hyperledger/fabric/tls
+        - peer1.research.healthcare.com:/var/hyperledger/production
+    ports:
+      - 10051:10051
+
+
+#---------------------------------- New Peers -------------------------------
+
+  peer2.hprovider.healthcare.com:
+    container_name: peer2.hprovider.healthcare.com
+    extends:
+      file: peer-base.yaml
+      service: peer-base
+    environment:
+      - CORE_PEER_ID=peer2.hprovider.healthcare.com
+      - CORE_PEER_ADDRESS=peer2.hprovider.healthcare.com:11051
+      - CORE_PEER_LISTENADDRESS=0.0.0.0:11051
+      - CORE_PEER_CHAINCODEADDRESS=peer2.hprovider.healthcare.com:11052
+      - CORE_PEER_CHAINCODELISTENADDRESS=0.0.0.0:11052
+      - CORE_PEER_GOSSIP_EXTERNALENDPOINT=peer2.hprovider.healthcare.com:11051
+      - CORE_PEER_GOSSIP_BOOTSTRAP=peer0.hprovider.healthcare.com:7051
+      - CORE_PEER_LOCALMSPID=HProviderMSP
+    volumes:
+        - /var/run/:/host/var/run/
+        - ../crypto-config/peerOrganizations/hprovider.healthcare.com/peers/peer2.hprovider.healthcare.com/msp:/etc/hyperledger/fabric/msp
+        - ../crypto-config/peerOrganizations/hprovider.healthcare.com/peers/peer2.hprovider.healthcare.com/tls:/etc/hyperledger/fabric/tls
+        - peer2.hprovider.healthcare.com:/var/hyperledger/production
+
+    ports:
+      - 11051:8051
+
+  peer3.hprovider.healthcare.com:
+    container_name: peer3.hprovider.healthcare.com
+    extends:
+      file: peer-base.yaml
+      service: peer-base
+    environment:
+      - CORE_PEER_ID=peer3.hprovider.healthcare.com
+      - CORE_PEER_ADDRESS=peer3.hprovider.healthcare.com:12051
+      - CORE_PEER_LISTENADDRESS=0.0.0.0:12051
+      - CORE_PEER_CHAINCODEADDRESS=peer3.hprovider.healthcare.com:12052
+      - CORE_PEER_CHAINCODELISTENADDRESS=0.0.0.0:12052
+      - CORE_PEER_GOSSIP_EXTERNALENDPOINT=peer3.hprovider.healthcare.com:12051
+      - CORE_PEER_GOSSIP_BOOTSTRAP=peer0.hprovider.healthcare.com:7051
+      - CORE_PEER_LOCALMSPID=HProviderMSP
+    volumes:
+        - /var/run/:/host/var/run/
+        - ../crypto-config/peerOrganizations/hprovider.healthcare.com/peers/peer3.hprovider.healthcare.com/msp:/etc/hyperledger/fabric/msp
+        - ../crypto-config/peerOrganizations/hprovider.healthcare.com/peers/peer3.hprovider.healthcare.com/tls:/etc/hyperledger/fabric/tls
+        - peer3.hprovider.healthcare.com:/var/hyperledger/production
+
+    ports:
+      - 12051:8051
+
+  peer4.hprovider.healthcare.com:
+    container_name: peer4.hprovider.healthcare.com
+    extends:
+      file: peer-base.yaml
+      service: peer-base
+    environment:
+      - CORE_PEER_ID=peer4.hprovider.healthcare.com
+      - CORE_PEER_ADDRESS=peer4.hprovider.healthcare.com:13051
+      - CORE_PEER_LISTENADDRESS=0.0.0.0:13051
+      - CORE_PEER_CHAINCODEADDRESS=peer4.hprovider.healthcare.com:13052
+      - CORE_PEER_CHAINCODELISTENADDRESS=0.0.0.0:13052
+      - CORE_PEER_GOSSIP_EXTERNALENDPOINT=peer4.hprovider.healthcare.com:13051
+      - CORE_PEER_GOSSIP_BOOTSTRAP=peer0.hprovider.healthcare.com:7051
+      - CORE_PEER_LOCALMSPID=HProviderMSP
+    volumes:
+        - /var/run/:/host/var/run/
+        - ../crypto-config/peerOrganizations/hprovider.healthcare.com/peers/peer4.hprovider.healthcare.com/msp:/etc/hyperledger/fabric/msp
+        - ../crypto-config/peerOrganizations/hprovider.healthcare.com/peers/peer4.hprovider.healthcare.com/tls:/etc/hyperledger/fabric/tls
+        - peer4.hprovider.healthcare.com:/var/hyperledger/production
+
+    ports:
+      - 13051:8051
+
+  peer2.research.healthcare.com:
+    container_name: peer2.research.healthcare.com
+    extends:
+      file: peer-base.yaml
+      service: peer-base
+    environment:
+      - CORE_PEER_ID=peer2.research.healthcare.com
+      - CORE_PEER_ADDRESS=peer2.research.healthcare.com:14051
+      - CORE_PEER_LISTENADDRESS=0.0.0.0:14051
+      - CORE_PEER_CHAINCODEADDRESS=peer2.research.healthcare.com:14052
+      - CORE_PEER_CHAINCODELISTENADDRESS=0.0.0.0:14052
+      - CORE_PEER_GOSSIP_EXTERNALENDPOINT=peer2.research.healthcare.com:14051
+      - CORE_PEER_GOSSIP_BOOTSTRAP=peer0.research.healthcare.com:9051
+      - CORE_PEER_LOCALMSPID=ResearchMSP
+    volumes:
+        - /var/run/:/host/var/run/
+        - ../crypto-config/peerOrganizations/research.healthcare.com/peers/peer2.research.healthcare.com/msp:/etc/hyperledger/fabric/msp
+        - ../crypto-config/peerOrganizations/research.healthcare.com/peers/peer2.research.healthcare.com/tls:/etc/hyperledger/fabric/tls
+        - peer2.research.healthcare.com:/var/hyperledger/production
+    ports:
+      - 14051:10051
+
+
+  peer3.research.healthcare.com:
+    container_name: peer3.research.healthcare.com
+    extends:
+      file: peer-base.yaml
+      service: peer-base
+    environment:
+      - CORE_PEER_ID=peer3.research.healthcare.com
+      - CORE_PEER_ADDRESS=peer3.research.healthcare.com:15051
+      - CORE_PEER_LISTENADDRESS=0.0.0.0:15051
+      - CORE_PEER_CHAINCODEADDRESS=peer3.research.healthcare.com:15052
+      - CORE_PEER_CHAINCODELISTENADDRESS=0.0.0.0:15052
+      - CORE_PEER_GOSSIP_EXTERNALENDPOINT=peer3.research.healthcare.com:15051
+      - CORE_PEER_GOSSIP_BOOTSTRAP=peer0.research.healthcare.com:9051
+      - CORE_PEER_LOCALMSPID=ResearchMSP
+    volumes:
+        - /var/run/:/host/var/run/
+        - ../crypto-config/peerOrganizations/research.healthcare.com/peers/peer3.research.healthcare.com/msp:/etc/hyperledger/fabric/msp
+        - ../crypto-config/peerOrganizations/research.healthcare.com/peers/peer3.research.healthcare.com/tls:/etc/hyperledger/fabric/tls
+        - peer3.research.healthcare.com:/var/hyperledger/production
+    ports:
+      - 15051:10051
+
+  peer4.research.healthcare.com:
+    container_name: peer4.research.healthcare.com
+    extends:
+      file: peer-base.yaml
+      service: peer-base
+    environment:
+      - CORE_PEER_ID=peer4.research.healthcare.com
+      - CORE_PEER_ADDRESS=peer4.research.healthcare.com:16051
+      - CORE_PEER_LISTENADDRESS=0.0.0.0:16051
+      - CORE_PEER_CHAINCODEADDRESS=peer4.research.healthcare.com:16052
+      - CORE_PEER_CHAINCODELISTENADDRESS=0.0.0.0:16052
+      - CORE_PEER_GOSSIP_EXTERNALENDPOINT=peer4.research.healthcare.com:16051
+      - CORE_PEER_GOSSIP_BOOTSTRAP=peer0.research.healthcare.com:9051
+      - CORE_PEER_LOCALMSPID=ResearchMSP
+    volumes:
+        - /var/run/:/host/var/run/
+        - ../crypto-config/peerOrganizations/research.healthcare.com/peers/peer4.research.healthcare.com/msp:/etc/hyperledger/fabric/msp
+        - ../crypto-config/peerOrganizations/research.healthcare.com/peers/peer4.research.healthcare.com/tls:/etc/hyperledger/fabric/tls
+        - peer4.research.healthcare.com:/var/hyperledger/production
+    ports:
+      - 16051:10051
+  

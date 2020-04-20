@@ -1,0 +1,157 @@
+# Copyright IBM Corp. All Rights Reserved.
+#
+# SPDX-License-Identifier: Apache-2.0
+#
+
+version: '2'
+
+volumes:
+  orderer.healthcare.com:
+  peer0.hprovider.healthcare.com:
+  peer1.hprovider.healthcare.com:
+  peer2.hprovider.healthcare.com:  
+  peer3.hprovider.healthcare.com:
+  peer4.hprovider.healthcare.com:
+  peer0.research.healthcare.com:
+  peer1.research.healthcare.com:
+  peer2.research.healthcare.com:
+  peer3.research.healthcare.com:
+  peer4.research.healthcare.com:    
+
+networks:
+  health_network:
+
+services:
+
+  orderer.healthcare.com:
+    extends:
+      file:   base/docker-compose-base.yaml
+      service: orderer.healthcare.com
+    container_name: orderer.healthcare.com
+    networks:
+      - health_network
+
+  peer0.hprovider.healthcare.com:
+    container_name: peer0.hprovider.healthcare.com
+    extends:
+      file:  base/docker-compose-base.yaml
+      service: peer0.hprovider.healthcare.com
+    networks:
+      - health_network
+
+  peer1.hprovider.healthcare.com:
+    container_name: peer1.hprovider.healthcare.com
+    extends:
+      file:  base/docker-compose-base.yaml
+      service: peer1.hprovider.healthcare.com
+    networks:
+      - health_network
+
+  peer0.research.healthcare.com:
+    container_name: peer0.research.healthcare.com
+    extends:
+      file:  base/docker-compose-base.yaml
+      service: peer0.research.healthcare.com
+    networks:
+      - health_network
+
+  peer1.research.healthcare.com:
+    container_name: peer1.research.healthcare.com
+    extends:
+      file:  base/docker-compose-base.yaml
+      service: peer1.research.healthcare.com
+    networks:
+      - health_network
+
+#---------------------------------- New Peers -------------------------------
+  
+  peer2.hprovider.healthcare.com:
+    container_name: peer2.hprovider.healthcare.com
+    extends:
+      file:  base/docker-compose-base.yaml
+      service: peer2.hprovider.healthcare.com
+    networks:
+      - health_network
+
+  peer3.hprovider.healthcare.com:
+    container_name: peer3.hprovider.healthcare.com
+    extends:
+      file:  base/docker-compose-base.yaml
+      service: peer3.hprovider.healthcare.com
+    networks:
+      - health_network
+  
+  peer4.hprovider.healthcare.com:
+    container_name: peer4.hprovider.healthcare.com
+    extends:
+      file:  base/docker-compose-base.yaml
+      service: peer4.hprovider.healthcare.com
+    networks:
+      - health_network
+
+  peer2.research.healthcare.com:
+    container_name: peer2.research.healthcare.com
+    extends:
+      file:  base/docker-compose-base.yaml
+      service: peer2.research.healthcare.com
+    networks:
+      - health_network
+
+  peer3.research.healthcare.com:
+    container_name: peer3.research.healthcare.com
+    extends:
+      file:  base/docker-compose-base.yaml
+      service: peer3.research.healthcare.com
+    networks:
+      - health_network
+
+  peer4.research.healthcare.com:
+    container_name: peer4.research.healthcare.com
+    extends:
+      file:  base/docker-compose-base.yaml
+      service: peer4.research.healthcare.com
+    networks:
+      - health_network
+
+
+  cli:
+    container_name: cli
+    image: hyperledger/fabric-tools:$IMAGE_TAG
+    tty: true
+    stdin_open: true
+    environment:
+      - SYS_CHANNEL=$SYS_CHANNEL
+      - GOPATH=/opt/gopath
+      - CORE_VM_ENDPOINT=unix:///host/var/run/docker.sock
+      #- FABRIC_LOGGING_SPEC=DEBUG
+      - FABRIC_LOGGING_SPEC=INFO
+      - CORE_PEER_ID=cli
+      - CORE_PEER_ADDRESS=peer0.hprovider.healthcare.com:7051
+      - CORE_PEER_LOCALMSPID=HProviderMSP
+      - CORE_PEER_TLS_ENABLED=true
+      - CORE_PEER_TLS_CERT_FILE=/opt/gopath/src/github.com/hyperledger/fabric/peer/crypto/peerOrganizations/hprovider.healthcare.com/peers/peer0.hprovider.healthcare.com/tls/server.crt
+      - CORE_PEER_TLS_KEY_FILE=/opt/gopath/src/github.com/hyperledger/fabric/peer/crypto/peerOrganizations/hprovider.healthcare.com/peers/peer0.hprovider.healthcare.com/tls/server.key
+      - CORE_PEER_TLS_ROOTCERT_FILE=/opt/gopath/src/github.com/hyperledger/fabric/peer/crypto/peerOrganizations/hprovider.healthcare.com/peers/peer0.hprovider.healthcare.com/tls/ca.crt
+      - CORE_PEER_MSPCONFIGPATH=/opt/gopath/src/github.com/hyperledger/fabric/peer/crypto/peerOrganizations/hprovider.healthcare.com/users/Admin@hprovider.healthcare.com/msp
+    working_dir: /opt/gopath/src/github.com/hyperledger/fabric/peer
+    command: /bin/bash
+    volumes:
+        - /var/run/:/host/var/run/
+        - ./chaincode/:/opt/gopath/src/github.com/chaincode
+        - ./crypto-config:/opt/gopath/src/github.com/hyperledger/fabric/peer/crypto/
+        - ./scripts:/opt/gopath/src/github.com/hyperledger/fabric/peer/scripts/
+        - ./channel-artifacts:/opt/gopath/src/github.com/hyperledger/fabric/peer/channel-artifacts
+    depends_on:
+      - orderer.healthcare.com
+      - peer0.hprovider.healthcare.com
+      - peer1.hprovider.healthcare.com
+      - peer2.hprovider.healthcare.com
+      - peer3.hprovider.healthcare.com
+      - peer4.hprovider.healthcare.com
+      - peer0.research.healthcare.com
+      - peer1.research.healthcare.com
+      - peer2.research.healthcare.com
+      - peer3.research.healthcare.com
+      - peer4.research.healthcare.com
+    networks:
+      - health_network

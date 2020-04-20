@@ -1,0 +1,43 @@
+---
+name: first-network-org${ORG}
+version: 1.0.0
+client:
+  organization: ${ORGMSP}
+  connection:
+    timeout:
+      peer:
+        endorser: '300'
+organizations:
+  ${ORGMSP}:
+    mspid: ${ORGMSP}MSP
+    peers:
+    - peer0.${ORG}.healthcare.com
+    - peer1.${ORG}.healthcare.com
+    certificateAuthorities:
+    - ca.${ORG}.healthcare.com
+peers:
+  peer0.${ORG}.healthcare.com:
+    url: grpcs://localhost:${P0PORT}
+    tlsCACerts:
+      pem: |
+        ${PEERPEM}
+    grpcOptions:
+      ssl-target-name-override: peer0.${ORG}.healthcare.com
+      hostnameOverride: peer0.${ORG}.healthcare.com
+  peer1.${ORG}.healthcare.com:
+    url: grpcs://localhost:${P1PORT}
+    tlsCACerts:
+      pem: |
+        ${PEERPEM}
+    grpcOptions:
+      ssl-target-name-override: peer1.{ORG}.healthcare.com
+      hostnameOverride: peer1.${ORG}.healthcare.com
+certificateAuthorities:
+  ca.${ORG}.healthcare.com:
+    url: https://localhost:${CAPORT}
+    caName: ca.${ORG}.healthcare.com
+    tlsCACerts:
+      pem: |
+        ${CAPEM}
+    httpOptions:
+      verify: false
