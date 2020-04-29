@@ -5,7 +5,7 @@ import (
 	"fmt"
 	"math"
 
-	"github.com/montanaflynn/stats"
+	distcos "github.com/gaspiman/cosine_similarity"
 	tfidf "github.com/numbleroot/go-tfidf"
 	"golang.org/x/exp/rand"
 )
@@ -94,92 +94,97 @@ func findMaxMin(vals []float64) (float64, float64) {
 }
 
 // Remove a element by index of the array float64 that represents Numeric elements
-// func removeNumericElement(index int, array []float64) []float64 {
-// 	var part1 []float64
-// 	var part2 []float64
+func removeNumericElement(index int, array []float64) []float64 {
+	var part1 []float64
+	var part2 []float64
 
-// 	part1 = array[:index]
-// 	part2 = array[index+1:]
+	part1 = array[:index]
+	part2 = array[index+1:]
 
-// 	sizeNew := len(part1) + len(part2)
-// 	newArray := make([]float64, 0, sizeNew)
+	sizeNew := len(part1) + len(part2)
+	newArray := make([]float64, 0, sizeNew)
 
-// 	for _, elm := range part1 {
-// 		newArray = append(newArray, elm)
-// 	}
-
-// 	for _, elm := range part2 {
-// 		newArray = append(newArray, elm)
-// 	}
-
-// 	return newArray
-// }
-
-// Remove a element by index of the array float64 that represents symbolic values
-// func removeElement(index int, array []Matrix) []Matrix {
-
-// 	if array[0].Type == "numeric" {
-// 		numericaData := removeNumericElement(index, array[0].Data)
-// 		return []Matrix{{Data: numericaData}}
-// 	}
-
-// 	var part1 []Matrix
-// 	var part2 []Matrix
-
-// 	part1 = array[:index]
-// 	part2 = array[index+1:]
-
-// 	sizeNew := len(part1) + len(part2)
-// 	newArray := make([]Matrix, 0, sizeNew)
-
-// 	for _, elm := range part1 {
-// 		newArray = append(newArray, elm)
-// 	}
-
-// 	for _, elm := range part2 {
-// 		newArray = append(newArray, elm)
-// 	}
-
-// 	return newArray
-// }
-
-// Removo elements from dataset
-func removeIndex(dataset []Matrix, index int) []Matrix {
-	if dataset[0].Type == "numeric" {
-		datasetValues := dataset[0].Data
-		var datasetCropped []Matrix
-		var matNewElement Matrix
-		matNewElement.Data = append(datasetValues[:index], datasetValues[index+1:]...)
-		matNewElement.Type = "numeric"
-
-		datasetCropped = append(datasetCropped, matNewElement)
-
-		return datasetCropped
-
+	for _, elm := range part1 {
+		newArray = append(newArray, elm)
 	}
 
-	return append(dataset[:index], dataset[index+1:]...)
+	for _, elm := range part2 {
+		newArray = append(newArray, elm)
+	}
+
+	return newArray
 }
+
+// Remove a element by index of the array float64 that represents symbolic values
+func removeElement(index int, array []Matrix) []Matrix {
+
+	if array[0].Type == "numeric" {
+		numericaData := removeNumericElement(index, array[0].Data)
+		return []Matrix{{Data: numericaData}}
+	}
+
+	var part1 []Matrix
+	var part2 []Matrix
+
+	part1 = array[:index]
+	part2 = array[index+1:]
+
+	sizeNew := len(part1) + len(part2)
+	newArray := make([]Matrix, 0, sizeNew)
+
+	for _, elm := range part1 {
+		newArray = append(newArray, elm)
+	}
+
+	for _, elm := range part2 {
+		newArray = append(newArray, elm)
+	}
+
+	return newArray
+}
+
+// Removo elements from dataset
+// func removeIndex(dataset []Matrix, index int) []Matrix {
+// 	if dataset[0].Type == "numeric" {
+// 		datasetValues := dataset[0].Data
+// 		var datasetCropped []Matrix
+// 		var matNewElement Matrix
+// 		matNewElement.Data = append(datasetValues[:index], datasetValues[index+1:]...)
+// 		matNewElement.Type = "numeric"
+
+// 		datasetCropped = append(datasetCropped, matNewElement)
+
+// 		return datasetCropped
+
+// 	}
+
+// 	return append(dataset[:index], dataset[index+1:]...)
+// }
 
 // Query amount from id record
 func Query(data []Matrix, amount int) []Matrix {
 
-	var m []Matrix
+	var matrixQuery []Matrix
 
-	if len(data) > 1 {
+	if data[0].Type == "string" {
 		if amount >= len(data) {
 			return data
 		}
 
-		m = data[:amount]
-		return m
+		matrixQuery = data[:amount]
+		return matrixQuery
 	}
 
 	if amount >= len(data[0].Data) {
 		return data
 	}
 
-	return []Matrix{{Data: data[0].Data[:amount]}}
+	var auxMatrix Matrix
+
+	auxMatrix.Data = data[0].Data[:amount]
+	auxMatrix.Type = "numeric"
+
+	return []Matrix{auxMatrix}
 }
 
 // Calculate the maximum difference for numeric values
@@ -188,10 +193,8 @@ func maxDifferenceForSymbolic(q1 []Matrix, q2 []Matrix) float64 {
 	var max float64
 
 	for j := 0; j < len(q1); j++ {
-		metricQ1, _ := stats.Median(q1[j].Data)
-		metricQ2, _ := stats.Median(q2[j].Data)
-		val := math.Abs(metricQ1 - metricQ2)
-		max = math.Max(max, val)
+		distanceDatabases, _ := distcos.Cosine(q1[j].Data, q2[j].Data)
+		max = math.Max(max, distanceDatabases)
 	}
 
 	return max
@@ -202,7 +205,7 @@ func maxDifferenceForNumeric(q1 []Matrix, q2 []Matrix) float64 {
 	var max float64
 
 	for i := 0; i < len(q1[0].Data); i++ {
-		val := math.Abs((q1[0].Data[i]) - (q1[0].Data[i]))
+		val := math.Abs((q1[0].Data[i]) - (q2[0].Data[i]))
 		max = math.Max(max, val)
 	}
 
@@ -210,16 +213,16 @@ func maxDifferenceForNumeric(q1 []Matrix, q2 []Matrix) float64 {
 }
 
 // Calculate the sensitivity for database
-func sensitivity(database []Matrix) float64 {
+func sensitivity(database []Matrix, amountQuery int) float64 {
 
 	var val float64
 	var max float64
 
 	for i := 0; i < len(database); i += 2 {
-		d1 := removeIndex(database, i)
-		d2 := removeIndex(database, i+1)
-		q1 := Query(d1, 10)
-		q2 := Query(d2, 10)
+		d1 := removeElement(i, database)
+		d2 := removeElement(i+1, database)
+		q1 := Query(d1, amountQuery)
+		q2 := Query(d2, amountQuery)
 
 		if q1[0].Type == "string" {
 			val = maxDifferenceForSymbolic(q1, q2)
@@ -240,11 +243,11 @@ func blaplace(sens float64, epsilon float64) float64 {
 }
 
 // Calculate a Laplacian noise and generate a random distribuion
-func dflaplace(database []Matrix, epsilon float64) *diffPrivVal {
+func dflaplace(database []Matrix, amountQuery int, epsilon float64) *diffPrivVal {
 
 	//var sample []float64
 
-	s := sensitivity(database)
+	s := sensitivity(database, amountQuery)
 	b := blaplace(s, epsilon)
 
 	lap := laplace{Mu: 0, Scale: b}
@@ -302,6 +305,7 @@ func addNoise(query []Matrix, df diffPrivVal) []Matrix {
 	if query[0].Type == "numeric" {
 		dataValue := addNoiseForNumericData(query[0].Data, df.Noise[df.indexMin])
 		qnoise = []Matrix{{Data: dataValue, Type: "numeric"}}
+		return qnoise
 	}
 
 	qnoise = addNoiseForSymbolicData(query, df.Noise[df.indexMin])
@@ -351,11 +355,11 @@ func TransforFloatData(data []float64) []Matrix {
 }
 
 // Main function to calculate the differential privacy
-func DiffPriv(query []Matrix, dataset []Matrix, epsilon float64) string {
+func DiffPriv(query []Matrix, amountQuery int, dataset []Matrix, epsilon float64) string {
 
 	var dfNoise diffPrivVal
 
-	dfNoise = (*dflaplace(dataset, epsilon))
+	dfNoise = (*dflaplace(dataset, amountQuery, epsilon))
 	noiseQuery := addNoise(query, dfNoise)
 
 	jsonQuey, err := json.Marshal(noiseQuery)
