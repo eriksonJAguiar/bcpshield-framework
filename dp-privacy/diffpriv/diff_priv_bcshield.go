@@ -11,7 +11,7 @@ import (
 )
 
 // Represents a type from differential privacy attributes
-type DiffPrivVal struct {
+type diffPrivVal struct {
 	MinProb  float64
 	indexMin int
 	Prob     []float64
@@ -25,7 +25,7 @@ type DiffPrivVal struct {
 * -----------------------------------------------------------
  */
 //Represents a type for Laplacian distribution attributes
-type Laplace struct {
+type laplace struct {
 	Mu    float64
 	Scale float64
 	Src   rand.Source
@@ -50,17 +50,17 @@ type Matrix struct {
  */
 
 //Imported from github.com/gonum/stat/distuv - Gonum
-func (l Laplace) LogProb(x float64) float64 {
+func (l laplace) LogProb(x float64) float64 {
 	return -math.Ln2 - math.Log(l.Scale) - math.Abs(x-l.Mu)/l.Scale
 }
 
 // Imported from github.com/gonum/stat/distuv - Gonum
-func (l Laplace) Prob(x float64) float64 {
+func (l laplace) Prob(x float64) float64 {
 	return math.Exp(l.LogProb(x))
 }
 
 // Imported from github.com/gonum/stat/distuv - Gonum
-func (l Laplace) Rand() float64 {
+func (l laplace) Rand() float64 {
 	var rnd float64
 	if l.Src == nil {
 		rnd = rand.Float64()
@@ -143,7 +143,8 @@ func findMaxMin(vals []float64) (float64, float64) {
 // 	return newArray
 // }
 
-func RemoveIndex(dataset []Matrix, index int) []Matrix {
+// Removo elements from dataset
+func removeIndex(dataset []Matrix, index int) []Matrix {
 	if dataset[0].Type == "numeric" {
 		datasetValues := dataset[0].Data
 		var datasetCropped []Matrix
@@ -161,7 +162,7 @@ func RemoveIndex(dataset []Matrix, index int) []Matrix {
 }
 
 // Query amount from id record
-func query(data []Matrix, amount int) []Matrix {
+func Query(data []Matrix, amount int) []Matrix {
 
 	var m []Matrix
 
@@ -215,10 +216,10 @@ func sensitivity(database []Matrix) float64 {
 	var max float64
 
 	for i := 0; i < len(database); i += 2 {
-		d1 := RemoveIndex(database, i)
-		d2 := RemoveIndex(database, i+1)
-		q1 := query(d1, 10)
-		q2 := query(d2, 10)
+		d1 := removeIndex(database, i)
+		d2 := removeIndex(database, i+1)
+		q1 := Query(d1, 10)
+		q2 := Query(d2, 10)
 
 		if q1[0].Type == "string" {
 			val = maxDifferenceForSymbolic(q1, q2)
@@ -239,15 +240,15 @@ func blaplace(sens float64, epsilon float64) float64 {
 }
 
 // Calculate a Laplacian noise and generate a random distribuion
-func dflaplace(database []Matrix, epsilon float64) *DiffPrivVal {
+func dflaplace(database []Matrix, epsilon float64) *diffPrivVal {
 
 	//var sample []float64
 
 	s := sensitivity(database)
 	b := blaplace(s, epsilon)
 
-	lap := Laplace{Mu: 0, Scale: b}
-	df := DiffPrivVal{MinProb: 0, indexMin: -1}
+	lap := laplace{Mu: 0, Scale: b}
+	df := diffPrivVal{MinProb: 0, indexMin: -1}
 	df.Prob = make([]float64, 0, len(database))
 	df.Noise = make([]float64, 0, len(database))
 
@@ -287,14 +288,14 @@ func addNoiseForSymbolicData(query []Matrix, noise float64) []Matrix {
 		var auxQnoise Matrix
 		auxQnoise.Data = addNoiseForNumericData(q.Data, noise)
 		auxQnoise.Type = "string"
-		qnoise = append(qnoise, aux_qnoise)
+		qnoise = append(qnoise, auxQnoise)
 	}
 
 	return qnoise
 }
 
 // Add noise on query selected through laplace distribution
-func addNoise(query []Matrix, df DiffPrivVal) []Matrix {
+func addNoise(query []Matrix, df diffPrivVal) []Matrix {
 
 	var qnoise []Matrix
 
@@ -309,7 +310,7 @@ func addNoise(query []Matrix, df DiffPrivVal) []Matrix {
 }
 
 // Traform data from symbolic to Matrix
-func transforSymbolicData(dataset []string) []Matrix {
+func TransforSymbolicData(dataset []string) []Matrix {
 	var dtokens [][]string
 
 	for _, dt := range dataset {
@@ -335,7 +336,7 @@ func transforSymbolicData(dataset []string) []Matrix {
 }
 
 // Transform data from Int to Matrix
-func transforIntData(data []int) []Matrix {
+func TransforIntData(data []int) []Matrix {
 	newData := make([]float64, 0, len(data))
 	for _, d := range data {
 		newData = append(newData, float64(d))
@@ -345,14 +346,14 @@ func transforIntData(data []int) []Matrix {
 }
 
 // Transform data from Float to Matrix
-func transforFloatData(data []float64) []Matrix {
+func TransforFloatData(data []float64) []Matrix {
 	return []Matrix{{Data: data, Type: "numeric"}}
 }
 
 // Main function to calculate the differential privacy
-func diffPriv(query []Matrix, dataset []Matrix, epsilon float64) string {
+func DiffPriv(query []Matrix, dataset []Matrix, epsilon float64) string {
 
-	var dfNoise DiffPrivVal
+	var dfNoise diffPrivVal
 
 	dfNoise = (*dflaplace(dataset, epsilon))
 	noiseQuery := addNoise(query, dfNoise)
