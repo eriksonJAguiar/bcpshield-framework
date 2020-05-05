@@ -7,7 +7,9 @@ package main
 //dp "github.com/icmc-wines/dp-privacy/diffpriv"
 
 import (
+	"bytes"
 	"crypto/sha1"
+	"encoding/hex"
 	"encoding/json"
 	"fmt"
 	"math/rand"
@@ -21,6 +23,7 @@ import (
 // Define the DICOM imaging attributres
 type Dicom struct {
 	DicomID              string    `json:"dicomID"`
+	DocType              string    `json:"docType"`
 	PatientFirstname     string    `json:"patientFirstname"`
 	PatientLastname      string    `json:"patientLastname"`
 	PatientTelephone     string    `json:"patientTelephone"`
@@ -33,8 +36,8 @@ type Dicom struct {
 	PatientSex           string    `json:"patientSex"`
 	PatientGender        string    `json:"patientGender"`
 	PatientInsuranceplan string    `json:"patientInsuranceplan"`
-	PatientWeigth        int       `json:"patientWeigth"`
-	PatientHeigth        int       `json:"patientHeigth"`
+	PatientWeigth        float64   `json:"patientWeigth"`
+	PatientHeigth        float64   `json:"patientHeigth"`
 	MachineModel         string    `json:"machineModel"`
 	Timestamp            time.Time `json:"timestamp"`
 }
@@ -46,17 +49,20 @@ type Dicom struct {
 */
 type SharedDicom struct {
 	BatchID        string    `json:"batchID"`
+	DocType        string    `json:"docType"`
 	IpfsReference  string    `json:"ipfsReference"`
-	DicomShared    string    `json:"dicomShared"`
+	DicomShared    []string  `json:"dicomShared"`
 	Holder         string    `json:"holder"`
 	DoctorID       string    `json:"doctorID"`
 	HolderAccepted bool      `json:"holderAccepted"`
 	Timestamp      time.Time `json:"timestamp"`
+	DataAmount     int       `json:"dataAmount"`
 }
 
 // Log type defined when an user access some asset
 type Log struct {
 	LogID        string    `json:"dicomID"`
+	DocType      string    `json:"docType"`
 	AssetToken   string    `json:"assetToken"`
 	TypeAsset    string    `json:"typeAsset"`
 	HolderAsset  string    `json:"holderAsset"`
@@ -68,6 +74,7 @@ type Log struct {
 
 type Request struct {
 	RequestID      string    `json:"requestID"`
+	DocType        string    `json:"docType"`
 	DataAmount     int       `json:"dataAmount"`
 	Timestamp      time.Time `json:"timestamp"`
 	HolderAccepted bool      `json:"holderAccepted"`
@@ -84,12 +91,13 @@ func (cc *HealthcareChaincode) Init(stub shim.ChaincodeStubInterface) sc.Respons
 	return shim.Success(nil)
 }
 
+// Add imaging in blockchain network
 func (cc *HealthcareChaincode) addImaging(stub shim.ChaincodeStubInterface, args []string) sc.Response {
 	var err error
 
-	fmt.Println("Parameter number" + strconv.Itoa(len(args)))
-	if len(args) < 17 || len(args) > 17 {
-		return shim.Error("Incorrect number of arguments. Expecting 18")
+	fmt.Println("Parameter number " + strconv.Itoa(len(args)))
+	if len(args) < 16 || len(args) > 16 {
+		return shim.Error("Incorrect number of arguments. Expecting 17")
 	}
 
 	fmt.Println("- start init Dicom")
@@ -125,8 +133,6 @@ func (cc *HealthcareChaincode) addImaging(stub shim.ChaincodeStubInterface, args
 		return shim.Error("15th argument must be a non-empty string")
 	} else if len(args[15]) <= 0 {
 		return shim.Error("16th argument must be a non-empty string")
-	} else if len(args[16]) <= 0 {
-		return shim.Error("17th argument must be a non-empty string")
 	}
 
 	patientAge, err := strconv.Atoi(args[5])
@@ -134,11 +140,11 @@ func (cc *HealthcareChaincode) addImaging(stub shim.ChaincodeStubInterface, args
 		return shim.Error("7 argument must be a numeric string")
 	}
 	timestamp := time.Now()
-	patientWeigth, err := strconv.Atoi(args[13])
+	patientWeigth, err := strconv.ParseFloat(args[13], 64)
 	if err != nil {
 		return shim.Error("14 argument must be a numeric string")
 	}
-	patientHeigth, err := strconv.Atoi(args[14])
+	patientHeigth, err := strconv.ParseFloat(args[14], 64)
 	if err != nil {
 		return shim.Error("15 argument must be a numeric string")
 	}
@@ -157,15 +163,16 @@ func (cc *HealthcareChaincode) addImaging(stub shim.ChaincodeStubInterface, args
 	patientInsuranceplan := args[12]
 	machineModel := args[15]
 
-	dicomBytes, err := stub.GetState(args[0])
+	dicomBytes, err := stub.GetState(dicomID)
 	if err != nil {
 		return shim.Error("Failed to get pet: " + err.Error())
 	} else if dicomBytes != nil {
-		return shim.Error("This patient already exists: " + args[0])
+		return shim.Error("This patient already exists: " + dicomID)
 	}
 
 	rec := &Dicom{
 		DicomID:              dicomID,
+		DocType:              "Dicom",
 		PatientFirstname:     patientFirstname,
 		PatientLastname:      patientLastname,
 		PatientTelephone:     patientTelephone,
@@ -200,98 +207,50 @@ func (cc *HealthcareChaincode) addImaging(stub shim.ChaincodeStubInterface, args
 
 }
 
-// func (cc *HealthcareChaincode) addLog(stub shim.ChaincodeStubInterface, args []string) sc.Response {
-// 	var err error
+func (cc *HealthcareChaincode) getImaging(stub shim.ChaincodeStubInterface, args []string) sc.Response {
 
-// 	fmt.Println("Parameter number" + strconv.Itoa(len(args)))
-// 	if len(args) < 6 || len(args) > 6 {
-// 		return shim.Error("Incorrect number of arguments. Expecting 6")
-// 	}
+	if len(args) != 1 {
+		return shim.Error("We expected one param")
+	}
 
-// 	fmt.Println("- start save Logs")
-// 	if len(args[0]) <= 0 {
-// 		return shim.Error("1st argument must be a non-empty string")
-// 	} else if len(args[1]) <= 0 {
-// 		return shim.Error("2nd argument must be a non-empty string")
-// 	} else if len(args[2]) <= 0 {
-// 		return shim.Error("3rd argument must be a non-empty string")
-// 	} else if len(args[3]) <= 0 {
-// 		return shim.Error("4th argument must be a non-empty string")
-// 	} else if len(args[4]) <= 0 {
-// 		return shim.Error("5th argument must be a non-empty string")
-// 	} else if len(args[5]) <= 0 {
-// 		return shim.Error("6th argument must be a non-empty string")
-// 	}
+	dicomID := args[0]
 
-// 	accessLevel, err := strconv.Atoi(args[5])
-// 	if err != nil {
-// 		return shim.Error("8 argument must be a numeric string")
-// 	}
+	var jsonResp string
+	dicomValue, err := stub.GetState(dicomID)
 
-// 	assetToken := args[0]
-// 	typeAsset := args[1]
-// 	holderAsset := args[2]
-// 	hproviderGet := args[3]
-// 	timestamp := time.Now()
-// 	whoAccessed := args[4]
+	if err != nil {
+		jsonResp = "{\"Error\":\"Failed to get state for " + dicomID + "\"}"
+		return shim.Error(jsonResp)
+	} else if dicomValue == nil {
+		jsonResp = "{\"Error\":\"Record Sharing does not exist: " + dicomID + "\"}"
+		return shim.Error(jsonResp)
+	}
 
-// 	hs := sha1.New()
-
-// 	concatValues := string(accessLevel) + assetToken + typeAsset + holderAsset + hproviderGet + whoAccessed + timestamp.String()
-
-// 	hs.Write([]byte(concatValues))
-
-// 	logID := string(hs.Sum(nil))
-
-// 	rec := &Log{
-// 		LogID:        logID,
-// 		AssetToken:   assetToken,
-// 		TypeAsset:    typeAsset,
-// 		HolderAsset:  holderAsset,
-// 		HproviderGet: hproviderGet,
-// 		Timestamp:    timestamp,
-// 		WhoAccessed:  whoAccessed,
-// 		AccessLevel:  accessLevel,
-// 	}
-
-// 	logJSON, err := json.Marshal(rec)
-
-// 	if err != nil {
-// 		return shim.Error(err.Error())
-// 	}
-
-// 	err = stub.PutState(logID, logJSON)
-// 	if err != nil {
-// 		return shim.Error(err.Error())
-// 	}
-
-// 	fmt.Println("- End Log Saved")
-// 	return shim.Success(nil)
-
-// }
+	return shim.Success(dicomValue)
+}
 
 // Sharing imaging with a doctor
 // Add struct for sharing asset in blockchain
 // Three args Patient ID ,Doctor or research Id and for sharing Several assets ID for sharing
 func (cc *HealthcareChaincode) sharingImagingWithDoctor(stub shim.ChaincodeStubInterface, args []string) sc.Response {
 
-	if len(args) > 0 && len(args) <= 3 {
-		return shim.Error("Incorrect number of arguments. Expecting 2")
+	if len(args) < 3 && len(args) > 3 {
+		return shim.Error("Incorrect number of arguments. Expecting 3")
 	}
 
 	if len(args[0]) <= 0 {
 		return shim.Error("1st argument must be a numeric string")
 	} else if len(args[1]) <= 0 {
 		return shim.Error("2nd argument must be a numeric string")
-	} else if len(args[3]) <= 0 {
+	} else if len(args[2]) <= 0 {
 		return shim.Error("3rd argument must be a numeric string")
 	}
 
-	//var dicomShared []string
+	var dicomShared []string
 
 	holder := args[0]
 	doctorID := args[1]
-	dicomShared := args[2]
+	dicomShared = append(dicomShared, args[2])
 	ipfsReference := "IPFS Ref -- ainda sera implementado"
 	getTime := time.Now()
 
@@ -301,10 +260,13 @@ func (cc *HealthcareChaincode) sharingImagingWithDoctor(stub shim.ChaincodeStubI
 
 	hs.Write([]byte(concatValues))
 
-	batchID := string(hs.Sum(nil))
+	hexBatchID := hs.Sum(nil)
+
+	batchID := hex.EncodeToString(hexBatchID)
 
 	asset := &SharedDicom{
 		BatchID:        batchID,
+		DocType:        "SharedDicom",
 		IpfsReference:  ipfsReference,
 		DicomShared:    dicomShared,
 		Holder:         holder,
@@ -324,9 +286,12 @@ func (cc *HealthcareChaincode) sharingImagingWithDoctor(stub shim.ChaincodeStubI
 		return shim.Error(err.Error())
 	}
 
+	auxBatch := map[string]interface{}{"id": asset.BatchID}
+	idJson, err := json.Marshal(auxBatch)
+
 	fmt.Println("- End File to sharing done")
 
-	return shim.Success(nil)
+	return shim.Success(idJson)
 }
 
 // Doctor can get patient's data shared
@@ -354,17 +319,20 @@ func (cc *HealthcareChaincode) getSharedImagingWithDoctor(stub shim.ChaincodeStu
 
 	json.Unmarshal(batchValues, &batch)
 
-	if batch.HolderAccepted == true {
-		jsonResp = "{\"Error\":\"Holder not accepted sharing: " + batchID + "\"}"
-		return shim.Error(jsonResp)
-	}
+	// if bool(batch.HolderAccepted) == true {
+	// 	jsonResp = "{\"Error\":\"Holder not accepted sharing: " + batchID + "\"}"
+	// 	return shim.Error(jsonResp)
+	// }
 
-	dicomValue, err := stub.GetState(batch.DicomShared)
+	dicom := batch.DicomShared[0]
+
+	dicomValue, err := stub.GetState(dicom)
+
 	if err != nil {
-		jsonResp = "{\"Error\":\"Failed to get state for " + batch.DicomShared + "\"}"
+		jsonResp = "{\"Error\":\"Failed to get state for " + dicom + "\"}"
 		return shim.Error(jsonResp)
 	} else if batchValues == nil {
-		jsonResp = "{\"Error\":\"Record Sharing does not exist: " + batch.DicomShared + "\"}"
+		jsonResp = "{\"Error\":\"Record Sharing does not exist: " + dicom + "\"}"
 		return shim.Error(jsonResp)
 	}
 
@@ -375,9 +343,12 @@ func (cc *HealthcareChaincode) getSharedImagingWithDoctor(stub shim.ChaincodeStu
 	id := strconv.Itoa(rand.Int()) + time.Now().String()
 	hs := sha1.New()
 	hs.Write([]byte(id))
-	logID := string(hs.Sum(nil))
+	hexLogID := hs.Sum(nil)
+	logID := hex.EncodeToString(hexLogID)
+
 	log := Log{
 		LogID:        logID,
+		DocType:      "Log",
 		AssetToken:   "Falta gererar",
 		HolderAsset:  batch.Holder,
 		HproviderGet: "Doctor",
@@ -385,7 +356,7 @@ func (cc *HealthcareChaincode) getSharedImagingWithDoctor(stub shim.ChaincodeStu
 		AccessLevel:  1,
 	}
 
-	if addLog(stub, log) != true {
+	if cc.addLog(stub, log) != true {
 		jsonResp = "{\"Error\":\" Logs dont record \"}"
 		return shim.Error(jsonResp)
 	}
@@ -413,10 +384,12 @@ func (cc *HealthcareChaincode) requestImagingForResearchers(stub shim.ChaincodeS
 	id := strconv.Itoa(rand.Int()) + timeGet.String()
 	hs := sha1.New()
 	hs.Write([]byte(id))
-	reqID := string(hs.Sum(nil))
+	hexReqID := hs.Sum(nil)
+	reqID := hex.EncodeToString(hexReqID)
 
 	request := &Request{
 		RequestID:      reqID,
+		DocType:        "Request",
 		DataAmount:     amount,
 		Timestamp:      timeGet,
 		HolderAccepted: true,
@@ -434,19 +407,109 @@ func (cc *HealthcareChaincode) requestImagingForResearchers(stub shim.ChaincodeS
 	}
 
 	fmt.Println("- Request Sent")
-	return shim.Success(nil)
+	return shim.Success(requestJSON)
 }
 
 // Sharing request values with the research
 // Verify the stub.Query how to use ??? Thus we can return all objets DICOM and using differential privacy
+// Two atributes Research ID and BatchShared Dicom ID
 func (cc *HealthcareChaincode) sharingImagingForResearchers(stub shim.ChaincodeStubInterface, args []string) sc.Response {
+	var batchID, jsonResp string
+	var err error
 
-	return shim.Success(nil)
+	if len(args) != 2 {
+		shim.Error("We expected two element as params")
+	}
+
+	researchID := args[0]
+	batchID = args[1]
+
+	batchValues, err := stub.GetState(batchID)
+	if err != nil {
+		jsonResp = "{\"Error\":\"Failed to get state for " + batchID + "\"}"
+		return shim.Error(jsonResp)
+	} else if batchValues == nil {
+		jsonResp = "{\"Error\":\"Record does not exist: " + batchID + "\"}"
+		return shim.Error(jsonResp)
+	}
+
+	batchResponse, err := stub.GetState(batchID)
+
+	var batchObj SharedDicom
+
+	json.Unmarshal(batchResponse, &batchObj)
+
+	var dicoms []Dicom
+
+	for _, ast := range batchObj.DicomShared {
+		resDicom, err := stub.GetState(ast)
+		if err != nil {
+			fmt.Println("Error get element ", ast)
+			continue
+		}
+		var img Dicom
+		json.Unmarshal(resDicom, &img)
+		dicoms = append(dicoms, img)
+	}
+
+	//Implementar o envio da imagem pelo IFPS
+
+	//Gravar Logs de acesso a imagem
+	rand.Seed(time.Now().UnixNano())
+	id := strconv.Itoa(rand.Int()) + time.Now().String()
+	hs := sha1.New()
+	hs.Write([]byte(id))
+	hexLogID := hs.Sum(nil)
+	logID := hex.EncodeToString(hexLogID)
+
+	log := Log{
+		LogID:        logID,
+		DocType:      "Log",
+		AssetToken:   "Falta gererar",
+		HolderAsset:  batchObj.Holder,
+		HproviderGet: "Research",
+		WhoAccessed:  researchID,
+		AccessLevel:  2,
+	}
+
+	if cc.addLog(stub, log) != true {
+		jsonResp = "{\"Error\":\" Logs dont record \"}"
+		return shim.Error(jsonResp)
+	}
+
+	anonimizedDicoms := anonimizeDiffPriv(stub, dicoms, batchObj.DataAmount)
+
+	anonimizedBytes, err := json.Marshal(anonimizedDicoms)
+
+	return shim.Success(anonimizedBytes)
+}
+
+// Audit Logs for verify who accessed one image
+// One param Log ID
+func (cc *HealthcareChaincode) auditLogs(stub shim.ChaincodeStubInterface, args []string) sc.Response {
+
+	if len(args) != 1 {
+		return shim.Error("We expected just one param")
+	}
+
+	var jsonResp string
+	logID := args[0]
+
+	logValue, err := stub.GetState(logID)
+	if err != nil {
+		jsonResp = "{\"Error\":\"Failed to get state for " + logID + "\"}"
+		return shim.Error(jsonResp)
+	} else if logValue == nil {
+		jsonResp = "{\"Error\":\"Record does not exist: " + logID + "\"}"
+		return shim.Error(jsonResp)
+	}
+
+	return shim.Success(logValue)
 }
 
 // Store logs in blockain
 // Internal function
-func addLog(stub shim.ChaincodeStubInterface, log Log) bool {
+func (cc *HealthcareChaincode) addLog(stub shim.ChaincodeStubInterface, log Log) bool {
 
 	logJSON, err := json.Marshal(log)
 
@@ -464,9 +527,201 @@ func addLog(stub shim.ChaincodeStubInterface, log Log) bool {
 
 }
 
-// Audit Logs for verify who accessed one image
-func (cc *HealthcareChaincode) auditLogs(stub shim.ChaincodeStubInterface, args []string) sc.Response {
-	return shim.Success(nil)
+func getQueryResultForQueryString(stub shim.ChaincodeStubInterface, queryString string) ([]byte, error) {
+
+	fmt.Printf("- getQueryResultForQueryString queryString:\n%s\n", queryString)
+
+	resultsIterator, err := stub.GetQueryResult(queryString)
+	if err != nil {
+		return nil, err
+	}
+	defer resultsIterator.Close()
+
+	// buffer is a JSON array containing QueryRecords
+	var buffer bytes.Buffer
+	buffer.WriteString("[")
+
+	bArrayMemberAlreadyWritten := false
+	for resultsIterator.HasNext() {
+		queryResponse, err := resultsIterator.Next()
+		if err != nil {
+			return nil, err
+		}
+		if bArrayMemberAlreadyWritten == true {
+			buffer.WriteString(",")
+		}
+		buffer.WriteString("{\"Key\":")
+		buffer.WriteString("\"")
+		buffer.WriteString(queryResponse.Key)
+		buffer.WriteString("\"")
+
+		buffer.WriteString(", \"Record\":")
+		// Record is a JSON object, so we write as-is
+		buffer.WriteString(string(queryResponse.Value))
+		buffer.WriteString("}")
+		bArrayMemberAlreadyWritten = true
+	}
+	buffer.WriteString("]")
+
+	fmt.Printf("- getQueryResultForQueryString queryResult:\n%s\n", buffer.String())
+
+	return buffer.Bytes(), nil
+}
+
+func anonimizeDiffPriv(stub shim.ChaincodeStubInterface, assets []Dicom, amount int) []Dicom {
+
+	queryString := fmt.Sprintf("{\"selector\":{\"docType\":\"Dicom\"}}")
+
+	queryResults, err := getQueryResultForQueryString(stub, queryString)
+
+	if err != nil {
+		return nil
+	}
+
+	// Database total
+	var allDicom []Dicom
+
+	json.Unmarshal(queryResults, &allDicom)
+	var dicomID, patientFirstnames, patientLastnames, patientTelephones []string
+	var patientBirth, patientOrganization, patientMothername, patientReligion []string
+	var patientSex, patientGender, patientAddress []string
+	var patientAge []int
+	var patientWeigth, patientHeigth []float64
+
+	for _, dcm := range allDicom {
+		dicomID = append(dicomID, dcm.DicomID)
+		patientFirstnames = append(patientFirstnames, dcm.PatientFirstname)
+		patientLastnames = append(patientLastnames, dcm.PatientLastname)
+		patientTelephones = append(patientTelephones, dcm.PatientTelephone)
+		patientBirth = append(patientBirth, dcm.PatientBirth)
+		patientOrganization = append(patientOrganization, dcm.PatientOrganization)
+		patientMothername = append(patientMothername, dcm.PatientMothername)
+		patientReligion = append(patientReligion, dcm.PatientReligion)
+		patientSex = append(patientSex, dcm.PatientSex)
+		patientAddress = append(patientAddress, dcm.PatientAddress)
+		patientAge = append(patientAge, dcm.PatientAge)
+		patientWeigth = append(patientWeigth, dcm.PatientWeigth)
+		patientHeigth = append(patientHeigth, dcm.PatientHeigth)
+		patientGender = append(patientGender, dcm.PatientGender)
+	}
+
+	databaseDicomID := TransforSymbolicData(dicomID)
+	databaseFirstName := TransforSymbolicData(patientFirstnames)
+	databaseLastName := TransforSymbolicData(patientLastnames)
+	databaseTelephone := TransforSymbolicData(patientTelephones)
+	databaseBirth := TransforSymbolicData(patientBirth)
+	databaseOrganization := TransforSymbolicData(patientOrganization)
+	databaseMothername := TransforSymbolicData(patientMothername)
+	databaseReligion := TransforSymbolicData(patientReligion)
+	databaseSex := TransforSymbolicData(patientSex)
+	databaseAddress := TransforSymbolicData(patientAddress)
+	databaseGender := TransforSymbolicData(patientGender)
+	databaseAge := TransforIntData(patientAge)
+	databaseWeigth := TransforFloatData(patientWeigth)
+	databaseHeigth := TransforFloatData(patientHeigth)
+
+	queryDicomID := Query(databaseDicomID, amount)
+	queryFirstName := Query(databaseFirstName, amount)
+	queryLastName := Query(databaseLastName, amount)
+	queryTelephone := Query(databaseTelephone, amount)
+	queryBirth := Query(databaseBirth, amount)
+	queryOrganization := Query(databaseOrganization, amount)
+	queryMothername := Query(databaseMothername, amount)
+	queryReligion := Query(databaseReligion, amount)
+	querySex := Query(databaseSex, amount)
+	queryAddress := Query(databaseAddress, amount)
+	queryGender := Query(databaseGender, amount)
+	queryAge := Query(databaseAge, amount)
+	queryWeigth := Query(databaseWeigth, amount)
+	queryHeigth := Query(databaseHeigth, amount)
+
+	var noisedQueries []Matrix
+	var noiseDicomID, noiseFirstName, noiseLastName, noiseTelephoneName Matrix
+	var noiseBirth, noiseOrganization, noiseMothername, noiseReligion Matrix
+	var noiseSex, noiseAddress, noiseGender, noiseAge, noiseWeigth, noiseHeigth Matrix
+
+	epsilon := 0.1
+	json.Unmarshal(DiffPriv(queryDicomID, amount, databaseDicomID, epsilon), &noiseDicomID)
+	noisedQueries = append(noisedQueries, noiseDicomID)
+
+	json.Unmarshal(DiffPriv(queryFirstName, amount, databaseFirstName, epsilon), &noiseFirstName)
+	noisedQueries = append(noisedQueries, noiseFirstName)
+
+	json.Unmarshal(DiffPriv(queryLastName, amount, databaseLastName, epsilon), &noiseLastName)
+	noisedQueries = append(noisedQueries, noiseLastName)
+
+	json.Unmarshal(DiffPriv(queryTelephone, amount, databaseTelephone, epsilon), &noiseTelephoneName)
+	noisedQueries = append(noisedQueries, noiseTelephoneName)
+
+	json.Unmarshal(DiffPriv(queryBirth, amount, databaseBirth, epsilon), &noiseBirth)
+	noisedQueries = append(noisedQueries, noiseBirth)
+
+	json.Unmarshal(DiffPriv(queryOrganization, amount, databaseOrganization, epsilon), &noiseOrganization)
+	noisedQueries = append(noisedQueries, noiseOrganization)
+
+	json.Unmarshal(DiffPriv(queryMothername, amount, databaseMothername, epsilon), &noiseMothername)
+	noisedQueries = append(noisedQueries, noiseMothername)
+
+	json.Unmarshal(DiffPriv(queryReligion, amount, databaseReligion, epsilon), &noiseReligion)
+	noisedQueries = append(noisedQueries, noiseReligion)
+
+	json.Unmarshal(DiffPriv(queryReligion, amount, databaseReligion, epsilon), &noiseReligion)
+	noisedQueries = append(noisedQueries, noiseReligion)
+
+	json.Unmarshal(DiffPriv(queryReligion, amount, databaseReligion, epsilon), &noiseReligion)
+	noisedQueries = append(noisedQueries, noiseReligion)
+
+	json.Unmarshal(DiffPriv(querySex, amount, databaseSex, epsilon), &noiseSex)
+	noisedQueries = append(noisedQueries, noiseSex)
+
+	json.Unmarshal(DiffPriv(queryAddress, amount, databaseAddress, epsilon), &noiseAddress)
+	noisedQueries = append(noisedQueries, noiseAddress)
+
+	json.Unmarshal(DiffPriv(queryGender, amount, databaseGender, epsilon), &noiseGender)
+	noisedQueries = append(noisedQueries, noiseGender)
+
+	json.Unmarshal(DiffPriv(queryAge, amount, databaseAge, epsilon), &noiseAge)
+	noisedQueries = append(noisedQueries, noiseAge)
+
+	json.Unmarshal(DiffPriv(queryAge, amount, databaseAge, epsilon), &noiseAge)
+	noisedQueries = append(noisedQueries, noiseAge)
+
+	json.Unmarshal(DiffPriv(queryWeigth, amount, databaseWeigth, epsilon), &noiseWeigth)
+	noisedQueries = append(noisedQueries, noiseWeigth)
+
+	json.Unmarshal(DiffPriv(queryHeigth, amount, databaseHeigth, epsilon), &noiseHeigth)
+	noisedQueries = append(noisedQueries, noiseHeigth)
+
+	var dicomWithNoise []Dicom
+
+	for i := 0; i < amount; i++ {
+		var auxDcm Dicom
+		auxDcm.DicomID = strconv.FormatFloat(noisedQueries[0].Data[i], 'E', -1, 64)
+		auxDcm.PatientFirstname = strconv.FormatFloat(noisedQueries[1].Data[i], 'E', -1, 64)
+		auxDcm.PatientLastname = strconv.FormatFloat(noisedQueries[2].Data[i], 'E', -1, 64)
+		auxDcm.PatientTelephone = strconv.FormatFloat(noisedQueries[3].Data[i], 'E', -1, 64)
+		auxDcm.PatientBirth = strconv.FormatFloat(noisedQueries[4].Data[i], 'E', -1, 64)
+		auxDcm.PatientOrganization = strconv.FormatFloat(noisedQueries[5].Data[i], 'E', -1, 64)
+		auxDcm.PatientMothername = strconv.FormatFloat(noisedQueries[6].Data[i], 'E', -1, 64)
+		auxDcm.PatientReligion = strconv.FormatFloat(noisedQueries[7].Data[i], 'E', -1, 64)
+		auxDcm.PatientSex = strconv.FormatFloat(noisedQueries[8].Data[i], 'E', -1, 64)
+		auxDcm.PatientAddress = strconv.FormatFloat(noisedQueries[9].Data[i], 'E', -1, 64)
+		auxDcm.PatientGender = strconv.FormatFloat(noisedQueries[10].Data[i], 'E', -1, 64)
+		auxDcm.PatientAge = int(noisedQueries[11].Data[i])
+
+		auxDcm.PatientWeigth = noisedQueries[12].Data[i]
+
+		auxDcm.PatientHeigth = noisedQueries[13].Data[i]
+
+		dicomWithNoise = append(dicomWithNoise, auxDcm)
+
+	}
+
+	return dicomWithNoise
+}
+
+func anonimizeKAnonimity(assets []Dicom) []Dicom {
+	return nil
 }
 
 // Invoke is called as a result of an application request to run the chaincode.
@@ -476,10 +731,14 @@ func (cc *HealthcareChaincode) Invoke(stub shim.ChaincodeStubInterface) sc.Respo
 
 	if fun == "addImaging" {
 		return cc.addImaging(stub, args)
+	} else if fun == "getImaging" {
+		return cc.getImaging(stub, args)
 	} else if fun == "sharingImagingWithDoctor" {
 		return cc.sharingImagingWithDoctor(stub, args)
 	} else if fun == "getSharedImagingWithDoctor" {
 		return cc.getSharedImagingWithDoctor(stub, args)
+	} else if fun == "requestImagingForResearchers" {
+		return cc.requestImagingForResearchers(stub, args)
 	} else if fun == "sharingImagingForResearchers" {
 		return cc.sharingImagingForResearchers(stub, args)
 	} else if fun == "auditLogs" {
