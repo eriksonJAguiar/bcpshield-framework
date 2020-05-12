@@ -143,24 +143,6 @@ func removeElement(index int, array []Matrix) []Matrix {
 	return newArray
 }
 
-// Removo elements from dataset
-// func removeIndex(dataset []Matrix, index int) []Matrix {
-// 	if dataset[0].Type == "numeric" {
-// 		datasetValues := dataset[0].Data
-// 		var datasetCropped []Matrix
-// 		var matNewElement Matrix
-// 		matNewElement.Data = append(datasetValues[:index], datasetValues[index+1:]...)
-// 		matNewElement.Type = "numeric"
-
-// 		datasetCropped = append(datasetCropped, matNewElement)
-
-// 		return datasetCropped
-
-// 	}
-
-// 	return append(dataset[:index], dataset[index+1:]...)
-// }
-
 // Query amount from id record
 func Query(data []Matrix, amount int) []Matrix {
 
@@ -349,22 +331,25 @@ func TransforIntData(data []int) []Matrix {
 
 }
 
-// Transform data from Float to Matrix
+// TransforFloatData from Float to Matrix
 func TransforFloatData(data []float64) []Matrix {
 	return []Matrix{{Data: data, Type: "numeric"}}
 }
 
-// Main function to calculate the differential privacy
+// DiffPriv Main function to calculate the differential privacy
 func DiffPriv(query []Matrix, amountQuery int, dataset []Matrix, epsilon float64) []byte {
 
 	var dfNoise diffPrivVal
 
 	dfNoise = (*dflaplace(dataset, amountQuery, epsilon))
+	fmt.Println(dfNoise)
 	noiseQuery := addNoise(query, dfNoise)
+
+	fmt.Println(noiseQuery)
 
 	jsonQuey, err := json.Marshal(noiseQuery)
 	if err != nil {
-		fmt.Println(err)
+		fmt.Println("Privacy module error: " + err.Error())
 		return nil
 	}
 

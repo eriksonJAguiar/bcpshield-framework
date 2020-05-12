@@ -355,7 +355,7 @@ func TransforFloatData(data []float64) []Matrix {
 }
 
 // Main function to calculate the differential privacy
-func DiffPriv(query []Matrix, amountQuery int, dataset []Matrix, epsilon float64) string {
+func DiffPriv(query []Matrix, amountQuery int, dataset []Matrix, epsilon float64) []byte {
 
 	var dfNoise diffPrivVal
 
@@ -365,9 +365,9 @@ func DiffPriv(query []Matrix, amountQuery int, dataset []Matrix, epsilon float64
 	jsonQuey, err := json.Marshal(noiseQuery)
 	if err != nil {
 		fmt.Println(err)
-		return ""
+		return nil
 	}
 
-	return string(jsonQuey)
+	return jsonQuey
 
 }

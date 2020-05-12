@@ -13,7 +13,8 @@ import (
 
 func Init(t *testing.T) *shim.MockStub {
 	cc := new(HealthcareChaincode)
-	stub := shim.NewMockStub("dicom-v10@contract", cc)
+	stub := shim.NewMockStub("dicom-bug-@contract", cc)
+
 	res := stub.MockInit("1", [][]byte{[]byte("Init")})
 	if res.Status != shim.OK {
 		t.Error("Init failed", res.Status, res.Message)
@@ -58,55 +59,58 @@ func Invoke(test *testing.T, stub *shim.MockStub, function string, args ...strin
 	}
 }
 
-func TestAddImaging(t *testing.T) {
+func TestAddAsset(t *testing.T) {
 	stub := Init(t)
-	Invoke(t, stub, "addImaging", "10005", "Bob", "Truth", "(43) 0000-0000", "São Carlos - SP", "23", "1996-31-08", "USP", "AAAAA", "None", "Male", "ASASSAS", "Plan X", "75.5", "1.80", "ASDFG")
+	Invoke(t, stub, "addAsset", "10005", "11110", "Bob", "Singer", "(43) 9900 0000", "São Paulo SP", "28", "1992-15-08", "USP", "AAAAA", "None", "Male", "ASASSAS", "Plan X", "75.5", "1.89", "ASAEDF")
+	Invoke(t, stub, "addAsset", "10006", "11110", "Alice", "Truth", "(43) 8100 0000", "Londrina PR", "23", "1996-05-10", "IBM", "BBBB", "None", "Male", "ASASSAS", "Plan X", "80.1", "1.75", "ASIFA")
+	Invoke(t, stub, "addAsset", "10007", "11110", "Bob", "Winshester", "(43) 4200 0000", "São Carlos SP", "41", "1979-31-08", "Microsoft", "EEEEE", "None", "Female", "ASASSAS", "Plan X", "60", "1.60", "QOASXA")
+	Invoke(t, stub, "addAsset", "10008", "11110", "Jonh", "Truth", "(43) 9300 0000", "Rib Preto SP", "30", "1990-31-08", "Apple", "DDDDD", "None", "Male", "ASASSAS", "Plan X", "75.5", "1.80", "OASKZA")
 
 }
 
-func TestGetImaging(t *testing.T) {
+func TestGetAsset(t *testing.T) {
 	stub := Init(t)
 	dicomID := "10005"
-	Invoke(t, stub, "getImaging", dicomID)
+	Invoke(t, stub, "getAsset", dicomID)
 }
 
 //Three args Patient ID ,Doctor or research Id and for sharing Several assets ID for sharing
-func TestSharingImagingWithDoctor(t *testing.T) {
+func TestShareAssetWithDoctor(t *testing.T) {
 	stub := Init(t)
 	patientID := "3001"
 	doctorID := "2001"
-	Invoke(t, stub, "sharingImagingWithDoctor", patientID, doctorID, "10005")
+	Invoke(t, stub, "shareAssetWithDoctor", patientID, doctorID, "10005")
 }
 
 // // One param batch ID send to who request
 func TestGetSharedImagingWithDoctor(t *testing.T) {
 	cc := new(HealthcareChaincode)
-	stub := shim.NewMockStub("dicom-v10@contract", cc)
-	batchID := "c1ff0a4174f6db2a57e92cca34e877b40602b78b"
+	stub := shim.NewMockStub("dicom-v12@contract", cc)
+	batchID := "09ff4216d04ba6e204b0ad27c1fd2e40bcd070fd"
 	Invoke(t, stub, "getSharedImagingWithDoctor", batchID)
 }
 
 // //One param amount image
-// func TestRequestImagingForResearchers(t *testing.T) {
-// 	cc := new(HealthcareChaincode)
-// 	amount := string(2)
-// 	stub := shim.NewMockStub("dicom-v9@contract", cc)
-// 	Invoke(t, stub, "requestImagingForResearchers", amount)
-// }
+func TestRequestImagingForResearchers(t *testing.T) {
+	cc := new(HealthcareChaincode)
+	amount := string(2)
+	stub := shim.NewMockStub("dicom-v9@contract", cc)
+	Invoke(t, stub, "requestImagingForResearchers", amount)
+}
 
 // //Two atributes Research ID and Batch Shared Dicom ID
-// func TestSharingImagingForResearchers(t *testing.T) {
-// 	cc := new(HealthcareChaincode)
-// 	stub := shim.NewMockStub("dicom-v9@contract", cc)
-// 	researchID := "10001"
-// 	batchID := "3001"
-// 	Invoke(t, stub, "sharingImagingForResearchers", researchID, batchID)
-// }
+func TestSharingImagingForResearchers(t *testing.T) {
+	cc := new(HealthcareChaincode)
+	stub := shim.NewMockStub("dicom-v9@contract", cc)
+	researchID := "10001"
+	batchID := "3001"
+	Invoke(t, stub, "sharingImagingForResearchers", researchID, batchID)
+}
 
 // // One param Log ID
-// func TestAuditLogs(t *testing.T) {
-// 	cc := new(HealthcareChaincode)
-// 	stub := shim.NewMockStub("dicom-v9@contract", cc)
-// 	logID := "10001"
-// 	Invoke(t, stub, "auditLogs", logID)
-// }
+func TestAuditLogs(t *testing.T) {
+	cc := new(HealthcareChaincode)
+	stub := shim.NewMockStub("dicom-v9@contract", cc)
+	logID := "10001"
+	Invoke(t, stub, "auditLogs", logID)
+}

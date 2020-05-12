@@ -1,0 +1,143 @@
+package main
+
+import (
+	"fmt"
+	"math"
+	"regexp"
+	"strings"
+	"time"
+)
+
+type Dicom struct {
+	DicomID              string    `json:"dicomID"`
+	PatientID            string    `json:"patientID"`
+	DocType              string    `json:"docType"`
+	PatientFirstname     string    `json:"patientFirstname"`
+	PatientLastname      string    `json:"patientLastname"`
+	PatientTelephone     string    `json:"patientTelephone"`
+	PatientAddress       string    `json:"patientAddress"`
+	PatientAge           int       `json:"patientAge"`
+	PatientBirth         string    `json:"patientBirth"`
+	PatientOrganization  string    `json:"patientOrganization"`
+	PatientMothername    string    `json:"patientMothername"`
+	PatientReligion      string    `json:"patientReligion"`
+	PatientSex           string    `json:"patientSex"`
+	PatientGender        string    `json:"patientGender"`
+	PatientInsuranceplan string    `json:"patientInsuranceplan"`
+	PatientWeigth        float64   `json:"patientWeigth"`
+	PatientHeigth        float64   `json:"patientHeigth"`
+	MachineModel         string    `json:"machineModel"`
+	Timestamp            time.Time `json:"timestamp"`
+}
+
+type limValues struct {
+	limInf float64
+	limSup float64
+}
+
+func KAnonymitySupression(column []string) []string {
+	var newColumn []string
+	for i := 0; i < len(column); i++ {
+		newColumn = append(newColumn, "*")
+	}
+
+	return newColumn
+}
+
+func KAnonymitygeneralizationSymbolic(column []string) []string {
+	var newColumn []string
+	for _, col := range column {
+		var token string
+
+		re, err := regexp.Compile(`\d{4}-\d{2}-\d{2}`)
+		if err != nil {
+			panic("Error: " + err.Error())
+			return nil
+		}
+		if re.MatchString(col) {
+			tm := strings.Split(col, "-")
+			token = fmt.Sprint(tm[0])
+			newColumn = append(newColumn, token)
+			continue
+		}
+
+		re, err = regexp.Compile(`\d+`)
+		if err != nil {
+			panic("Error: " + err.Error())
+			return nil
+		}
+		if re.MatchString(col) {
+			var re = regexp.MustCompile(`(.{3})\s*$`)
+			token = re.ReplaceAllString(col, "***")
+			newColumn = append(newColumn, token)
+			continue
+		}
+
+		auxToken := strings.Split(col, " ")
+		token = ""
+
+		for _, aux := range auxToken {
+			if len(aux) > 3 {
+				var re = regexp.MustCompile(`(.{3})\s*$`)
+				token += re.ReplaceAllString(aux, "***") + " "
+
+			} else if len(aux) == 3 {
+				var re = regexp.MustCompile(`(.{2})\s*$`)
+				token += re.ReplaceAllString(aux, "**") + " "
+			} else if len(aux) == 2 {
+				var re = regexp.MustCompile(`(.{1})\s*$`)
+				token += re.ReplaceAllString(aux, "*") + " "
+			} else {
+				token += aux + " "
+			}
+
+		}
+
+		newColumn = append(newColumn, token)
+
+	}
+
+	return newColumn
+}
+
+func KAnonymityGeneralizationNumeric(column []float64) []string {
+	k := 1 + 3.332*math.Log10(float64(len(column)))
+	k = math.Round(k)
+	limInf, limSup := findMaxMin(column)
+	a := math.Round((limSup - limInf) / k)
+	var val limValues
+	val.limInf = limInf
+	val.limSup = (limInf + a) - 1
+	var class []limValues
+	class = append(class, val)
+	for i := 1; i < int(k); i++ {
+		val.limInf = val.limSup + 1
+		val.limSup = (val.limInf + a) + 1
+		class = append(class, val)
+	}
+
+	var newColumn []string
+
+	for _, lim := range class {
+		for _, c := range column {
+			if c >= lim.limInf && c <= lim.limSup {
+				li := fmt.Sprint(lim.limInf)
+				ls := fmt.Sprint(lim.limSup)
+				newColumn = append(newColumn, li+"-"+ls)
+			}
+		}
+	}
+
+	return newColumn
+}
+
+func findMaxMin(values []float64) (float64, float64) {
+	max := values[0]
+	min := values[0]
+	for _, v := range values {
+		max = math.Max(v, max)
+		min = math.Min(v, min)
+	}
+
+	return max, min
+}
