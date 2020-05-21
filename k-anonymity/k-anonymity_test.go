@@ -101,6 +101,7 @@ func TestKAnonymity(t *testing.T) {
 	var patientFirstnames, patientLastnames, patientTelephones, dicomID, patientID []string
 	var patientBirth, patientOrganization, patientMothername, patientReligion []string
 	var patientSex, patientGender, patientAddress []string
+	var patientInsuranceplan, machineModel []string
 	var patientWeigth, patientHeigth, patientAge []float64
 
 	for _, dcm := range allDicom {
@@ -119,6 +120,8 @@ func TestKAnonymity(t *testing.T) {
 		patientWeigth = append(patientWeigth, dcm.PatientWeigth)
 		patientHeigth = append(patientHeigth, dcm.PatientHeigth)
 		patientGender = append(patientGender, dcm.PatientGender)
+		patientInsuranceplan = append(patientInsuranceplan, dcm.PatientInsuranceplan)
+		machineModel = append(machineModel, dcm.MachineModel)
 	}
 
 	anonymizedDicomID := KAnonymitygeneralizationSymbolic(dicomID)
@@ -136,28 +139,54 @@ func TestKAnonymity(t *testing.T) {
 	anonymizedAge := KAnonymityGeneralizationNumeric(patientAge)
 	anonymizedWeigth := KAnonymityGeneralizationNumeric(patientWeigth)
 	anonymizedHeigth := KAnonymityGeneralizationNumeric(patientHeigth)
+	anonymizedInsuranceplan := KAnonymitygeneralizationSymbolic(patientInsuranceplan)
+	anonimizedModelMachine := KAnonymitygeneralizationSymbolic(machineModel)
 
 	amount := 1
-	var data []interface{}
+	type documentValue struct {
+		DicomID              string `json:"dicomID"`
+		PatientID            string `json:"patientID"`
+		PatientFirstname     string `json:"patientFirstname"`
+		PatientLastname      string `json:"patientLastname"`
+		PatientTelephone     string `json:"patientTelephone"`
+		PatientAddress       string `json:"patientAddress"`
+		PatientAge           string `json:"patientAge"`
+		PatientBirth         string `json:"patientBirth"`
+		PatientOrganization  string `json:"patientOrganization"`
+		PatientMothername    string `json:"patientMothername"`
+		PatientReligion      string `json:"patientReligion"`
+		PatientSex           string `json:"patientSex"`
+		PatientGender        string `json:"patientGender"`
+		PatientInsuranceplan string `json:"patientInsuranceplan"`
+		PatientWeigth        string `json:"patientWeigth"`
+		PatientHeigth        string `json:"patientHeigth"`
+		MachineModel         string `json:"machineModel"`
+		Timestamp            string `json:"timestamp"`
+	}
+
+	var data []documentValue
 
 	for i := len(allDicom) - 1; i >= (len(allDicom) - amount); i-- {
-		dicomNew := map[string]interface{}{
-			"dicomID":      anonymizedDicomID[i],
-			"patientID":    anonymizedPatientID[i],
-			"FirstName":    anonymizedFirstName[i],
-			"LastName":     anonymizedLastName[i],
-			"Telephone":    anonymizedTelephone[i],
-			"birthday":     anonymizedBirth[i],
-			"organization": anonymizedOrganization[i],
-			"mothername":   anonymizedMothername[i],
-			"relegion":     anonymizedReligion[i],
-			"sex":          anonymizedSex[i],
-			"address":      anonymizedAddress[i],
-			"gender":       anonymizedGender[i],
-			"age":          anonymizedAge[i],
-			"weigth":       anonymizedWeigth[i],
-			"heigth":       anonymizedHeigth[i],
-		}
+		var dicomNew documentValue
+
+		dicomNew.DicomID = anonymizedDicomID[i]
+		dicomNew.PatientID = anonymizedPatientID[i]
+		dicomNew.PatientFirstname = anonymizedFirstName[i]
+		dicomNew.PatientLastname = anonymizedLastName[i]
+		dicomNew.PatientTelephone = anonymizedTelephone[i]
+		dicomNew.PatientAddress = anonymizedAddress[i]
+		dicomNew.PatientAge = anonymizedAge[i]
+		dicomNew.PatientBirth = anonymizedBirth[i]
+		dicomNew.PatientOrganization = anonymizedOrganization[i]
+		dicomNew.PatientReligion = anonymizedReligion[i]
+		dicomNew.PatientMothername = anonymizedMothername[i]
+		dicomNew.PatientSex = anonymizedSex[i]
+		dicomNew.PatientGender = anonymizedGender[i]
+		dicomNew.PatientInsuranceplan = anonymizedInsuranceplan[i]
+		dicomNew.PatientWeigth = anonymizedWeigth[i]
+		dicomNew.PatientHeigth = anonymizedHeigth[i]
+		dicomNew.MachineModel = anonimizedModelMachine[i]
+		dicomNew.Timestamp = time.Now().String()
 
 		data = append(data, dicomNew)
 	}
@@ -168,7 +197,7 @@ func TestKAnonymity(t *testing.T) {
 		panic("Error: " + err.Error())
 	}
 
-	var finalValue []map[string]interface{}
+	var finalValue *interface{}
 
 	err = json.Unmarshal(dataValue, &finalValue)
 
@@ -177,5 +206,5 @@ func TestKAnonymity(t *testing.T) {
 	}
 
 	fmt.Println("Final Value Anonymized")
-	fmt.Println(finalValue)
+	fmt.Println(*finalValue)
 }

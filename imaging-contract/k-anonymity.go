@@ -80,7 +80,7 @@ func KAnonymitygeneralizationSymbolic(column []string) []string {
 func KAnonymityGeneralizationNumeric(column []float64) []string {
 	k := 1 + 3.332*math.Log10(float64(len(column)))
 	k = math.Round(k)
-	limInf, limSup := kAnonymityFindMaxMin(column)
+	limSup, limInf := kAnonymityFindMaxMin(column)
 	a := math.Round((limSup - limInf) / k)
 	var val limValues
 	val.limInf = limInf
@@ -95,9 +95,9 @@ func KAnonymityGeneralizationNumeric(column []float64) []string {
 
 	var newColumn []string
 
-	for _, lim := range class {
-		for _, c := range column {
-			if c >= lim.limInf && c <= lim.limSup {
+	for _, c := range column {
+		for _, lim := range class {
+			if c >= lim.limInf && c < lim.limSup+1 {
 				li := fmt.Sprint(lim.limInf)
 				ls := fmt.Sprint(lim.limSup)
 				newColumn = append(newColumn, li+"-"+ls)

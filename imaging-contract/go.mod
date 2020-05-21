@@ -13,10 +13,10 @@ require (
 	github.com/lytics/multibayes v0.0.0-20161108162840-3457a5582021 // indirect
 	github.com/numbleroot/go-tfidf v0.0.0-20161108125041-e91d5a52d529
 	github.com/op/go-logging v0.0.0-20160315200505-970db520ece7 // indirect
+	github.com/s7techlab/cckit v0.6.13
 	github.com/spf13/viper v1.5.0 // indirect
 	github.com/sykesm/zap-logfmt v0.0.3 // indirect
 	go.uber.org/zap v1.13.0 // indirect
-	golang.org/x/crypto v0.0.0-20191117063200-497ca9f6d64f // indirect
 	golang.org/x/exp v0.0.0-20190121172915-509febef88a4
 	golang.org/x/net v0.0.0-20191116160921-f9c825593386 // indirect
 	google.golang.org/grpc v1.25.1 // indirect

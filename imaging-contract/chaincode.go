@@ -95,7 +95,7 @@ func (cc *HealthcareChaincode) Init(stub shim.ChaincodeStubInterface) sc.Respons
 	return shim.Success(nil)
 }
 
-// Add imaging in blockchain network
+// Patinet or research add imaging in blockchain network
 func (cc *HealthcareChaincode) addAsset(stub shim.ChaincodeStubInterface, args []string) sc.Response {
 	var err error
 
@@ -249,12 +249,12 @@ func (cc *HealthcareChaincode) getAsset(stub shim.ChaincodeStubInterface, args [
 	return shim.Success(dicomValue)
 }
 
-// Sharing imaging with a doctor
+// Patient Sharing imaging with a doctor
 // Add struct for sharing asset in blockchain
-// Three args Patient ID, DoctorID and for sharing Several assets ID for sharing
+// Three args Patient ID, DoctorID, hashIPFS repository and ID files core for sharing Several assets ID for sharing
 func (cc *HealthcareChaincode) shareAssetWithDoctor(stub shim.ChaincodeStubInterface, args []string) sc.Response {
 
-	if len(args) < 3 && len(args) > 3 {
+	if len(args) < 4 && len(args) > 4 {
 		return shim.Error("Incorrect number of arguments. Expecting 3")
 	}
 
@@ -270,8 +270,11 @@ func (cc *HealthcareChaincode) shareAssetWithDoctor(stub shim.ChaincodeStubInter
 
 	holder := args[0]
 	doctorID := args[1]
-	dicomShared = append(dicomShared, args[2])
-	ipfsReference := "IPFS Ref -- ainda sera implementado"
+	hashIPFS := args[2]
+	dicomShared = append(dicomShared, args[3])
+
+	//Configure IPFS
+	ipfsReference := hashIPFS
 	getTime := time.Now()
 
 	hs := sha1.New()
@@ -341,12 +344,14 @@ func (cc *HealthcareChaincode) getSharedAssetWithDoctor(stub shim.ChaincodeStubI
 
 	var batch SharedDicom
 
-	json.Unmarshal(batchValues, &batch)
+	err = json.Unmarshal(batchValues, &batch)
+	if err != nil {
+		shim.Error("Transform batchValues error: " + err.Error())
+	}
 
 	dicom := batch.DicomShared[0]
 
 	dicomValue, err := stub.GetState(dicom)
-
 	if err != nil {
 		jsonResp = "{\"Error\":\"Failed to get state for " + dicom + "\"}"
 		return shim.Error(jsonResp)
@@ -355,9 +360,18 @@ func (cc *HealthcareChaincode) getSharedAssetWithDoctor(stub shim.ChaincodeStubI
 		return shim.Error(jsonResp)
 	}
 
+	var asset Dicom
+	var assets []Dicom
+	err = json.Unmarshal(dicomValue, &asset)
+	if err != nil {
+		return shim.Error("Asset to share error: " + err.Error())
+	}
+	assets = append(assets, asset)
+	fmt.Println("[Log] asset requested: ")
+	fmt.Println(assets)
 	// Nesse ponto deve ser implementando a comunicação com o IPFS para compartilhar DICOM
 
-	//Gravar Logs de acesso a imagem
+	//Create id log image
 	rand.Seed(time.Now().UnixNano())
 	id := strconv.Itoa(rand.Int()) + time.Now().String()
 	hs := sha1.New()
@@ -365,6 +379,43 @@ func (cc *HealthcareChaincode) getSharedAssetWithDoctor(stub shim.ChaincodeStubI
 	hexLogID := hs.Sum(nil)
 	logID := hex.EncodeToString(hexLogID)
 
+	// Deve ser aplicado a K-Anonimity antes de enviar os dados para o médico
+	queryString := "{\"selector\":{\"docType\":\"Dicom\"}}"
+	allDicomByte, err := getQueryResultForQueryString(stub, queryString)
+	if err != nil {
+		return shim.Error("Get values error: " + err.Error())
+	}
+
+	var allDicom []Dicom
+	err = json.Unmarshal(allDicomByte, &allDicom)
+	if err != nil {
+		return shim.Error("Get all assets error: " + err.Error())
+	}
+	fmt.Println("[Log] Query all assets: ")
+	fmt.Println(allDicom)
+
+	fmt.Println("[Log] Intializing K-Anonymity process: ")
+	anonymizedValues, err := anonimizeKAnonimity(allDicom, assets)
+	if err != nil {
+		return shim.Error("Anonymized with K-Anonymity error: " + err.Error())
+	}
+
+	var anonymizedDicom *interface{}
+	err = json.Unmarshal(anonymizedValues, &anonymizedDicom)
+	if err != nil {
+		return shim.Error("Anaymimzed Dicom with K-anonimity Error: " + err.Error())
+	}
+	fmt.Println("[Log] Query all assets: ")
+	fmt.Println(*anonymizedDicom)
+
+	resultAnonymized, err := json.Marshal(map[string]interface{}{"Dicoms": *anonymizedDicom, "IPFSHash": batch.IpfsReference})
+	if err != nil {
+		return shim.Error("Convert object to bytes K-Anonymity error: " + err.Error())
+	}
+
+	fmt.Println("[Log] Result anoninized success ")
+
+	// Create and store imaging log
 	log := Log{
 		LogID:        logID,
 		DocType:      "Log",
@@ -380,30 +431,12 @@ func (cc *HealthcareChaincode) getSharedAssetWithDoctor(stub shim.ChaincodeStubI
 		return shim.Error(jsonResp)
 	}
 
-	// Deve ser aplicado a K-Anonimity antes de enviar os dados para o médico
-	queryString := "{\"selector\":{\"docType\":\"Dicom\"}}"
-	allDicomByte, err := getQueryResultForQueryString(stub, queryString)
-	if err != nil {
-		return shim.Error("Get values error: " + err.Error())
-	}
-	var assets []Dicom
-	err = json.Unmarshal(dicomValue, &assets)
-	if err != nil {
-		return shim.Error("Unmarshal error: " + err.Error())
-	}
+	fmt.Println("[Log] Log it was add with success ")
 
-	var allDicom []Dicom
-	err = json.Unmarshal(allDicomByte, &allDicom)
-	anonymizedValues, err := anonimizeKAnonimity(allDicom, assets)
-
-	if err != nil {
-		return shim.Error("Anonimized with K-Anonymity error: " + err.Error())
-	}
-
-	return shim.Success(anonymizedValues)
+	return shim.Success(resultAnonymized)
 }
 
-// Request imaging
+// Researcher request imaging from patient or other researcher
 // Two attribute "amount images" and "researchID" and "PatientID"
 func (cc *HealthcareChaincode) requestAssetForResearcher(stub shim.ChaincodeStubInterface, args []string) sc.Response {
 
@@ -453,18 +486,19 @@ func (cc *HealthcareChaincode) requestAssetForResearcher(stub shim.ChaincodeStub
 	return shim.Success(idRequest)
 }
 
-// Sharing request values with the research
-//Two attributes holderID and requestID
+// Researcher or patients sharing imaging request by others research
+//Two attributes holderID, requestID and hashIPFS
 func (cc *HealthcareChaincode) shareAssetForResearcher(stub shim.ChaincodeStubInterface, args []string) sc.Response {
 	var jsonResp string
 	var err error
 
-	if len(args) != 2 {
+	if len(args) != 3 {
 		shim.Error("We expected two element as params")
 	}
 
 	holderID := args[0]
 	requestID := args[1]
+	hashIPFS := args[2]
 
 	requestByte, err := stub.GetState(requestID)
 	if err != nil {
@@ -518,7 +552,7 @@ func (cc *HealthcareChaincode) shareAssetForResearcher(stub shim.ChaincodeStubIn
 	sharedDicomObj := &SharedDicom{
 		BatchID:       hex.EncodeToString(auxSharedObjID),
 		DocType:       "SharedDicom",
-		IpfsReference: "Falta definir",
+		IpfsReference: hashIPFS,
 		DicomShared:   dicomShared,
 		Holder:        holderID,
 		Timestamp:     time.Now(),
@@ -542,6 +576,7 @@ func (cc *HealthcareChaincode) shareAssetForResearcher(stub shim.ChaincodeStubIn
 
 }
 
+// Researcher get imaging shared
 // Sharing request values with the research
 // One attribute batchID
 func (cc *HealthcareChaincode) getSharedAssetForResearcher(stub shim.ChaincodeStubInterface, args []string) sc.Response {
@@ -566,17 +601,72 @@ func (cc *HealthcareChaincode) getSharedAssetForResearcher(stub shim.ChaincodeSt
 
 	var sharedDicomValues SharedDicom
 
-	json.Unmarshal(SharedDicomBytes, &sharedDicomValues)
+	err = json.Unmarshal(SharedDicomBytes, &sharedDicomValues)
+	if err != nil {
+		return shim.Error("[GET ASSET FOR RESEARCH] Transform sharedDicom to Json error: " + err.Error())
+	}
 
-	//Implementar o envio da imagem pelo IFPS
-
-	//Gravar Logs de acesso a imagem
+	//Recovery accessed imaging logs
 	rand.Seed(time.Now().UnixNano())
 	id := strconv.Itoa(rand.Int()) + time.Now().String() + sharedDicomValues.BatchID
 	hs := sha1.New()
 	hs.Write([]byte(id))
 	hexLogID := hs.Sum(nil)
 	logID := hex.EncodeToString(hexLogID)
+
+	var dicoms []Dicom
+
+	if len(sharedDicomValues.DicomShared) == 1 {
+		sharedID := sharedDicomValues.DicomShared[0]
+		dicomValue, err := stub.GetState(sharedID)
+		if err != nil {
+			jsonResp = "{\"Error\":\"Failed to get state for " + sharedID + "\"}"
+			return shim.Error(jsonResp)
+		}
+		var dcm Dicom
+		err = json.Unmarshal(dicomValue, &dcm)
+		if err != nil {
+			return shim.Error("Convert DCM error: " + err.Error())
+		}
+		dicoms = append(dicoms, dcm)
+	} else {
+
+		selectorString := ""
+		for i, sharedID := range sharedDicomValues.DicomShared {
+			selectorString += fmt.Sprintf("\"%s\"", sharedID)
+			if i+1 <= len(sharedDicomValues.DicomShared)-1 {
+				selectorString += ", "
+			}
+		}
+
+		queryString := fmt.Sprintf("{\"selector\":{ \"_id\": {\"$or\": [%s]}}}", selectorString)
+		dicomValue, err := getQueryResultForQueryString(stub, queryString)
+		if err != nil {
+			jsonResp = "{\"Error\":\"Failed to get state for \"}"
+			return shim.Error(jsonResp)
+		}
+
+		err = json.Unmarshal(dicomValue, &dicoms)
+		if err != nil {
+			return shim.Error("Convert DCM error: " + err.Error())
+		}
+	}
+
+	anonimizedDicoms, err := anonimizeDiffPriv(stub, dicoms, sharedDicomValues.DataAmount, epsilon)
+
+	if err != nil {
+		return shim.Error("Anonymized records error: " + err.Error())
+	} else if anonimizedDicoms == nil {
+		return shim.Error("Error anonymized records don't get")
+	}
+
+	resultAnonymized, err := json.Marshal(map[string]interface{}{"Dicom": anonimizedDicoms, "IPFSHash": sharedDicomValues.IpfsReference})
+
+	//anonimizedBytes, err := json.Marshal(resultAnonymized)
+
+	if err != nil {
+		return shim.Error("Marshal convert erro: " + err.Error())
+	}
 
 	log := Log{
 		LogID:        logID,
@@ -588,46 +678,17 @@ func (cc *HealthcareChaincode) getSharedAssetForResearcher(stub shim.ChaincodeSt
 		AccessLevel:  2,
 	}
 
-	var dicoms []Dicom
-
-	for _, sharedID := range sharedDicomValues.DicomShared {
-		dicomValue, err := stub.GetState(sharedID)
-		if err != nil {
-			jsonResp = "{\"Error\":\"Failed to get state for " + sharedID + "\"}"
-			fmt.Println(jsonResp)
-			continue
-		}
-		var dcm Dicom
-		json.Unmarshal(dicomValue, &dcm)
-		dicoms = append(dicoms, dcm)
-	}
-
-	anonimizedDicoms, err := anonimizeDiffPriv(stub, dicoms, sharedDicomValues.DataAmount, epsilon)
-
-	if err != nil {
-		return shim.Error("Anonymized records error: " + err.Error())
-	} else if anonimizedDicoms == nil {
-		return shim.Error("Error anonymized records don't get")
-	}
-
-	fmt.Println("Anomimized Values")
-	fmt.Println(anonimizedDicoms)
-
-	anonimizedBytes, err := json.Marshal(anonimizedDicoms)
-
-	if err != nil {
-		return shim.Error("Marshal convert erro: " + err.Error())
-	}
-
 	if cc.addLog(stub, log) != true {
 		jsonResp = "{\"Error\":\" Logs dont record \"}"
 		return shim.Error(jsonResp)
 	}
 
-	return shim.Success(anonimizedBytes)
+	//sharedDicomValues.IpfsReference
+
+	return shim.Success(resultAnonymized)
 }
 
-// Audit Logs for verify who accessed one image
+// Network admin query access logs as from tokenID into imaging
 // One param Log ID
 func (cc *HealthcareChaincode) auditLogs(stub shim.ChaincodeStubInterface, args []string) sc.Response {
 
@@ -676,7 +737,7 @@ func (cc *HealthcareChaincode) queryGeneral(stub shim.ChaincodeStubInterface, ar
 	queryRes, err := getQueryResultForQueryString(stub, query)
 
 	if err != nil {
-		return shim.Error("Query erro: " + err.Error())
+		return shim.Error("Query error: " + err.Error())
 	}
 
 	var alldcm []Dicom
@@ -732,7 +793,7 @@ func (cc *HealthcareChaincode) queryGeneral(stub shim.ChaincodeStubInterface, ar
 
 func getQueryResultForQueryString(stub shim.ChaincodeStubInterface, queryString string) ([]byte, error) {
 
-	fmt.Printf("- getQueryResultForQueryString queryString:\n%s\n", queryString)
+	// fmt.Printf("- getQueryResultForQueryString queryString:\n%s\n", queryString)
 
 	resultsIterator, err := stub.GetQueryResult(queryString)
 	if err != nil {
@@ -761,14 +822,14 @@ func getQueryResultForQueryString(stub shim.ChaincodeStubInterface, queryString 
 	}
 	buffer.WriteString("]")
 
-	fmt.Printf("- getQueryResultForQueryString queryResult:\n%s\n", buffer.String())
+	// fmt.Printf("- getQueryResultForQueryString queryResult:\n%s\n", buffer.String())
 
 	return buffer.Bytes(), nil
 }
 
 func anonimizeDiffPriv(stub shim.ChaincodeStubInterface, assets []Dicom, amount int, epsilon float64) ([]Dicom, error) {
 
-	queryString := "{\"selector\":{\"docType\":\"Dicom\"}}"
+	queryString := "{ \"selector\":{ \"docType\":\"Dicom\" }}"
 
 	queryResults, err := getQueryResultForQueryString(stub, queryString)
 
@@ -1049,12 +1110,16 @@ func anonimizeDiffPriv(stub shim.ChaincodeStubInterface, assets []Dicom, amount 
 
 func anonimizeKAnonimity(allDicom []Dicom, assets []Dicom) ([]byte, error) {
 
+	fmt.Println("[Log] Assets that will be anonimized")
+	fmt.Println(assets)
+
 	for _, ast := range assets {
 		allDicom = append(allDicom, ast)
 	}
 
 	var patientFirstnames, patientLastnames, patientTelephones, dicomID, patientID []string
 	var patientBirth, patientOrganization, patientMothername, patientReligion []string
+	var patientInsuranceplan, machineModel []string
 	var patientSex, patientGender, patientAddress []string
 	var patientWeigth, patientHeigth, patientAge []float64
 
@@ -1070,6 +1135,8 @@ func anonimizeKAnonimity(allDicom []Dicom, assets []Dicom) ([]byte, error) {
 		patientReligion = append(patientReligion, dcm.PatientReligion)
 		patientSex = append(patientSex, dcm.PatientSex)
 		patientAddress = append(patientAddress, dcm.PatientAddress)
+		patientInsuranceplan = append(patientInsuranceplan, dcm.PatientInsuranceplan)
+		machineModel = append(machineModel, dcm.MachineModel)
 		patientAge = append(patientAge, float64(dcm.PatientAge))
 		patientWeigth = append(patientWeigth, dcm.PatientWeigth)
 		patientHeigth = append(patientHeigth, dcm.PatientHeigth)
@@ -1091,31 +1158,62 @@ func anonimizeKAnonimity(allDicom []Dicom, assets []Dicom) ([]byte, error) {
 	anonymizedAge := KAnonymityGeneralizationNumeric(patientAge)
 	anonymizedWeigth := KAnonymityGeneralizationNumeric(patientWeigth)
 	anonymizedHeigth := KAnonymityGeneralizationNumeric(patientHeigth)
+	anonymizedInsuranceplan := KAnonymitygeneralizationSymbolic(patientInsuranceplan)
+	anonimizedModelMachine := KAnonymitygeneralizationSymbolic(machineModel)
 
-	amount := 1
-	var data []interface{}
+	amount := len(assets)
+	type documentValue struct {
+		DicomID              string `json:"dicomID"`
+		PatientID            string `json:"patientID"`
+		PatientFirstname     string `json:"patientFirstname"`
+		PatientLastname      string `json:"patientLastname"`
+		PatientTelephone     string `json:"patientTelephone"`
+		PatientAddress       string `json:"patientAddress"`
+		PatientAge           string `json:"patientAge"`
+		PatientBirth         string `json:"patientBirth"`
+		PatientOrganization  string `json:"patientOrganization"`
+		PatientMothername    string `json:"patientMothername"`
+		PatientReligion      string `json:"patientReligion"`
+		PatientSex           string `json:"patientSex"`
+		PatientGender        string `json:"patientGender"`
+		PatientInsuranceplan string `json:"patientInsuranceplan"`
+		PatientWeigth        string `json:"patientWeigth"`
+		PatientHeigth        string `json:"patientHeigth"`
+		MachineModel         string `json:"machineModel"`
+		Timestamp            string `json:"timestamp"`
+	}
+
+	var data []documentValue
+
+	fmt.Println("[Log] amount assets to anonimized")
 
 	for i := len(allDicom) - 1; i >= (len(allDicom) - amount); i-- {
-		dicomNew := map[string]interface{}{
-			"dicomID":      anonymizedDicomID[i],
-			"patientID":    anonymizedPatientID[i],
-			"FirstName":    anonymizedFirstName[i],
-			"LastName":     anonymizedLastName[i],
-			"Telephone":    anonymizedTelephone[i],
-			"birthday":     anonymizedBirth[i],
-			"organization": anonymizedOrganization[i],
-			"mothername":   anonymizedMothername[i],
-			"relegion":     anonymizedReligion[i],
-			"sex":          anonymizedSex[i],
-			"address":      anonymizedAddress[i],
-			"gender":       anonymizedGender[i],
-			"age":          anonymizedAge[i],
-			"weigth":       anonymizedWeigth[i],
-			"heigth":       anonymizedHeigth[i],
-		}
+		var dicomNew documentValue
+
+		dicomNew.DicomID = anonymizedDicomID[i]
+		dicomNew.PatientID = anonymizedPatientID[i]
+		dicomNew.PatientFirstname = anonymizedFirstName[i]
+		dicomNew.PatientLastname = anonymizedLastName[i]
+		dicomNew.PatientTelephone = anonymizedTelephone[i]
+		dicomNew.PatientAddress = anonymizedAddress[i]
+		dicomNew.PatientAge = anonymizedAge[i]
+		dicomNew.PatientBirth = anonymizedBirth[i]
+		dicomNew.PatientOrganization = anonymizedOrganization[i]
+		dicomNew.PatientReligion = anonymizedReligion[i]
+		dicomNew.PatientMothername = anonymizedMothername[i]
+		dicomNew.PatientSex = anonymizedSex[i]
+		dicomNew.PatientGender = anonymizedGender[i]
+		dicomNew.PatientInsuranceplan = anonymizedInsuranceplan[i]
+		dicomNew.PatientWeigth = anonymizedWeigth[i]
+		dicomNew.PatientHeigth = anonymizedHeigth[i]
+		dicomNew.MachineModel = anonimizedModelMachine[i]
+		dicomNew.Timestamp = time.Now().String()
 
 		data = append(data, dicomNew)
 	}
+
+	fmt.Println("[Log] Dataset Anonimized whitin K-Anonymnity function")
+	fmt.Println(data)
 
 	dataValue, err := json.Marshal(data)
 

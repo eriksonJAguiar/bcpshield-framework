@@ -86,7 +86,7 @@ func TestShareAssetWithDoctor(t *testing.T) {
 func TestGetSharedImagingWithDoctor(t *testing.T) {
 	cc := new(HealthcareChaincode)
 	stub := shim.NewMockStub("dicom-v12@contract", cc)
-	batchID := "09ff4216d04ba6e204b0ad27c1fd2e40bcd070fd"
+	batchID := "477c830bd220b4871c1480e6873f845f3b05d18c"
 	Invoke(t, stub, "getSharedImagingWithDoctor", batchID)
 }
 
