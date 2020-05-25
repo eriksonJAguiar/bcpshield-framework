@@ -73,7 +73,7 @@ func testAnonimizeDiffPriv() ([]Dicom, error) {
 
 	allDicom = append(allDicom, Dicom{
 		DicomID:              "10005",
-		PatientID:            "11110",
+		PatientID:            "11590",
 		DocType:              "Dicom",
 		PatientFirstname:     "Bob",
 		PatientLastname:      "Truth",
@@ -95,7 +95,7 @@ func testAnonimizeDiffPriv() ([]Dicom, error) {
 
 	allDicom = append(allDicom, Dicom{
 		DicomID:              "10006",
-		PatientID:            "11110",
+		PatientID:            "11168",
 		DocType:              "Dicom",
 		PatientFirstname:     "Bob",
 		PatientLastname:      "Truth",
@@ -117,7 +117,7 @@ func testAnonimizeDiffPriv() ([]Dicom, error) {
 
 	allDicom = append(allDicom, Dicom{
 		DicomID:              "10007",
-		PatientID:            "11110",
+		PatientID:            "21300",
 		DocType:              "Dicom",
 		PatientFirstname:     "Bob",
 		PatientLastname:      "Truth",
@@ -139,7 +139,7 @@ func testAnonimizeDiffPriv() ([]Dicom, error) {
 
 	allDicom = append(allDicom, Dicom{
 		DicomID:              "10009",
-		PatientID:            "11110",
+		PatientID:            "11914",
 		DocType:              "Dicom",
 		PatientFirstname:     "Bob",
 		PatientLastname:      "Truth",
@@ -435,6 +435,6 @@ func main() {
 		fmt.Println(err.Error())
 	}
 
-	fmt.Println(dicomNoise[0].PatientAddress)
+	fmt.Println(dicomNoise)
 
 }
