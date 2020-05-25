@@ -87,12 +87,12 @@ It's an architecture blockchain-based to enhancing privacy on healthcare systems
 
 Define de basic Commands
 
-### Team 
+## Team 
 
 * [Erikson Júlio de Aguiar](https://eriksonjaguiar.github.io/)
 * Jó Ueyama
 
-### Note
+## Note
 
 This project was funded by São Paulo Research Foundation - FAPESP. However, all opinion, hypothesis, conclusions, or recommendations contains on this repository are responsibility the author and do not reflect FAPESP's vision. 
 
