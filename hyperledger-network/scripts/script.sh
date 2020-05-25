@@ -26,13 +26,13 @@ LANGUAGE=`echo "$LANGUAGE" | tr [:upper:] [:lower:]`
 COUNTER=1
 MAX_RETRY=10
 
-CC_SRC_PATH="github.com/chaincode/Dicom-contract"
+CC_SRC_PATH="github.com/chaincode/imaging-contract"
 if [ "$LANGUAGE" = "node" ]; then
-	CC_SRC_PATH="/opt/gopath/src/github.com/chaincode/Dicom-contract"
+	CC_SRC_PATH="/opt/gopath/src/github.com/chaincode/imaging-contract"
 fi
 
 if [ "$LANGUAGE" = "java" ]; then
-	CC_SRC_PATH="/opt/gopath/src/github.com/chaincode/Dicom-contract"
+	CC_SRC_PATH="/opt/gopath/src/github.com/chaincode/imaging-contract"
 fi
 
 echo "Channel name : "$CHANNEL_NAME
