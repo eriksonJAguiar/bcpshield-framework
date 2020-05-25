@@ -20,7 +20,7 @@ It's an architecture blockchain-based to enhancing privacy on healthcare systems
 >  For our proof of concept we use a Log object, which represents access log on any asset.
 
 > **Log attributes:**
-	 * LogID, DocType, AssetToken, TypeAsset, HolderAsset, HproviderGet, Timestamp, WhoAccessed, AccessLevel.
+>	* LogID, DocType, AssetToken, TypeAsset, HolderAsset, HproviderGet, Timestamp, WhoAccessed, AccessLevel.
 
 
 #### __Request__
@@ -28,14 +28,14 @@ It's an architecture blockchain-based to enhancing privacy on healthcare systems
  > For our proof of concept we use a request object that have aim to request an imaging from anyone patient or researcher.
 
  > **Request attributes:**
-	  * RequestID, DocType, DataAmount, Timestamp, HolderRequested, UserRequest.
+ >	* RequestID, DocType, DataAmount, Timestamp, HolderRequested, UserRequest.
 
 #### __Shared Dicom__
 
   > For our proof of concept we use a Shared Dicom object that have aim to represents a metadata within blockchain for shared   asset.
   
  > **Shared Dicom attributes:**
-	  * BatchID, DocType, IpfsReference, DicomShared, Holder, HolderAccepted, Timestamp, DataAmount, WhoAccessed.
+ >	* BatchID, DocType, IpfsReference, DicomShared, Holder, HolderAccepted, Timestamp, DataAmount, WhoAccessed.
 
 ### Main functions:
 
@@ -89,7 +89,7 @@ Define de basic Commands
 
 ### Team 
 
-* Erikson Júlio de Aguiar
+* [Erikson Júlio de Aguiar](https://eriksonjaguiar.github.io/)
 * Jó Ueyama
 
 ### Note
