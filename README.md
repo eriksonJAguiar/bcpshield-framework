@@ -4,9 +4,9 @@ It's an architecture blockchain-based to enhancing privacy on healthcare systems
 
 ## How it works?
 
-#### Objects
+### Objects
 
-#### Dicom
+#### __Dicom__
 
   For our proof of concept we use a Dicom object, which will be transferred between researchers. Dicom object is a  representation blockchain imaging within blockchain database.
 
@@ -15,7 +15,7 @@ It's an architecture blockchain-based to enhancing privacy on healthcare systems
   * DicomID, PatientID, DocType, PatientFirstname, PatientLastname, PatientTelephone, PatientAddress, PatientAge,       PatientBirth, PatientOrganization, PatientMothername, PatientReligion, PatientSex, PatientGender, PatientInsuranceplan, PatientWeigth, PatientHeigth, MachineModel, Timestamp.
   
  
-#### Log
+#### __Log__
 
   For our proof of concept we use a Log object, which represents access log on any asset.
 
@@ -23,14 +23,14 @@ It's an architecture blockchain-based to enhancing privacy on healthcare systems
 	  * LogID, DocType, AssetToken, TypeAsset, HolderAsset, HproviderGet, Timestamp, WhoAccessed, AccessLevel.
 
 
-#### Request
+#### __Request__
 
   For our proof of concept we use a request object that have aim to request an imaging from anyone patient or researcher.
 
   **Request attributes:**
 	  * RequestID, DocType, DataAmount, Timestamp, HolderRequested, UserRequest.
 
-#### Shared Dicom
+#### __Shared Dicom__
 
   For our proof of concept we use a Shared Dicom object that have aim to represents a metadata within blockchain for shared   asset.
   
