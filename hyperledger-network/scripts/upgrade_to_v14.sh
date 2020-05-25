@@ -24,9 +24,9 @@ COUNTER=1
 MAX_RETRY=5
 SYS_CHANNEL=$SYS_CHANNEL
 
-CC_SRC_PATH="github.com/chaincode/HRecords-contract"
+CC_SRC_PATH="github.com/chaincode/imaging-contract"
 if [ "$LANGUAGE" = "node" ]; then
-  CC_SRC_PATH="github.com/chaincode/HRecords-contract"
+  CC_SRC_PATH="github.com/chaincode/imaging-contract"
 fi
 
 echo "System channel name : "$SYS_CHANNEL
