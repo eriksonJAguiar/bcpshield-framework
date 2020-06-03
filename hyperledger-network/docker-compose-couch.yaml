@@ -136,7 +136,7 @@ services:
     networks:
       - health_network
 
-  peer2.hprovider.healthcare.com:
+  peer0.patient.healthcare.com:
     environment:
       - CORE_LEDGER_STATE_STATEDATABASE=CouchDB
       - CORE_LEDGER_STATE_COUCHDBCONFIG_COUCHDBADDRESS=couchdb4:5984
@@ -163,7 +163,7 @@ services:
     networks:
       - health_network
 
-  peer3.hprovider.healthcare.com:
+  peer1.patient.healthcare.com:
     environment:
       - CORE_LEDGER_STATE_STATEDATABASE=CouchDB
       - CORE_LEDGER_STATE_COUCHDBCONFIG_COUCHDBADDRESS=couchdb5:5984
@@ -175,110 +175,110 @@ services:
     depends_on:
       - couchdb5
   
-  couchdb6:
-    container_name: couchdb6
-    image: hyperledger/fabric-couchdb
-    # Populate the COUCHDB_USER and COUCHDB_PASSWORD to set an admin user and password
-    # for CouchDB.  This will prevent CouchDB from operating in an "Admin Party" mode.
-    environment:
-      - COUCHDB_USER=erikson
-      - COUCHDB_PASSWORD=wines20*
-    # Comment/Uncomment the port mapping if you want to hide/expose the CouchDB service,
-    # for healthcare map it to utilize Fauxton User Interface in dev environments.
-    ports:
-      - "11984:5984"
-    networks:
-      - health_network
+  # couchdb6:
+  #   container_name: couchdb6
+  #   image: hyperledger/fabric-couchdb
+  #   # Populate the COUCHDB_USER and COUCHDB_PASSWORD to set an admin user and password
+  #   # for CouchDB.  This will prevent CouchDB from operating in an "Admin Party" mode.
+  #   environment:
+  #     - COUCHDB_USER=erikson
+  #     - COUCHDB_PASSWORD=wines20*
+  #   # Comment/Uncomment the port mapping if you want to hide/expose the CouchDB service,
+  #   # for healthcare map it to utilize Fauxton User Interface in dev environments.
+  #   ports:
+  #     - "11984:5984"
+  #   networks:
+  #     - health_network
 
-  peer4.hprovider.healthcare.com:
-    environment:
-      - CORE_LEDGER_STATE_STATEDATABASE=CouchDB
-      - CORE_LEDGER_STATE_COUCHDBCONFIG_COUCHDBADDRESS=couchdb5:5984
-      # The CORE_LEDGER_STATE_COUCHDBCONFIG_USERNAME and CORE_LEDGER_STATE_COUCHDBCONFIG_PASSWORD
-      # provide the credentials for ledger to connect to CouchDB.  The username and password must
-      # match the username and password set for the associated CouchDB.
-      - CORE_LEDGER_STATE_COUCHDBCONFIG_USERNAME=erikson
-      - CORE_LEDGER_STATE_COUCHDBCONFIG_PASSWORD=wines20*
-    depends_on:
-      - couchdb6
+  # peer4.hprovider.healthcare.com:
+  #   environment:
+  #     - CORE_LEDGER_STATE_STATEDATABASE=CouchDB
+  #     - CORE_LEDGER_STATE_COUCHDBCONFIG_COUCHDBADDRESS=couchdb5:5984
+  #     # The CORE_LEDGER_STATE_COUCHDBCONFIG_USERNAME and CORE_LEDGER_STATE_COUCHDBCONFIG_PASSWORD
+  #     # provide the credentials for ledger to connect to CouchDB.  The username and password must
+  #     # match the username and password set for the associated CouchDB.
+  #     - CORE_LEDGER_STATE_COUCHDBCONFIG_USERNAME=erikson
+  #     - CORE_LEDGER_STATE_COUCHDBCONFIG_PASSWORD=wines20*
+  #   depends_on:
+  #     - couchdb6
 
-  couchdb7:
-    container_name: couchdb7
-    image: hyperledger/fabric-couchdb
-    # Populate the COUCHDB_USER and COUCHDB_PASSWORD to set an admin user and password
-    # for CouchDB.  This will prevent CouchDB from operating in an "Admin Party" mode.
-    environment:
-      - COUCHDB_USER=erikson
-      - COUCHDB_PASSWORD=wines20*
-    # Comment/Uncomment the port mapping if you want to hide/expose the CouchDB service,
-    # for healthcare map it to utilize Fauxton User Interface in dev environments.
-    ports:
-      - "12984:5984"
-    networks:
-      - health_network
+  # couchdb7:
+  #   container_name: couchdb7
+  #   image: hyperledger/fabric-couchdb
+  #   # Populate the COUCHDB_USER and COUCHDB_PASSWORD to set an admin user and password
+  #   # for CouchDB.  This will prevent CouchDB from operating in an "Admin Party" mode.
+  #   environment:
+  #     - COUCHDB_USER=erikson
+  #     - COUCHDB_PASSWORD=wines20*
+  #   # Comment/Uncomment the port mapping if you want to hide/expose the CouchDB service,
+  #   # for healthcare map it to utilize Fauxton User Interface in dev environments.
+  #   ports:
+  #     - "12984:5984"
+  #   networks:
+  #     - health_network
 
-  peer2.research.healthcare.com:
-    environment:
-      - CORE_LEDGER_STATE_STATEDATABASE=CouchDB
-      - CORE_LEDGER_STATE_COUCHDBCONFIG_COUCHDBADDRESS=couchdb7:5984
-      # The CORE_LEDGER_STATE_COUCHDBCONFIG_USERNAME and CORE_LEDGER_STATE_COUCHDBCONFIG_PASSWORD
-      # provide the credentials for ledger to connect to CouchDB.  The username and password must
-      # match the username and password set for the associated CouchDB.
-      - CORE_LEDGER_STATE_COUCHDBCONFIG_USERNAME=erikson
-      - CORE_LEDGER_STATE_COUCHDBCONFIG_PASSWORD=wines20*
-    depends_on:
-      - couchdb7
+  # peer2.research.healthcare.com:
+  #   environment:
+  #     - CORE_LEDGER_STATE_STATEDATABASE=CouchDB
+  #     - CORE_LEDGER_STATE_COUCHDBCONFIG_COUCHDBADDRESS=couchdb7:5984
+  #     # The CORE_LEDGER_STATE_COUCHDBCONFIG_USERNAME and CORE_LEDGER_STATE_COUCHDBCONFIG_PASSWORD
+  #     # provide the credentials for ledger to connect to CouchDB.  The username and password must
+  #     # match the username and password set for the associated CouchDB.
+  #     - CORE_LEDGER_STATE_COUCHDBCONFIG_USERNAME=erikson
+  #     - CORE_LEDGER_STATE_COUCHDBCONFIG_PASSWORD=wines20*
+  #   depends_on:
+  #     - couchdb7
   
-  couchdb8:
-    container_name: couchdb8
-    image: hyperledger/fabric-couchdb
-    # Populate the COUCHDB_USER and COUCHDB_PASSWORD to set an admin user and password
-    # for CouchDB.  This will prevent CouchDB from operating in an "Admin Party" mode.
-    environment:
-      - COUCHDB_USER=erikson
-      - COUCHDB_PASSWORD=wines20*
-    # Comment/Uncomment the port mapping if you want to hide/expose the CouchDB service,
-    # for healthcare map it to utilize Fauxton User Interface in dev environments.
-    ports:
-      - "13984:5984"
-    networks:
-      - health_network
+  # couchdb8:
+  #   container_name: couchdb8
+  #   image: hyperledger/fabric-couchdb
+  #   # Populate the COUCHDB_USER and COUCHDB_PASSWORD to set an admin user and password
+  #   # for CouchDB.  This will prevent CouchDB from operating in an "Admin Party" mode.
+  #   environment:
+  #     - COUCHDB_USER=erikson
+  #     - COUCHDB_PASSWORD=wines20*
+  #   # Comment/Uncomment the port mapping if you want to hide/expose the CouchDB service,
+  #   # for healthcare map it to utilize Fauxton User Interface in dev environments.
+  #   ports:
+  #     - "13984:5984"
+  #   networks:
+  #     - health_network
 
-  peer3.research.healthcare.com:
-    environment:
-      - CORE_LEDGER_STATE_STATEDATABASE=CouchDB
-      - CORE_LEDGER_STATE_COUCHDBCONFIG_COUCHDBADDRESS=couchdb8:5984
-      # The CORE_LEDGER_STATE_COUCHDBCONFIG_USERNAME and CORE_LEDGER_STATE_COUCHDBCONFIG_PASSWORD
-      # provide the credentials for ledger to connect to CouchDB.  The username and password must
-      # match the username and password set for the associated CouchDB.
-      - CORE_LEDGER_STATE_COUCHDBCONFIG_USERNAME=erikson
-      - CORE_LEDGER_STATE_COUCHDBCONFIG_PASSWORD=wines20*
-    depends_on:
-      - couchdb8
+  # peer3.research.healthcare.com:
+  #   environment:
+  #     - CORE_LEDGER_STATE_STATEDATABASE=CouchDB
+  #     - CORE_LEDGER_STATE_COUCHDBCONFIG_COUCHDBADDRESS=couchdb8:5984
+  #     # The CORE_LEDGER_STATE_COUCHDBCONFIG_USERNAME and CORE_LEDGER_STATE_COUCHDBCONFIG_PASSWORD
+  #     # provide the credentials for ledger to connect to CouchDB.  The username and password must
+  #     # match the username and password set for the associated CouchDB.
+  #     - CORE_LEDGER_STATE_COUCHDBCONFIG_USERNAME=erikson
+  #     - CORE_LEDGER_STATE_COUCHDBCONFIG_PASSWORD=wines20*
+  #   depends_on:
+  #     - couchdb8
 
-  couchdb9:
-    container_name: couchdb9
-    image: hyperledger/fabric-couchdb
-    # Populate the COUCHDB_USER and COUCHDB_PASSWORD to set an admin user and password
-    # for CouchDB.  This will prevent CouchDB from operating in an "Admin Party" mode.
-    environment:
-      - COUCHDB_USER=erikson
-      - COUCHDB_PASSWORD=wines20*
-    # Comment/Uncomment the port mapping if you want to hide/expose the CouchDB service,
-    # for healthcare map it to utilize Fauxton User Interface in dev environments.
-    ports:
-      - "14984:5984"
-    networks:
-      - health_network
+  # couchdb9:
+  #   container_name: couchdb9
+  #   image: hyperledger/fabric-couchdb
+  #   # Populate the COUCHDB_USER and COUCHDB_PASSWORD to set an admin user and password
+  #   # for CouchDB.  This will prevent CouchDB from operating in an "Admin Party" mode.
+  #   environment:
+  #     - COUCHDB_USER=erikson
+  #     - COUCHDB_PASSWORD=wines20*
+  #   # Comment/Uncomment the port mapping if you want to hide/expose the CouchDB service,
+  #   # for healthcare map it to utilize Fauxton User Interface in dev environments.
+  #   ports:
+  #     - "14984:5984"
+  #   networks:
+  #     - health_network
 
-  peer4.research.healthcare.com:
-    environment:
-      - CORE_LEDGER_STATE_STATEDATABASE=CouchDB
-      - CORE_LEDGER_STATE_COUCHDBCONFIG_COUCHDBADDRESS=couchdb9:5984
-      # The CORE_LEDGER_STATE_COUCHDBCONFIG_USERNAME and CORE_LEDGER_STATE_COUCHDBCONFIG_PASSWORD
-      # provide the credentials for ledger to connect to CouchDB.  The username and password must
-      # match the username and password set for the associated CouchDB.
-      - CORE_LEDGER_STATE_COUCHDBCONFIG_USERNAME=erikson
-      - CORE_LEDGER_STATE_COUCHDBCONFIG_PASSWORD=wines20*
-    depends_on:
-      - couchdb9
+  # peer4.research.healthcare.com:
+  #   environment:
+  #     - CORE_LEDGER_STATE_STATEDATABASE=CouchDB
+  #     - CORE_LEDGER_STATE_COUCHDBCONFIG_COUCHDBADDRESS=couchdb9:5984
+  #     # The CORE_LEDGER_STATE_COUCHDBCONFIG_USERNAME and CORE_LEDGER_STATE_COUCHDBCONFIG_PASSWORD
+  #     # provide the credentials for ledger to connect to CouchDB.  The username and password must
+  #     # match the username and password set for the associated CouchDB.
+  #     - CORE_LEDGER_STATE_COUCHDBCONFIG_USERNAME=erikson
+  #     - CORE_LEDGER_STATE_COUCHDBCONFIG_PASSWORD=wines20*
+  #   depends_on:
+  #     - couchdb9

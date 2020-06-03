@@ -51,3 +51,15 @@ CAPEM=crypto-config/peerOrganizations/research.healthcare.com/ca/ca.research.hea
 
 echo "$(json_ccp $ORG $ORGMSP $P0PORT $P1PORT $CAPORT $PEERPEM $CAPEM)" > ./connections/connection-research.json
 echo "$(yaml_ccp $ORG $ORGMSP $P0PORT $P1PORT $CAPORT $PEERPEM $CAPEM)" > ./connections/connection-research.yaml
+
+
+ORG=patient
+ORGMSP=Research
+P0PORT=13051
+P1PORT=13051
+CAPORT=9054
+PEERPEM=crypto-config/peerOrganizations/patient.healthcare.com/tlsca/tlsca.patient.healthcare.com-cert.pem
+CAPEM=crypto-config/peerOrganizations/patient.healthcare.com/ca/ca.patient.healthcare.com-cert.pem
+
+echo "$(json_ccp $ORG $ORGMSP $P0PORT $P1PORT $CAPORT $PEERPEM $CAPEM)" > ./connections/connection-patient.json
+echo "$(yaml_ccp $ORG $ORGMSP $P0PORT $P1PORT $CAPORT $PEERPEM $CAPEM)" > ./connections/connection-patient.yaml

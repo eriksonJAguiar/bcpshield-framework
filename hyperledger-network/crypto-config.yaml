@@ -87,3 +87,12 @@ PeerOrgs:
       Count: 5
     Users:
       Count: 3
+
+  - Name: Patient
+    Domain: patient.healthcare.com
+    EnableNodeOUs: true
+    Template:
+      Count: 5
+    Users:
+      Count: 3
+  

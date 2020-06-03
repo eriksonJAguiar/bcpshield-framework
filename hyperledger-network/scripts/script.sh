@@ -95,17 +95,17 @@ if [ "${NO_CHAINCODE}" != "true" ]; then
 	echo "Installing chaincode on peer1.hprivider..."
 	installChaincode 1 1
 
-	## Install chaincode on peer1.org2
-	echo "Installing chaincode on peer2.hprivider..."
-	installChaincode 2 1
+	# ## Install chaincode on peer1.org2
+	# echo "Installing chaincode on peer2.hprivider..."
+	# installChaincode 2 1
 
-	## Install chaincode on peer1.org2
-	echo "Installing chaincode on peer3.hprivider..."
-	installChaincode 3 1
+	# ## Install chaincode on peer1.org2
+	# echo "Installing chaincode on peer3.hprivider..."
+	# installChaincode 3 1
 
-	## Install chaincode on peer1.org2
-	echo "Installing chaincode on peer4.hprivider..."
-	installChaincode 4 1
+	# ## Install chaincode on peer1.org2
+	# echo "Installing chaincode on peer4.hprivider..."
+	# installChaincode 4 1
 	
 	
 	echo "Install chaincode on peer0.research..."
@@ -114,14 +114,14 @@ if [ "${NO_CHAINCODE}" != "true" ]; then
 	echo "Install chaincode on peer1.research..."
 	installChaincode 1 2
 
-	echo "Install chaincode on peer2.research..."
-	installChaincode 2 2
+	echo "Install chaincode on peer0.patient..."
+	installChaincode 0 3
 
-	echo "Install chaincode on peer3.research..."
-	installChaincode 3 2
+	echo "Install chaincode on peer1.patient..."
+	installChaincode 1 3
 
-	echo "Install chaincode on peer3.research..."
-	installChaincode 4 2
+	# echo "Install chaincode on peer3.research..."
+	# installChaincode 4 2
 
 	# Instantiate chaincode on peer0.org2
 	echo "Instantiating chaincode on peer0.hprovider..."
