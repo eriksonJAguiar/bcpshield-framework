@@ -55,7 +55,7 @@ echo "$(yaml_ccp $ORG $ORGMSP $P0PORT $P1PORT $CAPORT $PEERPEM $CAPEM)" > ./conn
 
 ORG=patient
 ORGMSP=Research
-P0PORT=13051
+P0PORT=12051
 P1PORT=13051
 CAPORT=9054
 PEERPEM=crypto-config/peerOrganizations/patient.healthcare.com/tlsca/tlsca.patient.healthcare.com-cert.pem
