@@ -133,7 +133,7 @@ Organizations:
             # for cross org gossip communication.  Note, this value is only
             # encoded in the genesis block in the Application section context
             - Host: peer0.patient.healthcare.com
-              Port: 9051
+              Port: 12051
 
 ################################################################################
 #

@@ -9,7 +9,7 @@ echo "|____/    |_|   /_/   \_\ |_| \_\   |_|  "
 echo
 echo "Build your first network (BYFN) end-to-end test"
 echo
-org_name=(hprovider research)
+org_name=(hprovider research patient)
 CHANNEL_NAME="$1"
 DELAY="$2"
 LANGUAGE="$3"
