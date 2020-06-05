@@ -1,4 +1,4 @@
-version: "2"
+version: "2.1"
 
 volumes:
   data:
@@ -41,10 +41,10 @@ services:
       - LOG_CONSOLE_STDOUT=true
       - DISCOVERY_AS_LOCALHOST=false
     volumes:
-      - ./explorer/config.json:/opt/explorer/app/platform/fabric/config.json
-      - ./connection:/opt/explorer/app/platform/fabric/connection-profile
-      - ./explorer/crypto:/tmp/crypto
-      - ./wallets:/opt/wallet
+      - ./config.json:/opt/explorer/app/platform/fabric/config.json
+      - ./connection-profile:/opt/explorer/app/platform/fabric/connection-profile
+      - ./crypto:/tmp/crypto
+      - walletstore:/opt/wallet
       - ./crypto-config/:/etc/data
     command: sh -c "node /opt/explorer/main.js && tail -f /dev/null"
     ports:
