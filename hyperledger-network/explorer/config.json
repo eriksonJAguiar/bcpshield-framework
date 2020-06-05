@@ -1,0 +1,17 @@
+{
+	"network-configs": {
+		"first-network-hprovider": {
+			"name": "first-network-hprovider",
+			"profile": "../connections/connection-hprovider.json"
+		},
+        "first-network-research": {
+			"name": "first-network-research",
+			"profile": "../connections/connection-research.json"
+		},
+        "first-network-patient": {
+			"name": "first-network-patient",
+			"profile": "../connections/connection-patient.json"
+		}
+	},
+	"license": "Apache-2.0"
+}

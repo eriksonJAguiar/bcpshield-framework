@@ -1,0 +1,56 @@
+version: "2"
+
+volumes:
+  data:
+  walletstore:
+
+networks:
+  health_network:
+
+services:
+  explorerdb.healthcare.com:
+    image: hyperledger/explorer-db:latest
+    container_name: explorerdb.healthcare.com
+    hostname: explorerdb.healthcare.com
+    environment:
+      - DATABASE_DATABASE=fabricexplorer
+      - DATABASE_USERNAME=erikson
+      - DATABASE_PASSWORD=wines20*
+    healthcheck:
+      test: "pg_isready -h localhost -p 5432 -q -U postgres"
+      interval: 30s
+      timeout: 10s
+      retries: 5
+    volumes:
+      - data:/var/lib/postgresql/data
+    networks:
+      - health_network
+
+  explorer.healthcare.com:
+    image: hyperledger/explorer:latest
+    container_name: explorer.healthcare.com
+    hostname: explorer.healthcare.com
+    environment:
+      - DATABASE_HOST=explorerdb.healthcare.com
+      - DATABASE_DATABASE=fabricexplorer
+      - DATABASE_USERNAME=erikson
+      - DATABASE_PASSWD=wines20*
+      - LOG_LEVEL_APP=debug
+      - LOG_LEVEL_DB=debug
+      - LOG_LEVEL_CONSOLE=info
+      - LOG_CONSOLE_STDOUT=true
+      - DISCOVERY_AS_LOCALHOST=false
+    volumes:
+      - ./explorer/config.json:/opt/explorer/app/platform/fabric/config.json
+      - ./connection:/opt/explorer/app/platform/fabric/connection-profile
+      - ./explorer/crypto:/tmp/crypto
+      - ./wallets:/opt/wallet
+      - ./crypto-config/:/etc/data
+    command: sh -c "node /opt/explorer/main.js && tail -f /dev/null"
+    ports:
+      - 8080:8080
+    depends_on:
+      explorerdb.healthcare.com:
+        condition: service_healthy
+    networks:
+      - health_network
