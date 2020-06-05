@@ -1,1 +1,5 @@
 ./api-dicom/server/keys/*
+./hyperledger-network/channel-artifacts/*
+./hyperledger-network/crypto-config/*
+./hyperledger-network/wallets/*
+./hyperledger-network/explorer/crypto
