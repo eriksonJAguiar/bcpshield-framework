@@ -64,30 +64,6 @@ services:
       - health_network
 
 #---------------------------------- New Peers -------------------------------
-  
-  # peer2.hprovider.healthcare.com:
-  #   container_name: peer2.hprovider.healthcare.com
-  #   extends:
-  #     file:  base/docker-compose-base.yaml
-  #     service: peer2.hprovider.healthcare.com
-  #   networks:
-  #     - health_network
-
-  # peer3.hprovider.healthcare.com:
-  #   container_name: peer3.hprovider.healthcare.com
-  #   extends:
-  #     file:  base/docker-compose-base.yaml
-  #     service: peer3.hprovider.healthcare.com
-  #   networks:
-  #     - health_network
-  
-  # peer4.hprovider.healthcare.com:
-  #   container_name: peer4.hprovider.healthcare.com
-  #   extends:
-  #     file:  base/docker-compose-base.yaml
-  #     service: peer4.hprovider.healthcare.com
-  #   networks:
-  #     - health_network
 
   peer0.patient.healthcare.com:
     container_name: peer0.patient.healthcare.com
@@ -104,14 +80,6 @@ services:
       service: peer1.patient.healthcare.com
     networks:
       - health_network
-
-  # peer4.research.healthcare.com:
-  #   container_name: peer4.research.healthcare.com
-  #   extends:
-  #     file:  base/docker-compose-base.yaml
-  #     service: peer4.research.healthcare.com
-  #   networks:
-  #     - health_network
 
 
   cli:
@@ -145,13 +113,9 @@ services:
       - orderer.healthcare.com
       - peer0.hprovider.healthcare.com
       - peer1.hprovider.healthcare.com
-      # - peer2.hprovider.healthcare.com
-      # - peer3.hprovider.healthcare.com
-      # - peer4.hprovider.healthcare.com
       - peer0.research.healthcare.com
       - peer1.research.healthcare.com
       - peer0.patient.healthcare.com
       - peer1.patient.healthcare.com
-      # - peer4.research.healthcare.com
     networks:
       - health_network

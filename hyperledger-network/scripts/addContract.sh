@@ -27,7 +27,7 @@ NEW_VERSION_CHAINCODE="$7"
 echo $NEW_VERSION_CHAINCODE
 : ${CHANNEL_NAME:="healthchannel"}
 : ${DELAY:="3"}
-: ${LANGUAGE:="node"}
+: ${LANGUAGE:="golang"}
 : ${TIMEOUT:="10"}
 : ${VERBOSE:="false"}
 : ${NO_CHAINCODE:="false"}

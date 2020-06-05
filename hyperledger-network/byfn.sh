@@ -69,7 +69,7 @@ function printHelp() {
   echo "	byfn.sh generate"
   echo "	byfn.sh up"
   echo "	byfn.sh down"
-  echo "Use byfn.sh up -s couchdb -a true (set up CA and Couchdb)"
+  echo "Use byfn.sh up -s couchdb -a true -l golang -i 1.4.4 (set up CA and Couchdb)"
   echo "For install new contract use 'newcontract -a true' "
   echo "For upgrade contract use 'upgradecontract -e VERSION -a true' "
 }
@@ -540,9 +540,9 @@ COMPOSE_FILE_RAFT2=docker-compose-etcdraft2.yaml
 COMPOSE_FILE_CA=docker-compose-ca.yaml
 #
 # use golang as the default language for chaincode
-LANGUAGE=node
+LANGUAGE=golang
 # default image tag
-IMAGETAG="latest"
+IMAGETAG="1.4"
 # default consensus type
 CONSENSUS_TYPE="solo"
 # Parse commandline args
