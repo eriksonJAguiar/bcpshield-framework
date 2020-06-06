@@ -17,7 +17,7 @@ organizations:
     - ca.${ORG}.healthcare.com
 peers:
   peer0.${ORG}.healthcare.com:
-    url: grpcs://localhost:${P0PORT}
+    url: grpcs://peer0.${ORG}.healthcare.com:${P0PORT}
     tlsCACerts:
       pem: |
         ${PEERPEM}
@@ -25,7 +25,7 @@ peers:
       ssl-target-name-override: peer0.${ORG}.healthcare.com
       hostnameOverride: peer0.${ORG}.healthcare.com
   peer1.${ORG}.healthcare.com:
-    url: grpcs://localhost:${P1PORT}
+    url: grpcs://peer1.${ORG}.healthcare.com:${P1PORT}
     tlsCACerts:
       pem: |
         ${PEERPEM}
@@ -34,7 +34,7 @@ peers:
       hostnameOverride: peer1.${ORG}.healthcare.com
 certificateAuthorities:
   ca.${ORG}.healthcare.com:
-    url: https://localhost:${CAPORT}
+    url: https://ca.${ORG}.healthcare.com:${CAPORT}
     caName: ca.${ORG}.healthcare.com
     tlsCACerts:
       pem: |

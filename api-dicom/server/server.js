@@ -17,6 +17,7 @@ app.get('/api/initNetwork', urlencoder, async function (req, res) {
   try {
       enrollAdmin.enrollAdmin('hprovider', 'HProviderMSP');
       enrollAdmin.enrollAdmin('research', 'ResearchMSP');
+      enrollAdmin.enrollAdmin('patient', 'PatientMSP');
     res.json({
       status: 'True'
     });
