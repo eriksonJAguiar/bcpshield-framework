@@ -30,7 +30,7 @@ peers:
       pem: |
         ${PEERPEM}
     grpcOptions:
-      ssl-target-name-override: peer1.{ORG}.healthcare.com
+      ssl-target-name-override: peer1.${ORG}.healthcare.com
       hostnameOverride: peer1.${ORG}.healthcare.com
 certificateAuthorities:
   ca.${ORG}.healthcare.com:

@@ -3,6 +3,10 @@
     "version": "1.0.0",
     "client": {
         "organization": "${ORGMSP}",
+        "tlsEnable": true,
+		"adminUser": "admin",
+		"adminPassword": "adminpw",
+		"enableAuthentication": false,
         "connection": {
             "timeout": {
                 "peer": {
