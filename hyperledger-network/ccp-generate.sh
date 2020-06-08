@@ -54,7 +54,7 @@ echo "$(yaml_ccp $ORG $ORGMSP $P0PORT $P1PORT $CAPORT $PEERPEM $CAPEM)" > ./conn
 
 
 ORG=patient
-ORGMSP=Research
+ORGMSP=Patient
 P0PORT=12051
 P1PORT=13051
 CAPORT=9054
