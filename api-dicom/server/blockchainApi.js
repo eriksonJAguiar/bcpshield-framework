@@ -2,8 +2,7 @@ const fabricNetwork = require('./fabricNetwork');
 const enrollAdmin = require('../enrollAdmin');
 const registerUserMod = require('../registerUser');
 
-
-async function initNetwork(res) {
+module.exports.initNetwork = async function (res) {
     try {
         enrollAdmin.enrollAdmin('hprovider', 'HProviderMSP');
         enrollAdmin.enrollAdmin('research', 'ResearchMSP');
@@ -21,7 +20,7 @@ async function initNetwork(res) {
     }
 }
 
-async function registerUser(body, res) {
+module.exports.registerUser = async function (body, res) {
     try {
         let result = registerUserMod.registerUser(body.org, body.user, body.msp);
         res.json({
@@ -37,7 +36,7 @@ async function registerUser(body, res) {
     }
 }
 
-async function addAsset(body, res) {
+module.exports.addAsset = async function(body, res) {
     try {
         const contract = await fabricNetwork.connectNetwork('connection-hprovider.json', '../../wallet/wallet-hprovider', body.user);
         console.log(body);
@@ -59,7 +58,7 @@ async function addAsset(body, res) {
     }
 }
 
-async function getAsset(dicomId, user, res) {
+module.exports.getAsset = async function(dicomId, user, res) {
     try {
         const contract = await fabricNetwork.connectNetwork('connection-hprovider.json', '../../wallet/wallet-hprovider', user.toString());
         const result = await contract.evaluateTransaction('getAsset', dicomId.toString());
@@ -74,7 +73,7 @@ async function getAsset(dicomId, user, res) {
     }
 }
 
-async function shareAssetWithDoctor(body, res) {
+module.exports.shareAssetWithDoctor = async function(body, res) {
     try {
         const contract = await fabricNetwork.connectNetwork('connection-patient.json', '../../wallet/wallet-patient', body.user.toString());
         console.log(body);
@@ -92,7 +91,7 @@ async function shareAssetWithDoctor(body, res) {
     }
 }
 
-async function getSharedAssetWithDoctor(hashIPFS, user, res) {
+module.exports.getSharedAssetWithDoctor = async function(hashIPFS, user, res) {
     try {
         const contract = await fabricNetwork.connectNetwork('connection-research.json', '../../wallet/wallet-research', user.toString());
         const result = await contract.evaluateTransaction('getSharedAssetWithDoctor', hashIPFS.toString());
@@ -107,7 +106,7 @@ async function getSharedAssetWithDoctor(hashIPFS, user, res) {
     }
 }
 
-async function requestAssetForResearcher(body, res) {
+module.exports.requestAssetForResearcher = async function(body, res) {
     try {
         const contract = await fabricNetwork.connectNetwork('connection-research.json', '../../wallet/wallet-research', body.user);
         console.log(body);
@@ -125,7 +124,7 @@ async function requestAssetForResearcher(body, res) {
     }
 }
 
-async function shareAssetForResearcher(body, res) {
+module.exports.shareAssetForResearcher = async function(body, res) {
     try {
         const contract = await fabricNetwork.connectNetwork('connection-patient.json', '../../wallet/wallet-patient', body.user);
         console.log(req.body);
@@ -143,7 +142,7 @@ async function shareAssetForResearcher(body, res) {
     }
 }
 
-async function getSharedAssetForResearcher(accessID, user, res) {
+module.exports.getSharedAssetForResearcher = async function(accessID, user, res) {
     try {
         const contract = await fabricNetwork.connectNetwork('connection-research.json', '../../wallet/wallet-research', user);
         let result = await contract.submitTransaction('getSharedAssetForResearcher', accessID.toString());
@@ -158,7 +157,7 @@ async function getSharedAssetForResearcher(accessID, user, res) {
     }
 }
 
-async function auditLog(tokenID, user, res) {
+module.exports.auditLog = async function(tokenID, user, res) {
     try {
         const contract = await fabricNetwork.connectNetwork('connection-hprovider.json', '../../wallet/wallet-hprovider', user);
         const result = await contract.submitTransaction('auditLog', tokenID.toString());
@@ -172,5 +171,3 @@ async function auditLog(tokenID, user, res) {
         });
     }
 }
-
-module.exports = { blockchainApi };
