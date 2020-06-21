@@ -2,7 +2,7 @@ const fabricNetwork = require('./fabricNetwork');
 const enrollAdmin = require('../enrollAdmin');
 const registerUserMod = require('../registerUser');
 
-module.exports.initNetwork = async function (res) {
+module.exports.initNetwork = async function initNetwork(res) {
     try {
         enrollAdmin.enrollAdmin('hprovider', 'HProviderMSP');
         enrollAdmin.enrollAdmin('research', 'ResearchMSP');
@@ -20,7 +20,7 @@ module.exports.initNetwork = async function (res) {
     }
 }
 
-module.exports.registerUser = async function (body, res) {
+module.exports.registerUser = async function registerUser(body, res) {
     try {
         let result = registerUserMod.registerUser(body.org, body.user, body.msp);
         res.json({
@@ -36,7 +36,7 @@ module.exports.registerUser = async function (body, res) {
     }
 }
 
-module.exports.addAsset = async function(body, res) {
+module.exports.addAsset = async function addAsset(body, res) {
     try {
         const contract = await fabricNetwork.connectNetwork('connection-hprovider.json', '../../wallet/wallet-hprovider', body.user);
         console.log(body);
@@ -58,7 +58,7 @@ module.exports.addAsset = async function(body, res) {
     }
 }
 
-module.exports.getAsset = async function(dicomId, user, res) {
+module.exports.getAsset = async function getAsset(dicomId, user, res) {
     try {
         const contract = await fabricNetwork.connectNetwork('connection-hprovider.json', '../../wallet/wallet-hprovider', user.toString());
         const result = await contract.evaluateTransaction('getAsset', dicomId.toString());
@@ -73,7 +73,7 @@ module.exports.getAsset = async function(dicomId, user, res) {
     }
 }
 
-module.exports.shareAssetWithDoctor = async function(body, res) {
+module.exports.shareAssetWithDoctor = async function shareAssetWithDoctor(body, res) {
     try {
         const contract = await fabricNetwork.connectNetwork('connection-patient.json', '../../wallet/wallet-patient', body.user.toString());
         console.log(body);
@@ -91,7 +91,7 @@ module.exports.shareAssetWithDoctor = async function(body, res) {
     }
 }
 
-module.exports.getSharedAssetWithDoctor = async function(hashIPFS, user, res) {
+module.exports.getSharedAssetWithDoctor = async function getSharedAssetWithDoctor(hashIPFS, user, res) {
     try {
         const contract = await fabricNetwork.connectNetwork('connection-research.json', '../../wallet/wallet-research', user.toString());
         const result = await contract.evaluateTransaction('getSharedAssetWithDoctor', hashIPFS.toString());
@@ -106,7 +106,7 @@ module.exports.getSharedAssetWithDoctor = async function(hashIPFS, user, res) {
     }
 }
 
-module.exports.requestAssetForResearcher = async function(body, res) {
+module.exports.requestAssetForResearcher = async function requestAssetForResearcher(body, res) {
     try {
         const contract = await fabricNetwork.connectNetwork('connection-research.json', '../../wallet/wallet-research', body.user);
         console.log(body);
@@ -124,7 +124,7 @@ module.exports.requestAssetForResearcher = async function(body, res) {
     }
 }
 
-module.exports.shareAssetForResearcher = async function(body, res) {
+module.exports.shareAssetForResearcher = async function shareAssetForResearcher(body, res) {
     try {
         const contract = await fabricNetwork.connectNetwork('connection-patient.json', '../../wallet/wallet-patient', body.user);
         console.log(req.body);
@@ -142,7 +142,7 @@ module.exports.shareAssetForResearcher = async function(body, res) {
     }
 }
 
-module.exports.getSharedAssetForResearcher = async function(accessID, user, res) {
+module.exports.getSharedAssetForResearcher = async function getSharedAssetForResearcher(accessID, user, res) {
     try {
         const contract = await fabricNetwork.connectNetwork('connection-research.json', '../../wallet/wallet-research', user);
         let result = await contract.submitTransaction('getSharedAssetForResearcher', accessID.toString());
@@ -157,7 +157,7 @@ module.exports.getSharedAssetForResearcher = async function(accessID, user, res)
     }
 }
 
-module.exports.auditLog = async function(tokenID, user, res) {
+module.exports.auditLog = async function auditLog(tokenID, user, res) {
     try {
         const contract = await fabricNetwork.connectNetwork('connection-hprovider.json', '../../wallet/wallet-hprovider', user);
         const result = await contract.submitTransaction('auditLog', tokenID.toString());
