@@ -2,7 +2,7 @@
 
 var utils = require('../utils/writer.js');
 var Default = require('../service/DefaultService');
-var { bcinitNetwork, bcAddAsset, bcAuditLog  } = require('../../blockchainApi');
+var { bcInitNetwork, bcAddAsset, bcAuditLog  } = require('../../blockchainApi');
 
 
 module.exports.addAsset = function addAsset (req, res, next) {
