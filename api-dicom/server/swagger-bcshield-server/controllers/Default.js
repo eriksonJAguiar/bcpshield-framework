@@ -70,8 +70,8 @@ module.exports.getSharedAssetWithDoctor = function getSharedAssetWithDoctor (req
 };
 
 module.exports.initNetwork = function initNetwork (req, res, next) {
-  BlockchainApi.initNetwork(res);
-  bcInitNetwork()
+  bcInitNetwork(res);
+  Default.initNetwork()
     .then(function (response) {
       utils.writeJson(res, response);
     })
