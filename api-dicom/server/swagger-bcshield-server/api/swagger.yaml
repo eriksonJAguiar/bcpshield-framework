@@ -1,0 +1,432 @@
+---
+swagger: "2.0"
+info:
+  description: "API server to BCShield usage"
+  version: "1.0.0"
+  title: "BCShield API"
+  contact:
+    email: "erjuliaguiar@usp.br"
+  license:
+    name: "Apache 2.0"
+    url: "http://www.apache.org/licenses/LICENSE-2.0.html"
+host: "127.0.0.1:3000"
+basePath: "/api"
+schemes:
+- "https"
+- "http"
+paths:
+  /initNetwork:
+    get:
+      summary: "Start wallets on network"
+      description: ""
+      operationId: "initNetwork"
+      consumes:
+      - "application/json"
+      produces:
+      - "application/json"
+      parameters: []
+      responses:
+        "200":
+          description: "successful operation"
+          schema:
+            $ref: "#/definitions/ApiResponse"
+        "405":
+          description: "Invalid input"
+        "500":
+          description: "Error on operation"
+          schema:
+            $ref: "#/definitions/ApiError"
+      x-swagger-router-controller: "Default"
+  /registerUser:
+    post:
+      summary: "Register a user on blockchain"
+      description: ""
+      operationId: "registerUser"
+      consumes:
+      - "application/json"
+      produces:
+      - "application/json"
+      parameters:
+      - in: "body"
+        name: "body"
+        required: true
+        schema:
+          $ref: "#/definitions/User"
+      responses:
+        "200":
+          description: "successful operation"
+          schema:
+            $ref: "#/definitions/ApiResponse"
+        "405":
+          description: "Invalid input"
+        "500":
+          description: "Error on operation"
+          schema:
+            $ref: "#/definitions/ApiError"
+      x-swagger-router-controller: "Default"
+  /addAsset:
+    post:
+      summary: "Add a new DICOM image on blockchain"
+      description: ""
+      operationId: "addAsset"
+      consumes:
+      - "application/json"
+      produces:
+      - "application/json"
+      parameters:
+      - in: "body"
+        name: "body"
+        required: true
+        schema:
+          $ref: "#/definitions/Dicom"
+      responses:
+        "200":
+          description: "successful operation"
+          schema:
+            $ref: "#/definitions/ApiResponse"
+        "405":
+          description: "Invalid input"
+        "500":
+          description: "Error on operation"
+          schema:
+            $ref: "#/definitions/ApiError"
+      x-swagger-router-controller: "Default"
+  /getAsset/{dicomId},{user}:
+    get:
+      summary: "Find Dicom imaging by ID"
+      description: "Returns a single Dicom"
+      operationId: "getDicomById"
+      produces:
+      - "application/json"
+      parameters:
+      - name: "user"
+        in: "path"
+        description: "ID of user"
+        required: true
+        type: "string"
+      - name: "dicomId"
+        in: "path"
+        description: "ID of Dicom to return"
+        required: true
+        type: "integer"
+      responses:
+        "200":
+          description: "successful operation"
+          schema:
+            $ref: "#/definitions/ApiResponseDicom"
+        "400":
+          description: "Invalid ID supplied"
+        "404":
+          description: "Dicom not found"
+        "500":
+          description: "Error on operation"
+          schema:
+            $ref: "#/definitions/ApiError"
+      x-swagger-router-controller: "Default"
+  /shareAssetWithDoctor:
+    post:
+      summary: "Sharing an imaging with a doctor"
+      description: ""
+      operationId: "shareAssetWithDoctor"
+      consumes:
+      - "application/json"
+      produces:
+      - "application/json"
+      parameters:
+      - in: "body"
+        name: "body"
+        required: true
+        schema:
+          $ref: "#/definitions/SharedDicom"
+      responses:
+        "200":
+          description: "successful operation"
+          schema:
+            $ref: "#/definitions/ApiResponse"
+        "405":
+          description: "Invalid input"
+        "500":
+          description: "Error on operation"
+          schema:
+            $ref: "#/definitions/ApiError"
+      x-swagger-router-controller: "Default"
+  /getSharedAssetWithDoctor/{hashIPFS},{user}:
+    get:
+      summary: "Find shared imaging ID"
+      description: "Returns Imaging reference with a doctor"
+      operationId: "getSharedAssetWithDoctor"
+      produces:
+      - "application/json"
+      parameters:
+      - name: "user"
+        in: "path"
+        description: "ID of user"
+        required: true
+        type: "string"
+      - name: "hashIPFS"
+        in: "path"
+        description: "Hash string of Dicom to get"
+        required: true
+        type: "string"
+      responses:
+        "200":
+          description: "successful operation"
+          schema:
+            $ref: "#/definitions/ApiResponseDicom"
+        "400":
+          description: "Invalid ID supplied"
+        "404":
+          description: "Shared not found"
+        "500":
+          description: "Error on operation"
+          schema:
+            $ref: "#/definitions/ApiError"
+      x-swagger-router-controller: "Default"
+  /requestAssetForResearcher:
+    post:
+      summary: "A researcher request to patient Dicom imaging"
+      description: ""
+      operationId: "requestAssetForResearcher"
+      consumes:
+      - "application/json"
+      produces:
+      - "application/json"
+      parameters:
+      - in: "body"
+        name: "body"
+        required: true
+        schema:
+          $ref: "#/definitions/ResearcherRequest"
+      responses:
+        "200":
+          description: "successful operation"
+          schema:
+            $ref: "#/definitions/ApiResponse"
+        "405":
+          description: "Invalid input"
+        "500":
+          description: "Error on operation"
+          schema:
+            $ref: "#/definitions/ApiError"
+      x-swagger-router-controller: "Default"
+  /shareAssetForResearcher:
+    post:
+      summary: "A patient share imging with a researcher"
+      description: ""
+      operationId: "shareAssetForResearcher"
+      consumes:
+      - "application/json"
+      produces:
+      - "application/json"
+      parameters:
+      - in: "body"
+        name: "body"
+        required: true
+        schema:
+          $ref: "#/definitions/PatientShareResearcher"
+      responses:
+        "200":
+          description: "successful operation"
+          schema:
+            $ref: "#/definitions/ApiResponse"
+        "405":
+          description: "Invalid input"
+        "500":
+          description: "Error on operation"
+          schema:
+            $ref: "#/definitions/ApiError"
+      x-swagger-router-controller: "Default"
+  /getSharedAssetForResearcher/{accessID},{user}:
+    get:
+      summary: "Find shared imaging ID"
+      description: "Returns Imaging reference shared with reserchers"
+      operationId: "getSharedAssetForResearcher"
+      produces:
+      - "application/json"
+      parameters:
+      - name: "user"
+        in: "path"
+        description: "ID of user"
+        required: true
+        type: "string"
+      - name: "accessID"
+        in: "path"
+        description: "ID of imaging request"
+        required: true
+        type: "string"
+      responses:
+        "200":
+          description: "successful operation"
+          schema:
+            $ref: "#/definitions/ApiResponseDicom"
+        "400":
+          description: "Invalid ID supplied"
+        "404":
+          description: "Shared not found"
+        "500":
+          description: "Error on operation"
+          schema:
+            $ref: "#/definitions/ApiError"
+      x-swagger-router-controller: "Default"
+  /auditLog/{tokenID},{user}:
+    get:
+      summary: "Audit logs from token hash"
+      description: "Returns Dicom reference"
+      operationId: "auditLog"
+      produces:
+      - "application/json"
+      parameters:
+      - name: "user"
+        in: "path"
+        description: "ID of user"
+        required: true
+        type: "string"
+      - name: "tokenID"
+        in: "path"
+        description: "Reference token to audit image leaked"
+        required: true
+        type: "string"
+      responses:
+        "200":
+          description: "successful operation"
+          schema:
+            $ref: "#/definitions/ApiResponseDicom"
+        "400":
+          description: "Invalid ID supplied"
+        "404":
+          description: "Shared not found"
+        "500":
+          description: "Error on operation"
+          schema:
+            $ref: "#/definitions/ApiError"
+      x-swagger-router-controller: "Default"
+definitions:
+  User:
+    type: "object"
+    properties:
+      user:
+        type: "string"
+      org:
+        type: "string"
+      msp:
+        type: "string"
+    example:
+      org: "org"
+      msp: "msp"
+      user: "user"
+  Dicom:
+    type: "object"
+    properties:
+      user:
+        type: "string"
+      dicomID:
+        type: "integer"
+      patientID:
+        type: "integer"
+      patientFirstname:
+        type: "string"
+      patientLastname:
+        type: "string"
+      patientTelephone:
+        type: "string"
+      patientAddress:
+        type: "string"
+      patientAge:
+        type: "integer"
+      patientOrganization:
+        type: "string"
+      patientRace:
+        type: "string"
+      patientGender:
+        type: "string"
+      patientInsuranceplan:
+        type: "string"
+      patientWeigth:
+        type: "number"
+      patientHeigth:
+        type: "number"
+      machineModel:
+        type: "string"
+    example:
+      patientHeigth: 5.63737665663332876420099637471139430999755859375
+      patientID: 6
+      patientRace: "patientRace"
+      patientGender: "patientGender"
+      patientWeigth: 5.962133916683182377482808078639209270477294921875
+      patientFirstname: "patientFirstname"
+      patientTelephone: "patientTelephone"
+      machineModel: "machineModel"
+      patientOrganization: "patientOrganization"
+      dicomID: 0
+      patientAge: 1
+      patientAddress: "patientAddress"
+      patientInsuranceplan: "patientInsuranceplan"
+      user: "user"
+      patientLastname: "patientLastname"
+  ApiResponse:
+    type: "object"
+    properties:
+      status:
+        type: "string"
+      result:
+        type: "string"
+    example:
+      result: "result"
+      status: "status"
+  ApiResponseDicom:
+    type: "object"
+    properties:
+      result:
+        type: "string"
+    example:
+      result: "result"
+  SharedDicom:
+    type: "object"
+    properties:
+      user:
+        type: "string"
+      patientID:
+        type: "integer"
+      doctorID:
+        type: "integer"
+      hashIPFS:
+        type: "string"
+      dicomID:
+        type: "integer"
+    example:
+      dicomID: 1
+      patientID: 0
+      doctorID: 6
+      user: "user"
+      hashIPFS: "hashIPFS"
+  ResearcherRequest:
+    type: "object"
+    properties:
+      user:
+        type: "string"
+      amount:
+        type: "integer"
+      researchID:
+        type: "string"
+      patientID:
+        type: "string"
+    example:
+      amount: 0
+      patientID: "patientID"
+      user: "user"
+      researchID: "researchID"
+  PatientShareResearcher:
+    type: "object"
+    properties:
+      user:
+        type: "string"
+      requestID:
+        type: "string"
+    example:
+      requestID: "requestID"
+      user: "user"
+  ApiError:
+    type: "object"
+    properties:
+      error:
+        type: "string"

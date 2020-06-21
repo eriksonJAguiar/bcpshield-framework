@@ -4,8 +4,12 @@ volumes:
   data:
   walletstore:
 
+
 networks:
   health_network:
+    external:
+      name: net_byfn
+
 
 services:
   explorerdb.healthcare.com:

@@ -1,4 +1,6 @@
 ./api-dicom/server/keys/*
+./api-dicom/server/node_modules/*
+./api-dicom/node_modules/*
 ./hyperledger-network/channel-artifacts/*
 ./hyperledger-network/crypto-config/*
 ./hyperledger-network/wallets/*
