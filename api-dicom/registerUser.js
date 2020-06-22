@@ -15,7 +15,7 @@ async function registerUser(org,user,MSP) {
         // const user = args[1];
         const ccpPath = path.resolve(__dirname, '..', 'hyperledger-network','connections', `connection-${org}.json`);
         // Create a new file system based wallet for managing identities.
-        const walletPath = path.join(process.cwd(), `../../wallet/wallet-${org}`);
+        const walletPath = path.join(process.cwd(), `./wallet/wallet-${org}`);
         const wallet = new FileSystemWallet(walletPath);
         console.log(`Wallet path: ${walletPath}`);
 

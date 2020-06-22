@@ -3,10 +3,6 @@
     "version": "1.0.0",
     "client": {
         "organization": "${ORGMSP}",
-        "tlsEnable": true,
-		"adminUser": "admin",
-		"adminPassword": "adminpw",
-		"enableAuthentication": false,
         "connection": {
             "timeout": {
                 "peer": {
@@ -29,7 +25,7 @@
     },
     "peers": {
         "peer0.${ORG}.healthcare.com": {
-            "url": "grpcs://peer0.${ORG}.healthcare.com:${P0PORT}",
+            "url": "grpcs://localhost:${P0PORT}",
             "tlsCACerts": {
                 "pem": "${PEERPEM}"
             },
@@ -39,7 +35,7 @@
             }
         },
         "peer1.${ORG}.healthcare.com": {
-            "url": "grpcs://peer1.${ORG}.healthcare.com:${P1PORT}",
+            "url": "grpcs://localhost:${P1PORT}",
             "tlsCACerts": {
                 "pem": "${PEERPEM}"
             },
@@ -51,7 +47,7 @@
     },
     "certificateAuthorities": {
         "ca.${ORG}.healthcare.com": {
-            "url": "https://ca.${ORG}.healthcare.com:${CAPORT}",
+            "url": "https://localhost:${CAPORT}",
             "caName": "ca.${ORG}.healthcare.com",
             "tlsCACerts": {
                 "pem": "${CAPEM}"
