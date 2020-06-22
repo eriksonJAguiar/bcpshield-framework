@@ -1,5 +1,5 @@
 {
-    "name": "first-network-${ORG}",
+    "name": "healthcare-network-${ORG}",
     "version": "1.0.0",
     "client": {
         "organization": "${ORGMSP}",

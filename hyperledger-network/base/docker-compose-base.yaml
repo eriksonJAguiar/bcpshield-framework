@@ -53,7 +53,7 @@ services:
       - CORE_PEER_LISTENADDRESS=0.0.0.0:8051
       - CORE_PEER_CHAINCODEADDRESS=peer1.hprovider.healthcare.com:8052
       - CORE_PEER_CHAINCODELISTENADDRESS=0.0.0.0:8052
-      - CORE_PEER_GOSSIP_EXTERNALENDPOINT=peer0.hprovider.healthcare.com:7051
+      - CORE_PEER_GOSSIP_EXTERNALENDPOINT=peer1.hprovider.healthcare.com:8051
       - CORE_PEER_GOSSIP_BOOTSTRAP=peer0.hprovider.healthcare.com:7051
       - CORE_PEER_LOCALMSPID=HProviderMSP
     volumes:
@@ -98,7 +98,7 @@ services:
       - CORE_PEER_LISTENADDRESS=0.0.0.0:10051
       - CORE_PEER_CHAINCODEADDRESS=peer1.research.healthcare.com:10052
       - CORE_PEER_CHAINCODELISTENADDRESS=0.0.0.0:10052
-      - CORE_PEER_GOSSIP_EXTERNALENDPOINT=peer0.research.healthcare.com:9051
+      - CORE_PEER_GOSSIP_EXTERNALENDPOINT=peer1.research.healthcare.com:10051
       - CORE_PEER_GOSSIP_BOOTSTRAP=peer0.research.healthcare.com:9051
       - CORE_PEER_LOCALMSPID=ResearchMSP
     volumes:
@@ -146,7 +146,7 @@ services:
       - CORE_PEER_LISTENADDRESS=0.0.0.0:13051
       - CORE_PEER_CHAINCODEADDRESS=peer1.patient.healthcare.com:13052
       - CORE_PEER_CHAINCODELISTENADDRESS=0.0.0.0:13052
-      - CORE_PEER_GOSSIP_EXTERNALENDPOINT=peer0.patient.healthcare.com:12051
+      - CORE_PEER_GOSSIP_EXTERNALENDPOINT=peer1.patient.healthcare.com:13051
       - CORE_PEER_GOSSIP_BOOTSTRAP=peer0.patient.healthcare.com:12051
       - CORE_PEER_LOCALMSPID=PatientMSP
     volumes:
