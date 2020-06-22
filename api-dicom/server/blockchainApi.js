@@ -1,6 +1,7 @@
 const fabricNetwork = require('./fabricNetwork');
 const enrollAdmin = require('../enrollAdmin');
 const registerUserMod = require('../registerUser');
+const { json } = require('body-parser');
 
 class BlockchainApi {
 
@@ -9,16 +10,16 @@ class BlockchainApi {
             enrollAdmin.enrollAdmin('hprovider', 'HProviderMSP');
             enrollAdmin.enrollAdmin('research', 'ResearchMSP');
             enrollAdmin.enrollAdmin('patient', 'PatientMSP');
-            res.json({
+            res = {
                 status: 'True'
-            });
+            }
             console.log('OK - Transaction has been submitted');
         } catch (error) {
             console.error(`Failed to evaluate transaction: ${error}`);
-            res.status(500).json({
+            res = {
                 error: error,
                 status: 'False'
-            });
+            }
         }
     }
 
