@@ -4,8 +4,6 @@ var utils = require('../utils/writer.js');
 var Default = require('../service/DefaultService');
 var { BlockchainApi } = require('../../blockchainApi');
 
-BlockchainApi.
-
 
 module.exports.addAsset = function addAsset (req, res, next) {
   var body = req.swagger.params['body'].value;
