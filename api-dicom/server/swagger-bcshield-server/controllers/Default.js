@@ -2,12 +2,14 @@
 
 var utils = require('../utils/writer.js');
 var Default = require('../service/DefaultService');
-var { bcInitNetwork, bcAddAsset, bcAuditLog  } = require('../../blockchainApi');
+var { BlockchainApi } = require('../../blockchainApi');
+
+BlockchainApi.
 
 
 module.exports.addAsset = function addAsset (req, res, next) {
   var body = req.swagger.params['body'].value;
-  bcAddAsset(body, res);
+  BlockchainApi.addAsset(body, res)
   Default.addAsset(body)
     .then(function (response) {
       utils.writeJson(res, response);
@@ -20,7 +22,7 @@ module.exports.addAsset = function addAsset (req, res, next) {
 module.exports.auditLog = function auditLog (req, res, next) {
   var user = req.swagger.params['user'].value;
   var tokenID = req.swagger.params['tokenID'].value;
-  bcAuditLog(tokenID, user, res);
+  BlockchainApi.auditLog(tokenID, user, res);
   Default.auditLog(user,tokenID)
     .then(function (response) {
       utils.writeJson(res, response);
@@ -70,7 +72,7 @@ module.exports.getSharedAssetWithDoctor = function getSharedAssetWithDoctor (req
 };
 
 module.exports.initNetwork = function initNetwork (req, res, next) {
-  bcInitNetwork(res);
+  BlockchainApi.initNetwork(res);
   Default.initNetwork()
     .then(function (response) {
       utils.writeJson(res, response);
