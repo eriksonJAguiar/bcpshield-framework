@@ -10,8 +10,8 @@ class BlockchainApi {
             enrollAdmin.enrollAdmin('hprovider', 'HProviderMSP');
             enrollAdmin.enrollAdmin('research', 'ResearchMSP');
             enrollAdmin.enrollAdmin('patient', 'PatientMSP');
-            res.status = 'True';
-            console.log('OK - Transaction has been submitted');
+            res.swagger.status = 'True';
+            res.swagger.result = 'OK - Transaction has been submitted';
         } catch (error) {
             console.error(`Failed to evaluate transaction: ${error}`);
             res.error = error.toString();
