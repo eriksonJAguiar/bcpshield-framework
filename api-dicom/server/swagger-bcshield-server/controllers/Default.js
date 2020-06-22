@@ -7,7 +7,8 @@ var { BlockchainApi } = require('../../blockchainApi');
 
 module.exports.addAsset = function addAsset (req, res, next) {
   var body = req.swagger.params['body'].value;
-  BlockchainApi.addAsset(body, res)
+  console.log(res);
+  BlockchainApi.addAsset(body, res);
   Default.addAsset(body)
     .then(function (response) {
       utils.writeJson(res, response);
