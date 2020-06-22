@@ -48,13 +48,13 @@ app.post('/api/registerUser', urlencoder, async function (req, res) {
 app.post('/api/addAsset', urlencoder, async function (req, res) {
 
   try {
-    const contract = await fabricNetwork.connectNetwork('connection-hprovider.json', '../../wallet/wallet-hprovider', req.body.user);
+    const contract = await fabricNetwork.connectNetwork('connection-hprovider.json', '../wallet/wallet-hprovider', req.body.user);
     console.log(req.body);
     var currentdate = new Date();
     let response = await contract.submitTransaction('addAsset', req.body.dicomID, req.body.patientID, req.body.patientFirstname, req.body.patientLastname, 
-                                              req.body.patientTelephone, req.body.patientAddress, req.body.patientAge, "", req.body.patientOrganization, 
+                                              req.body.patientTelephone, req.body.patientAddress, req.body.patientAge.toString(), "", req.body.patientOrganization, 
                                               "", req.body.patientRace, "", req.body.patientGender, req.body.patientInsuranceplan, 
-                                              req.body.patientWeigth, req.body.patientHeigth, req.body.machineModel, currentdate.getDate().toString());
+                                              req.body.patientWeigth.toString(), req.body.patientHeigth.toString(), req.body.machineModel, currentdate.getDate().toString());
     res.json({
       status: 'OK - Transaction has been submitted',
       result: response.toString()
@@ -71,7 +71,7 @@ app.post('/api/addAsset', urlencoder, async function (req, res) {
 
 app.get('/api/getAsset', async function (req, res) {
   try {
-    const contract = await fabricNetwork.connectNetwork('connection-hprovider.json', '../../wallet/wallet-hprovider', req.body.user);
+    const contract = await fabricNetwork.connectNetwork('connection-hprovider.json', '../wallet/wallet-hprovider', req.body.user);
     const result = await contract.evaluateTransaction('getAsset', req.body.dicomId);
     let response = JSON.parse(result.toString());
     res.json({ result: response });
@@ -86,7 +86,7 @@ app.get('/api/getAsset', async function (req, res) {
 
 app.post('/api/shareAssetWithDoctor', urlencoder, async function (req, res) {
   try {
-    const contract = await fabricNetwork.connectNetwork('connection-patient.json', '../../wallet/wallet-patient', req.body.user.toString());
+    const contract = await fabricNetwork.connectNetwork('connection-patient.json', '../wallet/wallet-patient', req.body.user.toString());
     console.log(req.body);
     let response = await contract.submitTransaction('shareAssetWithDoctor', req.body.patientID, req.body.doctorID, req.body.hashIPFS, req.body.dicomID);
     res.json({
@@ -105,7 +105,7 @@ app.post('/api/shareAssetWithDoctor', urlencoder, async function (req, res) {
 
 app.get('/api/getSharedAssetWithDoctor', async function (req, res) {
   try {
-    const contract = await fabricNetwork.connectNetwork('connection-research.json', '../../wallet/wallet-research', req.body.user);
+    const contract = await fabricNetwork.connectNetwork('connection-research.json', '../wallet/wallet-research', req.body.user);
     const result = await contract.evaluateTransaction('getSharedAssetWithDoctor', req.body.hashIPFS.toString());
     let response = JSON.parse(result.toString());
     res.json({ result: response });
@@ -120,7 +120,7 @@ app.get('/api/getSharedAssetWithDoctor', async function (req, res) {
 
 app.post('/api/requestAssetForResearcher', urlencoder, async function (req, res) {
   try {
-    const contract = await fabricNetwork.connectNetwork('connection-research.json', '../../wallet/wallet-research', req.body.user);
+    const contract = await fabricNetwork.connectNetwork('connection-research.json', '../wallet/wallet-research', req.body.user);
     console.log(req.body);
     let response = await contract.submitTransaction('requestAssetForResearcher', req.body.amount.toString(), req.body.researchID, req.body.patientID);
     res.json({
@@ -139,7 +139,7 @@ app.post('/api/requestAssetForResearcher', urlencoder, async function (req, res)
 
 app.post('/api/shareAssetForResearcher', urlencoder, async function (req, res) {
   try {
-    const contract = await fabricNetwork.connectNetwork('connection-patient.json', '../../wallet/wallet-patient', req.body.user);
+    const contract = await fabricNetwork.connectNetwork('connection-patient.json', '../wallet/wallet-patient', req.body.user);
     console.log(req.body);
     let response = await contract.submitTransaction('shareAssetForResearcher', req.body.requestID.toString());
     res.json({
@@ -158,7 +158,7 @@ app.post('/api/shareAssetForResearcher', urlencoder, async function (req, res) {
 
 app.get('/api/getSharedAssetForResearcher', urlencoder, async function (req, res) {
   try {
-    const contract = await fabricNetwork.connectNetwork('connection-research.json', '../../wallet/wallet-research', req.body.user);
+    const contract = await fabricNetwork.connectNetwork('connection-research.json', '../wallet/wallet-research', req.body.user);
     let result = await contract.submitTransaction('getSharedAssetForResearcher', req.body.accessID.toString());
     const response = JSON.parse(result.toString());
     res.json({ result: response.toString() });
@@ -174,7 +174,7 @@ app.get('/api/getSharedAssetForResearcher', urlencoder, async function (req, res
 
 app.get('/api/auditLog', urlencoder, async function (req, res) {
   try {
-    const contract = await fabricNetwork.connectNetwork('connection-hprovider.json', '../../wallet/wallet-hprovider', req.body.user);
+    const contract = await fabricNetwork.connectNetwork('connection-hprovider.json', '../wallet/wallet-hprovider', req.body.user);
     const result = await contract.submitTransaction('auditLog', req.body.tokenID.toString());
     let response = JSON.parse(result.toString());
     res.json({ result: response.toString() });
