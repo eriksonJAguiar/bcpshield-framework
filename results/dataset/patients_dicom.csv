@@ -1,4 +1,4 @@
-;firstname;lastname;planid;patientID;phone;gender;organization;address;city;state;dicomID;age;race;height;weight
+;patientFirstname;patientLastname;patientInsuranceplan;patientID;patientTelephone;patientGender;patientOrganization;address;city;state;dicomID;patientAge;patientRace;patientHeigth;patientWeigth
 0;Lawrence;Krieger;1299352;1619951845;2349861;male;OHIP;5700 West Genesee Street;Camillus;NY;C3N-02252;68.0;White;NaN;NaN
 1;Rhonda;Museums;2508794;1871553339;2349861;female;OHIP;5700 West Genesee Street;Camillus;NY;C3N-00221;78.0;Not Reported;188;93
 2;Edward;Sall;1568881;1710961198;2349861;male;OHIP;5700 West Genesee Street;Camillus;NY;C3L-00081;61.0;White;157;80

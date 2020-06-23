@@ -147,7 +147,7 @@ class Experiment(object):
         """
         dicoms: pd.DataFrame = pd.read_csv(file_in, sep=";")
         dicoms_json: str = dicoms.to_json(orient='split')
-
+        dicoms_json['patientAddress'] = dicoms_json['address']+" "+dicoms_json['city']+" "+dicoms_json['state']
         self.__global_time = time.time()
         table_tps_time: pd.DataFrame = pd.DataFrame()
         print("Iniciando envio ...")

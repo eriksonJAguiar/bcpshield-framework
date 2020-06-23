@@ -50,11 +50,10 @@ app.post('/api/addAsset', urlencoder, async function (req, res) {
   try {
     const contract = await fabricNetwork.connectNetwork('connection-hprovider.json', '../wallet/wallet-hprovider', req.body.user);
     console.log(req.body);
-    var currentdate = new Date();
     let response = await contract.submitTransaction('addAsset', req.body.dicomID, req.body.patientID, req.body.patientFirstname, req.body.patientLastname, 
-                                              req.body.patientTelephone, req.body.patientAddress, req.body.patientAge.toString(), "", req.body.patientOrganization, 
-                                              "", req.body.patientRace, "", req.body.patientGender, req.body.patientInsuranceplan, 
-                                              req.body.patientWeigth.toString(), req.body.patientHeigth.toString(), req.body.machineModel, currentdate.getDate().toString());
+                                              req.body.patientTelephone, req.body.patientAddress, req.body.patientAge.toString(), " ", req.body.patientOrganization, 
+                                              " ", req.body.patientRace, " ", req.body.patientGender, req.body.patientInsuranceplan, 
+                                              req.body.patientWeigth.toString(), req.body.patientHeigth.toString(), req.body.machineModel);
     res.json({
       status: 'OK - Transaction has been submitted',
       result: response.toString()
@@ -100,7 +99,6 @@ app.post('/api/shareAssetWithDoctor', urlencoder, async function (req, res) {
       error: error
     });
   }
-
 });
 
 app.get('/api/getSharedAssetWithDoctor', async function (req, res) {
