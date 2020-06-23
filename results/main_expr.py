@@ -3,7 +3,7 @@ from experiment import Experiment
 
 class Server():
 
-    def int(self):
+    def init(self):
         peer0_hprovider = Peer('35.211.104.239',7051,"hprovider")
         peer1_hprovider = Peer('35.211.104.239',8051,"hprovider")
 
@@ -27,7 +27,7 @@ class Server():
 
 class Client():
 
-    def int(self):
+    def init(self):
         peer0_hprovider = Peer('35.211.104.239',7051,"hprovider")
         peer1_hprovider = Peer('35.211.104.239',8051,"hprovider")
 

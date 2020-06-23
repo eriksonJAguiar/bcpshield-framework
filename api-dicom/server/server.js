@@ -135,7 +135,7 @@ app.post('/api/requestAssetForResearcher', urlencoder, async function (req, res)
 
 });
 
-app.post('/api/shareAssetForResearcher', urlencoder, async function (req, res) {
+app.post('/api/shareAssetForResearcher', urlencoder, async function (req, res) {  
   try {
     const contract = await fabricNetwork.connectNetwork('connection-patient.json', '../wallet/wallet-patient', req.body.user);
     console.log(req.body);

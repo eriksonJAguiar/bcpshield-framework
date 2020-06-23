@@ -9,6 +9,7 @@ import pandas as pd
 import socket
 import queue
 import csv
+import json
 
 
 class Experiment(object):
@@ -147,7 +148,7 @@ class Experiment(object):
         """
         dicoms: pd.DataFrame = pd.read_csv(file_in, sep=";")
         dicoms_json: str = dicoms.to_json(orient='split')
-        dicoms_json['patientAddress'] = dicoms_json['address']+" "+dicoms_json['city']+" "+dicoms_json['state']
+        #dicoms_json['patientAddress'] = dicoms_json['address']+" "+dicoms_json['city']+" "+dicoms_json['state']
         self.__global_time = time.time()
         table_tps_time: pd.DataFrame = pd.DataFrame()
         print("Iniciando envio ...")
@@ -155,8 +156,10 @@ class Experiment(object):
         for tr in range(1, 30):
             transaction_size: int = tr*len(dicoms_json)
             for dcm in dicoms_json:
-                resp: requests.Response = requests.get(
-                    url="%s:%s" % (ip_api, port_api), params=dcm)
+                url = "%s:%s/api/getAsset"%(ip_api, port_api)
+                payload = json.dumps(dcm)
+                headers = { 'Content-Type': "application/json" }
+                resp: requests.Response = requests.request("GET", url, data=payload, headers=headers)
                 end_t: float = time.time() - self.__global_time
                 tps: float = end_t/transaction_size
                 table_tps_time = table_tps_time.append(
