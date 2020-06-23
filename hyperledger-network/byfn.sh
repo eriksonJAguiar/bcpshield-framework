@@ -244,7 +244,7 @@ function upgradeNetwork() {
     docker-compose $COMPOSE_FILES stop orderer.healthcare.com
     docker cp -a orderer.healthcare.com:/var/hyperledger/production/orderer $LEDGERS_BACKUP/orderer.healthcare.com
     docker-compose $COMPOSE_FILES up -d --no-deps orderer.healthcare.com
-    for PEER in peer0.hprovider.healthcare.com peer1.hprovider.healthcare.com peer2.hprovider.healthcare.com peer3.hprovider.healthcare.com peer4.hprovider.healthcare.com peer0.research.healthcare.com peer1.research.healthcare.com peer2.research.healthcare.com peer3.research.healthcare.com peer4.research.healthcare.com; do
+    for PEER in peer0.hprovider.healthcare.com peer1.hprovider.healthcare.com peer0.research.healthcare.com peer1.research.healthcare.com peer0.patient.healthcare.com peer1.patient.healthcare.com; do
       echo "Upgrading peer $PEER"
 
       # Stop the peer and backup its ledger
