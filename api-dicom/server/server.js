@@ -104,7 +104,7 @@ app.post('/api/shareAssetWithDoctor', urlencoder, async function (req, res) {
 app.get('/api/getSharedAssetWithDoctor', async function (req, res) {
   try {
     const contract = await fabricNetwork.connectNetwork('connection-research.json', '../wallet/wallet-research', req.body.user);
-    const result = await contract.evaluateTransaction('getSharedAssetWithDoctor', req.body.hashIPFS.toString());
+    const result = await contract.evaluateTransaction('getSharedAssetWithDoctor', req.body.requestID  .toString());
     let response = JSON.parse(result.toString());
     res.json({ result: response });
     console.log('OK - Query Successful');

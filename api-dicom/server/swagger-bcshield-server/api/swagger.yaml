@@ -163,7 +163,7 @@ paths:
         description: "ID of user"
         required: true
         type: "string"
-      - name: "hashIPFS"
+      - name: "requestID"
         in: "path"
         description: "Hash string of Dicom to get"
         required: true
