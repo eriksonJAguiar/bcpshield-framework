@@ -69,10 +69,51 @@ app.post('/api/addAsset', urlencoder, async function (req, res) {
 
 });
 
+app.post('/api/addAssetPriv', urlencoder, async function (req, res) {
+
+  try {
+    const contract = await fabricNetwork.connectNetwork('connection-hprovider.json', '../wallet/wallet-hprovider', req.body.user);
+    console.log(req.body);
+    let response = await contract.submitTransaction('addAssetPriv', req.body.dicomID, req.body.patientID, req.body.patientFirstname, req.body.patientLastname, 
+                                              req.body.patientTelephone, req.body.patientAddress, req.body.patientAge.toString(), " ", req.body.patientOrganization, 
+                                              " ", req.body.patientRace, " ", req.body.patientGender, req.body.patientInsuranceplan, 
+                                              req.body.patientWeigth.toString(), req.body.patientHeigth.toString(), req.body.machineModel);
+    res.json({
+      status: 'OK - Transaction has been submitted',
+      result: response.toString()
+    });
+    console.log('OK - Transaction has been submitted');
+  } catch (error) {
+    console.error(`Failed to evaluate transaction: ${error}`);
+    res.status(500).json({
+      error: error
+    });
+  }
+
+});
+
 app.get('/api/getAsset', async function (req, res) {
   try {
     const contract = await fabricNetwork.connectNetwork('connection-hprovider.json', '../wallet/wallet-hprovider', req.body.user);
     const result = await contract.evaluateTransaction('getAsset', req.body.dicomId);
+    let response = JSON.parse(result.toString());
+    res.json({ 
+      status: 'OK - Transaction has been submitted',
+      result: response
+     });
+    console.log('OK - Query Successful');
+  } catch (error) {
+    console.error(`Failed to evaluate transaction: ${error}`);
+    res.status(500).json({
+      error: error
+    });
+  }
+});
+
+app.get('/api/getAssetPriv', async function (req, res) {
+  try {
+    const contract = await fabricNetwork.connectNetwork('connection-hprovider.json', '../wallet/wallet-hprovider', req.body.user);
+    const result = await contract.evaluateTransaction('getAssetPriv', req.body.dicomId);
     let response = JSON.parse(result.toString());
     res.json({ 
       status: 'OK - Transaction has been submitted',
