@@ -10,6 +10,7 @@ ORDERER_CA=/opt/gopath/src/github.com/hyperledger/fabric/peer/crypto/ordererOrga
 PEER0_HPROVIDER_CA=/opt/gopath/src/github.com/hyperledger/fabric/peer/crypto/peerOrganizations/hprovider.healthcare.com/peers/peer0.hprovider.healthcare.com/tls/ca.crt
 PEER0_RESEARCH_CA=/opt/gopath/src/github.com/hyperledger/fabric/peer/crypto/peerOrganizations/research.healthcare.com/peers/peer0.research.healthcare.com/tls/ca.crt
 PEER0_PATIENT_CA=/opt/gopath/src/github.com/hyperledger/fabric/peer/crypto/peerOrganizations/patient.healthcare.com/peers/peer0.patient.healthcare.com/tls/ca.crt
+PRIV_FILE=~/privacy-blockchain/hyperledger-network/collections_config.json/collections_config.json
 
 org_name=(hprovider research patient)
 
@@ -148,7 +149,7 @@ instantiateChaincode() {
   else
     set -x
     #peer chaincode instantiate -o orderer.healthcare.com:7050 --tls $CORE_PEER_TLS_ENABLED --cafile $ORDERER_CA -C $CHANNEL_NAME -n dicom -l ${LANGUAGE} -v 1.0 -c '{"Args":[]}' -P "AND ('HProviderMSP.peer','ResearchMSP.peer', 'PatientMSP.peer')" >&log.txt
-    peer chaincode instantiate -o orderer.healthcare.com:7050 --tls $CORE_PEER_TLS_ENABLED --cafile $ORDERER_CA -C $CHANNEL_NAME -n dicom -l ${LANGUAGE} -v 1.0 -c '{"Args":[]}' --collections-config ../collections_config.json >&log.txt
+    peer chaincode instantiate -o orderer.healthcare.com:7050 --tls $CORE_PEER_TLS_ENABLED --cafile $ORDERER_CA -C $CHANNEL_NAME -n dicom -l ${LANGUAGE} -v 1.0 -c '{"Args":[]}' --collections-config ${PRIV_FILE} >&log.txt
     res=$?
     set +x
   fi
