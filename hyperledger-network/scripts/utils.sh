@@ -141,14 +141,14 @@ instantiateChaincode() {
   # the "-o" option
   if [ -z "$CORE_PEER_TLS_ENABLED" -o "$CORE_PEER_TLS_ENABLED" = "false" ]; then
     set -x
-    peer chaincode instantiate -o orderer.healthcare.com:7050 -C $CHANNEL_NAME -n dicom -l ${LANGUAGE} -v ${VERSION} -c '{"Args":[]}' -P "AND ('HProviderMSP.peer','ResearchMSP.peer', 'PatientMSP.peer')" >&log.txt
-    #peer chaincode instantiate -o orderer.healthcare.com:7050 -C $CHANNEL_NAME -n dicom -l ${LANGUAGE} -v ${VERSION} -c '{"Args":[]}' >&log.txt
+    #peer chaincode instantiate -o orderer.healthcare.com:7050 -C $CHANNEL_NAME -n dicom -l ${LANGUAGE} -v ${VERSION} -c '{"Args":[]}' -P "AND ('HProviderMSP.peer','ResearchMSP.peer', 'PatientMSP.peer')" >&log.txt
+    peer chaincode instantiate -o orderer.healthcare.com:7050 -C $CHANNEL_NAME -n dicom -l ${LANGUAGE} -v ${VERSION} -c '{"Args":[]}' >&log.txt
     res=$?
     set +x
   else
     set -x
-    peer chaincode instantiate -o orderer.healthcare.com:7050 --tls $CORE_PEER_TLS_ENABLED --cafile $ORDERER_CA -C $CHANNEL_NAME -n dicom -l ${LANGUAGE} -v 1.0 -c '{"Args":[]}' -P "AND ('HProviderMSP.peer','ResearchMSP.peer', 'PatientMSP.peer')" >&log.txt
-    #peer chaincode instantiate -o orderer.healthcare.com:7050 --tls $CORE_PEER_TLS_ENABLED --cafile $ORDERER_CA -C $CHANNEL_NAME -n dicom -l ${LANGUAGE} -v 1.0 -c '{"Args":[]}' >&log.txt
+    #peer chaincode instantiate -o orderer.healthcare.com:7050 --tls $CORE_PEER_TLS_ENABLED --cafile $ORDERER_CA -C $CHANNEL_NAME -n dicom -l ${LANGUAGE} -v 1.0 -c '{"Args":[]}' -P "AND ('HProviderMSP.peer','ResearchMSP.peer', 'PatientMSP.peer')" >&log.txt
+    peer chaincode instantiate -o orderer.healthcare.com:7050 --tls $CORE_PEER_TLS_ENABLED --cafile $ORDERER_CA -C $CHANNEL_NAME -n dicom -l ${LANGUAGE} -v 1.0 -c '{"Args":[]}' >&log.txt
     res=$?
     set +x
   fi
