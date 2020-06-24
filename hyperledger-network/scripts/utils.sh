@@ -10,7 +10,7 @@ ORDERER_CA=/opt/gopath/src/github.com/hyperledger/fabric/peer/crypto/ordererOrga
 PEER0_HPROVIDER_CA=/opt/gopath/src/github.com/hyperledger/fabric/peer/crypto/peerOrganizations/hprovider.healthcare.com/peers/peer0.hprovider.healthcare.com/tls/ca.crt
 PEER0_RESEARCH_CA=/opt/gopath/src/github.com/hyperledger/fabric/peer/crypto/peerOrganizations/research.healthcare.com/peers/peer0.research.healthcare.com/tls/ca.crt
 PEER0_PATIENT_CA=/opt/gopath/src/github.com/hyperledger/fabric/peer/crypto/peerOrganizations/patient.healthcare.com/peers/peer0.patient.healthcare.com/tls/ca.crt
-PRIV_FILE=/opt/gopath/src/github.com/hyperledger/fabric/peer/collections/collections_config.json
+PRIV_FILE=/opt/gopath/src/github.com/hyperledger/fabric/peer/collections_config.json
 
 org_name=(hprovider research patient)
 
