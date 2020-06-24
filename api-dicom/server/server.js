@@ -33,7 +33,8 @@ app.post('/api/registerUser', urlencoder, async function (req, res) {
   try {
     let result = registerUser.registerUser(req.body.org, req.body.user, req.body.msp);
     res.json({
-      status: 'True'
+      status: 'True',
+      result: result.toString()
     });
     console.log('OK - Transaction has been submitted');
   } catch (error) {
@@ -73,7 +74,10 @@ app.get('/api/getAsset', async function (req, res) {
     const contract = await fabricNetwork.connectNetwork('connection-hprovider.json', '../wallet/wallet-hprovider', req.body.user);
     const result = await contract.evaluateTransaction('getAsset', req.body.dicomId);
     let response = JSON.parse(result.toString());
-    res.json({ result: response });
+    res.json({ 
+      status: 'OK - Transaction has been submitted',
+      result: response
+     });
     console.log('OK - Query Successful');
   } catch (error) {
     console.error(`Failed to evaluate transaction: ${error}`);
@@ -106,7 +110,10 @@ app.get('/api/getSharedAssetWithDoctor', async function (req, res) {
     const contract = await fabricNetwork.connectNetwork('connection-research.json', '../wallet/wallet-research', req.body.user);
     const result = await contract.evaluateTransaction('getSharedAssetWithDoctor', req.body.requestID  .toString());
     let response = JSON.parse(result.toString());
-    res.json({ result: response });
+    res.json({ 
+      status: 'OK - Transaction has been submitted',
+      result: response 
+    });
     console.log('OK - Query Successful');
   } catch (error) {
     console.error(`Failed to evaluate transaction: ${error}`);
@@ -139,7 +146,7 @@ app.post('/api/shareAssetForResearcher', urlencoder, async function (req, res) {
   try {
     const contract = await fabricNetwork.connectNetwork('connection-patient.json', '../wallet/wallet-patient', req.body.user);
     console.log(req.body);
-    let response = await contract.submitTransaction('shareAssetForResearcher', req.body.requestID.toString());
+    let response = await contract.submitTransaction('shareAssetForResearcher', req.body.holderID.toString(),req.body.requestID.toString(), req.body.hashIPFS.toString());
     res.json({
       status: 'OK - Transaction has been submitted',
       result: response.toString()
