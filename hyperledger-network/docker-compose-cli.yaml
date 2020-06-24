@@ -109,6 +109,7 @@ services:
         - ./crypto-config:/opt/gopath/src/github.com/hyperledger/fabric/peer/crypto/
         - ./scripts:/opt/gopath/src/github.com/hyperledger/fabric/peer/scripts/
         - ./channel-artifacts:/opt/gopath/src/github.com/hyperledger/fabric/peer/channel-artifacts
+        - ./collections:/opt/gopath/src/github.com/hyperledger/fabric/peer/
     depends_on:
       - orderer.healthcare.com
       - peer0.hprovider.healthcare.com
