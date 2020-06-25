@@ -91,7 +91,7 @@ class Experiment(object):
             peer (Peer): peer to access ports
         """
 
-        pid: int = self.__get_pid(peer.port)
+        pid: int = self.get_pid(peer.port)
         process: psutil.Process = psutil.Process(pid)
         cpu_percent = process.cpu_percent(interval=5)
         time_exec = time.time() - self.__global_time
