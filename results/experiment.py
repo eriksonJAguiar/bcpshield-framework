@@ -63,7 +63,7 @@ class Experiment(object):
         with open("pid_%d.txt"%(port), "r") as f:
             pid = int(f.readline())
   
-        os.system("rm -r id_%d.txt"%(port))
+        os.system("rm pid_%d.txt"%(port))
 
         return pid
 
