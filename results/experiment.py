@@ -12,6 +12,7 @@ import socket
 import queue
 import csv
 import json
+import os
 
 
 class Experiment(object):
@@ -30,7 +31,22 @@ class Experiment(object):
         """
         self.__peers.append(peer)
 
-    def __get_pid(self, port: int) -> int:
+    # def __get_pid(self, port: int) -> int:
+    #     """function to get pid of the process
+
+    #     Args:
+    #         port (int): port to indate the process
+
+    #     Returns:
+    #         int: pid of the process
+    #     """
+    #     connections: list = psutil.net_connections()
+    #     pid: int = None
+    #     pid = list(filter(lambda c: c.pid if c.laddr[1] == port else None, connections))
+
+    #     return pid[0].pid
+
+    def get_pid(self, port: int) -> int:
         """function to get pid of the process
 
         Args:
@@ -39,12 +55,17 @@ class Experiment(object):
         Returns:
             int: pid of the process
         """
-        connections: list = psutil.net_connections()
-        pid: int = None
-        pid = list(
-            filter(lambda c: c.pid if c.laddr[1] == port else None, connections))
 
-        return pid[0].pid
+        os.system("sudo lsof -n -i :%d  | awk '/LISTEN/{print $2}' >> pid_%d.txt"%(port,port))
+        
+        pid: int
+
+        with open("pid_%d.txt"%(port), "r") as f:
+            pid = int(f.readline())
+  
+        os.system("rm -r id_%d.txt"%(port))
+
+        return pid
 
     def __measure_memory_per_time(self, peer: Peer) -> None:
         """function to mensure a memory usage per time
@@ -157,6 +178,7 @@ class Experiment(object):
         dicoms['patientInsuranceplan'] = list(map(lambda x: str(x), dicoms['patientInsuranceplan']))
         dicoms['patientID'] = list(map(lambda x: str(x), dicoms['patientID']))
         dicoms['patientTelephone'] = list(map(lambda x: str(x), dicoms['patientTelephone']))
+
         dicoms =  dicoms.replace(np.nan, " ", regex=True)
         dicoms_dict: str = dicoms.to_dict(orient='records')
         self.__global_time = time.time()
