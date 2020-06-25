@@ -183,6 +183,9 @@ class Experiment(object):
         dicoms['patientInsuranceplan'] = list(map(lambda x: str(x), dicoms['patientInsuranceplan']))
         dicoms['patientID'] = list(map(lambda x: str(x), dicoms['patientID']))
         dicoms['patientTelephone'] = list(map(lambda x: str(x), dicoms['patientTelephone']))
+        dicoms['patientAge'] = list(map(lambda x: str(x), dicoms['patientAge']))
+        dicoms['patientHeigth'] = list(map(lambda x: str(x), dicoms['patientHeigth']))
+        dicoms['patientWeigth'] = list(map(lambda x: str(x), dicoms['patientWeigth']))
 
         dicoms =  dicoms.replace(np.nan, " ", regex=True)
         dicoms_dict: str = dicoms.to_dict(orient='records')
