@@ -55,7 +55,10 @@ class Experiment(object):
         Returns:
             int: pid of the process
         """
+        while self.__writer_file_lock.locked():
+            continue
 
+        self.__writer_file_lock.acquire()
         os.system("sudo lsof -n -i :%d  | awk '/LISTEN/{print $2}' >> pid_%d.txt"%(port,port))
         
         pid: int
@@ -64,6 +67,8 @@ class Experiment(object):
             pid = int(f.readline())
   
         os.system("rm pid_%d.txt"%(port))
+
+        self.__writer_file_lock.release()
 
         return pid
 
