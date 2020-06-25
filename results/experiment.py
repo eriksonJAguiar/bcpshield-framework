@@ -151,7 +151,7 @@ class Experiment(object):
         dicoms: pd.DataFrame = pd.read_csv(file_in, sep=";")
         dicoms['user'] = list(map(lambda x: "erikson", range(len(dicoms['patientID']))))
         dicoms['machineModel'] = list(map(lambda x: "AXAX1E20", range(len(dicoms['patientID']))))
-        dicoms =  dicoms.replace(np.nan, 'NaN', regex=True)
+        dicoms =  dicoms.replace(np.nan, " ", regex=True)
         dicoms_dict: str = dicoms.to_dict(orient='records')
         self.__global_time = time.time()
         table_tps_time: pd.DataFrame = pd.DataFrame()
