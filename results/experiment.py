@@ -73,7 +73,7 @@ class Experiment(object):
         Args:
             peer (Peer): peer to access ports
         """
-        pid: int = self.__get_pid(peer.port)
+        pid: int = self.get_pid(peer.port)
         process: psutil.Process = psutil.Process(pid)
         time.sleep(2)
         memory_percent = process.memory_percent()
