@@ -81,8 +81,8 @@ class Experiment(object):
         pid: int = self.get_pid(peer.port)
         process: psutil.Process = psutil.Process(pid)
         time.sleep(2)
-        memory_percent = process.memory_percent()
-        time_exec = time.time() - self.__global_time
+        memory_percent = round(process.memory_percent(), 4)
+        time_exec = round(time.time() - self.__global_time, 4)
 
         with self.__writer_file_lock:
             with open("cpu_%s.csv" % (peer.org), mode="a+") as csv_file:
@@ -98,8 +98,8 @@ class Experiment(object):
 
         pid: int = self.get_pid(peer.port)
         process: psutil.Process = psutil.Process(pid)
-        cpu_percent = process.cpu_percent(interval=5)
-        time_exec = time.time() - self.__global_time
+        cpu_percent = round(process.cpu_percent(interval=5), 4)
+        time_exec = round(time.time() - self.__global_time, 4)
 
         with self.__writer_file_lock:
             with open("memory_%s.csv" % (peer.org), mode="a+") as csv_file:
@@ -196,15 +196,18 @@ class Experiment(object):
         for tr in range(1, 30):
             transaction_size: int = tr*len(dicoms_dict)
             for dcm in dicoms_dict:
-                url = "http://%s:%s/api/addAsset"%(ip_api, port_api)
-                payload = json.dumps(dcm)
-                headers = { 'Content-Type': "application/json" }
-                resp: requests.Response = requests.request("POST", url, data=payload, headers=headers)
-                end_t: float = time.time() - self.__global_time
-                tps: float = end_t/transaction_size
-                table_tps_time = table_tps_time.append(
-                    {"Time":  end_t, "TPS": tps}, ignore_index=True)
-                time.sleep(5)
+                try:
+                    url = "http://%s:%s/api/addAsset"%(ip_api, port_api)
+                    payload = json.dumps(dcm)
+                    headers = { 'Content-Type': "application/json" }
+                    resp: requests.Response = requests.request("POST", url, data=payload, headers=headers)
+                    end_t: float = round(time.time() - self.__global_time, 4)
+                    tps: float = round(end_t/transaction_size, 4)
+                    table_tps_time = table_tps_time.append(
+                        {"Time":  end_t, "TPS": tps}, ignore_index=True)
+                    time.sleep(5)
+                except:
+                    pass
 
         # Send signal to finsh request and experiments
         client_request = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
