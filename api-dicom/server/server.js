@@ -49,12 +49,12 @@ app.post('/api/registerUser', urlencoder, async function (req, res) {
 app.post('/api/addAsset', urlencoder, async function (req, res) {
 
   try {
-    const contract = await fabricNetwork.connectNetwork('connection-hprovider.json', '../wallet/wallet-hprovider', req.body.user);
+    const contract = await fabricNetwork.connectNetwork('connection-hprovider.json', '../wallet/wallet-hprovider', req.body.user.toString());
     console.log(req.body);
-    let response = await contract.submitTransaction('addAsset', req.body.dicomID, req.body.patientID, req.body.patientFirstname, req.body.patientLastname, 
-                                              req.body.patientTelephone, req.body.patientAddress, req.body.patientAge.toString(), " ", req.body.patientOrganization, 
-                                              " ", req.body.patientRace, " ", req.body.patientGender, req.body.patientInsuranceplan, 
-                                              req.body.patientWeigth.toString(), req.body.patientHeigth.toString(), req.body.machineModel);
+    let response = await contract.submitTransaction('addAsset', req.body.dicomID.toString(), req.body.patientID.toString(), req.body.patientFirstname.toString(), req.body.patientLastname.toString(), 
+                                              req.body.patientTelephone.toString(), req.body.patientAddress.toString(), req.body.patientAge.toString(), " ", req.body.patientOrganization.toString(), 
+                                              " ", req.body.patientRace.toString(), " ", req.body.patientGender.toString(), req.body.patientInsuranceplan.toString(), 
+                                              req.body.patientWeigth.toString(), req.body.patientHeigth.toString(), req.body.machineModel.toString());
     res.json({
       status: 'OK - Transaction has been submitted',
       result: response.toString()

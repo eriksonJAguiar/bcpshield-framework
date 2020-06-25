@@ -1,11 +1,13 @@
 from peer import Peer
 from tcp_latency import measure_latency
 
+import pandas as pd
+import numpy as np
+
 import threading
 import psutil
 import time
 import requests
-import pandas as pd
 import socket
 import queue
 import csv
@@ -147,19 +149,21 @@ class Experiment(object):
             port_api (str) API request port
         """
         dicoms: pd.DataFrame = pd.read_csv(file_in, sep=";")
-        dicoms_json: str = dicoms.to_json(orient='split')
-        #dicoms_json['patientAddress'] = dicoms_json['address']+" "+dicoms_json['city']+" "+dicoms_json['state']
+        dicoms['user'] = list(map(lambda x: "erikson", range(len(dicoms['patientID']))))
+        dicoms['machineModel'] = list(map(lambda x: "AXAX1E20", range(len(dicoms['patientID']))))
+        dicoms =  dicoms.replace(np.nan, 'NaN', regex=True)
+        dicoms_dict: str = dicoms.to_dict(orient='records')
         self.__global_time = time.time()
         table_tps_time: pd.DataFrame = pd.DataFrame()
         print("Iniciando envio ...")
-        time.sleep(10)
+        #time.sleep(10)
         for tr in range(1, 30):
-            transaction_size: int = tr*len(dicoms_json)
-            for dcm in dicoms_json:
-                url = "%s:%s/api/getAsset"%(ip_api, port_api)
+            transaction_size: int = tr*len(dicoms_dict)
+            for dcm in dicoms_dict:
+                url = "http://%s:%s/api/addAsset"%(ip_api, port_api)
                 payload = json.dumps(dcm)
                 headers = { 'Content-Type': "application/json" }
-                resp: requests.Response = requests.request("GET", url, data=payload, headers=headers)
+                resp: requests.Response = requests.request("POST", url, data=payload, headers=headers)
                 end_t: float = time.time() - self.__global_time
                 tps: float = end_t/transaction_size
                 table_tps_time = table_tps_time.append(
