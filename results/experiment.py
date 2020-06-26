@@ -194,6 +194,7 @@ class Experiment(object):
         print("Iniciando envio ...")
         #time.sleep(10)
         for tr in range(1, 30):
+            dicoms_dict['dicomID'] = list(map(lambda d: d+str(tr),dicoms_dict['dicomID']))
             transaction_size: int = tr*len(dicoms_dict)
             for dcm in dicoms_dict:
                 try:
