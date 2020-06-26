@@ -146,14 +146,18 @@ class Experiment(object):
         Args:
             peer (Peer): Peer to measure latency
         """
-        org_latency = measure_latency(
-            host=peer.ip, port=peer.port, runs=1000, timeout=5)
+        org_latency = measure_latency(host=peer.ip, port=peer.port, runs=1000, timeout=5)
         end_time: float = time.time()
 
         run_times: list(float) = list()
 
         for i in range(1, 1000):
-            run_times.append((end_time-self.__global_time)*5)
+            run_times.append((end_time-self.__global_time)/(5*i))
+
+        while self.__writer_file_lock.locked():
+            continue
+        
+        self.__writer_file_lock.acquire()
 
         with open("latency_%s.csv" % (peer.org), mode="a+") as file_csv:
             f = csv.DictWriter(file_csv, delimiter=";",
@@ -162,10 +166,56 @@ class Experiment(object):
             f.writeheader()
             for (t, lt) in zip(run_times, org_latency):
                 f.writerow({'Time': t, 'Latency': lt})
+        
+        self.__writer_file_lock.release()
 
     def __measure_throughput_per_tps(self, peer: Peer) -> float:
         pass
 
+    # def send_request(self, file_in: str, ip_api: str, port_api: str, method) -> None:       
+    #     """Send requets to server to aim measure metrics and evaluate the system
+    #         We using the design pattern strategy
+
+    #     Args:
+    #         file_in (str): input file json to represents 
+    #         ip_api (str): API request ip 
+    #         port_api (str): API request port
+    #         method (class): Represent the class will be used to acess send_request
+    #     """
+    #     method.send_request(file_in, ip_api, port_api)
+       
+    def run_network_experiments(self, file_test_json: str, ip_api: str, port_api: str, method) -> None:
+        """Send requets to server to aim measure network metrics and evaluate the system
+            We using the design pattern strategy
+
+        Args:
+            file_in (str): input file json to represents 
+            ip_api (str): API request ip 
+            port_api (str): API request port
+            method (class): Represent the class will be used to acess send_request
+        """
+        req_thr: threading.Thread = threading.Thread(
+            target=method.send_request, args=(file_test_json, ip_api, port_api))
+
+        req_thr.start()
+
+        while req_thr.is_alive():
+            for peer in self.__peers:
+                thr: threading.Thread = threading.Thread(
+                    target=self.__measure_latency_per_tps, args=(peer,))
+
+                thr.start()
+
+            time.sleep(2)
+
+
+class RequestGetAsset(object):
+    """Class to Strategy pattern for describes the method send_request GET elements
+
+    """
+    def __init__(self):
+        self.__global_time = None
+    
     def send_request(self, file_in: str, ip_api: str, port_api: str) -> None:       
         """Send requets to server to aim measure metrics and evaluate the system
 
@@ -175,33 +225,99 @@ class Experiment(object):
             port_api (str) API request port
         """
         dicoms: pd.DataFrame = pd.read_csv(file_in, sep=";")
-        dicoms['user'] = list(map(lambda x: "erikson", range(len(dicoms['patientID']))))
-        dicoms['machineModel'] = list(map(lambda x: "AXAX1E20", range(len(dicoms['patientID']))))
-        dicoms['patientAge'] =  dicoms['patientAge'].replace(np.nan, "0", regex=True)
-        dicoms['patientHeigth'] =  dicoms['patientHeigth'].replace(np.nan, "0", regex=True)
-        dicoms['patientWeigth'] =  dicoms['patientWeigth'].replace(np.nan, "0", regex=True)
-        dicoms['patientInsuranceplan'] = list(map(lambda x: str(x), dicoms['patientInsuranceplan']))
-        dicoms['patientID'] = list(map(lambda x: str(x), dicoms['patientID']))
-        dicoms['patientTelephone'] = list(map(lambda x: str(x), dicoms['patientTelephone']))
-        dicoms['patientAge'] = list(map(lambda x: str(x), dicoms['patientAge']))
-        dicoms['patientHeigth'] = list(map(lambda x: str(x), dicoms['patientHeigth']))
-        dicoms['patientWeigth'] = list(map(lambda x: str(x), dicoms['patientWeigth']))
+        dicoms_dict: str = dicoms.to_dict(orient='records')
 
-        dicoms =  dicoms.replace(np.nan, " ", regex=True)
+        self.__global_time = time.time()
+        table_tps_time: pd.DataFrame = pd.DataFrame()
+        print("Iniciando envio ...")
+        #time.sleep(10)
+        for tr in range(1, 5):
+            dicoms_dict['dicomID'] = list(map(lambda d: d+str(tr),dicoms_dict['dicomID']))
+            transaction_size: int = tr*len(dicoms_dict)
+            for dcm in dicoms_dict:
+                try:
+                    req_json = {
+                        'dicomID': dcm['dicomID'],
+                        'user': erikson
+                    }
+                    url = "http://%s:%s/api/getAsset"%(ip_api, port_api)
+                    payload = json.dumps(req_json)
+                    headers = { 'Content-Type': "application/json" }
+                    resp: requests.Response = requests.request("GET", url, data=payload, headers=headers)
+                    end_t: float = round(time.time() - self.__global_time, 4)
+                    tps: float = round(end_t/transaction_size, 4)
+                    table_tps_time = table_tps_time.append(
+                        {"Time":  end_t, "TPS": tps}, ignore_index=True)
+                    time.sleep(5)
+                except:
+                    pass
+
+        # Send signal to finsh request and experiments
+        client_request = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+        client_request.connect((ip_api, 4000))
+        client_request.sendall(b'True')
+        client_request.close()
+
+        table_tps_time.to_csv("tps_per_time_%d_GET.csv"%(port_api),
+                              sep=';', header=True, index=False)
+
+class RequestPost(object):
+    """Class to Strategy pattern for describes the method send_request POST elements 
+        on blockchain
+
+    """
+
+    def __init__(self):
+        self.__global_time = None
+
+    def send_request(self, file_in: str, ip_api: str, port_api: str) -> None:
+        """Send requets to server to aim measure metrics and evaluate the system
+
+        Args:
+            file_in (str): input file json to represents 
+            ip_api (str): API request ip 
+            port_api (str) API request port
+        """
+        dicoms: pd.DataFrame = pd.read_csv(file_in, sep=";")
+        dicoms['user'] = list(
+            map(lambda x: "erikson", range(len(dicoms['patientID']))))
+        dicoms['machineModel'] = list(
+            map(lambda x: "AXAX1E20", range(len(dicoms['patientID']))))
+        dicoms['patientAge'] = dicoms['patientAge'].replace(
+            np.nan, "0", regex=True)
+        dicoms['patientHeigth'] = dicoms['patientHeigth'].replace(
+            np.nan, "0", regex=True)
+        dicoms['patientWeigth'] = dicoms['patientWeigth'].replace(
+            np.nan, "0", regex=True)
+        dicoms['patientInsuranceplan'] = list(
+            map(lambda x: str(x), dicoms['patientInsuranceplan']))
+        dicoms['patientID'] = list(map(lambda x: str(x), dicoms['patientID']))
+        dicoms['patientTelephone'] = list(
+            map(lambda x: str(x), dicoms['patientTelephone']))
+        dicoms['patientAge'] = list(
+            map(lambda x: str(x), dicoms['patientAge']))
+        dicoms['patientHeigth'] = list(
+            map(lambda x: str(x), dicoms['patientHeigth']))
+        dicoms['patientWeigth'] = list(
+            map(lambda x: str(x), dicoms['patientWeigth']))
+
+        dicoms = dicoms.replace(np.nan, " ", regex=True)
         dicoms_dict: str = dicoms.to_dict(orient='records')
         self.__global_time = time.time()
         table_tps_time: pd.DataFrame = pd.DataFrame()
         print("Iniciando envio ...")
         #time.sleep(10)
-        for tr in range(1, 30):
-            dicoms_dict['dicomID'] = list(map(lambda d: d+str(tr),dicoms_dict['dicomID']))
+        for tr in range(1, 5):
+            dicoms_dict['dicomID'] = list(
+                map(lambda d: d+str(tr), dicoms_dict['dicomID']))
             transaction_size: int = tr*len(dicoms_dict)
             for dcm in dicoms_dict:
                 try:
-                    url = "http://%s:%s/api/addAsset"%(ip_api, port_api)
+                    url = "http://%s:%s/api/addAsset" % (ip_api, port_api)
                     payload = json.dumps(dcm)
-                    headers = { 'Content-Type': "application/json" }
-                    resp: requests.Response = requests.request("POST", url, data=payload, headers=headers)
+                    headers = {'Content-Type': "application/json"}
+                    resp: requests.Response = requests.request(
+                        "POST", url, data=payload, headers=headers)
                     end_t: float = round(time.time() - self.__global_time, 4)
                     tps: float = round(end_t/transaction_size, 4)
                     table_tps_time = table_tps_time.append(
@@ -218,18 +334,3 @@ class Experiment(object):
 
         table_tps_time.to_csv("tps_per_time_api.csv",
                               sep=';', header=True, index=False)
-
-    def run_network_experiments(self, file_test_json: str, ip_api: str, port_api: str) -> None:
-
-        req_thr: threading.Thread = threading.Thread(
-            target=self.send_request, args=(file_test_json, ip_api, port_api))
-        req_thr.start()
-
-        while req_thr.is_alive():
-            for peer in self.__peers:
-                thr: threading.Thread = threading.Thread(
-                    target=self.__measure_latency_per_tps, args=(peer,))
-
-                thr.start()
-
-            time.sleep(2)
