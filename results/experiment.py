@@ -308,7 +308,7 @@ class RequestPost(object):
         
         print("Send files ...")
 
-        for tr in range(3, 6):
+        for tr in range(1, 6):
             dicoms['dicomID'] = list(map(lambda d: d+str(tr), dicoms['dicomID'].values))
             dicoms_dict: list(dict) = dicoms.to_dict(orient='records')
             
