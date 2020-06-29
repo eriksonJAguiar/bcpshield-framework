@@ -70,8 +70,9 @@ class Experiment(object):
         pid: int = self.get_pid(peer.port)
         process: psutil.Process = psutil.Process(pid)
         time.sleep(2)
+        init_t = time.time()
         memory_percent = round(process.memory_percent(), 4)
-        time_exec = round(time.time() - self.__global_time, 4)
+        time_exec = round(time.time() - init_t, 4)
 
         with self.__writer_file_lock:
             with open("cpu_%s.csv" % (peer.org), mode="a+") as csv_file:
@@ -87,8 +88,9 @@ class Experiment(object):
 
         pid: int = self.get_pid(peer.port)
         process: psutil.Process = psutil.Process(pid)
+        init_t = time.time()
         cpu_percent = round(process.cpu_percent(interval=5), 4)
-        time_exec = round(time.time() - self.__global_time, 4)
+        time_exec = round(time.time() - (init_t/5), 4)
 
         with self.__writer_file_lock:
             with open("memory_%s.csv" % (peer.org), mode="a+") as csv_file:
@@ -302,13 +304,16 @@ class RequestPost(object):
             map(lambda x: str(x), dicoms['patientHeigth']))
         dicoms['patientWeigth'] = list(
             map(lambda x: str(x), dicoms['patientWeigth']))
-
         dicoms = dicoms.replace(np.nan, " ", regex=True)
-        dicoms_dict: list(dict) = dicoms.to_dict(orient='records')
+        
         print("Send files ...")
 
-        for tr in range(2, 6):
+        for tr in range(3, 6):
+            dicoms['dicomID'] = list(map(lambda d: d+str(tr), dicoms['dicomID'].values))
+            dicoms_dict: list(dict) = dicoms.to_dict(orient='records')
+            
             transaction_size: int = tr*len(dicoms_dict)
+            
             for dcm in dicoms_dict:
                 try:
                     init_t = time.time()
