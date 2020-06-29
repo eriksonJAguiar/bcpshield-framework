@@ -96,7 +96,7 @@ app.get('/api/getAsset', async function (req, res) {
   try {
     const contract = await fabricNetwork.connectNetwork('connection-hprovider.json', '../wallet/wallet-hprovider', req.body.user);
     const result = await contract.evaluateTransaction('getAsset', req.body.dicomId);
-    let response = JSON.parse(result.toString());
+    let response = JSON.parse(result);
     res.json({ 
       status: 'OK - Transaction has been submitted',
       result: response

@@ -182,10 +182,8 @@ class Experiment(object):
                     target=self.__measure_latency_per_tps, args=(peer,))
 
                 thr.start()
-                time.sleep(2)
-                thr.join()
-        
-        req_thr.join()
+            
+            time.sleep(2)
         
 
 class RequestGetAsset(object):
