@@ -135,28 +135,33 @@ class Experiment(object):
         Args:
             peer (Peer): Peer to measure latency
         """
+        init_time: float = time.time()
         org_latency = measure_latency(host=peer.ip, port=peer.port, runs=1000, timeout=5)
         end_time: float = time.time()
 
         run_times: list(float) = list()
 
         for i in range(1, 1000):
-            run_times.append((end_time-self.__global_time)/(5*i))
+            run_times.append((end_time-init_time)/(5*i))
 
-        while self.__writer_file_lock.locked():
-            continue
+        #while self.__writer_file_lock.locked():
+        #    continue
         
-        self.__writer_file_lock.acquire()
+        #self.__writer_file_lock.acquire()
 
-        with open("latency_%s.csv" % (peer.org), mode="a+") as file_csv:
-            f = csv.DictWriter(file_csv, delimiter=";",
-                               fieldnames=['Time', 'Latency'])
+        with self.__writer_file_lock:
+            file_exists = os.path.exists("latency_%s.csv" % (peer.org))
+            with open("latency_%s.csv" % (peer.org), mode="a+") as file_csv:
+                f = csv.DictWriter(file_csv, delimiter=";",
+                                fieldnames=['Time', 'Latency'])
 
-            f.writeheader()
-            for (t, lt) in zip(run_times, org_latency):
-                f.writerow({'Time': t, 'Latency': lt})
+                if not file_exists:
+                    f.writeheader()
+                
+                for (t, lt) in zip(run_times, org_latency):
+                    f.writerow({'Time': t, 'Latency': lt})
         
-        self.__writer_file_lock.release()
+        #self.__writer_file_lock.release()
 
     def __measure_throughput_per_tps(self, peer: Peer) -> float:
         pass
@@ -192,6 +197,7 @@ class RequestGetAsset(object):
     """
     def __init__(self):
         self.__global_time = None
+        self.__writer_file_lock = threading.Lock()
     
     def send_request(self, file_in: str, ip_api: str, port_api: str) -> None:       
         """Send requets to server to aim measure metrics and evaluate the system
@@ -204,28 +210,43 @@ class RequestGetAsset(object):
         dicoms: pd.DataFrame = pd.read_csv(file_in, sep=";")
         dicoms_dict: str = dicoms.to_dict(orient='records')
 
-        self.__global_time = time.time()
+        #self.__global_time = time.time()
         table_tps_time: pd.DataFrame = pd.DataFrame()
+
         print("Iniciando GET Asset ...")
         #time.sleep(10)
         for tr in range(1, 6):
-            dicomId = list(map(lambda d: d+str(tr),dicoms_dict['dicomID']))
+            #dicomId = list(map(lambda d: d+str(tr),dicoms_dict['dicomID']))
             transaction_size: int = tr*len(dicoms_dict)
-            for dcm_id in dicomId:
+            for dcm in dicoms_dict:
                 try:
+                    init_t = time.time()
                     req_json = {
-                        'dicomId': dcm_id,
+                        'dicomId': dcm['dicomID']+str(tr),
                         'user': "erikson"
                     }
                     url = "http://%s:%s/api/getAsset"%(ip_api, port_api)
                     payload = json.dumps(req_json)
                     headers = { 'Content-Type': "application/json" }
                     resp: requests.Response = requests.request("GET", url, data=payload, headers=headers)
-                    end_t: float = round(time.time() - self.__global_time, 4)
+                    print(resp)
+                    
+                    end_t: float = round(time.time() - init_t, 4)
                     tps: float = round(end_t/transaction_size, 4)
-                    table_tps_time = table_tps_time.append(
-                        {"Time":  end_t, "TPS": tps}, ignore_index=True)
-                    time.sleep(5)
+                    
+                    with self.__writer_file_lock:
+                        file_exists = os.path.exists("tps_per_time.csv")
+                        with open("tps_per_time.csv", mode="a+") as file_csv:
+                            f = csv.DictWriter(file_csv, delimiter=";",
+                                            fieldnames=['Time', 'TPS'])
+
+                            if not file_exists:
+                                f.writeheader()
+                            
+                           
+                            f.writerow({'Time': end_t, 'TPS': tps})
+                    
+                    time.sleep(3)
                 except:
                     pass
 
@@ -246,6 +267,8 @@ class RequestPost(object):
 
     def __init__(self):
         self.__global_time = None
+        self.__writer_file_lock = threading.Lock()
+
 
     def send_request(self, file_in: str, ip_api: str, port_api: str) -> None:
         """Send requets to server to aim measure metrics and evaluate the system
@@ -282,14 +305,13 @@ class RequestPost(object):
 
         dicoms = dicoms.replace(np.nan, " ", regex=True)
         dicoms_dict: list(dict) = dicoms.to_dict(orient='records')
-        self.__global_time = time.time()
-        table_tps_time: pd.DataFrame = pd.DataFrame()
         print("Send files ...")
-        #time.sleep(10)
-        for tr in range(1, 6):
+
+        for tr in range(2, 6):
             transaction_size: int = tr*len(dicoms_dict)
             for dcm in dicoms_dict:
                 try:
+                    init_t = time.time()
                     dcm['dicomID'] = dcm['dicomID']+str(tr)
                     url = "http://%s:%s/api/addAsset" % (ip_api, port_api)
                     payload = json.dumps(dcm)
@@ -297,11 +319,23 @@ class RequestPost(object):
                     resp: requests.Response = requests.request(
                         "POST", url, data=payload, headers=headers)
                     print(resp.json())
-                    end_t: float = round(time.time() - self.__global_time, 4)
+                    
+                    end_t: float = round(time.time() - init_t, 4)
                     tps: float = round(end_t/transaction_size, 4)
-                    table_tps_time = table_tps_time.append(
-                        {"Time":  end_t, "TPS": tps}, ignore_index=True)
-                    time.sleep(5)
+                    
+                    with self.__writer_file_lock:
+                        file_exists = os.path.exists("tps_per_time.csv")
+                        with open("tps_per_time.csv", mode="a+") as file_csv:
+                            f = csv.DictWriter(file_csv, delimiter=";",
+                                            fieldnames=['Time', 'TPS'])
+
+                            if not file_exists:
+                                f.writeheader()
+                            
+                           
+                            f.writerow({'Time': end_t, 'TPS': tps})
+
+                    time.sleep(2)
                 except:
                     pass
 
@@ -310,9 +344,6 @@ class RequestPost(object):
         client_request.connect((ip_api, 4000))
         client_request.sendall(b'True')
         client_request.close()
-
-        table_tps_time.to_csv("tps_per_time_api.csv",
-                              sep=';', header=True, index=False)
 
 class RequestGetKAnonymity(object):
     """Class to Strategy pattern for describes the method send_request GET elements applying 
