@@ -57,7 +57,7 @@ app.post('/api/addAsset', urlencoder, async function (req, res) {
                                               req.body.patientWeigth.toString(), req.body.patientHeigth.toString(), req.body.machineModel.toString());
     res.json({
       status: 'OK - Transaction has been submitted',
-      result: response.toString()
+      result: response
     });
     console.log('OK - Transaction has been submitted');
   } catch (error) {

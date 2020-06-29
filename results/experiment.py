@@ -262,10 +262,12 @@ class RequestPost(object):
             map(lambda x: "AXAX1E20", range(len(dicoms['patientID']))))
         dicoms['patientAge'] = dicoms['patientAge'].replace(
             np.nan, "0", regex=True)
+        dicoms['patientAge'] = list(
+            map(lambda x: int(x), dicoms['patientAge']))
         dicoms['patientHeigth'] = dicoms['patientHeigth'].replace(
-            np.nan, "0", regex=True)
+            np.nan, "0.0", regex=True)
         dicoms['patientWeigth'] = dicoms['patientWeigth'].replace(
-            np.nan, "0", regex=True)
+            np.nan, "0.0", regex=True)
         dicoms['patientInsuranceplan'] = list(
             map(lambda x: str(x), dicoms['patientInsuranceplan']))
         dicoms['patientID'] = list(map(lambda x: str(x), dicoms['patientID']))
