@@ -53,3 +53,33 @@ class TestExperiment(unittest.TestCase):
             self.assertTrue(True)
         except:
             self.assertFalse(False)
+    
+    def test_send_dicom_ipfs(self):
+        import hashlib
+        import time 
+        from ipfs_dicom import IpfsDicom
+
+        #! Generate token
+        hl: hashlib = hashlib.sha256()
+        value: str = "C3L-00503"+"10001"+str(time.time())
+        hl.update(value.encode())
+        token: str = hl.hexdigest()
+                    
+        #! manage IPFS network
+        ipfs: IpfsDicom = IpfsDicom('../../../Downloads/dataset-resultados/dicom-dataset/CPTAC-LSCC/', "35.233.252.12")
+        ipfs_resp: str = ipfs.send_dicom("C3L-00503", token)
+
+        print(ipfs_resp)
+
+        self.assertIsNotNone(ipfs_resp)
+
+    def test_get_dicom(self):
+        from ipfs_dicom import IpfsDicom
+        
+        ipfs: IpfsDicom = IpfsDicom("35.233.252.12")
+        isValid = ipfs.get_dicom("QmYP4T25FBFWNnPeNKQyJZd2NbSkYSPiWKfHQb42L9JysM")
+
+        print(isValid)
+
+        self.assertIs(isValid)
+

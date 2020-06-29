@@ -1,5 +1,6 @@
 from peer import Peer
 from tcp_latency import measure_latency
+from ipfs_dicom import IpfsDicom
 
 import pandas as pd
 import numpy as np
@@ -13,15 +14,18 @@ import queue
 import csv
 import json
 import os
+import hashlib
+
 
 
 class Experiment(object):
 
-    def __init__(self) -> None:
+    def __init__(self):
         self.__peers: list(Peer) = list()
         self.__thread_request: list(threading.Thread) = list()
         self.__global_time: float = 0.0
         self.__writer_file_lock = threading.Lock()
+        os.system("mkdir ~/.ipfs-temp")
 
     def add_peer(self, peer: Peer) -> None:
         """Function to add peer on experiments
@@ -30,21 +34,6 @@ class Experiment(object):
             peer (Peer): peer to add
         """
         self.__peers.append(peer)
-
-    # def __get_pid(self, port: int) -> int:
-    #     """function to get pid of the process
-
-    #     Args:
-    #         port (int): port to indate the process
-
-    #     Returns:
-    #         int: pid of the process
-    #     """
-    #     connections: list = psutil.net_connections()
-    #     pid: int = None
-    #     pid = list(filter(lambda c: c.pid if c.laddr[1] == port else None, connections))
-
-    #     return pid[0].pid
 
     def get_pid(self, port: int) -> int:
         """function to get pid of the process
@@ -171,18 +160,6 @@ class Experiment(object):
 
     def __measure_throughput_per_tps(self, peer: Peer) -> float:
         pass
-
-    # def send_request(self, file_in: str, ip_api: str, port_api: str, method) -> None:       
-    #     """Send requets to server to aim measure metrics and evaluate the system
-    #         We using the design pattern strategy
-
-    #     Args:
-    #         file_in (str): input file json to represents 
-    #         ip_api (str): API request ip 
-    #         port_api (str): API request port
-    #         method (class): Represent the class will be used to acess send_request
-    #     """
-    #     method.send_request(file_in, ip_api, port_api)
        
     def run_network_experiments(self, file_test_json: str, ip_api: str, port_api: str, method) -> None:
         """Send requets to server to aim measure network metrics and evaluate the system
@@ -207,7 +184,7 @@ class Experiment(object):
                 thr.start()
 
             time.sleep(2)
-
+        
 
 class RequestGetAsset(object):
     """Class to Strategy pattern for describes the method send_request GET elements
@@ -229,16 +206,16 @@ class RequestGetAsset(object):
 
         self.__global_time = time.time()
         table_tps_time: pd.DataFrame = pd.DataFrame()
-        print("Iniciando envio ...")
+        print("Iniciando GET Asset ...")
         #time.sleep(10)
-        for tr in range(1, 5):
-            dicoms_dict['dicomID'] = list(map(lambda d: d+str(tr),dicoms_dict['dicomID']))
+        for tr in range(1, 6):
+            dicomId = list(map(lambda d: d+str(tr),dicoms_dict['dicomID']))
             transaction_size: int = tr*len(dicoms_dict)
-            for dcm in dicoms_dict:
+            for dcm_id in dicomId:
                 try:
                     req_json = {
-                        'dicomID': dcm['dicomID'],
-                        'user': erikson
+                        'dicomId': dcm_id,
+                        'user': "erikson"
                     }
                     url = "http://%s:%s/api/getAsset"%(ip_api, port_api)
                     payload = json.dumps(req_json)
@@ -307,7 +284,7 @@ class RequestPost(object):
         table_tps_time: pd.DataFrame = pd.DataFrame()
         print("Iniciando envio ...")
         #time.sleep(10)
-        for tr in range(1, 5):
+        for tr in range(1, 6):
             dicoms_dict['dicomID'] = list(
                 map(lambda d: d+str(tr), dicoms_dict['dicomID']))
             transaction_size: int = tr*len(dicoms_dict)
@@ -333,4 +310,96 @@ class RequestPost(object):
         client_request.close()
 
         table_tps_time.to_csv("tps_per_time_api.csv",
+                              sep=';', header=True, index=False)
+
+class RequestGetKAnonymity(object):
+    """Class to Strategy pattern for describes the method send_request GET elements applying 
+       K-anonymity privacy
+
+    """
+    def __init__(self):
+        self.__global_time = None
+    
+    def send_request(self, file_in: str, ip_api: str, port_api: str) -> None:       
+        """Send requets to server to aim measure metrics and evaluate the system
+
+        Args:
+            file_in (str): input file json to represents 
+            ip_api (str): API request ip 
+            port_api (str) API request port
+        """
+        dicoms: pd.DataFrame = pd.read_csv(file_in, sep=";")
+        dicoms_dict: str = dicoms.to_dict(orient='records')
+
+        self.__global_time = time.time()
+        table_tps_time: pd.DataFrame = pd.DataFrame()
+        anonymized_files = list()
+
+        print("Iniciando envio ...")
+        #time.sleep(10)
+        for tr in range(1, 6):
+            #!Convert values 
+            dicomsId = list(map(lambda d: d+str(tr),dicoms_dict['dicomID']))
+            patientId = dicoms_dict['patientID'].tolist()
+            transaction_size: int = tr*len(dicoms_dict)
+            for dcm_id, pat_id in zip(dicomsId, patientId):
+                try:
+                    #! Generate token
+                    hl: hashlib = hashlib.sha256()
+                    value: str = dcm_id+pat_id+str(time.time())
+                    hl.update(value.encode())
+                    token: str = hl.hexdigest()
+                    
+                    #! manage IPFS network
+                    ipfs: IpfsDicom = IpfsDicom('../../../Downloads/dataset-resultados/dicom-dataset/CPTAC-LSCC/', "35.233.252.12")
+                    ipfs_resp: str = ipfs.send_dicom(dcm_id, token)
+                                   
+                    #!Send asset to a doctor
+                    req_share = {
+                        "dicomID": dcm_id,
+                        "patientID": pat_id,
+                        "doctorID": "1100",
+                        "user": "erikson",
+                        "hashIPFS": ipfs_resp
+                    }
+                    payload_share: str = json.dumps(req_share)
+                    url_post: str = "http://%s:%s/api/shareAssetWithDoctor"%(ip_api, port_api)
+                    headers: dict = { 'Content-Type': "application/json" }
+                    share_resp: requests.Response = requests.request("POST", url_post, data=payload_share, headers=headers)
+                    share_resp_json = share_resp.json()
+
+                    #!Get imaging using K-anonymity
+                    req_json = {
+	                    "user": "erikson",
+	                    "hashIPFS": share_resp_json['id']
+                    }
+                    url_get = "http://%s:%s/api/getSharedAssetWithDoctor"%(ip_api, port_api)
+                    payload_get = json.dumps(req_json)
+                    resp_get: requests.Response = requests.request("GET", url_get, data=payload_get, headers=headers)
+                    
+                    #? Add metrics tps
+                    end_t: float = round(time.time() - self.__global_time, 4)
+                    tps: float = round(end_t/transaction_size, 4)
+                    table_tps_time = table_tps_time.append(
+                        {"Time":  end_t, "TPS": tps}, ignore_index=True)
+                    
+                    #? Save files recovered
+                    anonymized_files.append(resp_get.json())                    
+                    
+                    time.sleep(5)
+                except:
+                    pass
+
+        # !Send signal to finsh request and experiments
+        client_request = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+        client_request.connect((ip_api, 4000))
+        client_request.sendall(b'True')
+        client_request.close()
+
+
+
+        with open("./dicoms_result_anonimity.json", "w") as file_out:
+                json.dump(anonymized_files, file_out)
+
+        table_tps_time.to_csv("tps_per_time_%d_GET.csv"%(port_api),
                               sep=';', header=True, index=False)
