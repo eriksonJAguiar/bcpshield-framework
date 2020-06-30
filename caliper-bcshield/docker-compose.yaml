@@ -8,9 +8,6 @@ services:
     container_name: caliper
     image: hyperledger/caliper:0.3.0
     command: launch master
-    gateway:
-      usegateway: true
-      discovery: true
     environment:
       - CALIPER_BIND_SUT=fabric:1.4.4
       - CALIPER_BENCHCONFIG=./benchmarks/scenario/simple/bcshield/config.yaml
