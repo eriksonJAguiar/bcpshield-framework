@@ -8,10 +8,13 @@ services:
     container_name: caliper
     image: hyperledger/caliper:0.3.0
     command: launch master
+    gateway:
+      usegateway: true
+      discovery: true
     environment:
       - CALIPER_BIND_SUT=fabric:1.4.4
-      - CALIPER_BENCHCONFIG=/hyperledger/caliper/workspace/benchmarks/scenario/simple/bcshield/config.yaml
-      - CALIPER_NETWORKCONFIG=/hyperledger/caliper/workspace/networks/fabric/bcshield/network-config_1.4.yaml
+      - CALIPER_BENCHCONFIG=./benchmarks/scenario/simple/bcshield/config.yaml
+      - CALIPER_NETWORKCONFIG=./networks/fabric/bcshield/network-config_1.4.yaml
     volumes:
       - ./caliper-benchmarks:/hyperledger/caliper/workspace
     network_mode: host
