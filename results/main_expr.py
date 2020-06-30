@@ -1,5 +1,5 @@
 from peer import Peer
-from experiment import Experiment, RequestGetAsset, RequestPost
+from experiment import Experiment, RequestGetAsset, RequestPost, RequestGetAsset
 
 class Server():
 
@@ -46,4 +46,4 @@ class Client():
         expr.add_peer(peer0_patient)
         expr.add_peer(peer1_patient)
 
-        expr.run_network_experiments('./dataset/patients_dicom_new.csv',"35.211.244.95",3000, RequestPost())
+        expr.run_network_experiments('./dataset/patients_dicom_new.csv',"35.211.244.95",3000, RequestGetAsset())

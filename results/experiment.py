@@ -210,23 +210,27 @@ class RequestGetAsset(object):
             port_api (str) API request port
         """
         dicoms: pd.DataFrame = pd.read_csv(file_in, sep=";")
-        dicoms_dict: str = dicoms.to_dict(orient='records')
+        dicoms = dicoms.dropna(subset=['dicomID'])
+        dicoms_dict: list(dict) = dicoms.to_dict(orient='records')
 
         #self.__global_time = time.time()
         table_tps_time: pd.DataFrame = pd.DataFrame()
 
         print("Iniciando GET Asset ...")
         #time.sleep(10)
-        for tr in range(1, 6):
+        for tr in range(1, 4):
             #dicomId = list(map(lambda d: d+str(tr),dicoms_dict['dicomID']))
             transaction_size: int = tr*len(dicoms_dict)
             for dcm in dicoms_dict:
                 try:
+                    print(dcm)
                     init_t = time.time()
+                    dcm_id = str(dcm['dicomID'])+str(tr)
                     req_json = {
-                        'dicomId': dcm['dicomID']+str(tr),
+                        'dicomId': dcm_id,
                         'user': "erikson"
                     }
+                    print(req_json)
                     url = "http://%s:%s/api/getAsset"%(ip_api, port_api)
                     payload = json.dumps(req_json)
                     headers = { 'Content-Type': "application/json" }
@@ -237,16 +241,28 @@ class RequestGetAsset(object):
                     tps: float = round(end_t/transaction_size, 4)
                     
                     with self.__writer_file_lock:
-                        file_exists = os.path.exists("tps_per_time.csv")
-                        with open("tps_per_time.csv", mode="a+") as file_csv:
+                        file_exists = os.path.exists("tps_per_time_read.csv")
+                        with open("tps_per_time_read.csv", mode="a+") as file_csv:
                             f = csv.DictWriter(file_csv, delimiter=";",
                                             fieldnames=['Time', 'TPS'])
 
                             if not file_exists:
                                 f.writeheader()
-                            
                            
                             f.writerow({'Time': end_t, 'TPS': tps})
+                        
+                        res_json_file = "./dicoms_result_anonimity.json"
+                        if not os.path.exists(res_json_file):
+                            with open(res_json_file, "w") as f:
+                                json.dump(f, [], indent=4)
+                        
+                        with open(req_json_file) as f:
+                            resp_aux = json.load(f)
+                        
+                        resp_aux.append(resp.json())
+
+                        with open(res_json_file, "w") as f:
+                            json.dump(f, resp_aux, indent=4)
                     
                     time.sleep(3)
                 except:
@@ -281,6 +297,7 @@ class RequestPost(object):
             port_api (str) API request port
         """
         dicoms: pd.DataFrame = pd.read_csv(file_in, sep=";")
+        dicoms = dicoms.dropna(subset=['dicomID'])
         dicoms['user'] = list(
             map(lambda x: "erikson", range(len(dicoms['patientID']))))
         dicoms['machineModel'] = list(
@@ -367,6 +384,7 @@ class RequestGetKAnonymity(object):
             port_api (str) API request port
         """
         dicoms: pd.DataFrame = pd.read_csv(file_in, sep=";")
+        dicoms = dicoms.dropna(subset=['dicomID'])
         dicoms_dict: str = dicoms.to_dict(orient='records')
 
         self.__global_time = time.time()
