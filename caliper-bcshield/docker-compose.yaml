@@ -14,7 +14,7 @@ services:
     environment:
       - CALIPER_BIND_SUT=fabric:1.4.4
       - CALIPER_BENCHCONFIG=./benchmarks/scenario/simple/bcshield/config.yaml
-      - CALIPER_NETWORKCONFIG=./networks/fabric/bcshield/network-config_1.4.yaml
+      - CALIPER_NETWORKCONFIG=./networks/fabric/bcshield/network-config.yaml
     volumes:
       - ./caliper-benchmarks:/hyperledger/caliper/workspace
     network_mode: host

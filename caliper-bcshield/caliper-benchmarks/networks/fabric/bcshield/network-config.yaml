@@ -24,7 +24,7 @@ clients:
         cryptoStore:
           path: /tmp/hfc-cvs/hprovider
       clientPrivateKey:
-        path: networks/fabric/bcshield/crypto-config/peerOrganizations/hprovider.healthcare.com/users/User1@hprovider.healthcare.com/msp/keystore/*_sk
+        path: networks/fabric/bcshield/crypto-config/peerOrganizations/hprovider.healthcare.com/users/User1@hprovider.healthcare.com/msp/keystore/721ca1f14efeab0febe4497267dfb631a93109a07bd5b16ad48249d023b7bf35_sk
       clientSignedCert:
         path: networks/fabric/bcshield/crypto-config/peerOrganizations/hprovider.healthcare.com/users/User1@hprovider.healthcare.com/msp/signcerts/User1@hprovider.healthcare.com-cert.pem
 
@@ -36,7 +36,7 @@ clients:
         cryptoStore:
           path: /tmp/hfc-cvs/research
       clientPrivateKey:
-        path: networks/fabric/bcshield/crypto-config/peerOrganizations/research.healthcare.com/users/User1@research.healthcare.com/msp/keystore/*_sk
+        path: networks/fabric/bcshield/crypto-config/peerOrganizations/research.healthcare.com/users/User1@research.healthcare.com/msp/keystore/a770af6ceecc9023d55d5f7827929ef649bae167bd37ad09f76b26a2c5f76d6a_sk
       clientSignedCert:
         path: networks/fabric/bcshield/crypto-config/peerOrganizations/research.healthcare.com/users/User1@research.healthcare.com/msp/signcerts/User1@research.healthcare.com-cert.pem
 
@@ -48,7 +48,7 @@ clients:
         cryptoStore:
           path: /tmp/hfc-cvs/patient
       clientPrivateKey:
-        path: networks/fabric/bcshield/crypto-config/peerOrganizations/patient.healthcare.com/users/User1@patient.healthcare.com/msp/keystore/*_sk
+        path: networks/fabric/bcshield/crypto-config/peerOrganizations/patient.healthcare.com/users/User1@patient.healthcare.com/msp/keystore/3f8efffea44055c1a25d6b59e7e8c0d647ef32a5c3b912cc57f26dac63f9a279_sk
       clientSignedCert:
         path: networks/fabric/bcshield/crypto-config/peerOrganizations/patient.healthcare.com/users/User1@patient.healthcare.com/msp/signcerts/User1@patient.healthcare.com-cert.pem
 
@@ -70,8 +70,8 @@ channels:
     - id: dicom
       version: "1"
       language: golang
-      path: fabric/imaging-contract
-      metadataPath: src/fabric/imaging-contract
+      path: src/fabric/imaging-contract
+      #metadataPath: src/fabric/imaging-contract
 
 
 organizations:
