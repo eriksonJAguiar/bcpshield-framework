@@ -83,7 +83,7 @@ organizations:
     certificateAuthorities:
     - ca.hprovider.healthcare.com
     adminPrivateKey:
-      path: networks/fabric/bcshield/crypto-config/peerOrganizations/hprovider.healthcare.com/users/Admin@hprovider.healthcare.com/msp/keystore/*_sk
+      path: networks/fabric/bcshield/crypto-config/peerOrganizations/hprovider.healthcare.com/users/Admin@hprovider.healthcare.com/msp/keystore/6540e8fb0b662b3d93ce558da3564784fa1c19538a431b1ff33bf44529b11a7e_sk
     signedCert:
       path: networks/fabric/bcshield/crypto-config/peerOrganizations/hprovider.healthcare.com/users/Admin@hprovider.healthcare.com/msp/signcerts/Admin@hprovider.healthcare.com-cert.pem
 
@@ -95,7 +95,7 @@ organizations:
     certificateAuthorities:
     - ca.research.healthcare.com
     adminPrivateKey:
-      path: networks/fabric/bcshield/crypto-config/peerOrganizations/research.healthcare.com/users/Admin@research.healthcare.com/msp/keystore/*_sk
+      path: networks/fabric/bcshield/crypto-config/peerOrganizations/research.healthcare.com/users/Admin@research.healthcare.com/msp/keystore/575a5240ab760b0e6d8d27411826bd2c16618d8ebbae9a906678da0e87084f7a_sk
     signedCert:
       path: networks/fabric/bcshield/crypto-config/peerOrganizations/research.healthcare.com/users/Admin@research.healthcare.com/msp/signcerts/Admin@research.healthcare.com-cert.pem
 
@@ -107,7 +107,7 @@ organizations:
     certificateAuthorities:
     - ca.patient.healthcare.com
     adminPrivateKey:
-      path: networks/fabric/bcshield/crypto-config/peerOrganizations/patient.healthcare.com/users/Admin@patient.healthcare.com/msp/keystore/*_sk
+      path: networks/fabric/bcshield/crypto-config/peerOrganizations/patient.healthcare.com/users/Admin@patient.healthcare.com/msp/keystore/a3bbb7520157d635700176b6d4ad40a68563dcf0b54f11593f64491373f21bbf_sk
     signedCert:
       path: networks/fabric/bcshield/crypto-config/peerOrganizations/patient.healthcare.com/users/Admin@patient.healthcare.com/msp/signcerts/Admin@patient.healthcare.com-cert.pem
 
