@@ -2,14 +2,14 @@
 test:
   clients:
     type: local
-    number: 5
+    number: 1
   rounds:
   - label: add Dicom
     txNumber: 
       - 500
     rateControl:
-      type: fixed-rate
-      opts:
+      - type: fixed-rate
+        opts:
         tps: 25
     arguments:
       dicom: 100
