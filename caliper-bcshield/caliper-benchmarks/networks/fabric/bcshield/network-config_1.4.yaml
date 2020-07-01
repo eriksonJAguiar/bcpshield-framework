@@ -42,7 +42,7 @@ clients:
 
   client0.patient.healthcare.com:
     client:
-      organization: Research
+      organization: Patient
       credentialStore:
         path: /tmp/hfc-kvs/patient
         cryptoStore:
