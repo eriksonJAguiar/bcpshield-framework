@@ -16,7 +16,6 @@ test:
         tps: 100
     arguments:
       money: 10000
-      txnPerBatch: 50
     callback: benchmarks/scenario/simple/bcshield/open.js
   # - label: query
   #   description: Test description for the query performance of the deployed chaincode

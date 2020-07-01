@@ -19,7 +19,7 @@ module.exports.init = function (blockchain, context, args) {
 };
 
 
-function generateWorkload() {
+async function generateWorkload() {
     let workload = [];
     for (let i = 0; i < txnPerBatch; i++) {
         workload.push({
@@ -31,7 +31,7 @@ function generateWorkload() {
 }
 
 module.exports.run = function () {
-    let args = generateWorkload();
+    let args = await generateWorkload();
     return bc.invokeSmartContract(contx, 'dicom-caliper', '1', args);
 };
 
