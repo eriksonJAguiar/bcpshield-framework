@@ -141,13 +141,18 @@ func (cc *HealthcareChaincode) addAsset(stub shim.ChaincodeStubInterface, args [
 		return shim.Error("16th argument must be a non-empty string")
 	} else if len(args[16]) <= 0 {
 		return shim.Error("17th argument must be a non-empty string")
+	} else if len(args[17]) <= 0 {
+		return shim.Error("18th argument must be a non-empty string")
 	}
 
 	patientAge, err := strconv.Atoi(args[6])
 	if err != nil {
 		return shim.Error("7 argument must be a numeric string")
 	}
-	timestamp := time.Now()
+	timestamp, err := time.Parse(time.RFC3339, args[17])
+	if err != nil {
+		return shim.Error("18 argument must be a datetime string")
+	}
 	patientWeigth, err := strconv.ParseFloat(args[14], 64)
 	if err != nil {
 		return shim.Error("14 argument must be a numeric string")

@@ -9,21 +9,21 @@ test:
   rounds:
   - label: open
     description: Test description for the opening of an account through the deployed chaincode
-    txNumber: 5000
+    txNumber: 1000
     rateControl:
       type: fixed-rate
       opts:
-        tps: 100
+        tps: 50
     arguments:
       money: 10000
     callback: benchmarks/scenario/simple/bcshield/open.js
-  # - label: query
-  #   description: Test description for the query performance of the deployed chaincode
-  #   txNumber: 5000
-  #   rateControl:
-  #     type: fixed-rate
-  #     opts:
-  #       tps: 100
+  - label: query
+    description: Test description for the query performance of the deployed chaincode
+    txNumber: 1000
+    rateControl:
+      type: fixed-rate
+      opts:
+        tps: 50
   #   callback: benchmarks/scenario/simple/bcshield/query.js
   # - label: transfer
   #   description: Test description for transfering money between accounts
