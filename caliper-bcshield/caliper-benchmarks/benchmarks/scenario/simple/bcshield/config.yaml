@@ -1,22 +1,19 @@
 ---
 test:
-  name: simple
-  description: This is an example benchmark for caliper, to test the backend DLT's
-    performance with simple account opening & querying transactions
+  test:
   workers:
     type: local
-    number: 1
+    number: 5
   rounds:
-  - label: open
-    description: Test description for the opening of an account through the deployed chaincode
-    txNumber: 1000
-    rateControl:
-      type: fixed-rate
-      opts:
-        tps: 50
-    arguments:
-      money: 10000
-    callback: benchmarks/scenario/simple/bcshield/open-create.js
+    - label: Create a dicom.
+      txDuration:
+        - 30
+      rateControl:
+        - type: fixed-backlog
+          opts:
+            unfinished_per_client: 5
+      workload:
+        module: benchmarks/samples/fabric/fabcar/open-create.js
   # - label: query
   #   description: Test description for the query performance of the deployed chaincode
   #   txNumber: 1000
@@ -35,16 +32,22 @@ test:
   #   arguments:
   #       money: 100
   #   callback: benchmarks/scenario/simple/transfer.js
+
 monitor:
   type:
-  - docker
+    - docker
+    - process
   docker:
     name:
-    - peer0.hprovider.healthcare.com
-    - peer1.hprovider.healthcare.com
-    - peer0.research.healthcare.com
-    - peer1.research.healthcare.com
-    - peer0.patient.healthcare.com
-    - peer1.patient.healthcare.com
-    - orderer.healthcare.com
+      - peer0.hprovider.healthcare.com
+      - peer1.hprovider.healthcare.com
+      - peer0.research.healthcare.com
+      - peer1.research.healthcare.com
+      - peer0.patient.healthcare.com
+      - peer1.patient.healthcare.com
+      - orderer.healthcare.com
+  process:
+    - command: node
+      arguments: fabricClientWorker.js
+      multiOutput: avg
   interval: 1
