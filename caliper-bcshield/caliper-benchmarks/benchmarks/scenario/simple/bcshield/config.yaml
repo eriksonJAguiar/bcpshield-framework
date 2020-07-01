@@ -16,7 +16,7 @@ test:
         tps: 50
     arguments:
       money: 10000
-    callback: benchmarks/scenario/simple/bcshield/open.js
+    callback: benchmarks/scenario/simple/bcshield/open-create.js
   # - label: query
   #   description: Test description for the query performance of the deployed chaincode
   #   txNumber: 1000
