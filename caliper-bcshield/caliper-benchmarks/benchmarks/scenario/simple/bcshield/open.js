@@ -3,7 +3,7 @@
 module.exports.info = 'create dicom imaging';
 const { v1: uuidv4 } = require('uuid')
 
-let account_array = [];
+let dicom_array = [];
 
 let bc, contx;
 var txnPerBatch = 1

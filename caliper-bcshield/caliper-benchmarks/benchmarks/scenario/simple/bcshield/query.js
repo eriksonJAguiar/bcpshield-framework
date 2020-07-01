@@ -30,18 +30,18 @@ module.exports.init = function(blockchain, context, args) {
 };
 
 module.exports.run = function() {
-    const acc  = dicom_array[Math.floor(Math.random()*(dicom_array.length))];
+    const dcm  = dicom_array[Math.floor(Math.random()*(dicom_array.length))];
 
     if (bc.getType() === 'fabric') {
         let args = {
             chaincodeFunction: 'getAsset',
-            chaincodeArguments: [acc],
+            chaincodeArguments: [dcm],
         };
 
         return bc.bcObj.querySmartContract(contx, 'dicom-caliper', '1', args, 10);
     } else {
         // NOTE: the query API is not consistent with the invoke API
-        return bc.queryState(contx, 'dicom-caliper', '1', acc);
+        return bc.queryState(contx, 'dicom-caliper', '1', dcm);
     }
 };
 
