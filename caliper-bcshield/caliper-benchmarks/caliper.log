@@ -1210,3 +1210,226 @@
 2020.06.23-18:45:56.067[32m info [39m [caliper] [caliper-flow] 	Generated report with path /hyperledger/caliper/workspace/report.html
 2020.06.23-18:45:56.169[90m debug[39m [caliper] [process-master-messenger] 	Sent message: {"to":["all"],"from":"1","timestamp":"2020-06-23T18:45:56.168Z","data":{"type":"exit"}}
 2020.06.23-18:45:56.169[90m debug[39m [caliper] [mqtt-worker-messenger] 	fabric worker processing orchestrator message: {"to":["all"],"from":"1","timestamp":"2020-06-23T18:45:56.168Z","data":{"type":"exit"}}
+2020.06.30-21:50:31.111[90m debug[39m [caliper] [blockchain] 	Constructed a winston logger with the specified settings
+2020.06.30-21:50:31.328[32m info [39m [caliper] [cli-launch-master] 	Binding specification is present, performing binding for "fabric:1.4.4"
+2020.06.30-21:50:31.334[33m warn [39m [caliper] [bind] 	Working directory for binding not specified. Using "/home/ejulioaguiar/privacy-blockchain/caliper-bcshield/caliper-benchmarks"
+2020.06.30-21:50:31.334[32m info [39m [caliper] [bind] 	Binding for fabric@1.4.4. This might take some time...
+2020.06.30-21:50:31.335[32m info [39m [caliper] [bind] 	Binding working directory: /home/ejulioaguiar/privacy-blockchain/caliper-bcshield/caliper-benchmarks
+2020.06.30-21:50:31.335[32m info [39m [caliper] [bind] 	Calling npm with: install grpc@1.14.2 fabric-ca-client@1.4.4 fabric-client@1.4.4 fabric-protos@2.0.0-snapshot.1 fabric-network@1.4.4
+2020.06.30-21:51:24.627[32m info [39m [caliper] [cli-launch-master] 	Set workspace path: /home/ejulioaguiar/privacy-blockchain/caliper-bcshield/caliper-benchmarks
+2020.06.30-21:55:31.865[90m debug[39m [caliper] [blockchain] 	Constructed a winston logger with the specified settings
+2020.06.30-21:55:32.046[32m info [39m [caliper] [cli-launch-master] 	Binding specification is present, performing binding for "fabric:1.4.4"
+2020.06.30-21:55:32.051[33m warn [39m [caliper] [bind] 	Working directory for binding not specified. Using "/home/ejulioaguiar/privacy-blockchain/caliper-bcshield/caliper-benchmarks"
+2020.06.30-21:55:32.052[32m info [39m [caliper] [bind] 	Binding for fabric@1.4.4. This might take some time...
+2020.06.30-21:55:32.052[32m info [39m [caliper] [bind] 	Binding working directory: /home/ejulioaguiar/privacy-blockchain/caliper-bcshield/caliper-benchmarks
+2020.06.30-21:55:32.053[32m info [39m [caliper] [bind] 	Calling npm with: install grpc@1.14.2 fabric-ca-client@1.4.4 fabric-client@1.4.4 fabric-protos@2.0.0-snapshot.1 fabric-network@1.4.4
+2020.06.30-21:55:50.238[32m info [39m [caliper] [cli-launch-master] 	Set workspace path: /home/ejulioaguiar/privacy-blockchain/caliper-bcshield/caliper-benchmarks
+2020.06.30-21:55:50.238[32m info [39m [caliper] [cli-launch-master] 	Set benchmark configuration path: /home/ejulioaguiar/privacy-blockchain/caliper-bcshield/caliper-benchmarks/benchmarks/scenario/simple/bcshield/config.yaml
+2020.06.30-21:55:50.239[32m info [39m [caliper] [cli-launch-master] 	Set network configuration path: /home/ejulioaguiar/privacy-blockchain/caliper-bcshield/caliper-benchmarks/networks/fabric/bcshield/network-config.yaml
+2020.06.30-21:55:50.239[32m info [39m [caliper] [cli-launch-master] 	Set SUT type: fabric:1.4.4
+2020.06.30-21:55:50.243[32m info [39m [caliper] [benchmark-validator] 	No observer specified, will default to `none`
+2020.06.30-21:55:50.243[32m info [39m [caliper] [caliper-engine] 	Starting benchmark flow
+2020.06.30-21:55:50.248[32m info [39m [caliper] [adapters/fabric] 	Initializing standard adaptor compatible with installed SDK: 1.4.4
+2020.06.30-21:55:51.211[32m info [39m [caliper] [caliper-engine] 	Network configuration attribute "caliper.command.start" is not present, skipping start command
+2020.06.30-21:55:51.212[32m info [39m [caliper] [adapters/fabric] 	Fabric SDK version: 1.4.4; TLS: server
+2020.06.30-21:55:52.191[32m info [39m [caliper] [adapters/fabric] 	HProvider's registrar enrolled successfully
+2020.06.30-21:55:52.505[32m info [39m [caliper] [adapters/fabric] 	Research's registrar enrolled successfully
+2020.06.30-21:55:52.795[32m info [39m [caliper] [adapters/fabric] 	Patient's registrar enrolled successfully
+2020.06.30-21:55:52.807[32m info [39m [caliper] [adapters/fabric] 	HProvider's admin's materials are successfully loaded
+2020.06.30-21:55:52.815[32m info [39m [caliper] [adapters/fabric] 	Research's admin's materials are successfully loaded
+2020.06.30-21:55:52.838[32m info [39m [caliper] [adapters/fabric] 	Patient's admin's materials are successfully loaded
+2020.06.30-21:55:52.865[32m info [39m [caliper] [adapters/fabric] 	client0.hprovider.healthcare.com's materials are successfully loaded
+2020.06.30-21:55:52.874[32m info [39m [caliper] [adapters/fabric] 	client0.research.healthcare.com's materials are successfully loaded
+2020.06.30-21:55:52.891[32m info [39m [caliper] [adapters/fabric] 	client0.patient.healthcare.com's materials are successfully loaded
+2020.06.30-21:55:52.892[32m info [39m [caliper] [adapters/fabric] 	Channel 'healthchannel' is configured as created, skipping creation
+2020.06.30-21:55:53.164[32m info [39m [caliper] [adapters/fabric] 	peer0.hprovider.healthcare.com has already joined healthchannel
+2020.06.30-21:55:53.186[32m info [39m [caliper] [adapters/fabric] 	peer0.research.healthcare.com has already joined healthchannel
+2020.06.30-21:55:53.207[32m info [39m [caliper] [adapters/fabric] 	peer0.patient.healthcare.com has already joined healthchannel
+2020.06.30-21:55:53.207[32m info [39m [caliper] [caliper-engine] 	Executed "init" step in 1.995 seconds
+2020.06.30-21:55:53.209[32m info [39m [caliper] [adapters/fabric] 	Installing chaincodes for healthchannel...
+2020.06.30-21:55:53.343[31m error[39m [caliper] [caliper-engine] 	Error while performing "install" step: Error: Couldn't install dicom@1 on peers peer0.hprovider.healthcare.com: ENOENT: no such file or directory, lstat '/home/ejulioaguiar/privacy-blockchain/caliper-bcshield/caliper-benchmarks/src/src/fabric/imaging-contract'
+2020.06.30-21:57:15.464[90m debug[39m [caliper] [blockchain] 	Constructed a winston logger with the specified settings
+2020.06.30-21:57:15.682[32m info [39m [caliper] [cli-launch-master] 	Binding specification is present, performing binding for "fabric:1.4.4"
+2020.06.30-21:57:15.687[33m warn [39m [caliper] [bind] 	Working directory for binding not specified. Using "/home/ejulioaguiar/privacy-blockchain/caliper-bcshield/caliper-benchmarks"
+2020.06.30-21:57:15.688[32m info [39m [caliper] [bind] 	Binding for fabric@1.4.4. This might take some time...
+2020.06.30-21:57:15.688[32m info [39m [caliper] [bind] 	Binding working directory: /home/ejulioaguiar/privacy-blockchain/caliper-bcshield/caliper-benchmarks
+2020.06.30-21:57:15.688[32m info [39m [caliper] [bind] 	Calling npm with: install grpc@1.14.2 fabric-ca-client@1.4.4 fabric-client@1.4.4 fabric-protos@2.0.0-snapshot.1 fabric-network@1.4.4
+2020.06.30-21:57:33.160[32m info [39m [caliper] [cli-launch-master] 	Set workspace path: /home/ejulioaguiar/privacy-blockchain/caliper-bcshield/caliper-benchmarks
+2020.06.30-21:57:33.160[32m info [39m [caliper] [cli-launch-master] 	Set benchmark configuration path: /home/ejulioaguiar/privacy-blockchain/caliper-bcshield/caliper-benchmarks/benchmarks/scenario/simple/bcshield/config.yaml
+2020.06.30-21:57:33.161[32m info [39m [caliper] [cli-launch-master] 	Set network configuration path: /home/ejulioaguiar/privacy-blockchain/caliper-bcshield/caliper-benchmarks/networks/fabric/bcshield/network-config.yaml
+2020.06.30-21:57:33.161[32m info [39m [caliper] [cli-launch-master] 	Set SUT type: fabric:1.4.4
+2020.06.30-21:57:33.164[32m info [39m [caliper] [benchmark-validator] 	No observer specified, will default to `none`
+2020.06.30-21:57:33.165[32m info [39m [caliper] [caliper-engine] 	Starting benchmark flow
+2020.06.30-21:57:33.171[32m info [39m [caliper] [adapters/fabric] 	Initializing standard adaptor compatible with installed SDK: 1.4.4
+2020.06.30-21:57:33.968[32m info [39m [caliper] [caliper-engine] 	Network configuration attribute "caliper.command.start" is not present, skipping start command
+2020.06.30-21:57:33.969[32m info [39m [caliper] [adapters/fabric] 	Fabric SDK version: 1.4.4; TLS: server
+2020.06.30-21:57:34.557[33m warn [39m [caliper] [adapters/fabric] 	HProvider's registrar's materials found locally in file system key-value stores. Make sure it is the right one!
+2020.06.30-21:57:34.594[33m warn [39m [caliper] [adapters/fabric] 	Research's registrar's materials found locally in file system key-value stores. Make sure it is the right one!
+2020.06.30-21:57:34.610[33m warn [39m [caliper] [adapters/fabric] 	Patient's registrar's materials found locally in file system key-value stores. Make sure it is the right one!
+2020.06.30-21:57:34.620[32m info [39m [caliper] [adapters/fabric] 	HProvider's admin's materials are successfully loaded
+2020.06.30-21:57:34.627[32m info [39m [caliper] [adapters/fabric] 	Research's admin's materials are successfully loaded
+2020.06.30-21:57:34.646[32m info [39m [caliper] [adapters/fabric] 	Patient's admin's materials are successfully loaded
+2020.06.30-21:57:34.691[32m info [39m [caliper] [adapters/fabric] 	client0.hprovider.healthcare.com's materials are successfully loaded
+2020.06.30-21:57:34.721[32m info [39m [caliper] [adapters/fabric] 	client0.research.healthcare.com's materials are successfully loaded
+2020.06.30-21:57:34.747[32m info [39m [caliper] [adapters/fabric] 	client0.patient.healthcare.com's materials are successfully loaded
+2020.06.30-21:57:34.748[32m info [39m [caliper] [adapters/fabric] 	Channel 'healthchannel' is configured as created, skipping creation
+2020.06.30-21:57:34.807[32m info [39m [caliper] [adapters/fabric] 	peer0.hprovider.healthcare.com has already joined healthchannel
+2020.06.30-21:57:34.827[32m info [39m [caliper] [adapters/fabric] 	peer0.research.healthcare.com has already joined healthchannel
+2020.06.30-21:57:34.849[32m info [39m [caliper] [adapters/fabric] 	peer0.patient.healthcare.com has already joined healthchannel
+2020.06.30-21:57:34.849[32m info [39m [caliper] [caliper-engine] 	Executed "init" step in 0.88 seconds
+2020.06.30-21:57:34.851[32m info [39m [caliper] [adapters/fabric] 	Installing chaincodes for healthchannel...
+2020.06.30-21:57:35.108[32m info [39m [caliper] [adapters/fabric] 	dicom@1 successfully installed on HProvider's peers: peer0.hprovider.healthcare.com
+2020.06.30-21:57:35.245[32m info [39m [caliper] [adapters/fabric] 	dicom@1 successfully installed on Research's peers: peer0.research.healthcare.com
+2020.06.30-21:57:35.353[32m info [39m [caliper] [adapters/fabric] 	dicom@1 successfully installed on Patient's peers: peer0.patient.healthcare.com
+2020.06.30-21:57:35.355[32m info [39m [caliper] [adapters/fabric] 	Instantiating dicom@1 in healthchannel. This might take some time...
+2020.06.30-21:57:35.474[31m error[39m [caliper] [caliper-engine] 	Error while performing "install" step: Error: Invalid endorsement for dicom@1 in healthchannel from peer0.hprovider.healthcare.com: chaincode with name 'dicom' already exists
+2020.06.30-21:58:09.350[90m debug[39m [caliper] [blockchain] 	Constructed a winston logger with the specified settings
+2020.06.30-21:58:09.531[32m info [39m [caliper] [cli-launch-master] 	Binding specification is present, performing binding for "fabric:1.4.4"
+2020.06.30-21:58:09.536[33m warn [39m [caliper] [bind] 	Working directory for binding not specified. Using "/home/ejulioaguiar/privacy-blockchain/caliper-bcshield/caliper-benchmarks"
+2020.06.30-21:58:09.537[32m info [39m [caliper] [bind] 	Binding for fabric@1.4.4. This might take some time...
+2020.06.30-21:58:09.537[32m info [39m [caliper] [bind] 	Binding working directory: /home/ejulioaguiar/privacy-blockchain/caliper-bcshield/caliper-benchmarks
+2020.06.30-21:58:09.537[32m info [39m [caliper] [bind] 	Calling npm with: install grpc@1.14.2 fabric-ca-client@1.4.4 fabric-client@1.4.4 fabric-protos@2.0.0-snapshot.1 fabric-network@1.4.4
+2020.06.30-21:58:28.522[32m info [39m [caliper] [cli-launch-master] 	Set workspace path: /home/ejulioaguiar/privacy-blockchain/caliper-bcshield/caliper-benchmarks
+2020.06.30-21:58:28.523[32m info [39m [caliper] [cli-launch-master] 	Set benchmark configuration path: /home/ejulioaguiar/privacy-blockchain/caliper-bcshield/caliper-benchmarks/benchmarks/scenario/simple/bcshield/config.yaml
+2020.06.30-21:58:28.523[32m info [39m [caliper] [cli-launch-master] 	Set network configuration path: /home/ejulioaguiar/privacy-blockchain/caliper-bcshield/caliper-benchmarks/networks/fabric/bcshield/network-config.yaml
+2020.06.30-21:58:28.523[32m info [39m [caliper] [cli-launch-master] 	Set SUT type: fabric:1.4.4
+2020.06.30-21:58:28.526[32m info [39m [caliper] [benchmark-validator] 	No observer specified, will default to `none`
+2020.06.30-21:58:28.527[32m info [39m [caliper] [caliper-engine] 	Starting benchmark flow
+2020.06.30-21:58:28.532[32m info [39m [caliper] [adapters/fabric] 	Initializing standard adaptor compatible with installed SDK: 1.4.4
+2020.06.30-21:58:29.270[32m info [39m [caliper] [caliper-engine] 	Network configuration attribute "caliper.command.start" is not present, skipping start command
+2020.06.30-21:58:29.271[32m info [39m [caliper] [adapters/fabric] 	Fabric SDK version: 1.4.4; TLS: server
+2020.06.30-21:58:29.731[33m warn [39m [caliper] [adapters/fabric] 	HProvider's registrar's materials found locally in file system key-value stores. Make sure it is the right one!
+2020.06.30-21:58:29.767[33m warn [39m [caliper] [adapters/fabric] 	Research's registrar's materials found locally in file system key-value stores. Make sure it is the right one!
+2020.06.30-21:58:29.782[33m warn [39m [caliper] [adapters/fabric] 	Patient's registrar's materials found locally in file system key-value stores. Make sure it is the right one!
+2020.06.30-21:58:29.796[32m info [39m [caliper] [adapters/fabric] 	HProvider's admin's materials are successfully loaded
+2020.06.30-21:58:29.803[32m info [39m [caliper] [adapters/fabric] 	Research's admin's materials are successfully loaded
+2020.06.30-21:58:29.817[32m info [39m [caliper] [adapters/fabric] 	Patient's admin's materials are successfully loaded
+2020.06.30-21:58:29.830[32m info [39m [caliper] [adapters/fabric] 	client0.hprovider.healthcare.com's materials are successfully loaded
+2020.06.30-21:58:29.839[32m info [39m [caliper] [adapters/fabric] 	client0.research.healthcare.com's materials are successfully loaded
+2020.06.30-21:58:29.849[32m info [39m [caliper] [adapters/fabric] 	client0.patient.healthcare.com's materials are successfully loaded
+2020.06.30-21:58:29.850[32m info [39m [caliper] [adapters/fabric] 	Channel 'healthchannel' is configured as created, skipping creation
+2020.06.30-21:58:29.896[32m info [39m [caliper] [adapters/fabric] 	peer0.hprovider.healthcare.com has already joined healthchannel
+2020.06.30-21:58:29.915[32m info [39m [caliper] [adapters/fabric] 	peer0.research.healthcare.com has already joined healthchannel
+2020.06.30-21:58:29.934[32m info [39m [caliper] [adapters/fabric] 	peer0.patient.healthcare.com has already joined healthchannel
+2020.06.30-21:58:29.934[32m info [39m [caliper] [caliper-engine] 	Executed "init" step in 0.664 seconds
+2020.06.30-21:58:29.936[32m info [39m [caliper] [adapters/fabric] 	Installing chaincodes for healthchannel...
+2020.06.30-21:58:30.061[32m info [39m [caliper] [adapters/fabric] 	dicom@2 successfully installed on HProvider's peers: peer0.hprovider.healthcare.com
+2020.06.30-21:58:30.161[32m info [39m [caliper] [adapters/fabric] 	dicom@2 successfully installed on Research's peers: peer0.research.healthcare.com
+2020.06.30-21:58:30.276[32m info [39m [caliper] [adapters/fabric] 	dicom@2 successfully installed on Patient's peers: peer0.patient.healthcare.com
+2020.06.30-21:58:30.277[32m info [39m [caliper] [adapters/fabric] 	Instantiating dicom@2 in healthchannel. This might take some time...
+2020.06.30-21:58:30.402[31m error[39m [caliper] [caliper-engine] 	Error while performing "install" step: Error: Invalid endorsement for dicom@2 in healthchannel from peer0.hprovider.healthcare.com: chaincode with name 'dicom' already exists
+2020.06.30-22:02:21.706[90m debug[39m [caliper] [blockchain] 	Constructed a winston logger with the specified settings
+2020.06.30-22:02:21.990[32m info [39m [caliper] [cli-launch-master] 	Binding specification is present, performing binding for "fabric:1.4.4"
+2020.06.30-22:02:21.995[33m warn [39m [caliper] [bind] 	Working directory for binding not specified. Using "/home/ejulioaguiar/privacy-blockchain/caliper-bcshield/caliper-benchmarks"
+2020.06.30-22:02:21.995[32m info [39m [caliper] [bind] 	Binding for fabric@1.4.4. This might take some time...
+2020.06.30-22:02:21.995[32m info [39m [caliper] [bind] 	Binding working directory: /home/ejulioaguiar/privacy-blockchain/caliper-bcshield/caliper-benchmarks
+2020.06.30-22:02:21.996[32m info [39m [caliper] [bind] 	Calling npm with: install grpc@1.14.2 fabric-ca-client@1.4.4 fabric-client@1.4.4 fabric-protos@2.0.0-snapshot.1 fabric-network@1.4.4
+2020.06.30-22:02:40.101[32m info [39m [caliper] [cli-launch-master] 	Set workspace path: /home/ejulioaguiar/privacy-blockchain/caliper-bcshield/caliper-benchmarks
+2020.06.30-22:02:40.101[32m info [39m [caliper] [cli-launch-master] 	Set benchmark configuration path: /home/ejulioaguiar/privacy-blockchain/caliper-bcshield/caliper-benchmarks/benchmarks/scenario/simple/bcshield/config.yaml
+2020.06.30-22:02:40.102[32m info [39m [caliper] [cli-launch-master] 	Set network configuration path: /home/ejulioaguiar/privacy-blockchain/caliper-bcshield/caliper-benchmarks/networks/fabric/bcshield/network-config.yaml
+2020.06.30-22:02:40.102[32m info [39m [caliper] [cli-launch-master] 	Set SUT type: fabric:1.4.4
+2020.06.30-22:02:40.106[32m info [39m [caliper] [benchmark-validator] 	No observer specified, will default to `none`
+2020.06.30-22:02:40.106[32m info [39m [caliper] [caliper-engine] 	Starting benchmark flow
+2020.06.30-22:02:40.111[32m info [39m [caliper] [adapters/fabric] 	Initializing standard adaptor compatible with installed SDK: 1.4.4
+2020.06.30-22:02:40.856[32m info [39m [caliper] [caliper-engine] 	Network configuration attribute "caliper.command.start" is not present, skipping start command
+2020.06.30-22:02:40.857[32m info [39m [caliper] [adapters/fabric] 	Fabric SDK version: 1.4.4; TLS: server
+2020.06.30-22:02:41.289[33m warn [39m [caliper] [adapters/fabric] 	HProvider's registrar's materials found locally in file system key-value stores. Make sure it is the right one!
+2020.06.30-22:02:41.306[33m warn [39m [caliper] [adapters/fabric] 	Research's registrar's materials found locally in file system key-value stores. Make sure it is the right one!
+2020.06.30-22:02:41.324[33m warn [39m [caliper] [adapters/fabric] 	Patient's registrar's materials found locally in file system key-value stores. Make sure it is the right one!
+2020.06.30-22:02:41.338[32m info [39m [caliper] [adapters/fabric] 	HProvider's admin's materials are successfully loaded
+2020.06.30-22:02:41.344[32m info [39m [caliper] [adapters/fabric] 	Research's admin's materials are successfully loaded
+2020.06.30-22:02:41.363[32m info [39m [caliper] [adapters/fabric] 	Patient's admin's materials are successfully loaded
+2020.06.30-22:02:41.375[32m info [39m [caliper] [adapters/fabric] 	client0.hprovider.healthcare.com's materials are successfully loaded
+2020.06.30-22:02:41.383[32m info [39m [caliper] [adapters/fabric] 	client0.research.healthcare.com's materials are successfully loaded
+2020.06.30-22:02:41.393[32m info [39m [caliper] [adapters/fabric] 	client0.patient.healthcare.com's materials are successfully loaded
+2020.06.30-22:02:41.393[32m info [39m [caliper] [adapters/fabric] 	Channel 'healthchannel' is configured as created, skipping creation
+2020.06.30-22:02:41.441[32m info [39m [caliper] [adapters/fabric] 	peer0.hprovider.healthcare.com has already joined healthchannel
+2020.06.30-22:02:41.461[32m info [39m [caliper] [adapters/fabric] 	peer0.research.healthcare.com has already joined healthchannel
+2020.06.30-22:02:41.517[32m info [39m [caliper] [adapters/fabric] 	peer0.patient.healthcare.com has already joined healthchannel
+2020.06.30-22:02:41.517[32m info [39m [caliper] [caliper-engine] 	Executed "init" step in 0.661 seconds
+2020.06.30-22:02:41.519[32m info [39m [caliper] [adapters/fabric] 	Installing chaincodes for healthchannel...
+2020.06.30-22:02:41.705[32m info [39m [caliper] [adapters/fabric] 	dicom-caliper@1 successfully installed on HProvider's peers: peer0.hprovider.healthcare.com
+2020.06.30-22:02:41.896[32m info [39m [caliper] [adapters/fabric] 	dicom-caliper@1 successfully installed on Research's peers: peer0.research.healthcare.com
+2020.06.30-22:02:42.002[32m info [39m [caliper] [adapters/fabric] 	dicom-caliper@1 successfully installed on Patient's peers: peer0.patient.healthcare.com
+2020.06.30-22:02:42.003[32m info [39m [caliper] [adapters/fabric] 	Instantiating dicom-caliper@1 in healthchannel. This might take some time...
+2020.06.30-22:04:48.747[32m info [39m [caliper] [adapters/fabric] 	Successfully instantiated dicom-caliper@1 in healthchannel
+2020.06.30-22:04:48.749[32m info [39m [caliper] [adapters/fabric] 	Sleeping 5s...
+2020.06.30-22:04:53.753[32m info [39m [caliper] [caliper-engine] 	Executed "install" step in 132.236 seconds
+2020.06.30-22:04:53.754[32m info [39m [caliper] [messenger.js] 	Creating messenger of type "process-master" 
+2020.06.30-22:04:53.757[90m debug[39m [caliper] [testObserver.js] 	Creating test observer of type "none"
+2020.06.30-22:04:53.758[32m info [39m [caliper] [null-observer] 	Configured "null" observer
+2020.06.30-22:04:53.761[32m info [39m [caliper] [round-orchestrator] 	Monitors successfully started
+2020.06.30-22:04:53.761[32m info [39m [caliper] [round-orchestrator] 	Started round 1 (open)
+2020.06.30-22:04:53.762[90m debug[39m [caliper] [null-observer] 	No action taken by NullObserver on setBenchmark
+2020.06.30-22:04:53.762[90m debug[39m [caliper] [null-observer] 	No action taken by NullObserver on setRound
+2020.06.30-22:04:53.762[32m info [39m [caliper] [worker-orchestrator] 	Launching worker 1 of 1
+2020.06.30-22:04:53.768[32m info [39m [caliper] [worker-orchestrator] 	Messenger not configured, entering configure phase...
+2020.06.30-22:04:53.769[32m info [39m [caliper] [worker-orchestrator] 	No existing workers detected, entering worker launch phase...
+2020.06.30-22:04:53.770[32m info [39m [caliper] [worker-orchestrator] 	Waiting for 1 workers to be connected...
+2020.06.30-22:04:54.082[90m debug[39m [caliper] [blockchain] 	Constructed a winston logger with the specified settings
+2020.06.30-22:04:54.295[32m info [39m [caliper] [cli-launch-worker] 	Worker is a locally forked process, skipping binding step already performed by the master process
+2020.06.30-22:04:54.301[32m info [39m [caliper] [cli-launch-worker] 	Set workspace path: /home/ejulioaguiar/privacy-blockchain/caliper-bcshield/caliper-benchmarks
+2020.06.30-22:04:54.301[32m info [39m [caliper] [cli-launch-worker] 	Set benchmark configuration path: /home/ejulioaguiar/privacy-blockchain/caliper-bcshield/caliper-benchmarks/benchmarks/scenario/simple/bcshield/config.yaml
+2020.06.30-22:04:54.301[32m info [39m [caliper] [cli-launch-worker] 	Set network configuration path: /home/ejulioaguiar/privacy-blockchain/caliper-bcshield/caliper-benchmarks/networks/fabric/bcshield/network-config.yaml
+2020.06.30-22:04:54.302[32m info [39m [caliper] [cli-launch-worker] 	Set SUT type: fabric:1.4.4
+2020.06.30-22:04:54.308[32m info [39m [caliper] [messenger.js] 	Creating messenger of type "process-worker"  for SUT fabric
+2020.06.30-22:04:58.771[90m debug[39m [caliper] [process-master-messenger] 	Sent message: {"to":["all"],"from":"27658","timestamp":"2020-07-01T01:04:58.770Z","data":{"type":"register"}}
+2020.06.30-22:04:58.772[90m debug[39m [caliper] [mqtt-worker-messenger] 	fabric worker processing orchestrator message: {"to":["all"],"from":"27658","timestamp":"2020-07-01T01:04:58.770Z","data":{"type":"register"}}
+2020.06.30-22:04:58.773[90m debug[39m [caliper] [mqtt-worker-messenger] 	fabric worker sent message: {"to":["orchestrator"],"from":"30861","timestamp":"2020-07-01T01:04:58.772Z","data":{"type":"connected"}}
+2020.06.30-22:04:58.774[90m debug[39m [caliper] [process-master-messenger] 	Processing worker message: {"to":["orchestrator"],"from":"30861","timestamp":"2020-07-01T01:04:58.772Z","data":{"type":"connected"}}
+2020.06.30-22:04:58.776[90m debug[39m [caliper] [mqtt-worker-messenger] 	fabric worker processing orchestrator message: {"to":["30861"],"from":"27658","timestamp":"2020-07-01T01:04:58.776Z","data":{"workerId":0,"type":"assignId"}}
+2020.06.30-22:04:58.776[90m debug[39m [caliper] [mqtt-worker-messenger] 	fabric worker sent message: {"to":["orchestrator"],"from":"30861","timestamp":"2020-07-01T01:04:58.776Z","data":{"type":"assigned"}}
+2020.06.30-22:04:58.778[90m debug[39m [caliper] [mqtt-worker-messenger] 	fabric worker processing orchestrator message: {"to":["all"],"from":"27658","timestamp":"2020-07-01T01:04:58.777Z","data":{"type":"initialize"}}
+2020.06.30-22:04:58.774[90m debug[39m [caliper] [worker-orchestrator] 	Dealing with connected message {"to":["orchestrator"],"from":"30861","timestamp":"2020-07-01T01:04:58.772Z","data":{"type":"connected"}}
+2020.06.30-22:04:58.774[90m debug[39m [caliper] [worker-orchestrator] 	Handling connected message from 30861 with data {"type":"connected"}
+2020.06.30-22:04:58.775[32m info [39m [caliper] [worker-orchestrator] 	1 workers connected, progressing to worker assignment phase.
+2020.06.30-22:04:58.775[32m info [39m [caliper] [worker-orchestrator] 	Workers currently unassigned, awaiting index assignment...
+2020.06.30-22:04:58.776[90m debug[39m [caliper] [process-master-messenger] 	Sent message: {"to":["30861"],"from":"27658","timestamp":"2020-07-01T01:04:58.776Z","data":{"workerId":0,"type":"assignId"}}
+2020.06.30-22:04:58.776[32m info [39m [caliper] [worker-orchestrator] 	Waiting for 1 workers to be assigned...
+2020.06.30-22:04:58.776[90m debug[39m [caliper] [process-master-messenger] 	Processing worker message: {"to":["orchestrator"],"from":"30861","timestamp":"2020-07-01T01:04:58.776Z","data":{"type":"assigned"}}
+2020.06.30-22:04:58.777[90m debug[39m [caliper] [worker-orchestrator] 	Dealing with assigned message {"to":["orchestrator"],"from":"30861","timestamp":"2020-07-01T01:04:58.776Z","data":{"type":"assigned"}}
+2020.06.30-22:04:58.777[90m debug[39m [caliper] [worker-orchestrator] 	Handling assigned message from 30861 with data {"type":"assigned"}
+2020.06.30-22:04:58.777[90m debug[39m [caliper] [worker-orchestrator] 	All workers completed phase assigned
+2020.06.30-22:04:58.777[32m info [39m [caliper] [worker-orchestrator] 	1 workers assigned, progressing to worker initialization phase.
+2020.06.30-22:04:58.777[32m info [39m [caliper] [worker-orchestrator] 	Waiting for 1 workers to be ready...
+2020.06.30-22:04:58.778[90m debug[39m [caliper] [process-master-messenger] 	Sent message: {"to":["all"],"from":"27658","timestamp":"2020-07-01T01:04:58.777Z","data":{"type":"initialize"}}
+2020.06.30-22:04:58.778[32m info [39m [caliper] [message-handler] 	Handling "init" message
+2020.06.30-22:04:58.778[90m debug[39m [caliper] [message-handler] 	Message content ({"type":"initialize"})
+2020.06.30-22:04:58.784[32m info [39m [caliper] [adapters/fabric] 	Initializing standard adaptor compatible with installed SDK: 1.4.4
+2020.06.30-22:04:59.674[32m info [39m [caliper] [adapters/fabric] 	Fabric SDK version: 1.4.4; TLS: server
+2020.06.30-22:05:00.159[32m info [39m [caliper] [adapters/fabric] 	HProvider's admin's materials are successfully loaded
+2020.06.30-22:05:00.166[32m info [39m [caliper] [adapters/fabric] 	Research's admin's materials are successfully loaded
+2020.06.30-22:05:00.172[32m info [39m [caliper] [adapters/fabric] 	Patient's admin's materials are successfully loaded
+2020.06.30-22:05:00.200[90m debug[39m [caliper] [mqtt-worker-messenger] 	fabric worker sent message: {"to":["orchestrator"],"from":"30861","timestamp":"2020-07-01T01:05:00.200Z","data":{"type":"ready"}}
+2020.06.30-22:05:00.200[32m info [39m [caliper] [message-handler] 	Handled successful "init" message for worker 0
+2020.06.30-22:05:00.200[90m debug[39m [caliper] [process-master-messenger] 	Processing worker message: {"to":["orchestrator"],"from":"30861","timestamp":"2020-07-01T01:05:00.200Z","data":{"type":"ready"}}
+2020.06.30-22:05:00.201[90m debug[39m [caliper] [worker-orchestrator] 	Dealing with ready message {"to":["orchestrator"],"from":"30861","timestamp":"2020-07-01T01:05:00.200Z","data":{"type":"ready"}}
+2020.06.30-22:05:00.201[90m debug[39m [caliper] [worker-orchestrator] 	Handling ready message from 30861 with data {"type":"ready"}
+2020.06.30-22:05:00.202[90m debug[39m [caliper] [worker-orchestrator] 	All workers completed phase ready
+2020.06.30-22:05:00.202[32m info [39m [caliper] [worker-orchestrator] 	1 workers ready, progressing to test preparation phase.
+2020.06.30-22:05:00.202[90m debug[39m [caliper] [process-master-messenger] 	Sent message: {"to":["30861"],"from":"27658","timestamp":"2020-07-01T01:05:00.202Z","data":{"label":"open","rateControl":{"type":"fixed-rate","opts":{"tps":100}},"trim":0,"args":{"money":10000},"cb":"benchmarks/scenario/simple/bcshield/open.js","testRound":0,"pushUrl":null,"numb":1000,"clientArgs":{},"totalClients":1,"type":"prepare"}}
+2020.06.30-22:05:00.202[90m debug[39m [caliper] [mqtt-worker-messenger] 	fabric worker processing orchestrator message: {"to":["30861"],"from":"27658","timestamp":"2020-07-01T01:05:00.202Z","data":{"label":"open","rateControl":{"type":"fixed-rate","opts":{"tps":100}},"trim":0,"args":{"money":10000},"cb":"benchmarks/scenario/simple/bcshield/open.js","testRound":0,"pushUrl":null,"numb":1000,"clientArgs":{},"totalClients":1,"type":"prepare"}}
+2020.06.30-22:05:00.203[32m info [39m [caliper] [message-handler] 	Handling "prepare" message
+2020.06.30-22:05:00.203[90m debug[39m [caliper] [message-handler] 	Message content ({"label":"open","rateControl":{"type":"fixed-rate","opts":{"tps":100}},"trim":0,"args":{"money":10000},"cb":"benchmarks/scenario/simple/bcshield/open.js","testRound":0,"pushUrl":null,"numb":1000,"clientArgs":{},"totalClients":1,"type":"prepare"})
+2020.06.30-22:05:00.204[90m debug[39m [caliper] [caliper-local-client.js] 	prepareTest() with: ({"label":"open","rateControl":{"type":"fixed-rate","opts":{"tps":100}},"trim":0,"args":{"money":10000},"cb":"benchmarks/scenario/simple/bcshield/open.js","testRound":0,"pushUrl":null,"numb":1000,"clientArgs":{},"totalClients":1,"type":"prepare"})
+2020.06.30-22:05:00.562[32m info [39m [caliper] [caliper-local-client.js] 	Info: client 0 prepare test :create dicom imagingphase starting...
+2020.06.30-22:05:05.268[32m info [39m [caliper] [caliper-local-client.js] 	Initialization ongoing...
+2020.06.30-22:05:05.564[32m info [39m [caliper] [caliper-local-client.js] 	Info: client 0 prepare test :create dicom imagingphase complete
+2020.06.30-22:05:05.565[90m debug[39m [caliper] [mqtt-worker-messenger] 	fabric worker sent message: {"to":["orchestrator"],"from":"30861","timestamp":"2020-07-01T01:05:05.565Z","data":{"type":"prepared"}}
+2020.06.30-22:05:05.565[32m info [39m [caliper] [message-handler] 	Handled successful "prepare" message for worker 0 and test round 0
+2020.06.30-22:05:05.565[90m debug[39m [caliper] [process-master-messenger] 	Processing worker message: {"to":["orchestrator"],"from":"30861","timestamp":"2020-07-01T01:05:05.565Z","data":{"type":"prepared"}}
+2020.06.30-22:05:05.567[90m debug[39m [caliper] [mqtt-worker-messenger] 	fabric worker processing orchestrator message: {"to":["30861"],"from":"27658","timestamp":"2020-07-01T01:05:05.567Z","data":{"label":"open","rateControl":{"type":"fixed-rate","opts":{"tps":100}},"trim":0,"args":{"money":10000},"cb":"benchmarks/scenario/simple/bcshield/open.js","testRound":0,"pushUrl":null,"numb":1000,"clientArgs":{},"totalClients":1,"type":"test"}}
+2020.06.30-22:05:05.566[90m debug[39m [caliper] [worker-orchestrator] 	Dealing with prepared message {"to":["orchestrator"],"from":"30861","timestamp":"2020-07-01T01:05:05.565Z","data":{"type":"prepared"}}
+2020.06.30-22:05:05.566[90m debug[39m [caliper] [worker-orchestrator] 	Handling prepared message from 30861 with data {"type":"prepared"}
+2020.06.30-22:05:05.566[32m info [39m [caliper] [worker-orchestrator] 	1 workers prepared, progressing to test phase.
+2020.06.30-22:05:05.566[90m debug[39m [caliper] [null-observer] 	No action taken by NullObserver on startWatch
+2020.06.30-22:05:05.567[90m debug[39m [caliper] [process-master-messenger] 	Sent message: {"to":["30861"],"from":"27658","timestamp":"2020-07-01T01:05:05.567Z","data":{"label":"open","rateControl":{"type":"fixed-rate","opts":{"tps":100}},"trim":0,"args":{"money":10000},"cb":"benchmarks/scenario/simple/bcshield/open.js","testRound":0,"pushUrl":null,"numb":1000,"clientArgs":{},"totalClients":1,"type":"test"}}
+2020.06.30-22:05:05.570[90m debug[39m [caliper] [process-master-messenger] 	Processing worker message: {"to":["orchestrator"],"from":"30861","timestamp":"2020-07-01T01:05:05.569Z","data":{"type":"txReset"}}
+2020.06.30-22:05:05.570[90m debug[39m [caliper] [worker-orchestrator] 	Dealing with txReset message
+2020.06.30-22:05:05.568[32m info [39m [caliper] [message-handler] 	Handling "test" message
+2020.06.30-22:05:05.568[90m debug[39m [caliper] [message-handler] 	Message content ({"label":"open","rateControl":{"type":"fixed-rate","opts":{"tps":100}},"trim":0,"args":{"money":10000},"cb":"benchmarks/scenario/simple/bcshield/open.js","testRound":0,"pushUrl":null,"numb":1000,"clientArgs":{},"totalClients":1,"type":"test"})
+2020.06.30-22:05:05.569[90m debug[39m [caliper] [caliper-local-client.js] 	doTest() with: ({"label":"open","rateControl":{"type":"fixed-rate","opts":{"tps":100}},"trim":0,"args":{"money":10000},"cb":"benchmarks/scenario/simple/bcshield/open.js","testRound":0,"pushUrl":null,"numb":1000,"clientArgs":{},"totalClients":1,"type":"test"})
+2020.06.30-22:05:05.570[90m debug[39m [caliper] [mqtt-worker-messenger] 	fabric worker sent message: {"to":["orchestrator"],"from":"30861","timestamp":"2020-07-01T01:05:05.569Z","data":{"type":"txReset"}}
+2020.06.30-22:05:05.570[32m info [39m [caliper] [caliper-local-client.js] 	txUpdateTime: 5000
+2020.06.30-22:05:05.570[90m debug[39m [caliper] [rateControl.js] 	Creating rate controller for client#0 for round#0 ({"type":"fixed-rate","opts":{"tps":100}})
+2020.06.30-22:05:05.572[32m info [39m [caliper] [caliper-local-client.js] 	Info: client 0 start test runFixedNumber():create dicom imaging

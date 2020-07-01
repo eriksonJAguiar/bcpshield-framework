@@ -67,10 +67,10 @@ channels:
         eventSource: true
 
     chaincodes:
-    - id: dicom
+    - id: dicom-caliper
       version: "1"
       language: golang
-      path: src/fabric/imaging-contract
+      path: fabric/imaging-contract
       #metadataPath: src/fabric/imaging-contract
 
 
