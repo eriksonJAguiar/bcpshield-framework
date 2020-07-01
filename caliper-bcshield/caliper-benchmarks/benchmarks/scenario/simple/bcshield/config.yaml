@@ -1,11 +1,10 @@
 ---
 test:
-  test:
   workers:
     type: local
     number: 5
   rounds:
-    - label: Create a dicom.
+    - label: Add Dicom.
       txDuration: 30
       rateControl:
         type: fixed-backlog
@@ -13,6 +12,9 @@ test:
           unfinished_per_client: 5
       workload:
         module: benchmarks/samples/fabric/fabcar/open-create.js
+        arguments:
+          assets: 1000
+  #      module: benchmarks/samples/fabric/fabcar/open-create.js
   # - label: query
   #   description: Test description for the query performance of the deployed chaincode
   #   txNumber: 1000
