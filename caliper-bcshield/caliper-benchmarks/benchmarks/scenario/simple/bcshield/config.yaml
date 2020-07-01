@@ -1,20 +1,22 @@
 ---
 test:
-  clients:
+  workers:
     type: local
-    number: 2
+    number: 1
   rounds:
-  - label: add Dicom
-    txNumber: 
-      - 500
-    rateControl:
-      - type: fixed-rate
+    - label: add asset
+      description: >-
+        Test description for the opening of an account through the deployed
+        chaincode
+      txNumber: 100
+      rateControl:
+        type: fixed-rate
         opts:
-          unfinished_per_client: 2
-    arguments:
-      txnPerBatch: 100
-    callback: benchmarks/scenario/simple/bcshield/open.js
-  
+          tps: 50
+      workload:
+        module: benchmarks/scenario/simple/bcshield/open.js
+        arguments:
+          txnPerBatch: 100
   #      module: benchmarks/samples/fabric/fabcar/open-create.js
   # - label: query
   #   description: Test description for the query performance of the deployed chaincode
