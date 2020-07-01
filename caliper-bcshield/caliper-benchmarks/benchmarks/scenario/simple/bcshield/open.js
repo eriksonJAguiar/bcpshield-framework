@@ -22,9 +22,10 @@ module.exports.init = function (blockchain, context, args) {
 function generateWorkload() {
     let workload = [];
     for (let i = 0; i < txnPerBatch; i++) {
+        var dt_value = new Date.toISOString();
         workload.push({
             chaincodeFunction: 'addAsset',
-            chaincodeArguments: [uuidv4(), "2808886", "Jeff", "Slavech", "4221513", "310 South Crouse Avenue Syracuse NY", "54", "01-01-1966", "OHIP", "AAAAA", "None", "Male", "ASASSAS", "1780694000", "67.0", "1.77", "C3L-01285", (new Date(new Date()-3600*1000*3).toISOString())],
+            chaincodeArguments: [uuidv4(), "2808886", "Jeff", "Slavech", "4221513", "310 South Crouse Avenue Syracuse NY", "54", "01-01-1966", "OHIP", "AAAAA", "None", "Male", "ASASSAS", "1780694000", "67.0", "1.77", "C3L-01285", dt_value],
         });
     }
     return workload;
