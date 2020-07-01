@@ -1,8 +1,8 @@
 ---
 test:
-  client:
+  workers:
     type: local
-    number: 1
+    number: 3
   rounds:
     - label: add asset
       description: >-
@@ -15,7 +15,7 @@ test:
           tps: 50
       callback: benchmarks/scenario/simple/bcshield/open-create.js
       arguments:
-        txnPerBatch: 100
+        dicom: 100
   #      module: benchmarks/samples/fabric/fabcar/open-create.js
   # - label: query
   #   description: Test description for the query performance of the deployed chaincode
