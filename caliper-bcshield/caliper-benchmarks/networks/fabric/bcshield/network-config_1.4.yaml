@@ -70,7 +70,7 @@ channels:
     - id: dicom
       version: "1"
       language: golang
-      path: src/fabric/imaging-contract
+      path: fabric/imaging-contract
       #metadataPath: src/fabric/imaging-contract
 
 
