@@ -25,7 +25,7 @@ test:
   #     type: fixed-rate
   #     opts:
   #       tps: 100
-  #   callback: benchmarks/scenario/simple/query.js
+  #   callback: benchmarks/scenario/simple/bcshield/query.js
   # - label: transfer
   #   description: Test description for transfering money between accounts
   #   txNumber: 100
