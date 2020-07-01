@@ -32,7 +32,7 @@ class Workload extends WorkloadModuleBase {
     async initializeWorkloadModule(workerIndex, totalWorkers, roundIndex, roundArguments, sutAdapter, sutContext) {
         await super.initializeWorkloadModule(workerIndex, totalWorkers, roundIndex, roundArguments, sutAdapter, sutContext);
 
-        if(!this.roundArguments.hasOwnProperty('txnPerBatch')) {
+        if(this.roundArguments.txnPerBatch == null) {
             throw new Error('simple.open - \'ducom\' is missed in the arguments');
         }
 
