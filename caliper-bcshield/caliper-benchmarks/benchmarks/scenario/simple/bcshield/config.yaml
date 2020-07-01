@@ -5,7 +5,8 @@ test:
     number: 5
   rounds:
   - label: add Dicom
-    txNumber: 500
+    txNumber: 
+      - 500
     rateControl:
       type: fixed-rate
       opts:
