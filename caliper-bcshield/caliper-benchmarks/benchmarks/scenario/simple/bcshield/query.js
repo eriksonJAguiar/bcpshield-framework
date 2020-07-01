@@ -14,7 +14,7 @@
 
 'use strict';
 
-module.exports.info  = 'querying assets';
+module.exports.info  = 'querying asset';
 
 
 let bc, contx;
