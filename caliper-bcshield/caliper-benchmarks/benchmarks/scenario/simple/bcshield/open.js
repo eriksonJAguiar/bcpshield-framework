@@ -1,6 +1,6 @@
 'use strict';
 
-module.exports.info = 'create dicom image';
+module.exports.info = 'create dicom imaging';
 const { v1: uuidv4 } = require('uuid')
 
 let dicom_array = [];
@@ -19,7 +19,7 @@ module.exports.init = function (blockchain, context, args) {
 };
 
 
-function generateWorkload() {
+async function generateWorkload() {
     let workload = [];
     for (let i = 0; i < txnPerBatch; i++) {
         workload.push({
@@ -31,7 +31,7 @@ function generateWorkload() {
 }
 
 module.exports.run = function () {
-    let args = generateWorkload();
+    let args = await generateWorkload();
     return bc.invokeSmartContract(contx, 'dicom-caliper', '1', args);
 };
 
