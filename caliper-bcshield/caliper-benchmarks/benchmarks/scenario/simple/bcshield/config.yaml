@@ -6,8 +6,7 @@ test:
     number: 5
   rounds:
     - label: Create a dicom.
-      txDuration:
-        - 30
+      txDuration: 30
       rateControl:
         - type: fixed-backlog
           opts:
