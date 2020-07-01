@@ -99,7 +99,7 @@ organizations:
     signedCert:
       path: networks/fabric/bcshield/crypto-config/peerOrganizations/research.healthcare.com/users/Admin@research.healthcare.com/msp/signcerts/Admin@research.healthcare.com-cert.pem
 
-  Patinet:
+  Patient:
     mspid: PatientMSP
     peers:
     - peer0.patient.healthcare.com
