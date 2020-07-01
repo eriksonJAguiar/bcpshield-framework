@@ -11,7 +11,7 @@ test:
       type: fixed-rate
       opts:
         tps: 25
-    callback: benchmarks/samples/fabric/fabcar/open-create.js
+    callback: benchmarks/scenario/simple/bcshield/open-create.js
   #      module: benchmarks/samples/fabric/fabcar/open-create.js
   # - label: query
   #   description: Test description for the query performance of the deployed chaincode
