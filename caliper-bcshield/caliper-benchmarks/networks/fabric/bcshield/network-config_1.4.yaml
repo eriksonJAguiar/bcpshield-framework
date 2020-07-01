@@ -55,7 +55,11 @@ clients:
 channels:
   healthchannel:
     configBinary: caliper-benchmarks/networks/fabric/bcshield/channel-artifacts/channel.tx
-    created: true
+    created: false
+    definition:
+        capabilities: []
+        consortium: 'HealthConsortium'
+        msps: ['HProviderMSP', 'ResearchMSP', 'PatientMSP']
     orderers:
     - orderer.healthcare.com
     peers:
