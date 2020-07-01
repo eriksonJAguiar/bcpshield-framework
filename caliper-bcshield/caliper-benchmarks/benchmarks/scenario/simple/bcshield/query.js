@@ -6,7 +6,7 @@
 * http://www.apache.org/licenses/LICENSE-2.0
 *
 * Unless required by applicable law or agreed to in writing, software
-* distributed under the License is distributed on an "AS IS" BASIS,
+* 'di'stributed under the License is distributed on an "AS IS" BASIS,
 * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 * See the License for the specific language governing permissions and
 * limitations under the License.
@@ -14,7 +14,7 @@
 
 'use strict';
 
-module.exports.info  = 'querying accounts';
+module.exports.info  = 'querying assets';
 
 
 let bc, contx;
@@ -34,14 +34,14 @@ module.exports.run = function() {
 
     if (bc.getType() === 'fabric') {
         let args = {
-            chaincodeFunction: 'query',
+            chaincodeFunction: 'getAsset',
             chaincodeArguments: [acc],
         };
 
-        return bc.bcObj.querySmartContract(contx, 'simple', 'v0', args, 10);
+        return bc.bcObj.querySmartContract(contx, 'dicom-caliper', '1', args, 10);
     } else {
         // NOTE: the query API is not consistent with the invoke API
-        return bc.queryState(contx, 'simple', 'v0', acc);
+        return bc.queryState(contx, 'dicom-caliper', '1', acc);
     }
 };
 

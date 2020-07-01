@@ -33,7 +33,7 @@ function generateWorkload() {
 
 module.exports.run = function () {
     let args = generateWorkload();
-    return bc.invokeSmartContract(contx, 'dicom', '1', args);
+    return bc.invokeSmartContract(contx, 'dicom-caliper', '1', args);
 };
 
 module.exports.end = function () {
