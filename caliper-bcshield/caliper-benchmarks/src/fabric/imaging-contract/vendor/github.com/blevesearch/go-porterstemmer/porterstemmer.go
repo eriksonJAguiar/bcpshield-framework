@@ -10,7 +10,7 @@ func isConsonant(s []rune, i int) bool {
 	//DEBUG
 	//log.Printf("isConsonant: [%+v]", string(s[i]))
 
-	var result bool
+	result := true
 
 	switch s[i] {
 	case 'a', 'e', 'i', 'o', 'u':

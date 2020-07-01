@@ -23,25 +23,24 @@ import (
 
 // Define the DICOM imaging attributres
 type Dicom struct {
-	DicomID              string    `json:"dicomID"`
-	PatientID            string    `json:"patientID"`
-	DocType              string    `json:"docType"`
-	PatientFirstname     string    `json:"patientFirstname"`
-	PatientLastname      string    `json:"patientLastname"`
-	PatientTelephone     string    `json:"patientTelephone"`
-	PatientAddress       string    `json:"patientAddress"`
-	PatientAge           int       `json:"patientAge"`
-	PatientBirth         string    `json:"patientBirth"`
-	PatientOrganization  string    `json:"patientOrganization"`
-	PatientMothername    string    `json:"patientMothername"`
-	PatientReligion      string    `json:"patientReligion"`
-	PatientSex           string    `json:"patientSex"`
-	PatientGender        string    `json:"patientGender"`
-	PatientInsuranceplan string    `json:"patientInsuranceplan"`
-	PatientWeigth        float64   `json:"patientWeigth"`
-	PatientHeigth        float64   `json:"patientHeigth"`
-	MachineModel         string    `json:"machineModel"`
-	Timestamp            time.Time `json:"timestamp"`
+	DicomID              string  `json:"dicomID"`
+	PatientID            string  `json:"patientID"`
+	DocType              string  `json:"docType"`
+	PatientFirstname     string  `json:"patientFirstname"`
+	PatientLastname      string  `json:"patientLastname"`
+	PatientTelephone     string  `json:"patientTelephone"`
+	PatientAddress       string  `json:"patientAddress"`
+	PatientAge           int     `json:"patientAge"`
+	PatientBirth         string  `json:"patientBirth"`
+	PatientOrganization  string  `json:"patientOrganization"`
+	PatientMothername    string  `json:"patientMothername"`
+	PatientReligion      string  `json:"patientReligion"`
+	PatientSex           string  `json:"patientSex"`
+	PatientGender        string  `json:"patientGender"`
+	PatientInsuranceplan string  `json:"patientInsuranceplan"`
+	PatientWeigth        float64 `json:"patientWeigth"`
+	PatientHeigth        float64 `json:"patientHeigth"`
+	MachineModel         string  `json:"machineModel"`
 }
 
 /*
@@ -141,18 +140,13 @@ func (cc *HealthcareChaincode) addAsset(stub shim.ChaincodeStubInterface, args [
 		return shim.Error("16th argument must be a non-empty string")
 	} else if len(args[16]) <= 0 {
 		return shim.Error("17th argument must be a non-empty string")
-	} else if len(args[17]) <= 0 {
-		return shim.Error("18th argument must be a non-empty string")
 	}
 
 	patientAge, err := strconv.Atoi(args[6])
 	if err != nil {
 		return shim.Error("7 argument must be a numeric string")
 	}
-	timestamp, err := time.Parse(time.RFC3339, args[17])
-	if err != nil {
-		return shim.Error("18 argument must be a datetime string")
-	}
+
 	patientWeigth, err := strconv.ParseFloat(args[14], 64)
 	if err != nil {
 		return shim.Error("14 argument must be a numeric string")
@@ -203,7 +197,6 @@ func (cc *HealthcareChaincode) addAsset(stub shim.ChaincodeStubInterface, args [
 		PatientWeigth:        patientWeigth,
 		PatientHeigth:        patientHeigth,
 		MachineModel:         machineModel,
-		Timestamp:            timestamp,
 	}
 
 	dicomJSON, err := json.Marshal(rec)
@@ -274,7 +267,6 @@ func (cc *HealthcareChaincode) addAssetPriv(stub shim.ChaincodeStubInterface, ar
 	if err != nil {
 		return shim.Error("7 argument must be a numeric string")
 	}
-	timestamp := time.Now()
 	patientWeigth, err := strconv.ParseFloat(args[14], 64)
 	if err != nil {
 		return shim.Error("14 argument must be a numeric string")
@@ -325,7 +317,6 @@ func (cc *HealthcareChaincode) addAssetPriv(stub shim.ChaincodeStubInterface, ar
 		PatientWeigth:        patientWeigth,
 		PatientHeigth:        patientHeigth,
 		MachineModel:         machineModel,
-		Timestamp:            timestamp,
 	}
 
 	dicomJSON, err := json.Marshal(rec)
@@ -1337,7 +1328,6 @@ func anonimizeKAnonimity(allDicom []Dicom, assets []Dicom) ([]byte, error) {
 		PatientWeigth        string `json:"patientWeigth"`
 		PatientHeigth        string `json:"patientHeigth"`
 		MachineModel         string `json:"machineModel"`
-		Timestamp            string `json:"timestamp"`
 	}
 
 	var data []documentValue
@@ -1364,7 +1354,6 @@ func anonimizeKAnonimity(allDicom []Dicom, assets []Dicom) ([]byte, error) {
 		dicomNew.PatientWeigth = anonymizedWeigth[i]
 		dicomNew.PatientHeigth = anonymizedHeigth[i]
 		dicomNew.MachineModel = anonimizedModelMachine[i]
-		dicomNew.Timestamp = time.Now().String()
 
 		data = append(data, dicomNew)
 	}
