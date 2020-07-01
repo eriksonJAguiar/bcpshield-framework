@@ -1,7 +1,10 @@
+./caliper-bcshield/caliper-benchmarks/node_modules/
+./caliper-bcshield/caliper-benchmarks/networks/fabric/bcshield/channel-artifacts
+./caliper-bcshield/caliper-benchmarks/networks/fabric/bcshield/crypto-config/
 ./api-dicom/server/keys/*
 ./api-dicom/server/node_modules/*
 ./api-dicom/node_modules/*
 ./hyperledger-network/channel-artifacts/*
 ./hyperledger-network/crypto-config/*
 ./hyperledger-network/wallets/*
-./hyperledger-network/explorer/crypto
+./hyperledger-network/explorer/crypto/
