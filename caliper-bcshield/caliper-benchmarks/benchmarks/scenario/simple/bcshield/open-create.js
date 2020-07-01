@@ -85,12 +85,11 @@ class CreateCarWorkload extends WorkloadModuleBase {
         // let carMake = makes[Math.floor(Math.random() * makes.length)];
         // let carModel = models[Math.floor(Math.random() * models.length)];
         // let carOwner = owners[Math.floor(Math.random() * owners.length)];
-        var dcm_id = 'Dicom_' + this.workerIndex + '_CAR' + this.txIndex.toString()
-        var dcm = [dcm_id, "2808886", "Jeff", "Slavech", "4221513", "310 South Crouse Avenue Syracuse NY", "54", "01-01-1966", "OHIP", "AAAAA", "None", "Male", "ASASSAS", "1780694000", "67.0", "1.77", "C3L-01285"];
+        var dcm_id = 'Dicom_' + this.workerIndex + '_CAR' + this.txIndex.toString();
         
         let args = {
             chaincodeFunction: 'addAsset',
-            chaincodeArguments: [dcm]
+            chaincodeArguments: [dcm_id, "2808886", "Jeff", "Slavech", "4221513", "310 South Crouse Avenue Syracuse NY", "54", "01-01-1966", "OHIP", "AAAAA", "None", "Male", "ASASSAS", "1780694000", "67.0", "1.77", "C3L-01285"],
         };
 
         return this.sutAdapter.invokeSmartContract(this.sutContext, 'dicom-cliper', '1', args, 30);
