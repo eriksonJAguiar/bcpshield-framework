@@ -9,7 +9,7 @@ caliper:
   #   end: docker-compose -f networks/fabric/docker-compose/2hproviderpeercouchdb_solo_raft/docker-compose-tls.yaml down;(test -z \"$(docker ps -aq)\") || docker rm $(docker ps -aq);(test -z \"$(docker images dev* -q)\") || docker rmi $(docker images dev* -q);rm -rf /tmp/hfc-*
 
 info:
-  Version: 2.0.0
+  Version: 1.4.4
   Size: 3 Orgs with 2 Peer
   Orderer: solo
   Distribution: Single Host

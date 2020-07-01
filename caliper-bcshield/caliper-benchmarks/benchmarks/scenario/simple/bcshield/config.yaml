@@ -8,9 +8,9 @@ test:
     - label: Create a dicom.
       txDuration: 30
       rateControl:
-        - type: fixed-backlog
-          opts:
-            unfinished_per_client: 5
+        type: fixed-backlog
+        opts:
+          unfinished_per_client: 5
       workload:
         module: benchmarks/samples/fabric/fabcar/open-create.js
   # - label: query
