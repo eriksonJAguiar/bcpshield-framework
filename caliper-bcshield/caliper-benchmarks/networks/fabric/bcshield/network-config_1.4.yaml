@@ -54,7 +54,7 @@ clients:
 
 channels:
   healthchannel:
-    configBinary: networks/fabric/bcshield/healthchannel.tx
+    configBinary: caliper-benchmarks/networks/fabric/bcshield/channel-artifacts/channel.tx
     created: true
     orderers:
     - orderer.healthcare.com
