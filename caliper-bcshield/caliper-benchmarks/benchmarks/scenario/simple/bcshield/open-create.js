@@ -85,7 +85,7 @@ class CreateCarWorkload extends WorkloadModuleBase {
         // let carMake = makes[Math.floor(Math.random() * makes.length)];
         // let carModel = models[Math.floor(Math.random() * models.length)];
         // let carOwner = owners[Math.floor(Math.random() * owners.length)];
-        var dcm_id = 'Dicom_' + this.workerIndex + '_CAR' + this.txIndex.toString();
+        var dcm_id = 'Patient_' + this.workerIndex + '_Dicom' + this.txIndex.toString();
         
         let args = {
             chaincodeFunction: 'addAsset',

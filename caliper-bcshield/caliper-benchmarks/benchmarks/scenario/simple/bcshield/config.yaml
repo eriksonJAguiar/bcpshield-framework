@@ -9,7 +9,8 @@ test:
   rounds:
   - label: open
     description: Test description for the opening of an account through the deployed chaincode
-    txNumber: 1000
+    txNumber: 
+      - 1000
     rateControl:
       type: fixed-rate
       opts:
