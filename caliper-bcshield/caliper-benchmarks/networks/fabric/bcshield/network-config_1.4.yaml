@@ -54,7 +54,6 @@ clients:
 
 channels:
   healthchannel:
-    configBinary: caliper-benchmarks/networks/fabric/bcshield/channel-artifacts/channel.tx
     created: false
     definition:
         capabilities: []
