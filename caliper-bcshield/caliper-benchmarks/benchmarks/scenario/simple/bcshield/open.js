@@ -1,6 +1,6 @@
 'use strict';
 
-module.exports.info = 'create dicom imaging';
+module.exports.info = 'create dicom image';
 const { v1: uuidv4 } = require('uuid')
 
 let dicom_array = [];
