@@ -12,8 +12,8 @@ test:
         opts:
         tps: 25
     arguments:
-      dicom: 100
-    callback: benchmarks/scenario/simple/bcshield/open-create.js
+      txnPerBatch: 100
+    callback: benchmarks/scenario/simple/bcshield/open.js
   
   #      module: benchmarks/samples/fabric/fabcar/open-create.js
   # - label: query
