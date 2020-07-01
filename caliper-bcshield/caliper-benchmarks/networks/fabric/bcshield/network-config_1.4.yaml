@@ -59,6 +59,7 @@ channels:
         capabilities: []
         consortium: 'HealthConsortium'
         msps: ['HProviderMSP', 'ResearchMSP', 'PatientMSP']
+        version: 0
     orderers:
     - orderer.healthcare.com
     peers:
