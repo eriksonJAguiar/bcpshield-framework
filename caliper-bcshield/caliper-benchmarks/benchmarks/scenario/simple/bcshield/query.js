@@ -18,19 +18,19 @@ module.exports.info  = 'querying asset';
 
 
 let bc, contx;
-let account_array;
+let dicom_array;
 
 module.exports.init = function(blockchain, context, args) {
     const open = require('./open.js');
     bc       = blockchain;
     contx    = context;
-    account_array = open.account_array;
+    dicom_array = open.dicom_array;
 
     return Promise.resolve();
 };
 
 module.exports.run = function() {
-    const acc  = account_array[Math.floor(Math.random()*(account_array.length))];
+    const acc  = dicom_array[Math.floor(Math.random()*(dicom_array.length))];
 
     if (bc.getType() === 'fabric') {
         let args = {

@@ -22,10 +22,9 @@ module.exports.init = function (blockchain, context, args) {
 function generateWorkload() {
     let workload = [];
     for (let i = 0; i < txnPerBatch; i++) {
-
         workload.push({
             chaincodeFunction: 'addAsset',
-            chaincodeArguments: [uuidv4(), "10005", "11110", "Bob", "Singer", "(43) 9900 0000", "São Paulo SP", "28", "1992-15-08", "USP", "AAAAA", "None", "Male", "ASASSAS", "Plan X", "75.5", "1.89", "ASAEDF"],
+            chaincodeArguments: [uuidv4(), "2808886", "Jeff", "Slavech", "4221513", "310 South Crouse Avenue Syracuse NY", "54", "01-01-1966", "OHIP", "AAAAA", "None", "Male", "ASASSAS", "1780694000", "67.0", "1.77", "C3L-01285"],
         });
     }
     return workload;
@@ -40,4 +39,4 @@ module.exports.end = function () {
     return Promise.resolve();
 };
 
-module.exports.account_array = account_array;
+module.exports.dicom_array = dicom_array;

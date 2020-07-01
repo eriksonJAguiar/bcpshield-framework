@@ -18,14 +18,14 @@ test:
       money: 10000
       txnPerBatch: 50
     callback: benchmarks/scenario/simple/bcshield/open.js
-  # - label: query
-  #   description: Test description for the query performance of the deployed chaincode
-  #   txNumber: 100
-  #   rateControl:
-  #     type: fixed-rate
-  #     opts:
-  #       tps: 100
-  #   callback: benchmarks/scenario/simple/bcshield/query.js
+  - label: query
+    description: Test description for the query performance of the deployed chaincode
+    txNumber: 5000
+    rateControl:
+      type: fixed-rate
+      opts:
+        tps: 100
+    callback: benchmarks/scenario/simple/bcshield/query.js
   # - label: transfer
   #   description: Test description for transfering money between accounts
   #   txNumber: 100
