@@ -39,11 +39,5 @@ monitor:
   - docker
   docker:
     name:
-    - peer0.hprovider.healthcare.com
-    - peer1.hprovider.healthcare.com
-    - peer0.research.healthcare.com
-    - peer1.research.healthcare.com
-    - peer0.patient.healthcare.com
-    - peer1.patient.healthcare.com
-    - orderer.healthcare.com
+    - all
   interval: 1
