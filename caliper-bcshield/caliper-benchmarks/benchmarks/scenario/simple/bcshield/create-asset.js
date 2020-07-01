@@ -53,15 +53,15 @@ function get26Num(number){
 
 let prefix;
 /**
- * Generate unique account key for the transaction
- * @returns {String} account key
+ * Generate unique dicom key for the transaction
+ * @returns {String} dicom key
  */
 function generateAccount() {
     // should be [a-z]{1,9}
     if(typeof prefix === 'undefined') {
         prefix = get26Num(process.pid);
     }
-    return prefix + get26Num(account_array.length+1);
+    return prefix + get26Num(dicom_array.length+1);
 }
 
 /**
@@ -91,4 +91,4 @@ module.exports.end = function() {
     return Promise.resolve();
 };
 
-module.exports.dicom_array = account_array;
+module.exports.dicom_array = dicom_array;
