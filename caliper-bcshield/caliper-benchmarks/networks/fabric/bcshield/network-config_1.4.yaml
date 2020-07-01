@@ -54,7 +54,7 @@ clients:
 
 channels:
   healthchannel:
-    created: false
+    created: true
     definition:
         capabilities: []
         consortium: 'HealthConsortium'
