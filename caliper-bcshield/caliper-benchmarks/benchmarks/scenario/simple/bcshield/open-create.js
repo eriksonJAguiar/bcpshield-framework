@@ -15,7 +15,7 @@ class Workload extends WorkloadModuleBase {
     constructor() {
         super();
         this.txnPerBatch = 1;
-        this.initDicom = 0;
+        //this.initDicom = 0;
         this.prefix = '';
     }
 
@@ -32,11 +32,11 @@ class Workload extends WorkloadModuleBase {
     async initializeWorkloadModule(workerIndex, totalWorkers, roundIndex, roundArguments, sutAdapter, sutContext) {
         await super.initializeWorkloadModule(workerIndex, totalWorkers, roundIndex, roundArguments, sutAdapter, sutContext);
 
-        if(!this.roundArguments.hasOwnProperty('dicom')) {
+        if(!this.roundArguments.hasOwnProperty('txnPerBatch')) {
             throw new Error('simple.open - \'ducom\' is missed in the arguments');
         }
 
-        this.initDicom = this.roundArguments.dicom;
+        //this.initDicom = this.roundArguments.dicom;
         this.txnPerBatch = this.roundArguments.txnPerBatch || 1;
         this.prefix = this.workerIndex.toString();
     }

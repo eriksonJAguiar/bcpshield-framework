@@ -13,7 +13,7 @@ test:
         type: fixed-rate
         opts:
           tps: 50
-      callback: benchmarks/scenario/simple/bcshield/open.js
+      callback: benchmarks/scenario/simple/bcshield/open-create.js
       arguments:
         txnPerBatch: 100
   #      module: benchmarks/samples/fabric/fabcar/open-create.js
