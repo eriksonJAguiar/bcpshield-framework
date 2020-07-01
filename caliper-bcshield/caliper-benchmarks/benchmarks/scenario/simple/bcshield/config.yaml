@@ -2,7 +2,7 @@
 test:
   workers:
     type: local
-    number: 3
+    number: 1
   rounds:
     - label: add asset
       description: >-
@@ -16,6 +16,15 @@ test:
       callback: benchmarks/scenario/simple/bcshield/create-asset.js
       arguments:
         txnPerBatch: 100
+    - label: query asset
+      description:  >-
+         Query a asset on blockchain
+      txNumber: 100
+      rateControl:
+        type: fixed-rate
+        opts:
+          tps: 50
+      callback: benchmarks/scenario/simple/bcshield/get-asset.js
   #      module: benchmarks/samples/fabric/fabcar/open-create.js
   # - label: query
   #   description: Test description for the query performance of the deployed chaincode
