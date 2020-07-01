@@ -17,13 +17,13 @@ test:
     arguments:
       money: 10000
     callback: benchmarks/scenario/simple/bcshield/open.js
-  - label: query
-    description: Test description for the query performance of the deployed chaincode
-    txNumber: 1000
-    rateControl:
-      type: fixed-rate
-      opts:
-        tps: 50
+  # - label: query
+  #   description: Test description for the query performance of the deployed chaincode
+  #   txNumber: 1000
+  #   rateControl:
+  #     type: fixed-rate
+  #     opts:
+  #       tps: 50
   #   callback: benchmarks/scenario/simple/bcshield/query.js
   # - label: transfer
   #   description: Test description for transfering money between accounts
@@ -40,5 +40,11 @@ monitor:
   - docker
   docker:
     name:
-    - all
+    - peer0.hprovider.healthcare.com
+    - peer1.hprovider.healthcare.com
+    - peer0.research.healthcare.com
+    - peer1.research.healthcare.com
+    - peer0.patient.healthcare.com
+    - peer1.patient.healthcare.com
+    - orderer.healthcare.com
   interval: 1
