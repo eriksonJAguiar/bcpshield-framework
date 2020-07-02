@@ -15,14 +15,15 @@
 'use strict';
 
 module.exports.info  = 'create Assets';
+const { uuid } = require('uuidv4');
 
 let dicom_array = [];
 let txnPerBatch;
-let initMoney;
+let initAsset;
 let bc, contx;
-module.exports.init = function(blockchain, context, args) {
-    // if(!args.hasOwnProperty('money')) {
-    //     return Promise.reject(new Error('simple.open - \'money\' is missed in the arguments'));
+module.exports.init = async function(blockchain, context, args) {
+    // if(!args.hasOwnProperty('dicom')) {
+    //     return Promise.reject(new Error('create asset - \'dicom\' is missed in the arguments'));
     // }
 
     if(!args.hasOwnProperty('txnPerBatch')) {
@@ -36,42 +37,29 @@ module.exports.init = function(blockchain, context, args) {
     return Promise.resolve();
 };
 
-const dic = 'abcdefghijklmnopqrstuvwxyz';
+
 /**
  * Generate string by picking characters from dic variable
  * @param {*} number character to select
  * @returns {String} string generated based on @param number
  */
-function get26Num(number){
-    let result = '';
-    while(number > 0) {
-        result += dic.charAt(number % 26);
-        number = parseInt(number/26);
-    }
-    return result;
-}
 
-let prefix;
 /**
  * Generate unique dicom key for the transaction
  * @returns {String} dicom key
  */
-function generateAccount() {
-    // should be [a-z]{1,9}
-    if(typeof prefix === 'undefined') {
-        prefix = get26Num(process.pid);
-    }
-    return prefix + get26Num(dicom_array.length+1);
+async function generateAccount() {
+   return uuid();
 }
 
 /**
  * Generates simple workload
  * @returns {Object} array of json objects
  */
-function generateWorkload() {
+async function generateWorkload() {
     let workload = [];
     for(let i= 0; i < txnPerBatch; i++) {
-        let acc_id = generateAccount();
+        let acc_id = await generateAccount();
         dicom_array.push(acc_id);
 
         workload.push({
@@ -83,7 +71,7 @@ function generateWorkload() {
 }
 
 module.exports.run = function() {
-    let args = generateWorkload();
+    let args = await generateWorkload();
     return bc.invokeSmartContract(contx, 'dicom-caliper', '1', args, 100);
 };
 
