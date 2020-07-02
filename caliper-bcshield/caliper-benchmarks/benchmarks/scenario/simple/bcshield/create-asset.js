@@ -72,7 +72,7 @@ function generateAccount() {
     if(typeof prefix === 'undefined') {
         prefix = get26Num(process.pid);
     }
-    return prefix + get26Num(account_array.length+1);
+    return prefix + get26Num(dicom_array.length+1);
 }
 
 /**
