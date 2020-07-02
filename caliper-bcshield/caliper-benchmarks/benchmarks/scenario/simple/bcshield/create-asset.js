@@ -48,7 +48,7 @@ module.exports.init = async function(blockchain, context, args) {
  * Generate unique dicom key for the transaction
  * @returns {String} dicom key
  */
-async function generateAccount() {
+function generateAccount() {
    return uuid();
 }
 
@@ -56,10 +56,10 @@ async function generateAccount() {
  * Generates simple workload
  * @returns {Object} array of json objects
  */
-async function generateWorkload() {
+function generateWorkload() {
     let workload = [];
     for(let i= 0; i < txnPerBatch; i++) {
-        let acc_id = await generateAccount();
+        let acc_id = generateAccount();
         dicom_array.push(acc_id);
 
         workload.push({
@@ -71,7 +71,7 @@ async function generateWorkload() {
 }
 
 module.exports.run = function() {
-    let args = await generateWorkload();
+    let args = generateWorkload();
     return bc.invokeSmartContract(contx, 'dicom-caliper', '1', args, 100);
 };
 
