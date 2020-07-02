@@ -147,7 +147,10 @@ func (cc *HealthcareChaincode) addAsset(stub shim.ChaincodeStubInterface, args [
 	if err != nil {
 		return shim.Error("7 argument must be a numeric string")
 	}
-	timestamp := time.Now()
+	timestamp, err := time.Parse(time.RFC3339, "2020-06-24T21:30:55.906555738Z")
+	if err != nil {
+		return shim.Error("Erro convert date argument must be a datetime string")
+	}
 	patientWeigth, err := strconv.ParseFloat(args[14], 64)
 	if err != nil {
 		return shim.Error("14 argument must be a numeric string")
