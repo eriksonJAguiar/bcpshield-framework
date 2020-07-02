@@ -9,11 +9,12 @@ test:
   rounds:
   - label: create
     description: Create asset dicom
-    txNumber: 100
+    txDuration: 15
     rateControl:
-      type: fixed-rate
+      type: linear-rate
       opts:
-        tps: 50
+        startingTps: 25
+        finishingTps: 75
     arguments:
       dicom: 10000
     callback: benchmarks/scenario/simple/bcshield/create-asset.js
