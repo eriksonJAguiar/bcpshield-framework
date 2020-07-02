@@ -18,14 +18,14 @@ test:
     arguments:
       dicom: 10000
     callback: benchmarks/scenario/simple/bcshield/create-asset.js
-  - label: query
-    description: query dicom asset
-    txNumber: 100
-    rateControl:
-      type: fixed-rate
-      opts:
-        tps: 100
-    callback: benchmarks/scenario/simple/bcshield/get-asset.js
+  # - label: query
+  #   description: query dicom asset
+  #   txNumber: 100
+  #   rateControl:
+  #     type: fixed-rate
+  #     opts:
+  #       tps: 100
+  #   callback: benchmarks/scenario/simple/bcshield/get-asset.js
 #   - label: transfer
 #     description: Test description for transfering money between accounts
 #     txNumber: 100
