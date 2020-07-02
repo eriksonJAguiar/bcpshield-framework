@@ -1,5 +1,5 @@
 from peer import Peer
-from experiment import Experiment, RequestGetAsset, RequestPost, RequestGetAsset
+from experiment import Experiment
 
 class Server():
 
@@ -27,7 +27,7 @@ class Server():
 
 class Client():
 
-    def init(self):
+    def init(self, transaction_number=50):
         peer0_hprovider = Peer('35.211.244.95',7051,"hprovider")
         peer1_hprovider = Peer('35.211.244.95',8051,"hprovider")
 
@@ -46,4 +46,9 @@ class Client():
         expr.add_peer(peer0_patient)
         expr.add_peer(peer1_patient)
 
-        expr.run_network_experiments('./dataset/patients_dicom_new.csv',"35.211.244.95",3000, RequestGetAsset())
+        print("Start running ...")
+        for i in range(1):
+            print(f"Running {i+1} round")
+            expr.measure_transations(transaction_number)
+        
+        print("Finish running")

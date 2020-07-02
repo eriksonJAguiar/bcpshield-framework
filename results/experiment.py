@@ -1,6 +1,8 @@
 from peer import Peer
 from tcp_latency import measure_latency
 from ipfs_dicom import IpfsDicom
+from multiprocessing import Process, Lock
+
 
 import pandas as pd
 import numpy as np
@@ -15,8 +17,20 @@ import csv
 import json
 import os
 import hashlib
+import uuid
+import queue
+import statistics
 
-
+# Sharing values
+thr_lock = threading.Lock()
+transactions_number = 0
+flag = 0
+ls_trans_amount = list()
+ls_trans_time = list()
+data_id = list()
+general_time = None
+throughput_general = list()
+size_send = 0
 
 class Experiment(object):
 
@@ -24,8 +38,8 @@ class Experiment(object):
         self.__peers: list(Peer) = list()
         self.__thread_request: list(threading.Thread) = list()
         self.__global_time: float = 0.0
-        self.__writer_file_lock = threading.Lock()
-        os.system("mkdir ~/.ipfs-temp")
+        #self.__writer_file_lock = threading.Lock()
+        #os.system("mkdir ~/.ipfs-temp")
 
     def add_peer(self, peer: Peer) -> None:
         """Function to add peer on experiments
@@ -48,14 +62,15 @@ class Experiment(object):
             continue
 
         self.__writer_file_lock.acquire()
-        os.system("sudo lsof -n -i :%d  | awk '/LISTEN/{print $2}' >> pid_%d.txt"%(port,port))
-        
+        os.system(
+            "sudo lsof -n -i :%d  | awk '/LISTEN/{print $2}' >> pid_%d.txt" % (port, port))
+
         pid: int
 
-        with open("pid_%d.txt"%(port), "r") as f:
+        with open("pid_%d.txt" % (port), "r") as f:
             pid = int(f.readline())
-  
-        os.system("rm pid_%d.txt"%(port))
+
+        os.system("rm pid_%d.txt" % (port))
 
         self.__writer_file_lock.release()
 
@@ -138,7 +153,8 @@ class Experiment(object):
             peer (Peer): Peer to measure latency
         """
         init_time: float = time.time()
-        org_latency = measure_latency(host=peer.ip, port=peer.port, runs=1000, timeout=5)
+        org_latency = measure_latency(
+            host=peer.ip, port=peer.port, runs=1000, timeout=5)
         end_time: float = time.time()
 
         run_times: list(float) = list()
@@ -146,10 +162,10 @@ class Experiment(object):
         for i in range(1, 1000):
             run_times.append((end_time-init_time)/(5*i))
 
-        #while self.__writer_file_lock.locked():
+        # while self.__writer_file_lock.locked():
         #    continue
-        
-        #self.__writer_file_lock.acquire()
+
+        # self.__writer_file_lock.acquire()
 
         with self.__writer_file_lock:
             file_exists = os.path.exists("latency_%s.csv" % (peer.org))
@@ -159,22 +175,22 @@ class Experiment(object):
 
                 if not file_exists:
                     f.writeheader()
-                
+
                 for (t, lt) in zip(run_times, org_latency):
                     f.writerow({'Time': t, 'Latency': lt})
-        
-        #self.__writer_file_lock.release()
+
+        # self.__writer_file_lock.release()
 
     def __measure_throughput_per_tps(self, peer: Peer) -> float:
         pass
-       
+
     def run_network_experiments(self, file_test_json: str, ip_api: str, port_api: str, method) -> None:
         """Send requets to server to aim measure network metrics and evaluate the system
             We using the design pattern strategy
 
         Args:
-            file_in (str): input file json to represents 
-            ip_api (str): API request ip 
+            file_in (str): input file json to represents
+            ip_api (str): API request ip
             port_api (str): API request port
             method (class): Represent the class will be used to acess send_request
         """
@@ -189,9 +205,74 @@ class Experiment(object):
                     target=self.__measure_latency_per_tps, args=(peer,))
 
                 thr.start()
-            
+
             time.sleep(2)
+
+    def measure_transations(self, limit_transactions):
+        q = queue.SimpleQueue()
+
+        global general_time
+        global ls_trans_time
+        global throughput_general
+        global data_id
+
+        general_time = time.time()    
+        aux_tran_time = 1
+        tps_list = list()
+        lat_avg = list()
+        thoughput_avg = list()
+        while transactions_number < limit_transactions:
+            for i in range(15):
+               pr = threading.Thread(target=MensurePostSimple().send_request(), args=(),daemon=True)
+               pr.start()
+               q.put(pr)
+
+            for i in range(15):
+                pr = q.get(0)
+                pr.join()
+            
+            if (transactions_number/aux_tran_time) == 50:
+                tps = transactions_number/general_time
+                tps_list.append(tps)
+                aux_tran_time += 1
+                lat_avg.append(statistics.mean(ls_trans_time))
+                thoughput_avg.append(statistics.mean(throughput_general))
+                
+
+        #Grava transactions per time for write
+        with open("transactions_per_time_write.csv", mode="a+") as file_csv:
+            f = csv.DictWriter(file_csv, delimiter=";", fieldnames=['Time', 'TrAmount'])
+
+            f.writeheader()
+                                          
+            for (t,am) in zip(ls_trans_time, ls_trans_amount):
+                f.writerow({'Time': t, 'TrAmount': am})
         
+        #Grava Latency per tps
+        with open("latency_avg_per_tps_write.csv", mode="a+") as file_csv:
+            f = csv.DictWriter(file_csv, delimiter=";", fieldnames=['Latency', 'TPS'])
+
+            f.writeheader()
+                                          
+            for (lt, tps) in zip(lat_avg,  tps_list):
+                f.writerow({'Latency': lt, 'TPS':  tps})
+        
+        #Grava Throughput per tps
+        with open("throughput_avg_per_tps_write.csv", mode="a+") as file_csv:
+            f = csv.DictWriter(file_csv, delimiter=";", fieldnames=['Throughput', 'TPS'])
+
+            f.writeheader()
+                                          
+            for (lt, tps) in zip(lat_avg,  tps_list):
+                f.writerow({'Throughput': lt, 'TPS':  tps})
+        
+         #Grava Ids
+        with open("dicom_ids_write.txt", mode="a+") as file_txt:
+            file_txt.writelines(data_id)
+        
+        print("Finished!")
+            
+
 
 class RequestGetAsset(object):
     """Class to Strategy pattern for describes the method send_request GET elements
@@ -213,13 +294,13 @@ class RequestGetAsset(object):
         dicoms = dicoms.dropna(subset=['dicomID'])
         dicoms_dict: list(dict) = dicoms.to_dict(orient='records')
 
-        #self.__global_time = time.time()
+        # self.__global_time = time.time()
         table_tps_time: pd.DataFrame = pd.DataFrame()
 
         print("Iniciando GET Asset ...")
-        #time.sleep(10)
+        # time.sleep(10)
         for tr in range(1, 4):
-            #dicomId = list(map(lambda d: d+str(tr),dicoms_dict['dicomID']))
+            # dicomId = list(map(lambda d: d+str(tr),dicoms_dict['dicomID']))
             transaction_size: int = tr*len(dicoms_dict)
             for dcm in dicoms_dict:
                 try:
@@ -392,7 +473,7 @@ class RequestGetKAnonymity(object):
         anonymized_files = list()
 
         print("Iniciando envio ...")
-        #time.sleep(10)
+        # time.sleep(10)
         for tr in range(1, 6):
             #!Convert values 
             dicomsId: list(str) = list(map(lambda d: d+str(tr), dicoms['dicomID'].tolist()))
@@ -433,13 +514,13 @@ class RequestGetKAnonymity(object):
                     payload_get = json.dumps(req_json)
                     resp_get: requests.Response = requests.request("GET", url_get, data=payload_get, headers=headers)
                     
-                    #? Add metrics tps
+                    # ? Add metrics tps
                     end_t: float = round(time.time() - self.__global_time, 4)
                     tps: float = round(end_t/transaction_size, 4)
                     table_tps_time = table_tps_time.append(
                         {"Time":  end_t, "TPS": tps}, ignore_index=True)
                     
-                    #? Save files recovered
+                    # ? Save files recovered
                     anonymized_files.append(resp_get.json())                    
                     
                     time.sleep(5)
@@ -459,3 +540,63 @@ class RequestGetKAnonymity(object):
 
         table_tps_time.to_csv("tps_per_time_%d_GET.csv"%(port_api),
                               sep=';', header=True, index=False)
+
+class MensurePostSimple():
+
+    def __init__(self):
+        pass
+
+    def send_request(self):
+        
+        global flag
+        global transactions_number
+        global ls_trans_amount
+        global ls_trans_time
+        global data_id
+        global throughput_general
+        global size_send
+
+        data = {
+            "patientHeigth": 1.75,
+            "patientID": "11110",
+            "patientRace": "White",
+            "patientGender": "male",
+            "patientWeigth": 70.5,
+            "patientFirstname": "Erikson",
+            "patientTelephone": "(43) 0000-0000",
+            "machineModel": "AMX",
+            "patientOrganization": "USP",
+            "dicomID": str(uuid.uuid4()),
+            "patientAge": 23,
+            "patientAddress": "ASasasasasas",
+            "patientInsuranceplan": "IIIIIAAAA",
+            "user": "erikson",
+            "patientLastname": "Aguiar"
+        }
+
+        
+        start_send = time.time()
+        url = "http://%s:%d/api/addAsset" % ("35.211.244.95",3000)
+        payload = json.dumps(data)
+        headers = {'Content-Type': "application/json"}
+        resp: requests.Response = requests.request("POST", url, data=payload, headers=headers)
+        end_send_time = time.time() - start_send
+        transactions_number += 1
+        size_send += len(payload.encode('utf-8'))
+
+        if resp.status_code == 200:
+            while thr_lock.locked():
+                continue
+
+            thr_lock.acquire()
+            time.sleep(0.1)
+            ls_trans_amount.append(transactions_number)
+            ls_trans_time.append(end_send_time)
+            throughput_general.append(size_send)
+            data_id.append(data['dicomID'])
+            throughput_general.append(size_send)
+
+            thr_lock.release()
+        
+
+
