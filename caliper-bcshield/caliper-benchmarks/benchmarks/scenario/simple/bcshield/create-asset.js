@@ -15,7 +15,6 @@
 'use strict';
 
 module.exports.info  = 'create Assets';
-const { v4:uuid } = require('uuidv4');
 
 let dicom_array = [];
 let txnPerBatch;
@@ -48,8 +47,32 @@ module.exports.init = async function(blockchain, context, args) {
  * Generate unique dicom key for the transaction
  * @returns {String} dicom key
  */
+const dic = 'abcdefghijklmnopqrstuvwxyz';
+/**
+ * Generate string by picking characters from dic variable
+ * @param {*} number character to select
+ * @returns {String} string generated based on @param number
+ */
+function get26Num(number){
+    let result = '';
+    while(number > 0) {
+        result += dic.charAt(number % 26);
+        number = parseInt(number/26);
+    }
+    return result;
+}
+
+let prefix;
+/**
+ * Generate unique account key for the transaction
+ * @returns {String} account key
+ */
 function generateAccount() {
-   return uuid();
+    // should be [a-z]{1,9}
+    if(typeof prefix === 'undefined') {
+        prefix = get26Num(process.pid);
+    }
+    return prefix + get26Num(account_array.length+1);
 }
 
 /**
