@@ -15,7 +15,7 @@
 'use strict';
 
 module.exports.info  = 'create Assets';
-const { uuid } = require('uuidv4');
+const { v4:uuid } = require('uuidv4');
 
 let dicom_array = [];
 let txnPerBatch;
