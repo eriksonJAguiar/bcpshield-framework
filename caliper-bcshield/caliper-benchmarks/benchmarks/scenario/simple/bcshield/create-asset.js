@@ -12,29 +12,29 @@
 * limitations under the License.
 */
 
-// 'use strict';
+'use strict';
 
-// module.exports.info  = 'create Assets';
+module.exports.info  = 'create Assets';
 
-// let dicom_array = [];
-// let txnPerBatch;
-// let initAsset;
-// let bc, contx;
-// module.exports.init = async function(blockchain, context, args) {
-//     // if(!args.hasOwnProperty('dicom')) {
-//     //     return Promise.reject(new Error('create asset - \'dicom\' is missed in the arguments'));
-//     // }
+let dicom_array = [];
+let txnPerBatch;
+let initAsset;
+let bc, contx;
+module.exports.init = async function(blockchain, context, args) {
+    // if(!args.hasOwnProperty('dicom')) {
+    //     return Promise.reject(new Error('create asset - \'dicom\' is missed in the arguments'));
+    // }
 
-//     if(!args.hasOwnProperty('txnPerBatch')) {
-//         args.txnPerBatch = 1;
-//     }
-//     //initMoney = args.money;
-//     txnPerBatch = args.txnPerBatch;
-//     bc = blockchain;
-//     contx = context;
+    if(!args.hasOwnProperty('txnPerBatch')) {
+        args.txnPerBatch = 1;
+    }
+    //initMoney = args.money;
+    txnPerBatch = args.txnPerBatch;
+    bc = blockchain;
+    contx = context;
 
-//     return Promise.resolve();
-// };
+    return Promise.resolve();
+};
 
 
 /**
