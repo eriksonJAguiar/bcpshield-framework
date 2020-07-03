@@ -44,7 +44,7 @@ class Experiment(object):
         self.__peers: list(Peer) = list()
         self.__thread_request: list(threading.Thread) = list()
         self.__global_time: float = 0.0
-        #self.__writer_file_lock = threading.Lock()
+        self.__writer_file_lock = threading.Lock()
         #os.system("mkdir ~/.ipfs-temp")
 
     def add_peer(self, peer: Peer) -> None:
@@ -574,7 +574,7 @@ class MensurePostSimple():
         global data_values_json
 
 
-        for i in range(10):
+        for i in range(50):
             data = {
                 "patientHeigth": 1.75,
                 "patientID": "11110",
