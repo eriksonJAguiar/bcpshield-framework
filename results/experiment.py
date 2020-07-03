@@ -240,6 +240,7 @@ class Experiment(object):
                 aux_tran_time += 1
                 lat_avg.append(statistics.mean(ls_trans_time))
                 thoughput_avg.append(statistics.mean(throughput_general))
+                print(f"Transactions sended { transactions_number }")
         except:
             print("Error")
             pass
@@ -574,7 +575,7 @@ class MensurePostSimple():
         global data_values_json
 
 
-        for i in range(50):
+        for i in range(20):
             data = {
                 "patientHeigth": 1.75,
                 "patientID": "11110",
@@ -611,7 +612,7 @@ class MensurePostSimple():
         ls_trans_amount.append(transactions_number)
         ls_trans_time.append(end_send_time)
         throughput_general.append(size_send)
-        data_id.append(data['dicomID'])
+        data_id += list(map(lambda d: d['dicomID'], data_values_json))
 
 class MensureGetSimple():
 
