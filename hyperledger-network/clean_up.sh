@@ -8,4 +8,4 @@ docker network prune
 
 docker rmi $(docker image ls -q)
 
-rm -r ./api-src/wallet
+rm -r ../api-dicom/wallet

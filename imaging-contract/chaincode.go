@@ -95,7 +95,9 @@ func (cc *HealthcareChaincode) Init(stub shim.ChaincodeStubInterface) sc.Respons
 	return shim.Success(nil)
 }
 
-// Patinet or research add imaging in blockchain network
+// Patient or HProvider add imaging in blockchain network
+// Params: Dicom Type struct
+// Returns: True or False for transactions
 func (cc *HealthcareChaincode) addAsset(stub shim.ChaincodeStubInterface, args []string) sc.Response {
 	var err error
 
@@ -177,16 +179,6 @@ func (cc *HealthcareChaincode) addAsset(stub shim.ChaincodeStubInterface, args [
 		return shim.Error("This patient already exists: " + dicomID)
 	}
 
-	// hs := sha1.New()
-
-	// auxPatientID := time.Now().String() + patientFirstname + patientLastname
-
-	// hs.Write([]byte(auxPatientID))
-
-	// hexPatientID := hs.Sum(nil)
-
-	// patientID := hex.EncodeToString(hexPatientID)
-
 	rec := &Dicom{
 		DicomID:              dicomID,
 		DocType:              "Dicom",
@@ -225,8 +217,131 @@ func (cc *HealthcareChaincode) addAsset(stub shim.ChaincodeStubInterface, args [
 
 }
 
-// get imaging
-// One parameter AssetID
+// Patient or HProvider add imaging in blockchain network using private method HLF
+// Params: Dicom Type struct
+// Returns: True or False for transactions
+func (cc *HealthcareChaincode) addAssetPriv(stub shim.ChaincodeStubInterface, args []string) sc.Response {
+	var err error
+
+	fmt.Println("Parameter number " + strconv.Itoa(len(args)))
+	if len(args) < 17 || len(args) > 17 {
+		return shim.Error("Incorrect number of arguments. Expecting 17")
+	}
+
+	fmt.Println("- start init Dicom")
+	if len(args[0]) <= 0 {
+		return shim.Error("1st argument must be a non-empty string")
+	} else if len(args[1]) <= 0 {
+		return shim.Error("2nd argument must be a non-empty string")
+	} else if len(args[2]) <= 0 {
+		return shim.Error("3rd argument must be a non-empty string")
+	} else if len(args[3]) <= 0 {
+		return shim.Error("4th argument must be a non-empty string")
+	} else if len(args[4]) <= 0 {
+		return shim.Error("5th argument must be a non-empty string")
+	} else if len(args[5]) <= 0 {
+		return shim.Error("6th argument must be a non-empty string")
+	} else if len(args[6]) <= 0 {
+		return shim.Error("7th argument must be a non-empty string")
+	} else if len(args[7]) <= 0 {
+		return shim.Error("8th argument must be a non-empty string")
+	} else if len(args[8]) <= 0 {
+		return shim.Error("9th argument must be a non-empty string")
+	} else if len(args[9]) <= 0 {
+		return shim.Error("10th argument must be a non-empty string")
+	} else if len(args[10]) <= 0 {
+		return shim.Error("11th argument must be a non-empty string")
+	} else if len(args[11]) <= 0 {
+		return shim.Error("12th argument must be a non-empty string")
+	} else if len(args[12]) <= 0 {
+		return shim.Error("13th argument must be a non-empty string")
+	} else if len(args[13]) <= 0 {
+		return shim.Error("14th argument must be a non-empty string")
+	} else if len(args[14]) <= 0 {
+		return shim.Error("15th argument must be a non-empty string")
+	} else if len(args[15]) <= 0 {
+		return shim.Error("16th argument must be a non-empty string")
+	} else if len(args[16]) <= 0 {
+		return shim.Error("17th argument must be a non-empty string")
+	}
+
+	patientAge, err := strconv.Atoi(args[6])
+	if err != nil {
+		return shim.Error("7 argument must be a numeric string")
+	}
+	timestamp := time.Now()
+	patientWeigth, err := strconv.ParseFloat(args[14], 64)
+	if err != nil {
+		return shim.Error("14 argument must be a numeric string")
+	}
+	patientHeigth, err := strconv.ParseFloat(args[15], 64)
+	if err != nil {
+		return shim.Error("15 argument must be a numeric string")
+	}
+
+	dicomID := args[0]
+	patientID := args[1]
+	patientFirstname := args[2]
+	patientLastname := args[3]
+	patientTelephone := args[4]
+	patientAddress := args[5]
+	patientBirth := args[7]
+	patientOrganization := args[8]
+	patientMothername := args[9]
+	patientReligion := args[10]
+	patientSex := args[11]
+	patientGender := args[12]
+	patientInsuranceplan := args[13]
+	machineModel := args[16]
+
+	dicomBytes, err := stub.GetPrivateData("collectionDicomPrivate", dicomID)
+	if err != nil {
+		return shim.Error("Failed to get pet: " + err.Error())
+	} else if dicomBytes != nil {
+		return shim.Error("This patient already exists: " + dicomID)
+	}
+
+	rec := &Dicom{
+		DicomID:              dicomID,
+		DocType:              "Dicom",
+		PatientID:            patientID,
+		PatientFirstname:     patientFirstname,
+		PatientLastname:      patientLastname,
+		PatientTelephone:     patientTelephone,
+		PatientAddress:       patientAddress,
+		PatientAge:           patientAge,
+		PatientBirth:         patientBirth,
+		PatientOrganization:  patientOrganization,
+		PatientMothername:    patientMothername,
+		PatientReligion:      patientReligion,
+		PatientSex:           patientSex,
+		PatientGender:        patientGender,
+		PatientInsuranceplan: patientInsuranceplan,
+		PatientWeigth:        patientWeigth,
+		PatientHeigth:        patientHeigth,
+		MachineModel:         machineModel,
+		Timestamp:            timestamp,
+	}
+
+	dicomJSON, err := json.Marshal(rec)
+
+	if err != nil {
+		return shim.Error(err.Error())
+	}
+
+	err = stub.PutPrivateData("collectionDicomPrivate", dicomID, dicomJSON)
+	if err != nil {
+		return shim.Error(err.Error())
+	}
+
+	fmt.Println("- End imaging saved")
+	return shim.Success(nil)
+
+}
+
+// get imaging without anyone security
+// Params: AssetID to get image
+// Returns: Dicom type struct
 func (cc *HealthcareChaincode) getAsset(stub shim.ChaincodeStubInterface, args []string) sc.Response {
 
 	if len(args) != 1 {
@@ -249,9 +364,34 @@ func (cc *HealthcareChaincode) getAsset(stub shim.ChaincodeStubInterface, args [
 	return shim.Success(dicomValue)
 }
 
-// Patient Sharing imaging with a doctor
-// Add struct for sharing asset in blockchain
-// Three args Patient ID, DoctorID, hashIPFS repository and ID files core for sharing Several assets ID for sharing
+// get imaging using private method HLF
+// Params: AssetID to get image
+// Returns: Dicom type struct
+func (cc *HealthcareChaincode) getAssetPriv(stub shim.ChaincodeStubInterface, args []string) sc.Response {
+
+	if len(args) != 1 {
+		return shim.Error("We expected one param")
+	}
+
+	dicomID := args[0]
+
+	var jsonResp string
+	dicomValue, err := stub.GetPrivateData("collectionDicomPrivate", dicomID)
+
+	if err != nil {
+		jsonResp = "{\"Error\":\"Failed to get state for " + dicomID + "\"}"
+		return shim.Error(jsonResp)
+	} else if dicomValue == nil {
+		jsonResp = "{\"Error\":\"Record Sharing does not exist: " + dicomID + "\"}"
+		return shim.Error(jsonResp)
+	}
+
+	return shim.Success(dicomValue)
+}
+
+// Patient Sharing imaging with a doctor and add asset for sharing asset in blockchain
+// Params: (Three args) patientID, poctorID, hashIPFS repository and dicomShared represents the ID files to sharing with doctor
+// Return: Id hash to represents the request value by a hash
 func (cc *HealthcareChaincode) shareAssetWithDoctor(stub shim.ChaincodeStubInterface, args []string) sc.Response {
 
 	if len(args) < 4 && len(args) > 4 {
@@ -322,7 +462,8 @@ func (cc *HealthcareChaincode) shareAssetWithDoctor(stub shim.ChaincodeStubInter
 }
 
 // Doctor can get patient's data shared
-// One args batch ID for get exams shared
+// Params: (One args) batchID for get exams shared
+// Returns: Dicom structure type anonymized and IPFS hash value to get real imaging
 func (cc *HealthcareChaincode) getSharedAssetWithDoctor(stub shim.ChaincodeStubInterface, args []string) sc.Response {
 	var batchID, jsonResp string
 	var err error
@@ -437,7 +578,8 @@ func (cc *HealthcareChaincode) getSharedAssetWithDoctor(stub shim.ChaincodeStubI
 }
 
 // Researcher request imaging from patient or other researcher
-// Two attribute "amount images" and "researchID" and "PatientID"
+// Params: (three args) "amount" to represents the images amount requested and "researchID" our on network ID and "PatientID" to represents patient he wants request image
+// Returns: requestID to describes the request ID generated
 func (cc *HealthcareChaincode) requestAssetForResearcher(stub shim.ChaincodeStubInterface, args []string) sc.Response {
 
 	if len(args) != 3 {
@@ -486,8 +628,9 @@ func (cc *HealthcareChaincode) requestAssetForResearcher(stub shim.ChaincodeStub
 	return shim.Success(idRequest)
 }
 
-// Researcher or patients sharing imaging request by others research
-//Two attributes holderID, requestID and hashIPFS
+// Researcher or patients sharing imaging request by others research from researchers requests
+// Params: (three args) "holderID" patient ID or researcher ID that will share image with Researcher, "requestID" hash value generated from requestAssetForResearche  and "hashIPFS" hash value IFPS stored on holder database
+// Returns:
 func (cc *HealthcareChaincode) shareAssetForResearcher(stub shim.ChaincodeStubInterface, args []string) sc.Response {
 	var jsonResp string
 	var err error
@@ -576,15 +719,16 @@ func (cc *HealthcareChaincode) shareAssetForResearcher(stub shim.ChaincodeStubIn
 
 }
 
+//94bcc206e4a3f7c293af9f35dd28f83cea89f631
 // Researcher get imaging shared
-// Sharing request values with the research
-// One attribute batchID
+// Params: (one arg) "sharedDicomID" describes hash value requested ID
+// Returns: Dicom structure type anonymized and Hash IPFS to get images from IFPS structure
 func (cc *HealthcareChaincode) getSharedAssetForResearcher(stub shim.ChaincodeStubInterface, args []string) sc.Response {
 	var jsonResp string
 	var err error
 
 	if len(args) != 1 {
-		shim.Error("We expected two element as params")
+		shim.Error("We expected one element as params")
 	}
 
 	sharedDicomID := args[0]
@@ -594,7 +738,7 @@ func (cc *HealthcareChaincode) getSharedAssetForResearcher(stub shim.ChaincodeSt
 	if err != nil {
 		jsonResp = "{\"Error\":\"Failed to get state for " + sharedDicomID + "\"}"
 		return shim.Error(jsonResp)
-	} else if SharedDicomBytes == nil {
+	} else if len(SharedDicomBytes) == 0 {
 		jsonResp = "{\"Error\":\"Record does not exist: " + sharedDicomID + "\"}"
 		return shim.Error(jsonResp)
 	}
@@ -605,14 +749,6 @@ func (cc *HealthcareChaincode) getSharedAssetForResearcher(stub shim.ChaincodeSt
 	if err != nil {
 		return shim.Error("[GET ASSET FOR RESEARCH] Transform sharedDicom to Json error: " + err.Error())
 	}
-
-	//Recovery accessed imaging logs
-	rand.Seed(time.Now().UnixNano())
-	id := strconv.Itoa(rand.Int()) + time.Now().String() + sharedDicomValues.BatchID
-	hs := sha1.New()
-	hs.Write([]byte(id))
-	hexLogID := hs.Sum(nil)
-	logID := hex.EncodeToString(hexLogID)
 
 	var dicoms []Dicom
 
@@ -668,6 +804,14 @@ func (cc *HealthcareChaincode) getSharedAssetForResearcher(stub shim.ChaincodeSt
 		return shim.Error("Marshal convert erro: " + err.Error())
 	}
 
+	//Recovery accessed imaging logs
+	rand.Seed(time.Now().UnixNano())
+	newID := strconv.Itoa(rand.Intn(10000000)) + time.Now().String() + sharedDicomValues.BatchID
+	hs := sha1.New()
+	hs.Write([]byte(newID))
+	hexLogID := hs.Sum(nil)
+	logID := hex.EncodeToString(hexLogID)
+
 	log := Log{
 		LogID:        logID,
 		DocType:      "Log",
@@ -689,7 +833,8 @@ func (cc *HealthcareChaincode) getSharedAssetForResearcher(stub shim.ChaincodeSt
 }
 
 // Network admin query access logs as from tokenID into imaging
-// One param Log ID
+// Params: (one arg) "logID" represents token value registred in Dicom image
+// Returns: Log json
 func (cc *HealthcareChaincode) auditLogs(stub shim.ChaincodeStubInterface, args []string) sc.Response {
 
 	if len(args) != 1 {
@@ -731,6 +876,8 @@ func (cc *HealthcareChaincode) addLog(stub shim.ChaincodeStubInterface, log Log)
 
 }
 
+// query data on blockchain
+// Internal function
 func (cc *HealthcareChaincode) queryGeneral(stub shim.ChaincodeStubInterface, args []string) sc.Response {
 	query := args[0]
 
@@ -791,6 +938,7 @@ func (cc *HealthcareChaincode) queryGeneral(stub shim.ChaincodeStubInterface, ar
 
 }
 
+// Internal function
 func getQueryResultForQueryString(stub shim.ChaincodeStubInterface, queryString string) ([]byte, error) {
 
 	// fmt.Printf("- getQueryResultForQueryString queryString:\n%s\n", queryString)
@@ -827,6 +975,8 @@ func getQueryResultForQueryString(stub shim.ChaincodeStubInterface, queryString 
 	return buffer.Bytes(), nil
 }
 
+//Apply differential privacy on data
+// Internal function
 func anonimizeDiffPriv(stub shim.ChaincodeStubInterface, assets []Dicom, amount int, epsilon float64) ([]Dicom, error) {
 
 	queryString := "{ \"selector\":{ \"docType\":\"Dicom\" }}"
@@ -1108,6 +1258,8 @@ func anonimizeDiffPriv(stub shim.ChaincodeStubInterface, assets []Dicom, amount 
 	return dicomWithNoise, nil
 }
 
+//Apply K-anonymity privacy on data
+// Internal function
 func anonimizeKAnonimity(allDicom []Dicom, assets []Dicom) ([]byte, error) {
 
 	fmt.Println("[Log] Assets that will be anonimized")
@@ -1232,8 +1384,12 @@ func (cc *HealthcareChaincode) Invoke(stub shim.ChaincodeStubInterface) sc.Respo
 
 	if fun == "addAsset" {
 		return cc.addAsset(stub, args)
+	} else if fun == "addAssetPriv" {
+		return cc.addAssetPriv(stub, args)
 	} else if fun == "getAsset" {
 		return cc.getAsset(stub, args)
+	} else if fun == "getAssetPriv" {
+		return cc.getAssetPriv(stub, args)
 	} else if fun == "shareAssetWithDoctor" {
 		return cc.shareAssetWithDoctor(stub, args)
 	} else if fun == "getSharedAssetWithDoctor" {

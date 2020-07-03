@@ -1,0 +1,103 @@
+{
+	"comment": "",
+	"ignore": "test",
+	"package": [
+		{
+			"checksumSHA1": "XX5+Amhdr+mxVY7iDzanrQrcNyI=",
+			"path": "github.com/blevesearch/bleve/analysis",
+			"revision": "fb361a72a60251e8103e7bf8c2f01bfdb171553e",
+			"revisionTime": "2020-04-20T17:56:41Z"
+		},
+		{
+			"checksumSHA1": "SrbYuupXZWH18Y9B60cGTUHJjK4=",
+			"path": "github.com/blevesearch/bleve/analysis/tokenizer/regexp",
+			"revision": "fb361a72a60251e8103e7bf8c2f01bfdb171553e",
+			"revisionTime": "2020-04-20T17:56:41Z"
+		},
+		{
+			"checksumSHA1": "jqO6Npj8AkIdlSJXdPAvkBWKjdw=",
+			"path": "github.com/blevesearch/bleve/document",
+			"revision": "fb361a72a60251e8103e7bf8c2f01bfdb171553e",
+			"revisionTime": "2020-04-20T17:56:41Z"
+		},
+		{
+			"checksumSHA1": "20UM7ZMVJzZRauo4xsO+hwLOdPQ=",
+			"path": "github.com/blevesearch/bleve/geo",
+			"revision": "fb361a72a60251e8103e7bf8c2f01bfdb171553e",
+			"revisionTime": "2020-04-20T17:56:41Z"
+		},
+		{
+			"checksumSHA1": "dnbLWqCJLGv128TcUnX9j0+DKds=",
+			"path": "github.com/blevesearch/bleve/index",
+			"revision": "fb361a72a60251e8103e7bf8c2f01bfdb171553e",
+			"revisionTime": "2020-04-20T17:56:41Z"
+		},
+		{
+			"checksumSHA1": "3ttI5qH9k/gOBaW8FJFVmOh5oIA=",
+			"path": "github.com/blevesearch/bleve/index/store",
+			"revision": "fb361a72a60251e8103e7bf8c2f01bfdb171553e",
+			"revisionTime": "2020-04-20T17:56:41Z"
+		},
+		{
+			"checksumSHA1": "oDKgtLk+nYJEkW1ra+vFCuKvjxg=",
+			"path": "github.com/blevesearch/bleve/numeric",
+			"revision": "fb361a72a60251e8103e7bf8c2f01bfdb171553e",
+			"revisionTime": "2020-04-20T17:56:41Z"
+		},
+		{
+			"checksumSHA1": "Qj1wH6TzvIl4OAiPQaFDpkWvwLM=",
+			"path": "github.com/blevesearch/bleve/registry",
+			"revision": "fb361a72a60251e8103e7bf8c2f01bfdb171553e",
+			"revisionTime": "2020-04-20T17:56:41Z"
+		},
+		{
+			"checksumSHA1": "lvwPsgFs0tEDvRuMKcHZWHMRWhg=",
+			"path": "github.com/blevesearch/bleve/search",
+			"revision": "fb361a72a60251e8103e7bf8c2f01bfdb171553e",
+			"revisionTime": "2020-04-20T17:56:41Z"
+		},
+		{
+			"checksumSHA1": "J/bdoPp+OZ6vSqsXF10484C7asc=",
+			"path": "github.com/blevesearch/bleve/search/highlight",
+			"revision": "fb361a72a60251e8103e7bf8c2f01bfdb171553e",
+			"revisionTime": "2020-04-20T17:56:41Z"
+		},
+		{
+			"checksumSHA1": "lycEaUs7grxzfMYWTt+p/IniQsE=",
+			"path": "github.com/blevesearch/bleve/size",
+			"revision": "fb361a72a60251e8103e7bf8c2f01bfdb171553e",
+			"revisionTime": "2020-04-20T17:56:41Z"
+		},
+		{
+			"checksumSHA1": "e2s0mzqpQo2hXo0NSVklMtZLp/8=",
+			"path": "github.com/blevesearch/go-porterstemmer",
+			"revision": "fdfef7067e4bbf42dbb952cfa82e57818d216ed6",
+			"revisionTime": "2020-04-07T03:55:20Z"
+		},
+		{
+			"checksumSHA1": "QgFbXwHSkzRpyK3oQrtQukb3m5I=",
+			"path": "github.com/gaspiman/cosine_similarity",
+			"revision": "3a4668276fe380240c5daa01b4f15859231bf6e7",
+			"revisionTime": "2015-04-01T20:37:09Z"
+		},
+		{
+			"checksumSHA1": "DRxjLnI2SlyD0pFQBgln0WTsHTk=",
+			"path": "github.com/lytics/multibayes",
+			"revision": "3457a5582021524757e154341b1095e3a0cdd8bd",
+			"revisionTime": "2016-11-08T16:28:40Z"
+		},
+		{
+			"checksumSHA1": "cZimcF6cqWtNnztPMusRPbJyBnk=",
+			"path": "github.com/numbleroot/go-tfidf",
+			"revision": "e91d5a52d5292bc23cf5d82dcc6211a70546fb85",
+			"revisionTime": "2016-11-08T12:50:41Z"
+		},
+		{
+			"checksumSHA1": "tGVSz87+R0wGi1cfRbh6gBsNVX8=",
+			"path": "golang.org/x/exp/rand",
+			"revision": "e8c3332aa8e5b8e6acb4707c3a7e5979052b20aa",
+			"revisionTime": "2020-03-31T18:55:27Z"
+		}
+	],
+	"rootPath": "github.com/imaging-contract"
+}

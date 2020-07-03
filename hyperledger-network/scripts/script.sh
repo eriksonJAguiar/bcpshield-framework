@@ -9,7 +9,7 @@ echo "|____/    |_|   /_/   \_\ |_| \_\   |_|  "
 echo
 echo "Build your first network (BYFN) end-to-end test"
 echo
-org_name=(hprovider research)
+org_name=(hprovider research patient)
 CHANNEL_NAME="$1"
 DELAY="$2"
 LANGUAGE="$3"
@@ -18,7 +18,7 @@ VERBOSE="$5"
 NO_CHAINCODE="$6"
 : ${CHANNEL_NAME:="healthchannel"}
 : ${DELAY:="3"}
-: ${LANGUAGE:="node"}
+: ${LANGUAGE:="golang"}
 : ${TIMEOUT:="10"}
 : ${VERBOSE:="false"}
 : ${NO_CHAINCODE:="false"}
@@ -61,7 +61,7 @@ createChannel() {
 }
 
 joinChannel () {
-	for org in 1 2; do
+	for org in 1 2 3; do
 	    for peer in 0 1; do
 		joinChannelWithRetry $peer $org
 		echo "===================== peer${peer}.${org_name[$org-1]} joined channel '$CHANNEL_NAME' ===================== "
@@ -85,6 +85,9 @@ updateAnchorPeers 0 1
 echo "Updating anchor peers for org2..."
 updateAnchorPeers 0 2
 
+echo "Updating anchor peers for org3..."
+updateAnchorPeers 0 3
+
 if [ "${NO_CHAINCODE}" != "true" ]; then
 
 	## Install chaincode on peer0.org1 and peer0.org2
@@ -95,17 +98,17 @@ if [ "${NO_CHAINCODE}" != "true" ]; then
 	echo "Installing chaincode on peer1.hprivider..."
 	installChaincode 1 1
 
-	## Install chaincode on peer1.org2
-	echo "Installing chaincode on peer2.hprivider..."
-	installChaincode 2 1
+	# ## Install chaincode on peer1.org2
+	# echo "Installing chaincode on peer2.hprivider..."
+	# installChaincode 2 1
 
-	## Install chaincode on peer1.org2
-	echo "Installing chaincode on peer3.hprivider..."
-	installChaincode 3 1
+	# ## Install chaincode on peer1.org2
+	# echo "Installing chaincode on peer3.hprivider..."
+	# installChaincode 3 1
 
-	## Install chaincode on peer1.org2
-	echo "Installing chaincode on peer4.hprivider..."
-	installChaincode 4 1
+	# ## Install chaincode on peer1.org2
+	# echo "Installing chaincode on peer4.hprivider..."
+	# installChaincode 4 1
 	
 	
 	echo "Install chaincode on peer0.research..."
@@ -114,14 +117,14 @@ if [ "${NO_CHAINCODE}" != "true" ]; then
 	echo "Install chaincode on peer1.research..."
 	installChaincode 1 2
 
-	echo "Install chaincode on peer2.research..."
-	installChaincode 2 2
+	echo "Install chaincode on peer0.patient..."
+	installChaincode 0 3
 
-	echo "Install chaincode on peer3.research..."
-	installChaincode 3 2
+	echo "Install chaincode on peer1.patient..."
+	installChaincode 1 3
 
-	echo "Install chaincode on peer3.research..."
-	installChaincode 4 2
+	# echo "Install chaincode on peer3.research..."
+	# installChaincode 4 2
 
 	# Instantiate chaincode on peer0.org2
 	echo "Instantiating chaincode on peer0.hprovider..."

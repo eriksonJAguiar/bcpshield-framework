@@ -1,0 +1,20 @@
+{
+	"network-configs": {
+		"first-network-hprovider": {
+			"name": "first-network-hprovider",
+			"profile": "./connection-profile/connection-hprovider.json",
+			"enableAuthentication": false
+		},
+        "first-network-research": {
+			"name": "first-network-research",
+			"profile": "./connection-profile/connection-research.json",
+			"enableAuthentication": false
+		},
+        "first-network-patient": {
+			"name": "first-network-patient",
+			"profile": "./connection-profile/connection-patient.json",
+			"enableAuthentication": false
+		}
+	},
+	"license": "Apache-2.0"
+}

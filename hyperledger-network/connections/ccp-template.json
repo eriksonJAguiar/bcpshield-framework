@@ -1,5 +1,5 @@
 {
-    "name": "first-network-${ORG}",
+    "name": "bcshield_health_network_${ORG}",
     "version": "1.0.0",
     "client": {
         "organization": "${ORGMSP}",
