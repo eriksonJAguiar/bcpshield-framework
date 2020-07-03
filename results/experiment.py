@@ -278,10 +278,11 @@ class Experiment(object):
                 f.writerow({'Throughput': th, 'TPS':  tps})
         
         #Grava Ids
-        with open("dicom_ids_%s.txt"%(requestType), mode="a+") as file_txt:
-            for d in data_id:
-                file_txt.write(d)
-                file_txt.write("\n")
+        if requestType ==  "write":
+            with open("dicom_ids_%s.txt"%(requestType), mode="a+") as file_txt:
+                for d in data_id:
+                    file_txt.write(d)
+                    file_txt.write("\n")
 
         
         print("Finished!")
@@ -611,7 +612,57 @@ class MensurePostSimple():
         ls_trans_time.append(end_send_time)
         throughput_general.append(size_send)
         data_id.append(data['dicomID'])
-    
+
+class MensureGetSimple():
+
+    def __init__(self):
+        pass
+
+    def send_request(self):
+        
+        global flag
+        global transactions_number
+        global ls_trans_amount
+        global ls_trans_time
+        global throughput_general
+        global size_send
+        global data_values
+        global data_values_json
+
+        dicomIds = list()
+
+        with open("dicom_ids_write.txt", "r") as f:
+           for line in f:
+               l = line.rstrip('\n')
+               dicomIds.append(l)
+
+
+        for i in range(10):
+            random.seed(time.time()*i)
+            index = random.randint(0,(len(dicomIds)-1))
+            data = {
+                "user": "erikson",
+                "dicomId": dicomIds[index]
+            }
+            data_values_json.append(data)
+            aux_d = json.dumps(data)
+            data_values.append(aux_d)
+            transactions_number += 1
+            
+
+        
+        start_send = time.time()
+        url = "http://%s:%d/api/getAsset" % ("35.211.244.95",3000)
+        headers = {'Content-Type': "application/json"}
+        rs = (grequests.get(url, headers=headers,data=d) for d in data_values)
+        grequests.map(rs)
+        end_send_time = time.time() - start_send
+        size_send += len(json.dumps(data_values_json).encode('utf8'))
+        
+
+        ls_trans_amount.append(transactions_number)
+        ls_trans_time.append(end_send_time)
+        throughput_general.append(size_send)
         
 
 
