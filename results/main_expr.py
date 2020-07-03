@@ -1,5 +1,5 @@
 from peer import Peer
-from experiment import Experiment
+from experiment import Experiment, MensurePostSimple
 
 class Server():
 
@@ -27,7 +27,7 @@ class Server():
 
 class Client():
 
-    def init(self, transaction_number=50):
+    def init(self, transaction_number=50, round=1):
         peer0_hprovider = Peer('35.211.244.95',7051,"hprovider")
         peer1_hprovider = Peer('35.211.244.95',8051,"hprovider")
 
@@ -46,9 +46,11 @@ class Client():
         expr.add_peer(peer0_patient)
         expr.add_peer(peer1_patient)
 
-        print("Start running ...")
-        for i in range(1):
-            print(f"Running {i+1} round")
-            expr.measure_transations(transaction_number)
+        print(f"Start running for {transaction_number} transactions ...")
         
+        for i in range(round):
+            print(f"Running round {i+1} ...")
+            expr.measure_transations(transaction_number,"write", MensurePostSimple())
+            print(f"End round {i+1} ...")
+
         print("Finish running")

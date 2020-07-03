@@ -1,12 +1,14 @@
 from peer import Peer
 from tcp_latency import measure_latency
 from ipfs_dicom import IpfsDicom
-from multiprocessing import Process, Lock
+# from multiprocessing import Process, Manager, Value
+# from concurrent.futures import ThreadPoolExecutor, ProcessPoolExecutor
+from gevent import monkey
+monkey.patch_all(thread=False,select=False)
 
 
 import pandas as pd
 import numpy as np
-
 import threading
 import psutil
 import time
@@ -20,10 +22,12 @@ import hashlib
 import uuid
 import queue
 import statistics
+import random
+import grequests
 
 # Sharing values
-thr_lock = threading.Lock()
-transactions_number = 0
+#thr_lock = threading.Lock()
+transactions_number = 1
 flag = 0
 ls_trans_amount = list()
 ls_trans_time = list()
@@ -31,6 +35,8 @@ data_id = list()
 general_time = None
 throughput_general = list()
 size_send = 0
+data_values = list()
+data_values_json  = list()
 
 class Experiment(object):
 
@@ -208,67 +214,75 @@ class Experiment(object):
 
             time.sleep(2)
 
-    def measure_transations(self, limit_transactions):
-        q = queue.SimpleQueue()
-
+    def measure_transations(self, limit_transactions, requestType, method):
+        
         global general_time
         global ls_trans_time
         global throughput_general
         global data_id
+        global transactions_number
 
         general_time = time.time()    
         aux_tran_time = 1
         tps_list = list()
         lat_avg = list()
         thoughput_avg = list()
-        while transactions_number < limit_transactions:
-            for i in range(15):
-               pr = threading.Thread(target=MensurePostSimple().send_request(), args=(),daemon=True)
-               pr.start()
-               q.put(pr)
 
-            for i in range(15):
-                pr = q.get(0)
-                pr.join()
-            
-            if (transactions_number/aux_tran_time) == 50:
+        # MensurePostSimple().send_request()
+        try:
+            while transactions_number <= limit_transactions:
+
+                method.send_request()
+                #MensurePostSimple().send_request()
+
                 tps = transactions_number/general_time
                 tps_list.append(tps)
                 aux_tran_time += 1
                 lat_avg.append(statistics.mean(ls_trans_time))
                 thoughput_avg.append(statistics.mean(throughput_general))
+        except:
+            print("Error")
+            pass
                 
-
         #Grava transactions per time for write
-        with open("transactions_per_time_write.csv", mode="a+") as file_csv:
+        fl_true = os.path.exists("transactions_per_time_%s.csv"%(requestType))
+        with open("transactions_per_time_%s.csv"%(requestType), mode="a+") as file_csv:
             f = csv.DictWriter(file_csv, delimiter=";", fieldnames=['Time', 'TrAmount'])
 
-            f.writeheader()
+            if not fl_true:
+                f.writeheader()
                                           
             for (t,am) in zip(ls_trans_time, ls_trans_amount):
                 f.writerow({'Time': t, 'TrAmount': am})
         
         #Grava Latency per tps
-        with open("latency_avg_per_tps_write.csv", mode="a+") as file_csv:
+        fl_true = os.path.exists("latency_avg_per_tps_%s.csv"%(requestType))
+        with open("latency_avg_per_tps_%s.csv"%(requestType), mode="a+") as file_csv:
             f = csv.DictWriter(file_csv, delimiter=";", fieldnames=['Latency', 'TPS'])
 
-            f.writeheader()
+            if not fl_true:
+                f.writeheader()
                                           
             for (lt, tps) in zip(lat_avg,  tps_list):
                 f.writerow({'Latency': lt, 'TPS':  tps})
         
         #Grava Throughput per tps
-        with open("throughput_avg_per_tps_write.csv", mode="a+") as file_csv:
+        fl_true = os.path.exists("throughput_avg_per_tps_%s.csv"%(requestType))
+        with open("throughput_avg_per_tps_%s.csv"%(requestType), mode="a+") as file_csv:
             f = csv.DictWriter(file_csv, delimiter=";", fieldnames=['Throughput', 'TPS'])
 
-            f.writeheader()
+            if not fl_true:
+                f.writeheader()
                                           
-            for (lt, tps) in zip(lat_avg,  tps_list):
-                f.writerow({'Throughput': lt, 'TPS':  tps})
+            for (th, tps) in zip(lat_avg,  tps_list):
+                f.writerow({'Throughput': th, 'TPS':  tps})
         
-         #Grava Ids
-        with open("dicom_ids_write.txt", mode="a+") as file_txt:
-            file_txt.writelines(data_id)
+        #Grava Ids
+        with open("dicom_ids_%s.txt"%(requestType), mode="a+") as file_txt:
+            for d in data_id:
+                file_txt.write(d)
+                file_txt.write("\n")
+
         
         print("Finished!")
             
@@ -555,48 +569,49 @@ class MensurePostSimple():
         global data_id
         global throughput_general
         global size_send
+        global data_values
+        global data_values_json
 
-        data = {
-            "patientHeigth": 1.75,
-            "patientID": "11110",
-            "patientRace": "White",
-            "patientGender": "male",
-            "patientWeigth": 70.5,
-            "patientFirstname": "Erikson",
-            "patientTelephone": "(43) 0000-0000",
-            "machineModel": "AMX",
-            "patientOrganization": "USP",
-            "dicomID": str(uuid.uuid4()),
-            "patientAge": 23,
-            "patientAddress": "ASasasasasas",
-            "patientInsuranceplan": "IIIIIAAAA",
-            "user": "erikson",
-            "patientLastname": "Aguiar"
-        }
+
+        for i in range(10):
+            data = {
+                "patientHeigth": 1.75,
+                "patientID": "11110",
+                "patientRace": "White",
+                "patientGender": "male",
+                "patientWeigth": 70.5,
+                "patientFirstname": "Erikson",
+                "patientTelephone": "(43) 0000-0000",
+                "machineModel": "AMX",
+                "patientOrganization": "USP",
+                "dicomID": str(uuid.uuid4()),
+                "patientAge": 23,
+                "patientAddress": "ASasasasasas",
+                "patientInsuranceplan": "IIIIIAAAA",
+                "user": "erikson",
+                "patientLastname": "Aguiar"
+            }
+            data_values_json.append(data)
+            aux_d = json.dumps(data)
+            data_values.append(aux_d)
+            transactions_number += 1
+            
 
         
         start_send = time.time()
         url = "http://%s:%d/api/addAsset" % ("35.211.244.95",3000)
-        payload = json.dumps(data)
         headers = {'Content-Type': "application/json"}
-        resp: requests.Response = requests.request("POST", url, data=payload, headers=headers)
+        rs = (grequests.post(url, headers=headers,data=d) for d in data_values)
+        grequests.map(rs)
         end_send_time = time.time() - start_send
-        transactions_number += 1
-        size_send += len(payload.encode('utf-8'))
+        size_send += len(json.dumps(data_values_json).encode('utf8'))
+        
 
-        if resp.status_code == 200:
-            while thr_lock.locked():
-                continue
-
-            thr_lock.acquire()
-            time.sleep(0.1)
-            ls_trans_amount.append(transactions_number)
-            ls_trans_time.append(end_send_time)
-            throughput_general.append(size_send)
-            data_id.append(data['dicomID'])
-            throughput_general.append(size_send)
-
-            thr_lock.release()
+        ls_trans_amount.append(transactions_number)
+        ls_trans_time.append(end_send_time)
+        throughput_general.append(size_send)
+        data_id.append(data['dicomID'])
+    
         
 
 
