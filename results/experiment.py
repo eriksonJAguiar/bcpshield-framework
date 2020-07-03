@@ -88,12 +88,15 @@ class Experiment(object):
         Args:
             peer (Peer): peer to access ports
         """
-        pid: int = self.get_pid(peer.port)
-        process: psutil.Process = psutil.Process(pid)
-        time.sleep(2)
-        init_t = time.time()
-        memory_percent = round(process.memory_percent(), 4)
-        time_exec = round(time.time() - init_t, 4)
+        try:
+            pid: int = self.get_pid(peer.port)
+            process: psutil.Process = psutil.Process(pid)
+            time.sleep(2)
+            init_t = time.time()
+            memory_percent = round(process.memory_percent(), 4)
+            time_exec = round(time.time() - init_t, 4)
+        except:
+            pass
 
         with self.__writer_file_lock:
             with open("cpu_%s.csv" % (peer.org), mode="a+") as csv_file:
@@ -106,12 +109,14 @@ class Experiment(object):
         Args:
             peer (Peer): peer to access ports
         """
-
-        pid: int = self.get_pid(peer.port)
-        process: psutil.Process = psutil.Process(pid)
-        init_t = time.time()
-        cpu_percent = round(process.cpu_percent(interval=5), 4)
-        time_exec = round(time.time() - (init_t/5), 4)
+        try:
+            pid: int = self.get_pid(peer.port)
+            process: psutil.Process = psutil.Process(pid)
+            init_t = time.time()
+            cpu_percent = round(process.cpu_percent(interval=5), 4)
+            time_exec = round(time.time() - (init_t/5), 4)
+        except:
+            pass
 
         with self.__writer_file_lock:
             with open("memory_%s.csv" % (peer.org), mode="a+") as csv_file:
@@ -142,13 +147,20 @@ class Experiment(object):
         thr_end_experiments.start()
 
         while thr_end_experiments.is_alive():
-            for peer in self.__peers:
-                aux_thread_cpu = threading.Thread(
-                    target=self.__measure_cpu_per_time, args=(peer,))
-                aux_thread_memory = threading.Thread(
-                    target=self.__measure_memory_per_time, args=(peer,))
-                aux_thread_cpu.start()
-                aux_thread_memory.start()
+            try:
+                for peer in self.__peers:
+                    aux_thread_cpu = threading.Thread(
+                        target=self.__measure_cpu_per_time, args=(peer,))
+                    aux_thread_memory = threading.Thread(
+                        target=self.__measure_memory_per_time, args=(peer,))
+                    aux_thread_cpu.start()
+                    aux_thread_memory.start()
+                    sleep(1)
+                    aux_thread_cpu.join()
+                    aux_thread_memory.join()
+            except:
+                aux_thread_cpu.join()
+                aux_thread_memory.join()
 
             time.sleep(2)
 
