@@ -1,0 +1,90 @@
+---
+name: bcshield_health_network_patient
+version: 1.0.0
+client:
+  organization: Patient
+  connection:
+    timeout:
+      peer:
+        endorser: '300'
+organizations:
+  Patient:
+    mspid: PatientMSP
+    peers:
+    - peer0.patient.healthcare.com
+    - peer1.patient.healthcare.com
+    certificateAuthorities:
+    - ca.patient.healthcare.com
+peers:
+  peer0.patient.healthcare.com:
+    url: grpcs://localhost:12051
+    tlsCACerts:
+      pem: |
+        -----BEGIN CERTIFICATE-----
+        MIICcDCCAhegAwIBAgIQbhrBkXzDX7QOzpki8i44IzAKBggqhkjOPQQDAjCBgjEL
+        MAkGA1UEBhMCVVMxEzARBgNVBAgTCkNhbGlmb3JuaWExFjAUBgNVBAcTDVNhbiBG
+        cmFuY2lzY28xHzAdBgNVBAoTFnBhdGllbnQuaGVhbHRoY2FyZS5jb20xJTAjBgNV
+        BAMTHHRsc2NhLnBhdGllbnQuaGVhbHRoY2FyZS5jb20wHhcNMjAwNzAzMTUwODAw
+        WhcNMzAwNzAxMTUwODAwWjCBgjELMAkGA1UEBhMCVVMxEzARBgNVBAgTCkNhbGlm
+        b3JuaWExFjAUBgNVBAcTDVNhbiBGcmFuY2lzY28xHzAdBgNVBAoTFnBhdGllbnQu
+        aGVhbHRoY2FyZS5jb20xJTAjBgNVBAMTHHRsc2NhLnBhdGllbnQuaGVhbHRoY2Fy
+        ZS5jb20wWTATBgcqhkjOPQIBBggqhkjOPQMBBwNCAARZxGIyBNTEFqID2lvoP9Dl
+        UEkG9FwHUOh5QGd25vezrUPLa3CzQo4kVy2A8ioCgtu1UkdoaXx99yynaRxcbCJX
+        o20wazAOBgNVHQ8BAf8EBAMCAaYwHQYDVR0lBBYwFAYIKwYBBQUHAwIGCCsGAQUF
+        BwMBMA8GA1UdEwEB/wQFMAMBAf8wKQYDVR0OBCIEIFtWTsbWGxl+tYYgL4pGYCiR
+        TF36y8+7qkp5Vh+bzpbGMAoGCCqGSM49BAMCA0cAMEQCIG7PhVnQk5FibY1xEcRh
+        t11CQ0B3y5KuL7YjgIgS88UMAiBU01uCle5PqExm1ACpCnP3n+WwlrKImNHYvnwK
+        emZ+ig==
+        -----END CERTIFICATE-----
+        
+    grpcOptions:
+      ssl-target-name-override: peer0.patient.healthcare.com
+      hostnameOverride: peer0.patient.healthcare.com
+  peer1.patient.healthcare.com:
+    url: grpcs://localhost:13051
+    tlsCACerts:
+      pem: |
+        -----BEGIN CERTIFICATE-----
+        MIICcDCCAhegAwIBAgIQbhrBkXzDX7QOzpki8i44IzAKBggqhkjOPQQDAjCBgjEL
+        MAkGA1UEBhMCVVMxEzARBgNVBAgTCkNhbGlmb3JuaWExFjAUBgNVBAcTDVNhbiBG
+        cmFuY2lzY28xHzAdBgNVBAoTFnBhdGllbnQuaGVhbHRoY2FyZS5jb20xJTAjBgNV
+        BAMTHHRsc2NhLnBhdGllbnQuaGVhbHRoY2FyZS5jb20wHhcNMjAwNzAzMTUwODAw
+        WhcNMzAwNzAxMTUwODAwWjCBgjELMAkGA1UEBhMCVVMxEzARBgNVBAgTCkNhbGlm
+        b3JuaWExFjAUBgNVBAcTDVNhbiBGcmFuY2lzY28xHzAdBgNVBAoTFnBhdGllbnQu
+        aGVhbHRoY2FyZS5jb20xJTAjBgNVBAMTHHRsc2NhLnBhdGllbnQuaGVhbHRoY2Fy
+        ZS5jb20wWTATBgcqhkjOPQIBBggqhkjOPQMBBwNCAARZxGIyBNTEFqID2lvoP9Dl
+        UEkG9FwHUOh5QGd25vezrUPLa3CzQo4kVy2A8ioCgtu1UkdoaXx99yynaRxcbCJX
+        o20wazAOBgNVHQ8BAf8EBAMCAaYwHQYDVR0lBBYwFAYIKwYBBQUHAwIGCCsGAQUF
+        BwMBMA8GA1UdEwEB/wQFMAMBAf8wKQYDVR0OBCIEIFtWTsbWGxl+tYYgL4pGYCiR
+        TF36y8+7qkp5Vh+bzpbGMAoGCCqGSM49BAMCA0cAMEQCIG7PhVnQk5FibY1xEcRh
+        t11CQ0B3y5KuL7YjgIgS88UMAiBU01uCle5PqExm1ACpCnP3n+WwlrKImNHYvnwK
+        emZ+ig==
+        -----END CERTIFICATE-----
+        
+    grpcOptions:
+      ssl-target-name-override: peer1.{ORG}.healthcare.com
+      hostnameOverride: peer1.patient.healthcare.com
+certificateAuthorities:
+  ca.patient.healthcare.com:
+    url: https://localhost:9054
+    caName: ca.patient.healthcare.com
+    tlsCACerts:
+      pem: |
+        -----BEGIN CERTIFICATE-----
+        MIICaDCCAg+gAwIBAgIQP08jBvyC0OdnXAPBKK+zdDAKBggqhkjOPQQDAjB/MQsw
+        CQYDVQQGEwJVUzETMBEGA1UECBMKQ2FsaWZvcm5pYTEWMBQGA1UEBxMNU2FuIEZy
+        YW5jaXNjbzEfMB0GA1UEChMWcGF0aWVudC5oZWFsdGhjYXJlLmNvbTEiMCAGA1UE
+        AxMZY2EucGF0aWVudC5oZWFsdGhjYXJlLmNvbTAeFw0yMDA3MDMxNTA4MDBaFw0z
+        MDA3MDExNTA4MDBaMH8xCzAJBgNVBAYTAlVTMRMwEQYDVQQIEwpDYWxpZm9ybmlh
+        MRYwFAYDVQQHEw1TYW4gRnJhbmNpc2NvMR8wHQYDVQQKExZwYXRpZW50LmhlYWx0
+        aGNhcmUuY29tMSIwIAYDVQQDExljYS5wYXRpZW50LmhlYWx0aGNhcmUuY29tMFkw
+        EwYHKoZIzj0CAQYIKoZIzj0DAQcDQgAEI2hf6/mNjFiiQPFToCEKEkZR9ZNM1+Hb
+        HdVqpPhVs25hcGTWXlPKyL3bUtNhzBN6M4MlmxTBU/eBW0baw/FBx6NtMGswDgYD
+        VR0PAQH/BAQDAgGmMB0GA1UdJQQWMBQGCCsGAQUFBwMCBggrBgEFBQcDATAPBgNV
+        HRMBAf8EBTADAQH/MCkGA1UdDgQiBCCSgVRG8NSaMi+o+S2AFgo4I9X/000lbef1
+        MkMOrnZojDAKBggqhkjOPQQDAgNHADBEAiAsJtn7MBPDrxp5/rA65LhSRCQkVs0q
+        7VRYv5ihcoC8NgIgIcxpGjtw1FCCUGSKcMU9otkyw1d4GZfRENET9ZexcgA=
+        -----END CERTIFICATE-----
+        
+    httpOptions:
+      verify: false
