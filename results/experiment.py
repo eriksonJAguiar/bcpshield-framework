@@ -1,8 +1,6 @@
 from peer import Peer
 from tcp_latency import measure_latency
 from ipfs_dicom import IpfsDicom
-# from multiprocessing import Process, Manager, Value
-# from concurrent.futures import ThreadPoolExecutor, ProcessPoolExecutor
 from gevent import monkey
 monkey.patch_all(thread=False,select=False)
 
@@ -26,17 +24,15 @@ import random
 import grequests
 
 # Sharing values
-#thr_lock = threading.Lock()
 transactions_number = 1
-flag = 0
+flag = 1
 ls_trans_amount = list()
 ls_trans_time = list()
 data_id = list()
 general_time = None
 throughput_general = list()
 size_send = 0
-data_values = list()
-data_values_json  = list()
+
 
 class Experiment(object):
 
@@ -240,12 +236,10 @@ class Experiment(object):
         lat_avg = list()
         thoughput_avg = list()
 
-        # MensurePostSimple().send_request()
         try:
             while transactions_number <= limit_transactions:
 
                 method.send_request()
-                #MensurePostSimple().send_request()
 
                 tps = transactions_number/general_time
                 tps_list.append(tps)
@@ -291,7 +285,7 @@ class Experiment(object):
                 f.writerow({'Throughput': th, 'TPS':  tps})
         
         #Grava Ids
-        if requestType ==  "write":
+        if requestType ==  "write" or requestType ==  "write-priv":
             with open("dicom_ids_%s.txt"%(requestType), mode="a+") as file_txt:
                 for d in data_id:
                     file_txt.write(d)
@@ -300,8 +294,6 @@ class Experiment(object):
         
         print("Finished!")
             
-
-
 class RequestGetAsset(object):
     """Class to Strategy pattern for describes the method send_request GET elements
 
@@ -569,12 +561,16 @@ class RequestGetKAnonymity(object):
         table_tps_time.to_csv("tps_per_time_%d_GET.csv"%(port_api),
                               sep=';', header=True, index=False)
 
-class MensurePostSimple():
+class MensurePostSimple(object):
+    """Class to Strategy pattern for describes the method send_request POST elements
 
+    """
     def __init__(self):
         pass
 
-    def send_request(self):
+    def send_request(self) -> None:
+        """Send write requets to server to aim measure metrics and evaluate the system
+        """
         
         global flag
         global transactions_number
@@ -583,11 +579,12 @@ class MensurePostSimple():
         global data_id
         global throughput_general
         global size_send
-        global data_values
-        global data_values_json
+        
+        data_values = list()
+        data_values_json = list()
 
 
-        for i in range(20):
+        for i in range(50*flag):
             data = {
                 "patientHeigth": 1.75,
                 "patientID": "11110",
@@ -610,7 +607,7 @@ class MensurePostSimple():
             data_values.append(aux_d)
             transactions_number += 1
             
-
+        flag += 1
         
         start_send = time.time()
         url = "http://%s:%d/api/addAsset" % ("35.211.244.95",3000)
@@ -626,12 +623,16 @@ class MensurePostSimple():
         throughput_general.append(size_send)
         data_id += list(map(lambda d: d['dicomID'], data_values_json))
 
-class MensureGetSimple():
+class MensureGetSimple(object):
+    """Class to Strategy pattern for describes the method send_request GET elements
 
+    """
     def __init__(self):
         pass
 
-    def send_request(self):
+    def send_request(self) -> None:
+        """Send read requets to server to aim measure metrics and evaluate the system
+        """
         
         global flag
         global transactions_number
@@ -639,18 +640,19 @@ class MensureGetSimple():
         global ls_trans_time
         global throughput_general
         global size_send
-        global data_values
-        global data_values_json
+        
+        data_values = list()
+        data_values_json = list()
 
         dicomIds = list()
 
-        with open("dicom_ids_write.txt", "r") as f:
+        with open("./table-results/write-results/dicom_ids_write.txt", "r") as f:
            for line in f:
                l = line.rstrip('\n')
                dicomIds.append(l)
 
 
-        for i in range(10):
+        for i in range(50*flag):
             random.seed(time.time()*i)
             index = random.randint(0,(len(dicomIds)-1))
             data = {
@@ -662,7 +664,7 @@ class MensureGetSimple():
             data_values.append(aux_d)
             transactions_number += 1
             
-
+        flag += 1
         
         start_send = time.time()
         url = "http://%s:%d/api/getAsset" % ("35.211.244.95",3000)
@@ -677,5 +679,122 @@ class MensureGetSimple():
         ls_trans_time.append(end_send_time)
         throughput_general.append(size_send)
         
+class MensurePostPriv(object):
+    """Class to Strategy pattern for describes the method send_request POST elements 
+        using Private Method for HFL
+
+    """
+    def __init__(self):
+        pass
+
+    def send_request(self) -> None:
+        """Send write Priv requets to server to aim measure metrics and evaluate the system
+        """
+
+        global flag
+        global transactions_number
+        global ls_trans_amount
+        global ls_trans_time
+        global data_id
+        global throughput_general
+        global size_send
+        
+        data_values = list()
+        data_values_json = list()
 
 
+        for i in range(50*flag):
+            data = {
+                "patientHeigth": 1.75,
+                "patientID": "11110",
+                "patientRace": "White",
+                "patientGender": "male",
+                "patientWeigth": 70.5,
+                "patientFirstname": "Erikson",
+                "patientTelephone": "(43) 0000-0000",
+                "machineModel": "AMX",
+                "patientOrganization": "USP",
+                "dicomID": str(uuid.uuid4()),
+                "patientAge": 23,
+                "patientAddress": "ASasasasasas",
+                "patientInsuranceplan": "IIIIIAAAA",
+                "user": "erikson",
+                "patientLastname": "Aguiar"
+            }
+            data_values_json.append(data)
+            aux_d = json.dumps(data)
+            data_values.append(aux_d)
+            transactions_number += 1
+            
+        flag += 1
+        
+        start_send = time.time()
+        url = "http://%s:%d/api/addAssetPriv" % ("35.211.244.95",3000)
+        headers = {'Content-Type': "application/json"}
+        rs = (grequests.post(url, headers=headers,data=d) for d in data_values)
+        grequests.map(rs)
+        end_send_time = time.time() - start_send
+        size_send += len(json.dumps(data_values_json).encode('utf8'))
+        
+
+        ls_trans_amount.append(transactions_number)
+        ls_trans_time.append(end_send_time)
+        throughput_general.append(size_send)
+        data_id += list(map(lambda d: d['dicomID'], data_values_json))
+
+class MensureGetPriv(object):
+    """Class to Strategy pattern for describes the method send_request GET elements
+        using priv HLF
+
+    """
+    def __init__(self):
+        pass
+
+    def send_request(self) -> None:
+        """Send read requets to server to aim measure metrics and evaluate the system
+        """
+        
+        global flag
+        global transactions_number
+        global ls_trans_amount
+        global ls_trans_time
+        global throughput_general
+        global size_send
+        
+        data_values = list()
+        data_values_json = list()
+
+        dicomIds = list()
+
+        with open("./table-results/write-results/dicom_ids_write-priv.txt", "r") as f:
+           for line in f:
+               l = line.rstrip('\n')
+               dicomIds.append(l)
+
+
+        for i in range(50*flag):
+            random.seed(time.time()*i)
+            index = random.randint(0,(len(dicomIds)-1))
+            data = {
+                "user": "erikson",
+                "dicomId": dicomIds[index]
+            }
+            data_values_json.append(data)
+            aux_d = json.dumps(data)
+            data_values.append(aux_d)
+            transactions_number += 1
+            
+        flag += 1
+        
+        start_send = time.time()
+        url = "http://%s:%d/api/getAssetPriv" % ("35.211.244.95",3000)
+        headers = {'Content-Type': "application/json"}
+        rs = (grequests.get(url, headers=headers,data=d) for d in data_values)
+        grequests.map(rs)
+        end_send_time = time.time() - start_send
+        size_send += len(json.dumps(data_values_json).encode('utf8'))
+        
+
+        ls_trans_amount.append(transactions_number)
+        ls_trans_time.append(end_send_time)
+        throughput_general.append(size_send)
