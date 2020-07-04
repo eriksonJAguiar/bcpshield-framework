@@ -1,5 +1,5 @@
 from peer import Peer
-from experiment import Experiment, MensurePostSimple
+from experiment import Experiment, MensurePostSimple, MensureGetSimple
 
 class Server():
 

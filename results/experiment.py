@@ -240,13 +240,15 @@ class Experiment(object):
             while transactions_number <= limit_transactions:
 
                 method.send_request()
+                print(f"Transactions sent { transactions_number }")
 
-                tps = transactions_number/general_time
+                tps = transactions_number/(time.time() - general_time)
                 tps_list.append(tps)
                 aux_tran_time += 1
                 lat_avg.append(statistics.mean(ls_trans_time))
                 thoughput_avg.append(statistics.mean(throughput_general))
-                print(f"Transactions sended { transactions_number }")
+               
+                time.sleep(0.3)
         except:
             print("Error")
             pass
@@ -584,7 +586,7 @@ class MensurePostSimple(object):
         data_values_json = list()
 
 
-        for i in range(50*flag):
+        for i in range(20*flag):
             data = {
                 "patientHeigth": 1.75,
                 "patientID": "11110",
@@ -595,7 +597,7 @@ class MensurePostSimple(object):
                 "patientTelephone": "(43) 0000-0000",
                 "machineModel": "AMX",
                 "patientOrganization": "USP",
-                "dicomID": str(uuid.uuid4()),
+                "dicomID": str(uuid.uuid4()).join(flag),
                 "patientAge": 23,
                 "patientAddress": "ASasasasasas",
                 "patientInsuranceplan": "IIIIIAAAA",
