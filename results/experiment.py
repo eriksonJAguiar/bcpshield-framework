@@ -110,7 +110,7 @@ class Experiment(object):
             process: psutil.Process = psutil.Process(pid)
             init_t = time.time()
             cpu_percent = round(process.cpu_percent(interval=5), 4)
-            time_exec = round(time.time() - (init_t/5), 4)
+            time_exec = round((time.time() - init_t)/5, 4)
         except:
             pass
 
