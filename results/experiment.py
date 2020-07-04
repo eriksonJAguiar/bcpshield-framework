@@ -231,24 +231,18 @@ class Experiment(object):
         global transactions_number
 
         general_time = time.time()    
-        aux_tran_time = 1
         tps_list = list()
-        lat_avg = list()
-        thoughput_avg = list()
 
         try:
             while transactions_number <= limit_transactions:
 
                 method.send_request()
-                print(f"Transactions sent { transactions_number }")
 
                 tps = transactions_number/(time.time() - general_time)
                 tps_list.append(tps)
-                aux_tran_time += 1
-                lat_avg.append(statistics.mean(ls_trans_time))
-                thoughput_avg.append(statistics.mean(throughput_general))
-               
-                time.sleep(0.3)
+                # lat_avg.append(statistics.mean(ls_trans_time))
+                # thoughput_avg.append(statistics.mean(throughput_general))
+                print(f"Transactions sent { transactions_number }")
         except:
             print("Error")
             pass
@@ -272,7 +266,7 @@ class Experiment(object):
             if not fl_true:
                 f.writeheader()
                                           
-            for (lt, tps) in zip(lat_avg,  tps_list):
+            for (lt, tps) in zip(ls_trans_time,  tps_list):
                 f.writerow({'Latency': lt, 'TPS':  tps})
         
         #Grava Throughput per tps
@@ -283,7 +277,7 @@ class Experiment(object):
             if not fl_true:
                 f.writeheader()
                                           
-            for (th, tps) in zip(lat_avg,  tps_list):
+            for (th, tps) in zip(throughput_general,  tps_list):
                 f.writerow({'Throughput': th, 'TPS':  tps})
         
         #Grava Ids
@@ -597,7 +591,7 @@ class MensurePostSimple(object):
                 "patientTelephone": "(43) 0000-0000",
                 "machineModel": "AMX",
                 "patientOrganization": "USP",
-                "dicomID": str(uuid.uuid4()).join(flag),
+                "dicomID": str(uuid.uuid4()),
                 "patientAge": 23,
                 "patientAddress": "ASasasasasas",
                 "patientInsuranceplan": "IIIIIAAAA",
