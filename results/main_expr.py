@@ -40,12 +40,16 @@ class Client():
         elif method_type == "read-priv":
             method = MensureGetPriv()
 
+        expr = Experiment()
         print(f"Start running for {limit_transactions} transactions ...")
         
         for i in range(round):
-            expr = Experiment()
             print(f"Running round {i+1} ...")
             expr.measure_transations(limit_transactions, method_type, method)
             print(f"End round {i+1} ...")
 
         print("Finish running")
+
+if __name__ == "__main__":
+    c = Client()
+    c.init("read", 1000)

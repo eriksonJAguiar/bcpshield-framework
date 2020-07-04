@@ -608,8 +608,13 @@ class MensurePostSimple(object):
         start_send = time.time()
         url = "http://%s:%d/api/addAsset" % ("35.211.244.95",3000)
         headers = {'Content-Type': "application/json"}
-        rs = (grequests.post(url, headers=headers,data=d) for d in data_values)
-        grequests.map(rs)
+        
+        try:
+            rs = (grequests.post(url, headers=headers,data=d) for d in data_values)
+            grequests.map(rs)
+        except:
+            pass
+        
         end_send_time = time.time() - start_send
         size_send += len(json.dumps(data_values_json).encode('utf8'))
         
@@ -648,7 +653,7 @@ class MensureGetSimple(object):
                dicomIds.append(l)
 
 
-        for i in range(50*flag):
+        for i in range(20*flag):
             random.seed(time.time()*i)
             index = random.randint(0,(len(dicomIds)-1))
             data = {
@@ -665,8 +670,13 @@ class MensureGetSimple(object):
         start_send = time.time()
         url = "http://%s:%d/api/getAsset" % ("35.211.244.95",3000)
         headers = {'Content-Type': "application/json"}
-        rs = (grequests.get(url, headers=headers,data=d) for d in data_values)
-        grequests.map(rs)
+        
+        try:
+            rs = (grequests.get(url, headers=headers,data=d) for d in data_values)
+            grequests.map(rs)
+        except:
+            pass
+        
         end_send_time = time.time() - start_send
         size_send += len(json.dumps(data_values_json).encode('utf8'))
         
@@ -699,7 +709,7 @@ class MensurePostPriv(object):
         data_values_json = list()
 
 
-        for i in range(50*flag):
+        for i in range(20*flag):
             data = {
                 "patientHeigth": 1.75,
                 "patientID": "11110",
@@ -727,8 +737,13 @@ class MensurePostPriv(object):
         start_send = time.time()
         url = "http://%s:%d/api/addAssetPriv" % ("35.211.244.95",3000)
         headers = {'Content-Type': "application/json"}
-        rs = (grequests.post(url, headers=headers,data=d) for d in data_values)
-        grequests.map(rs)
+        
+        try:
+            rs = (grequests.post(url, headers=headers,data=d) for d in data_values)
+            grequests.map(rs)
+        except:
+            pass
+
         end_send_time = time.time() - start_send
         size_send += len(json.dumps(data_values_json).encode('utf8'))
         
@@ -768,7 +783,7 @@ class MensureGetPriv(object):
                dicomIds.append(l)
 
 
-        for i in range(50*flag):
+        for i in range(20*flag):
             random.seed(time.time()*i)
             index = random.randint(0,(len(dicomIds)-1))
             data = {
@@ -785,8 +800,13 @@ class MensureGetPriv(object):
         start_send = time.time()
         url = "http://%s:%d/api/getAssetPriv" % ("35.211.244.95",3000)
         headers = {'Content-Type': "application/json"}
-        rs = (grequests.get(url, headers=headers,data=d) for d in data_values)
-        grequests.map(rs)
+        
+        try:
+            rs = (grequests.get(url, headers=headers,data=d) for d in data_values)
+            grequests.map(rs)
+        except:
+            pass
+        
         end_send_time = time.time() - start_send
         size_send += len(json.dumps(data_values_json).encode('utf8'))
         
