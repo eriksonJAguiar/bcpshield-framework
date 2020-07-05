@@ -175,7 +175,7 @@ function generateWorkload() {
 
 module.exports.run = function() {
     let args = generateWorkload();
-    return bc.invokeSmartContract(contx, 'dicom-perform', '1', args, 100);
+    return bc.invokeSmartContract(contx, 'dicom-perform', '1', args, 1000);
 };
 
 module.exports.end = function() {

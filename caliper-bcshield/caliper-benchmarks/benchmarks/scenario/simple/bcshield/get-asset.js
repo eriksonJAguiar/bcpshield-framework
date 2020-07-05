@@ -36,7 +36,7 @@ module.exports.run = function() {
             chaincodeArguments: [acc],
         };
 
-    return bc.bcObj.querySmartContract(contx, 'dicom-perform', '1', args, 10);
+    return bc.bcObj.querySmartContract(contx, 'dicom-perform', '1', args, 1000);
     
 };
 

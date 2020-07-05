@@ -127,15 +127,23 @@
                 <h3>&nbspBasic information</h3>
                 <li>DLT: &nbsp<span style="font-weight: 500;">fabric</span></li>
                 <li>Name: &nbsp<span style="font-weight: 500;">healthcare</span></li>
-                <li>Description: &nbsp<span style="font-weight: 500;">This is an example benchmark for caliper, to test the backend DLT&#39;s performance with simple account opening &amp; querying transactions</span></li>
-                <li>Benchmark Rounds: &nbsp<span style="font-weight: 500;">2</span></li>
+                <li>Description: &nbsp<span style="font-weight: 500;">This is a benchmark for methods using create and query assets without privacy</span></li>
+                <li>Benchmark Rounds: &nbsp<span style="font-weight: 500;">10</span></li>
                 <li><a href="#benchmarkInfo">Details</a></li>
             </ul>
             <ul>
                 <h3>&nbspBenchmark results</h3>
                 <li><a href="#benchmarksummary">Summary</a></li>
-                    <li><a href="#create">create</a></li>
-                    <li><a href="#query">query</a></li>
+                    <li><a href="#create-50">create-50</a></li>
+                    <li><a href="#create-100">create-100</a></li>
+                    <li><a href="#create-150">create-150</a></li>
+                    <li><a href="#create-200">create-200</a></li>
+                    <li><a href="#create-250">create-250</a></li>
+                    <li><a href="#query-50">query-50</a></li>
+                    <li><a href="#query-100">query-100</a></li>
+                    <li><a href="#query-150">query-150</a></li>
+                    <li><a href="#query-200">query-200</a></li>
+                    <li><a href="#query-250">query-250</a></li>
             </ul>
             <ul>
                 <h3>&nbspSystem under test</h3>
@@ -158,31 +166,55 @@
                     </tr>
 
                     <tr>
-                         <td>create</td> <td>250</td> <td>0</td> <td>78.8</td> <td>65.75</td> <td>28.48</td> <td>53.71</td> <td>3.7</td>
+                         <td>create-50</td> <td>500</td> <td>0</td> <td>50.1</td> <td>118.49</td> <td>49.68</td> <td>95.10</td> <td>4.0</td>
                     </tr>
                     <tr>
-                         <td>query</td> <td>100</td> <td>0</td> <td>50.8</td> <td>5.95</td> <td>0.41</td> <td>4.66</td> <td>13.7</td>
+                         <td>create-100</td> <td>463</td> <td>37</td> <td>98.6</td> <td>114.91</td> <td>51.52</td> <td>94.28</td> <td>3.9</td>
+                    </tr>
+                    <tr>
+                         <td>create-150</td> <td>454</td> <td>46</td> <td>126.4</td> <td>120.69</td> <td>54.71</td> <td>97.16</td> <td>3.7</td>
+                    </tr>
+                    <tr>
+                         <td>create-200</td> <td>431</td> <td>69</td> <td>119.9</td> <td>115.04</td> <td>52.50</td> <td>93.92</td> <td>3.6</td>
+                    </tr>
+                    <tr>
+                         <td>create-250</td> <td>389</td> <td>111</td> <td>117.7</td> <td>106.19</td> <td>54.24</td> <td>89.96</td> <td>3.5</td>
+                    </tr>
+                    <tr>
+                         <td>query-50</td> <td>450</td> <td>50</td> <td>50.1</td> <td>28.37</td> <td>0.63</td> <td>21.72</td> <td>13.3</td>
+                    </tr>
+                    <tr>
+                         <td>query-100</td> <td>450</td> <td>50</td> <td>100.2</td> <td>29.93</td> <td>0.23</td> <td>24.15</td> <td>13.8</td>
+                    </tr>
+                    <tr>
+                         <td>query-150</td> <td>441</td> <td>59</td> <td>127.8</td> <td>30.60</td> <td>1.65</td> <td>24.19</td> <td>13.5</td>
+                    </tr>
+                    <tr>
+                         <td>query-200</td> <td>443</td> <td>56</td> <td>124.7</td> <td>32.49</td> <td>3.26</td> <td>26.33</td> <td>13.4</td>
+                    </tr>
+                    <tr>
+                         <td>query-250</td> <td>445</td> <td>55</td> <td>127.5</td> <td>32.29</td> <td>4.14</td> <td>25.10</td> <td>13.0</td>
                     </tr>
                 </table>
             </div>
-            <div style="border-bottom: 1px solid #d9d9d9; padding-bottom: 10px;" id="create">
-                <h2>Benchmark round: create</h2>
-                <p>Create asset dicom</p>
+            <div style="border-bottom: 1px solid #d9d9d9; padding-bottom: 10px;" id="create-50">
+                <h2>Benchmark round: create-50</h2>
+                <p>Create asset dicom 50 rate</p>
                 <pre style="overflow: visible;white-space: pre-wrap;max-height:100%;">rateControl:
   type: fixed-rate
   opts:
-    tps: 100
+    tps: 50
 </pre>
-                        <h3>Performance metrics for create</h3>
+                        <h3>Performance metrics for create-50</h3>
                             <table style="min-width: 100%;">
                                 <tr>
                                      <th>Name</th> <th>Succ</th> <th>Fail</th> <th>Send Rate (TPS)</th> <th>Max Latency (s)</th> <th>Min Latency (s)</th> <th>Avg Latency (s)</th> <th>Throughput (TPS)</th>
                                 </tr>
                                 <tr>
-                                     <td>create</td> <td>250</td> <td>0</td> <td>78.8</td> <td>65.75</td> <td>28.48</td> <td>53.71</td> <td>3.7</td>
+                                     <td>create-50</td> <td>500</td> <td>0</td> <td>50.1</td> <td>118.49</td> <td>49.68</td> <td>95.10</td> <td>4.0</td>
                                 </tr>
                             </table>
-                        <h3>Resource utilization for create</h3>
+                        <h3>Resource utilization for create-50</h3>
                             <h4>Resource monitor: docker</h4>
                             <table style="min-width: 100%;">
                                 <tr>
@@ -191,176 +223,575 @@
                                          <th>Name</th> <th>CPU%(max)</th> <th>CPU%(avg)</th> <th>Memory(max) [MB]</th> <th>Memory(avg) [MB]</th> <th>Traffic In [MB]</th> <th>Traffic Out [MB]</th> <th>Disc Write [MB]</th> <th>Disc Read [B]</th>
                                     </tr>
                                     <tr>
-                                         <td>peer1.research.healthcare.com</td> <td>12.06</td> <td>7.65</td> <td>73.8</td> <td>68.8</td> <td>2.09</td> <td>4.81</td> <td>2.03</td> <td>0.00</td>
+                                         <td>peer0.patient.healthcare.com</td> <td>17.27</td> <td>10.81</td> <td>114</td> <td>110</td> <td>10.0</td> <td>6.42</td> <td>4.02</td> <td>0.00</td>
                                     </tr>
                                     <tr>
-                                         <td>peer1.hprovider.healthcare.com</td> <td>12.92</td> <td>7.60</td> <td>100</td> <td>94.9</td> <td>2.14</td> <td>2.89</td> <td>2.03</td> <td>0.00</td>
+                                         <td>peer1.research.healthcare.com</td> <td>13.65</td> <td>7.95</td> <td>101</td> <td>90.8</td> <td>4.37</td> <td>17.9</td> <td>4.02</td> <td>0.00</td>
                                     </tr>
                                     <tr>
-                                         <td>peer0.research.healthcare.com</td> <td>16.44</td> <td>10.49</td> <td>119</td> <td>113</td> <td>5.45</td> <td>1.87</td> <td>1.73</td> <td>0.00</td>
+                                         <td>peer1.patient.healthcare.com</td> <td>13.32</td> <td>7.73</td> <td>70.9</td> <td>61.0</td> <td>5.62</td> <td>4.59</td> <td>4.02</td> <td>0.00</td>
                                     </tr>
                                     <tr>
-                                         <td>peer0.patient.healthcare.com</td> <td>16.98</td> <td>10.40</td> <td>92.3</td> <td>88.3</td> <td>4.22</td> <td>3.25</td> <td>1.66</td> <td>0.00</td>
+                                         <td>peer0.research.healthcare.com</td> <td>18.95</td> <td>11.02</td> <td>157</td> <td>154</td> <td>10.2</td> <td>6.46</td> <td>4.02</td> <td>0.00</td>
                                     </tr>
                                     <tr>
-                                         <td>peer0.hprovider.healthcare.com</td> <td>17.94</td> <td>10.00</td> <td>121</td> <td>117</td> <td>4.16</td> <td>3.67</td> <td>2.03</td> <td>0.00</td>
+                                         <td>peer1.hprovider.healthcare.com</td> <td>14.30</td> <td>8.73</td> <td>98.2</td> <td>89.0</td> <td>6.51</td> <td>3.77</td> <td>4.02</td> <td>0.00</td>
                                     </tr>
                                     <tr>
-                                         <td>peer1.patient.healthcare.com</td> <td>13.72</td> <td>8.16</td> <td>72.9</td> <td>68.1</td> <td>2.51</td> <td>1.61</td> <td>2.03</td> <td>0.00</td>
+                                         <td>peer0.hprovider.healthcare.com</td> <td>18.18</td> <td>11.25</td> <td>190</td> <td>188</td> <td>15.2</td> <td>6.70</td> <td>3.27</td> <td>0.00</td>
                                     </tr>
                                 </table>
                                 </tr>
                             </table>
                             <div class="charting">
                                 <div class="chart">
-                                    <canvas id="MonitorDocker_create_horizontalBar0">
-                                        <script>plotChart("MonitorDocker_create_horizontalBar0", "{&quot;type&quot;:&quot;horizontalBar&quot;,&quot;title&quot;:&quot;CPU%(avg)&quot;,&quot;legend&quot;:false,&quot;labels&quot;:[&quot;peer1.research.healthcare.com&quot;,&quot;peer1.hprovider.healthcare.com&quot;,&quot;peer0.research.healthcare.com&quot;,&quot;peer0.patient.healthcare.com&quot;,&quot;peer0.hprovider.healthcare.com&quot;,&quot;peer1.patient.healthcare.com&quot;],&quot;datasets&quot;:[{&quot;backgroundColor&quot;:[&quot;rgb(255,71,0,0.6)&quot;,&quot;rgb(179,50,0,0.6)&quot;,&quot;rgb(255,209,191,0.6)&quot;,&quot;rgb(255,163,128,0.6)&quot;,&quot;rgb(31,235,0,0.6)&quot;,&quot;rgb(22,164,0,0.6)&quot;],&quot;data&quot;:[&quot;7.65&quot;,&quot;7.60&quot;,&quot;10.49&quot;,&quot;10.40&quot;,&quot;10.00&quot;,&quot;8.16&quot;]}]}")</script>
+                                    <canvas id="MonitorDocker_create-50_horizontalBar0">
+                                        <script>plotChart("MonitorDocker_create-50_horizontalBar0", "{&quot;type&quot;:&quot;horizontalBar&quot;,&quot;title&quot;:&quot;CPU%(avg)&quot;,&quot;legend&quot;:false,&quot;labels&quot;:[&quot;peer0.patient.healthcare.com&quot;,&quot;peer1.research.healthcare.com&quot;,&quot;peer1.patient.healthcare.com&quot;,&quot;peer0.research.healthcare.com&quot;,&quot;peer1.hprovider.healthcare.com&quot;,&quot;peer0.hprovider.healthcare.com&quot;],&quot;datasets&quot;:[{&quot;backgroundColor&quot;:[&quot;rgb(255,71,0,0.6)&quot;,&quot;rgb(179,50,0,0.6)&quot;,&quot;rgb(255,209,191,0.6)&quot;,&quot;rgb(255,163,128,0.6)&quot;,&quot;rgb(31,235,0,0.6)&quot;,&quot;rgb(22,164,0,0.6)&quot;],&quot;data&quot;:[&quot;10.81&quot;,&quot;7.95&quot;,&quot;7.73&quot;,&quot;11.02&quot;,&quot;8.73&quot;,&quot;11.25&quot;]}]}")</script>
                                     </canvas>
                                 </div>
                                 <div class="chart">
-                                    <canvas id="MonitorDocker_create_horizontalBar1">
-                                        <script>plotChart("MonitorDocker_create_horizontalBar1", "{&quot;type&quot;:&quot;horizontalBar&quot;,&quot;title&quot;:&quot;Memory(avg) [MB]&quot;,&quot;legend&quot;:false,&quot;labels&quot;:[&quot;peer1.research.healthcare.com&quot;,&quot;peer1.hprovider.healthcare.com&quot;,&quot;peer0.research.healthcare.com&quot;,&quot;peer0.patient.healthcare.com&quot;,&quot;peer0.hprovider.healthcare.com&quot;,&quot;peer1.patient.healthcare.com&quot;],&quot;datasets&quot;:[{&quot;backgroundColor&quot;:[&quot;rgb(255,71,0,0.6)&quot;,&quot;rgb(179,50,0,0.6)&quot;,&quot;rgb(255,209,191,0.6)&quot;,&quot;rgb(255,163,128,0.6)&quot;,&quot;rgb(31,235,0,0.6)&quot;,&quot;rgb(22,164,0,0.6)&quot;],&quot;data&quot;:[&quot;68.8&quot;,&quot;94.9&quot;,&quot;113&quot;,&quot;88.3&quot;,&quot;117&quot;,&quot;68.1&quot;]}]}")</script>
-                                    </canvas>
-                                </div>
-                                <div class="chart">
-                                    <canvas id="MonitorDocker_create_polarArea0">
-                                        <script>plotChart("MonitorDocker_create_polarArea0", "{&quot;type&quot;:&quot;polarArea&quot;,&quot;title&quot;:&quot;CPU%(max)&quot;,&quot;legend&quot;:true,&quot;labels&quot;:[&quot;peer1.research.healthcare.com&quot;,&quot;peer1.hprovider.healthcare.com&quot;,&quot;peer0.research.healthcare.com&quot;,&quot;peer0.patient.healthcare.com&quot;,&quot;peer0.hprovider.healthcare.com&quot;,&quot;peer1.patient.healthcare.com&quot;],&quot;datasets&quot;:[{&quot;backgroundColor&quot;:[&quot;rgb(255,71,0,0.6)&quot;,&quot;rgb(179,50,0,0.6)&quot;,&quot;rgb(255,209,191,0.6)&quot;,&quot;rgb(255,163,128,0.6)&quot;,&quot;rgb(31,235,0,0.6)&quot;,&quot;rgb(22,164,0,0.6)&quot;],&quot;data&quot;:[&quot;12.06&quot;,&quot;12.92&quot;,&quot;16.44&quot;,&quot;16.98&quot;,&quot;17.94&quot;,&quot;13.72&quot;]}]}")</script>
-                                    </canvas>
-                                </div>
-                                <div class="chart">
-                                    <canvas id="MonitorDocker_create_polarArea1">
-                                        <script>plotChart("MonitorDocker_create_polarArea1", "{&quot;type&quot;:&quot;polarArea&quot;,&quot;title&quot;:&quot;CPU%(avg)&quot;,&quot;legend&quot;:true,&quot;labels&quot;:[&quot;peer1.research.healthcare.com&quot;,&quot;peer1.hprovider.healthcare.com&quot;,&quot;peer0.research.healthcare.com&quot;,&quot;peer0.patient.healthcare.com&quot;,&quot;peer0.hprovider.healthcare.com&quot;,&quot;peer1.patient.healthcare.com&quot;],&quot;datasets&quot;:[{&quot;backgroundColor&quot;:[&quot;rgb(255,71,0,0.6)&quot;,&quot;rgb(179,50,0,0.6)&quot;,&quot;rgb(255,209,191,0.6)&quot;,&quot;rgb(255,163,128,0.6)&quot;,&quot;rgb(31,235,0,0.6)&quot;,&quot;rgb(22,164,0,0.6)&quot;],&quot;data&quot;:[&quot;7.65&quot;,&quot;7.60&quot;,&quot;10.49&quot;,&quot;10.40&quot;,&quot;10.00&quot;,&quot;8.16&quot;]}]}")</script>
-                                    </canvas>
-                                </div>
-                                <div class="chart">
-                                    <canvas id="MonitorDocker_create_polarArea2">
-                                        <script>plotChart("MonitorDocker_create_polarArea2", "{&quot;type&quot;:&quot;polarArea&quot;,&quot;title&quot;:&quot;Memory(max) [MB]&quot;,&quot;legend&quot;:true,&quot;labels&quot;:[&quot;peer1.research.healthcare.com&quot;,&quot;peer1.hprovider.healthcare.com&quot;,&quot;peer0.research.healthcare.com&quot;,&quot;peer0.patient.healthcare.com&quot;,&quot;peer0.hprovider.healthcare.com&quot;,&quot;peer1.patient.healthcare.com&quot;],&quot;datasets&quot;:[{&quot;backgroundColor&quot;:[&quot;rgb(255,71,0,0.6)&quot;,&quot;rgb(179,50,0,0.6)&quot;,&quot;rgb(255,209,191,0.6)&quot;,&quot;rgb(255,163,128,0.6)&quot;,&quot;rgb(31,235,0,0.6)&quot;,&quot;rgb(22,164,0,0.6)&quot;],&quot;data&quot;:[&quot;73.8&quot;,&quot;100&quot;,&quot;119&quot;,&quot;92.3&quot;,&quot;121&quot;,&quot;72.9&quot;]}]}")</script>
-                                    </canvas>
-                                </div>
-                                <div class="chart">
-                                    <canvas id="MonitorDocker_create_polarArea3">
-                                        <script>plotChart("MonitorDocker_create_polarArea3", "{&quot;type&quot;:&quot;polarArea&quot;,&quot;title&quot;:&quot;Memory(avg) [MB]&quot;,&quot;legend&quot;:true,&quot;labels&quot;:[&quot;peer1.research.healthcare.com&quot;,&quot;peer1.hprovider.healthcare.com&quot;,&quot;peer0.research.healthcare.com&quot;,&quot;peer0.patient.healthcare.com&quot;,&quot;peer0.hprovider.healthcare.com&quot;,&quot;peer1.patient.healthcare.com&quot;],&quot;datasets&quot;:[{&quot;backgroundColor&quot;:[&quot;rgb(255,71,0,0.6)&quot;,&quot;rgb(179,50,0,0.6)&quot;,&quot;rgb(255,209,191,0.6)&quot;,&quot;rgb(255,163,128,0.6)&quot;,&quot;rgb(31,235,0,0.6)&quot;,&quot;rgb(22,164,0,0.6)&quot;],&quot;data&quot;:[&quot;68.8&quot;,&quot;94.9&quot;,&quot;113&quot;,&quot;88.3&quot;,&quot;117&quot;,&quot;68.1&quot;]}]}")</script>
-                                    </canvas>
-                                </div>
-                                <div class="chart">
-                                    <canvas id="MonitorDocker_create_polarArea4">
-                                        <script>plotChart("MonitorDocker_create_polarArea4", "{&quot;type&quot;:&quot;polarArea&quot;,&quot;title&quot;:&quot;Traffic In [MB]&quot;,&quot;legend&quot;:true,&quot;labels&quot;:[&quot;peer1.research.healthcare.com&quot;,&quot;peer1.hprovider.healthcare.com&quot;,&quot;peer0.research.healthcare.com&quot;,&quot;peer0.patient.healthcare.com&quot;,&quot;peer0.hprovider.healthcare.com&quot;,&quot;peer1.patient.healthcare.com&quot;],&quot;datasets&quot;:[{&quot;backgroundColor&quot;:[&quot;rgb(255,71,0,0.6)&quot;,&quot;rgb(179,50,0,0.6)&quot;,&quot;rgb(255,209,191,0.6)&quot;,&quot;rgb(255,163,128,0.6)&quot;,&quot;rgb(31,235,0,0.6)&quot;,&quot;rgb(22,164,0,0.6)&quot;],&quot;data&quot;:[&quot;2.09&quot;,&quot;2.14&quot;,&quot;5.45&quot;,&quot;4.22&quot;,&quot;4.16&quot;,&quot;2.51&quot;]}]}")</script>
-                                    </canvas>
-                                </div>
-                                <div class="chart">
-                                    <canvas id="MonitorDocker_create_polarArea5">
-                                        <script>plotChart("MonitorDocker_create_polarArea5", "{&quot;type&quot;:&quot;polarArea&quot;,&quot;title&quot;:&quot;Traffic Out [MB]&quot;,&quot;legend&quot;:true,&quot;labels&quot;:[&quot;peer1.research.healthcare.com&quot;,&quot;peer1.hprovider.healthcare.com&quot;,&quot;peer0.research.healthcare.com&quot;,&quot;peer0.patient.healthcare.com&quot;,&quot;peer0.hprovider.healthcare.com&quot;,&quot;peer1.patient.healthcare.com&quot;],&quot;datasets&quot;:[{&quot;backgroundColor&quot;:[&quot;rgb(255,71,0,0.6)&quot;,&quot;rgb(179,50,0,0.6)&quot;,&quot;rgb(255,209,191,0.6)&quot;,&quot;rgb(255,163,128,0.6)&quot;,&quot;rgb(31,235,0,0.6)&quot;,&quot;rgb(22,164,0,0.6)&quot;],&quot;data&quot;:[&quot;4.81&quot;,&quot;2.89&quot;,&quot;1.87&quot;,&quot;3.25&quot;,&quot;3.67&quot;,&quot;1.61&quot;]}]}")</script>
-                                    </canvas>
-                                </div>
-                                <div class="chart">
-                                    <canvas id="MonitorDocker_create_polarArea6">
-                                        <script>plotChart("MonitorDocker_create_polarArea6", "{&quot;type&quot;:&quot;polarArea&quot;,&quot;title&quot;:&quot;Disc Write [MB]&quot;,&quot;legend&quot;:true,&quot;labels&quot;:[&quot;peer1.research.healthcare.com&quot;,&quot;peer1.hprovider.healthcare.com&quot;,&quot;peer0.research.healthcare.com&quot;,&quot;peer0.patient.healthcare.com&quot;,&quot;peer0.hprovider.healthcare.com&quot;,&quot;peer1.patient.healthcare.com&quot;],&quot;datasets&quot;:[{&quot;backgroundColor&quot;:[&quot;rgb(255,71,0,0.6)&quot;,&quot;rgb(179,50,0,0.6)&quot;,&quot;rgb(255,209,191,0.6)&quot;,&quot;rgb(255,163,128,0.6)&quot;,&quot;rgb(31,235,0,0.6)&quot;,&quot;rgb(22,164,0,0.6)&quot;],&quot;data&quot;:[&quot;2.03&quot;,&quot;2.03&quot;,&quot;1.73&quot;,&quot;1.66&quot;,&quot;2.03&quot;,&quot;2.03&quot;]}]}")</script>
-                                    </canvas>
-                                </div>
-                                <div class="chart">
-                                    <canvas id="MonitorDocker_create_polarArea7">
-                                        <script>plotChart("MonitorDocker_create_polarArea7", "{&quot;type&quot;:&quot;polarArea&quot;,&quot;title&quot;:&quot;Disc Read [B]&quot;,&quot;legend&quot;:true,&quot;labels&quot;:[&quot;peer1.research.healthcare.com&quot;,&quot;peer1.hprovider.healthcare.com&quot;,&quot;peer0.research.healthcare.com&quot;,&quot;peer0.patient.healthcare.com&quot;,&quot;peer0.hprovider.healthcare.com&quot;,&quot;peer1.patient.healthcare.com&quot;],&quot;datasets&quot;:[{&quot;backgroundColor&quot;:[&quot;rgb(255,71,0,0.6)&quot;,&quot;rgb(179,50,0,0.6)&quot;,&quot;rgb(255,209,191,0.6)&quot;,&quot;rgb(255,163,128,0.6)&quot;,&quot;rgb(31,235,0,0.6)&quot;,&quot;rgb(22,164,0,0.6)&quot;],&quot;data&quot;:[&quot;0.00&quot;,&quot;0.00&quot;,&quot;0.00&quot;,&quot;0.00&quot;,&quot;0.00&quot;,&quot;0.00&quot;]}]}")</script>
+                                    <canvas id="MonitorDocker_create-50_horizontalBar1">
+                                        <script>plotChart("MonitorDocker_create-50_horizontalBar1", "{&quot;type&quot;:&quot;horizontalBar&quot;,&quot;title&quot;:&quot;Memory(avg) [MB]&quot;,&quot;legend&quot;:false,&quot;labels&quot;:[&quot;peer0.patient.healthcare.com&quot;,&quot;peer1.research.healthcare.com&quot;,&quot;peer1.patient.healthcare.com&quot;,&quot;peer0.research.healthcare.com&quot;,&quot;peer1.hprovider.healthcare.com&quot;,&quot;peer0.hprovider.healthcare.com&quot;],&quot;datasets&quot;:[{&quot;backgroundColor&quot;:[&quot;rgb(255,71,0,0.6)&quot;,&quot;rgb(179,50,0,0.6)&quot;,&quot;rgb(255,209,191,0.6)&quot;,&quot;rgb(255,163,128,0.6)&quot;,&quot;rgb(31,235,0,0.6)&quot;,&quot;rgb(22,164,0,0.6)&quot;],&quot;data&quot;:[&quot;110&quot;,&quot;90.8&quot;,&quot;61.0&quot;,&quot;154&quot;,&quot;89.0&quot;,&quot;188&quot;]}]}")</script>
                                     </canvas>
                                 </div>
                             </div>
             </div>
 
-            <div style="border-bottom: 1px solid #d9d9d9; padding-bottom: 10px;" id="query">
-                <h2>Benchmark round: query</h2>
-                <p>Query dicom asset</p>
+            <div style="border-bottom: 1px solid #d9d9d9; padding-bottom: 10px;" id="create-100">
+                <h2>Benchmark round: create-100</h2>
+                <p>Create asset dicom 100 rate</p>
                 <pre style="overflow: visible;white-space: pre-wrap;max-height:100%;">rateControl:
-  type: linear-rate
+  type: fixed-rate
   opts:
-    startingTps: 50
-    finishingTps: 250
+    tps: 100
 </pre>
-                        <h3>Performance metrics for query</h3>
+                        <h3>Performance metrics for create-100</h3>
                             <table style="min-width: 100%;">
                                 <tr>
                                      <th>Name</th> <th>Succ</th> <th>Fail</th> <th>Send Rate (TPS)</th> <th>Max Latency (s)</th> <th>Min Latency (s)</th> <th>Avg Latency (s)</th> <th>Throughput (TPS)</th>
                                 </tr>
                                 <tr>
-                                     <td>query</td> <td>100</td> <td>0</td> <td>50.8</td> <td>5.95</td> <td>0.41</td> <td>4.66</td> <td>13.7</td>
+                                     <td>create-100</td> <td>463</td> <td>37</td> <td>98.6</td> <td>114.91</td> <td>51.52</td> <td>94.28</td> <td>3.9</td>
                                 </tr>
                             </table>
-                        <h3>Resource utilization for query</h3>
+                        <h3>Resource utilization for create-100</h3>
                             <h4>Resource monitor: docker</h4>
                             <table style="min-width: 100%;">
                                 <tr>
                                 <table>
                                     <tr>
-                                         <th>Name</th> <th>CPU%(max)</th> <th>CPU%(avg)</th> <th>Memory(max) [MB]</th> <th>Memory(avg) [MB]</th> <th>Traffic In [KB]</th> <th>Traffic Out [KB]</th> <th>Disc Write [B]</th> <th>Disc Read [B]</th>
+                                         <th>Name</th> <th>CPU%(max)</th> <th>CPU%(avg)</th> <th>Memory(max) [MB]</th> <th>Memory(avg) [MB]</th> <th>Traffic In [MB]</th> <th>Traffic Out [MB]</th> <th>Disc Write [MB]</th> <th>Disc Read [B]</th>
                                     </tr>
                                     <tr>
-                                         <td>peer1.research.healthcare.com</td> <td>5.65</td> <td>4.03</td> <td>73.8</td> <td>73.8</td> <td>58.4</td> <td>58.2</td> <td>0.00</td> <td>0.00</td>
+                                         <td>peer0.patient.healthcare.com</td> <td>16.14</td> <td>10.92</td> <td>117</td> <td>114</td> <td>9.32</td> <td>5.88</td> <td>3.72</td> <td>0.00</td>
                                     </tr>
                                     <tr>
-                                         <td>peer1.hprovider.healthcare.com</td> <td>6.02</td> <td>3.29</td> <td>100</td> <td>100</td> <td>60.3</td> <td>55.6</td> <td>0.00</td> <td>0.00</td>
+                                         <td>peer1.research.healthcare.com</td> <td>13.41</td> <td>7.82</td> <td>111</td> <td>105</td> <td>3.97</td> <td>5.35</td> <td>3.72</td> <td>0.00</td>
                                     </tr>
                                     <tr>
-                                         <td>peer0.research.healthcare.com</td> <td>17.27</td> <td>9.62</td> <td>119</td> <td>119</td> <td>354</td> <td>431</td> <td>0.00</td> <td>0.00</td>
+                                         <td>peer1.patient.healthcare.com</td> <td>14.66</td> <td>8.12</td> <td>84.7</td> <td>76.8</td> <td>4.23</td> <td>5.89</td> <td>3.72</td> <td>0.00</td>
                                     </tr>
                                     <tr>
-                                         <td>peer0.patient.healthcare.com</td> <td>16.72</td> <td>11.06</td> <td>92.6</td> <td>92.6</td> <td>338</td> <td>424</td> <td>0.00</td> <td>0.00</td>
+                                         <td>peer0.research.healthcare.com</td> <td>16.96</td> <td>11.20</td> <td>160</td> <td>158</td> <td>9.13</td> <td>6.12</td> <td>3.72</td> <td>0.00</td>
                                     </tr>
                                     <tr>
-                                         <td>peer0.hprovider.healthcare.com</td> <td>17.73</td> <td>9.00</td> <td>121</td> <td>121</td> <td>379</td> <td>430</td> <td>0.00</td> <td>0.00</td>
+                                         <td>peer1.hprovider.healthcare.com</td> <td>17.36</td> <td>8.71</td> <td>114</td> <td>104</td> <td>4.55</td> <td>6.26</td> <td>3.72</td> <td>0.00</td>
                                     </tr>
                                     <tr>
-                                         <td>peer1.patient.healthcare.com</td> <td>4.11</td> <td>3.19</td> <td>72.9</td> <td>72.9</td> <td>52.5</td> <td>53.6</td> <td>0.00</td> <td>0.00</td>
+                                         <td>peer0.hprovider.healthcare.com</td> <td>24.66</td> <td>12.00</td> <td>193</td> <td>191</td> <td>10.4</td> <td>5.91</td> <td>3.32</td> <td>0.00</td>
                                     </tr>
                                 </table>
                                 </tr>
                             </table>
                             <div class="charting">
                                 <div class="chart">
-                                    <canvas id="MonitorDocker_query_horizontalBar0">
-                                        <script>plotChart("MonitorDocker_query_horizontalBar0", "{&quot;type&quot;:&quot;horizontalBar&quot;,&quot;title&quot;:&quot;CPU%(avg)&quot;,&quot;legend&quot;:false,&quot;labels&quot;:[&quot;peer1.research.healthcare.com&quot;,&quot;peer1.hprovider.healthcare.com&quot;,&quot;peer0.research.healthcare.com&quot;,&quot;peer0.patient.healthcare.com&quot;,&quot;peer0.hprovider.healthcare.com&quot;,&quot;peer1.patient.healthcare.com&quot;],&quot;datasets&quot;:[{&quot;backgroundColor&quot;:[&quot;rgb(255,71,0,0.6)&quot;,&quot;rgb(179,50,0,0.6)&quot;,&quot;rgb(255,209,191,0.6)&quot;,&quot;rgb(255,163,128,0.6)&quot;,&quot;rgb(31,235,0,0.6)&quot;,&quot;rgb(22,164,0,0.6)&quot;],&quot;data&quot;:[&quot;4.03&quot;,&quot;3.29&quot;,&quot;9.62&quot;,&quot;11.06&quot;,&quot;9.00&quot;,&quot;3.19&quot;]}]}")</script>
+                                    <canvas id="MonitorDocker_create-100_horizontalBar0">
+                                        <script>plotChart("MonitorDocker_create-100_horizontalBar0", "{&quot;type&quot;:&quot;horizontalBar&quot;,&quot;title&quot;:&quot;CPU%(avg)&quot;,&quot;legend&quot;:false,&quot;labels&quot;:[&quot;peer0.patient.healthcare.com&quot;,&quot;peer1.research.healthcare.com&quot;,&quot;peer1.patient.healthcare.com&quot;,&quot;peer0.research.healthcare.com&quot;,&quot;peer1.hprovider.healthcare.com&quot;,&quot;peer0.hprovider.healthcare.com&quot;],&quot;datasets&quot;:[{&quot;backgroundColor&quot;:[&quot;rgb(255,71,0,0.6)&quot;,&quot;rgb(179,50,0,0.6)&quot;,&quot;rgb(255,209,191,0.6)&quot;,&quot;rgb(255,163,128,0.6)&quot;,&quot;rgb(31,235,0,0.6)&quot;,&quot;rgb(22,164,0,0.6)&quot;],&quot;data&quot;:[&quot;10.92&quot;,&quot;7.82&quot;,&quot;8.12&quot;,&quot;11.20&quot;,&quot;8.71&quot;,&quot;12.00&quot;]}]}")</script>
                                     </canvas>
                                 </div>
                                 <div class="chart">
-                                    <canvas id="MonitorDocker_query_horizontalBar1">
-                                        <script>plotChart("MonitorDocker_query_horizontalBar1", "{&quot;type&quot;:&quot;horizontalBar&quot;,&quot;title&quot;:&quot;Memory(avg) [MB]&quot;,&quot;legend&quot;:false,&quot;labels&quot;:[&quot;peer1.research.healthcare.com&quot;,&quot;peer1.hprovider.healthcare.com&quot;,&quot;peer0.research.healthcare.com&quot;,&quot;peer0.patient.healthcare.com&quot;,&quot;peer0.hprovider.healthcare.com&quot;,&quot;peer1.patient.healthcare.com&quot;],&quot;datasets&quot;:[{&quot;backgroundColor&quot;:[&quot;rgb(255,71,0,0.6)&quot;,&quot;rgb(179,50,0,0.6)&quot;,&quot;rgb(255,209,191,0.6)&quot;,&quot;rgb(255,163,128,0.6)&quot;,&quot;rgb(31,235,0,0.6)&quot;,&quot;rgb(22,164,0,0.6)&quot;],&quot;data&quot;:[&quot;73.8&quot;,&quot;100&quot;,&quot;119&quot;,&quot;92.6&quot;,&quot;121&quot;,&quot;72.9&quot;]}]}")</script>
+                                    <canvas id="MonitorDocker_create-100_horizontalBar1">
+                                        <script>plotChart("MonitorDocker_create-100_horizontalBar1", "{&quot;type&quot;:&quot;horizontalBar&quot;,&quot;title&quot;:&quot;Memory(avg) [MB]&quot;,&quot;legend&quot;:false,&quot;labels&quot;:[&quot;peer0.patient.healthcare.com&quot;,&quot;peer1.research.healthcare.com&quot;,&quot;peer1.patient.healthcare.com&quot;,&quot;peer0.research.healthcare.com&quot;,&quot;peer1.hprovider.healthcare.com&quot;,&quot;peer0.hprovider.healthcare.com&quot;],&quot;datasets&quot;:[{&quot;backgroundColor&quot;:[&quot;rgb(255,71,0,0.6)&quot;,&quot;rgb(179,50,0,0.6)&quot;,&quot;rgb(255,209,191,0.6)&quot;,&quot;rgb(255,163,128,0.6)&quot;,&quot;rgb(31,235,0,0.6)&quot;,&quot;rgb(22,164,0,0.6)&quot;],&quot;data&quot;:[&quot;114&quot;,&quot;105&quot;,&quot;76.8&quot;,&quot;158&quot;,&quot;104&quot;,&quot;191&quot;]}]}")</script>
+                                    </canvas>
+                                </div>
+                            </div>
+            </div>
+
+            <div style="border-bottom: 1px solid #d9d9d9; padding-bottom: 10px;" id="create-150">
+                <h2>Benchmark round: create-150</h2>
+                <p>Create asset dicom 150 rate</p>
+                <pre style="overflow: visible;white-space: pre-wrap;max-height:100%;">rateControl:
+  type: fixed-rate
+  opts:
+    tps: 150
+</pre>
+                        <h3>Performance metrics for create-150</h3>
+                            <table style="min-width: 100%;">
+                                <tr>
+                                     <th>Name</th> <th>Succ</th> <th>Fail</th> <th>Send Rate (TPS)</th> <th>Max Latency (s)</th> <th>Min Latency (s)</th> <th>Avg Latency (s)</th> <th>Throughput (TPS)</th>
+                                </tr>
+                                <tr>
+                                     <td>create-150</td> <td>454</td> <td>46</td> <td>126.4</td> <td>120.69</td> <td>54.71</td> <td>97.16</td> <td>3.7</td>
+                                </tr>
+                            </table>
+                        <h3>Resource utilization for create-150</h3>
+                            <h4>Resource monitor: docker</h4>
+                            <table style="min-width: 100%;">
+                                <tr>
+                                <table>
+                                    <tr>
+                                         <th>Name</th> <th>CPU%(max)</th> <th>CPU%(avg)</th> <th>Memory(max) [MB]</th> <th>Memory(avg) [MB]</th> <th>Traffic In [MB]</th> <th>Traffic Out [MB]</th> <th>Disc Write [MB]</th> <th>Disc Read [B]</th>
+                                    </tr>
+                                    <tr>
+                                         <td>peer0.patient.healthcare.com</td> <td>17.15</td> <td>11.12</td> <td>123</td> <td>119</td> <td>9.93</td> <td>6.14</td> <td>3.68</td> <td>0.00</td>
+                                    </tr>
+                                    <tr>
+                                         <td>peer1.research.healthcare.com</td> <td>12.32</td> <td>7.97</td> <td>118</td> <td>114</td> <td>3.97</td> <td>7.99</td> <td>3.68</td> <td>0.00</td>
+                                    </tr>
+                                    <tr>
+                                         <td>peer1.patient.healthcare.com</td> <td>13.29</td> <td>7.46</td> <td>92.3</td> <td>87.0</td> <td>3.98</td> <td>10.3</td> <td>3.68</td> <td>0.00</td>
+                                    </tr>
+                                    <tr>
+                                         <td>peer0.research.healthcare.com</td> <td>17.98</td> <td>11.13</td> <td>164</td> <td>161</td> <td>11.1</td> <td>6.03</td> <td>3.68</td> <td>0.00</td>
+                                    </tr>
+                                    <tr>
+                                         <td>peer1.hprovider.healthcare.com</td> <td>13.31</td> <td>8.09</td> <td>119</td> <td>116</td> <td>6.27</td> <td>7.86</td> <td>3.68</td> <td>0.00</td>
+                                    </tr>
+                                    <tr>
+                                         <td>peer0.hprovider.healthcare.com</td> <td>21.88</td> <td>11.76</td> <td>196</td> <td>194</td> <td>15.6</td> <td>5.98</td> <td>3.49</td> <td>0.00</td>
+                                    </tr>
+                                </table>
+                                </tr>
+                            </table>
+                            <div class="charting">
+                                <div class="chart">
+                                    <canvas id="MonitorDocker_create-150_horizontalBar0">
+                                        <script>plotChart("MonitorDocker_create-150_horizontalBar0", "{&quot;type&quot;:&quot;horizontalBar&quot;,&quot;title&quot;:&quot;CPU%(avg)&quot;,&quot;legend&quot;:false,&quot;labels&quot;:[&quot;peer0.patient.healthcare.com&quot;,&quot;peer1.research.healthcare.com&quot;,&quot;peer1.patient.healthcare.com&quot;,&quot;peer0.research.healthcare.com&quot;,&quot;peer1.hprovider.healthcare.com&quot;,&quot;peer0.hprovider.healthcare.com&quot;],&quot;datasets&quot;:[{&quot;backgroundColor&quot;:[&quot;rgb(255,71,0,0.6)&quot;,&quot;rgb(179,50,0,0.6)&quot;,&quot;rgb(255,209,191,0.6)&quot;,&quot;rgb(255,163,128,0.6)&quot;,&quot;rgb(31,235,0,0.6)&quot;,&quot;rgb(22,164,0,0.6)&quot;],&quot;data&quot;:[&quot;11.12&quot;,&quot;7.97&quot;,&quot;7.46&quot;,&quot;11.13&quot;,&quot;8.09&quot;,&quot;11.76&quot;]}]}")</script>
                                     </canvas>
                                 </div>
                                 <div class="chart">
-                                    <canvas id="MonitorDocker_query_polarArea0">
-                                        <script>plotChart("MonitorDocker_query_polarArea0", "{&quot;type&quot;:&quot;polarArea&quot;,&quot;title&quot;:&quot;CPU%(max)&quot;,&quot;legend&quot;:true,&quot;labels&quot;:[&quot;peer1.research.healthcare.com&quot;,&quot;peer1.hprovider.healthcare.com&quot;,&quot;peer0.research.healthcare.com&quot;,&quot;peer0.patient.healthcare.com&quot;,&quot;peer0.hprovider.healthcare.com&quot;,&quot;peer1.patient.healthcare.com&quot;],&quot;datasets&quot;:[{&quot;backgroundColor&quot;:[&quot;rgb(255,71,0,0.6)&quot;,&quot;rgb(179,50,0,0.6)&quot;,&quot;rgb(255,209,191,0.6)&quot;,&quot;rgb(255,163,128,0.6)&quot;,&quot;rgb(31,235,0,0.6)&quot;,&quot;rgb(22,164,0,0.6)&quot;],&quot;data&quot;:[&quot;5.65&quot;,&quot;6.02&quot;,&quot;17.27&quot;,&quot;16.72&quot;,&quot;17.73&quot;,&quot;4.11&quot;]}]}")</script>
+                                    <canvas id="MonitorDocker_create-150_horizontalBar1">
+                                        <script>plotChart("MonitorDocker_create-150_horizontalBar1", "{&quot;type&quot;:&quot;horizontalBar&quot;,&quot;title&quot;:&quot;Memory(avg) [MB]&quot;,&quot;legend&quot;:false,&quot;labels&quot;:[&quot;peer0.patient.healthcare.com&quot;,&quot;peer1.research.healthcare.com&quot;,&quot;peer1.patient.healthcare.com&quot;,&quot;peer0.research.healthcare.com&quot;,&quot;peer1.hprovider.healthcare.com&quot;,&quot;peer0.hprovider.healthcare.com&quot;],&quot;datasets&quot;:[{&quot;backgroundColor&quot;:[&quot;rgb(255,71,0,0.6)&quot;,&quot;rgb(179,50,0,0.6)&quot;,&quot;rgb(255,209,191,0.6)&quot;,&quot;rgb(255,163,128,0.6)&quot;,&quot;rgb(31,235,0,0.6)&quot;,&quot;rgb(22,164,0,0.6)&quot;],&quot;data&quot;:[&quot;119&quot;,&quot;114&quot;,&quot;87.0&quot;,&quot;161&quot;,&quot;116&quot;,&quot;194&quot;]}]}")</script>
+                                    </canvas>
+                                </div>
+                            </div>
+            </div>
+
+            <div style="border-bottom: 1px solid #d9d9d9; padding-bottom: 10px;" id="create-200">
+                <h2>Benchmark round: create-200</h2>
+                <p>Create asset dicom 200 rate</p>
+                <pre style="overflow: visible;white-space: pre-wrap;max-height:100%;">rateControl:
+  type: fixed-rate
+  opts:
+    tps: 200
+</pre>
+                        <h3>Performance metrics for create-200</h3>
+                            <table style="min-width: 100%;">
+                                <tr>
+                                     <th>Name</th> <th>Succ</th> <th>Fail</th> <th>Send Rate (TPS)</th> <th>Max Latency (s)</th> <th>Min Latency (s)</th> <th>Avg Latency (s)</th> <th>Throughput (TPS)</th>
+                                </tr>
+                                <tr>
+                                     <td>create-200</td> <td>431</td> <td>69</td> <td>119.9</td> <td>115.04</td> <td>52.50</td> <td>93.92</td> <td>3.6</td>
+                                </tr>
+                            </table>
+                        <h3>Resource utilization for create-200</h3>
+                            <h4>Resource monitor: docker</h4>
+                            <table style="min-width: 100%;">
+                                <tr>
+                                <table>
+                                    <tr>
+                                         <th>Name</th> <th>CPU%(max)</th> <th>CPU%(avg)</th> <th>Memory(max) [MB]</th> <th>Memory(avg) [MB]</th> <th>Traffic In [MB]</th> <th>Traffic Out [MB]</th> <th>Disc Write [MB]</th> <th>Disc Read [KB]</th>
+                                    </tr>
+                                    <tr>
+                                         <td>peer0.patient.healthcare.com</td> <td>16.53</td> <td>10.83</td> <td>128</td> <td>125</td> <td>9.08</td> <td>5.82</td> <td>3.51</td> <td>8.00</td>
+                                    </tr>
+                                    <tr>
+                                         <td>peer1.research.healthcare.com</td> <td>14.37</td> <td>7.82</td> <td>121</td> <td>119</td> <td>4.52</td> <td>6.20</td> <td>3.51</td> <td>4.00</td>
+                                    </tr>
+                                    <tr>
+                                         <td>peer1.patient.healthcare.com</td> <td>13.47</td> <td>7.48</td> <td>96.0</td> <td>93.8</td> <td>3.76</td> <td>9.80</td> <td>3.51</td> <td>8.00</td>
+                                    </tr>
+                                    <tr>
+                                         <td>peer0.research.healthcare.com</td> <td>17.92</td> <td>11.19</td> <td>168</td> <td>164</td> <td>9.05</td> <td>5.92</td> <td>3.51</td> <td>0.00</td>
+                                    </tr>
+                                    <tr>
+                                         <td>peer1.hprovider.healthcare.com</td> <td>14.37</td> <td>8.49</td> <td>121</td> <td>120</td> <td>5.53</td> <td>3.13</td> <td>3.51</td> <td>0.00</td>
+                                    </tr>
+                                    <tr>
+                                         <td>peer0.hprovider.healthcare.com</td> <td>20.08</td> <td>11.86</td> <td>199</td> <td>197</td> <td>10.3</td> <td>5.68</td> <td>3.28</td> <td>0.00</td>
+                                    </tr>
+                                </table>
+                                </tr>
+                            </table>
+                            <div class="charting">
+                                <div class="chart">
+                                    <canvas id="MonitorDocker_create-200_horizontalBar0">
+                                        <script>plotChart("MonitorDocker_create-200_horizontalBar0", "{&quot;type&quot;:&quot;horizontalBar&quot;,&quot;title&quot;:&quot;CPU%(avg)&quot;,&quot;legend&quot;:false,&quot;labels&quot;:[&quot;peer0.patient.healthcare.com&quot;,&quot;peer1.research.healthcare.com&quot;,&quot;peer1.patient.healthcare.com&quot;,&quot;peer0.research.healthcare.com&quot;,&quot;peer1.hprovider.healthcare.com&quot;,&quot;peer0.hprovider.healthcare.com&quot;],&quot;datasets&quot;:[{&quot;backgroundColor&quot;:[&quot;rgb(255,71,0,0.6)&quot;,&quot;rgb(179,50,0,0.6)&quot;,&quot;rgb(255,209,191,0.6)&quot;,&quot;rgb(255,163,128,0.6)&quot;,&quot;rgb(31,235,0,0.6)&quot;,&quot;rgb(22,164,0,0.6)&quot;],&quot;data&quot;:[&quot;10.83&quot;,&quot;7.82&quot;,&quot;7.48&quot;,&quot;11.19&quot;,&quot;8.49&quot;,&quot;11.86&quot;]}]}")</script>
                                     </canvas>
                                 </div>
                                 <div class="chart">
-                                    <canvas id="MonitorDocker_query_polarArea1">
-                                        <script>plotChart("MonitorDocker_query_polarArea1", "{&quot;type&quot;:&quot;polarArea&quot;,&quot;title&quot;:&quot;CPU%(avg)&quot;,&quot;legend&quot;:true,&quot;labels&quot;:[&quot;peer1.research.healthcare.com&quot;,&quot;peer1.hprovider.healthcare.com&quot;,&quot;peer0.research.healthcare.com&quot;,&quot;peer0.patient.healthcare.com&quot;,&quot;peer0.hprovider.healthcare.com&quot;,&quot;peer1.patient.healthcare.com&quot;],&quot;datasets&quot;:[{&quot;backgroundColor&quot;:[&quot;rgb(255,71,0,0.6)&quot;,&quot;rgb(179,50,0,0.6)&quot;,&quot;rgb(255,209,191,0.6)&quot;,&quot;rgb(255,163,128,0.6)&quot;,&quot;rgb(31,235,0,0.6)&quot;,&quot;rgb(22,164,0,0.6)&quot;],&quot;data&quot;:[&quot;4.03&quot;,&quot;3.29&quot;,&quot;9.62&quot;,&quot;11.06&quot;,&quot;9.00&quot;,&quot;3.19&quot;]}]}")</script>
+                                    <canvas id="MonitorDocker_create-200_horizontalBar1">
+                                        <script>plotChart("MonitorDocker_create-200_horizontalBar1", "{&quot;type&quot;:&quot;horizontalBar&quot;,&quot;title&quot;:&quot;Memory(avg) [MB]&quot;,&quot;legend&quot;:false,&quot;labels&quot;:[&quot;peer0.patient.healthcare.com&quot;,&quot;peer1.research.healthcare.com&quot;,&quot;peer1.patient.healthcare.com&quot;,&quot;peer0.research.healthcare.com&quot;,&quot;peer1.hprovider.healthcare.com&quot;,&quot;peer0.hprovider.healthcare.com&quot;],&quot;datasets&quot;:[{&quot;backgroundColor&quot;:[&quot;rgb(255,71,0,0.6)&quot;,&quot;rgb(179,50,0,0.6)&quot;,&quot;rgb(255,209,191,0.6)&quot;,&quot;rgb(255,163,128,0.6)&quot;,&quot;rgb(31,235,0,0.6)&quot;,&quot;rgb(22,164,0,0.6)&quot;],&quot;data&quot;:[&quot;125&quot;,&quot;119&quot;,&quot;93.8&quot;,&quot;164&quot;,&quot;120&quot;,&quot;197&quot;]}]}")</script>
+                                    </canvas>
+                                </div>
+                            </div>
+            </div>
+
+            <div style="border-bottom: 1px solid #d9d9d9; padding-bottom: 10px;" id="create-250">
+                <h2>Benchmark round: create-250</h2>
+                <p>Create asset dicom 250 rate</p>
+                <pre style="overflow: visible;white-space: pre-wrap;max-height:100%;">rateControl:
+  type: fixed-rate
+  opts:
+    tps: 200
+</pre>
+                        <h3>Performance metrics for create-250</h3>
+                            <table style="min-width: 100%;">
+                                <tr>
+                                     <th>Name</th> <th>Succ</th> <th>Fail</th> <th>Send Rate (TPS)</th> <th>Max Latency (s)</th> <th>Min Latency (s)</th> <th>Avg Latency (s)</th> <th>Throughput (TPS)</th>
+                                </tr>
+                                <tr>
+                                     <td>create-250</td> <td>389</td> <td>111</td> <td>117.7</td> <td>106.19</td> <td>54.24</td> <td>89.96</td> <td>3.5</td>
+                                </tr>
+                            </table>
+                        <h3>Resource utilization for create-250</h3>
+                            <h4>Resource monitor: docker</h4>
+                            <table style="min-width: 100%;">
+                                <tr>
+                                <table>
+                                    <tr>
+                                         <th>Name</th> <th>CPU%(max)</th> <th>CPU%(avg)</th> <th>Memory(max) [MB]</th> <th>Memory(avg) [MB]</th> <th>Traffic In [MB]</th> <th>Traffic Out [MB]</th> <th>Disc Write [MB]</th> <th>Disc Read [B]</th>
+                                    </tr>
+                                    <tr>
+                                         <td>peer0.patient.healthcare.com</td> <td>18.21</td> <td>10.96</td> <td>132</td> <td>130</td> <td>8.24</td> <td>5.59</td> <td>3.17</td> <td>0.00</td>
+                                    </tr>
+                                    <tr>
+                                         <td>peer1.research.healthcare.com</td> <td>12.69</td> <td>7.49</td> <td>123</td> <td>122</td> <td>3.39</td> <td>6.17</td> <td>3.17</td> <td>0.00</td>
+                                    </tr>
+                                    <tr>
+                                         <td>peer1.patient.healthcare.com</td> <td>13.19</td> <td>7.63</td> <td>101</td> <td>98.6</td> <td>3.19</td> <td>4.75</td> <td>3.17</td> <td>0.00</td>
+                                    </tr>
+                                    <tr>
+                                         <td>peer0.research.healthcare.com</td> <td>19.44</td> <td>11.63</td> <td>171</td> <td>169</td> <td>8.30</td> <td>5.60</td> <td>3.16</td> <td>0.00</td>
+                                    </tr>
+                                    <tr>
+                                         <td>peer1.hprovider.healthcare.com</td> <td>14.53</td> <td>8.28</td> <td>124</td> <td>122</td> <td>3.63</td> <td>4.26</td> <td>3.17</td> <td>0.00</td>
+                                    </tr>
+                                    <tr>
+                                         <td>peer0.hprovider.healthcare.com</td> <td>20.05</td> <td>11.97</td> <td>201</td> <td>199</td> <td>9.62</td> <td>5.43</td> <td>2.86</td> <td>0.00</td>
+                                    </tr>
+                                </table>
+                                </tr>
+                            </table>
+                            <div class="charting">
+                                <div class="chart">
+                                    <canvas id="MonitorDocker_create-250_horizontalBar0">
+                                        <script>plotChart("MonitorDocker_create-250_horizontalBar0", "{&quot;type&quot;:&quot;horizontalBar&quot;,&quot;title&quot;:&quot;CPU%(avg)&quot;,&quot;legend&quot;:false,&quot;labels&quot;:[&quot;peer0.patient.healthcare.com&quot;,&quot;peer1.research.healthcare.com&quot;,&quot;peer1.patient.healthcare.com&quot;,&quot;peer0.research.healthcare.com&quot;,&quot;peer1.hprovider.healthcare.com&quot;,&quot;peer0.hprovider.healthcare.com&quot;],&quot;datasets&quot;:[{&quot;backgroundColor&quot;:[&quot;rgb(255,71,0,0.6)&quot;,&quot;rgb(179,50,0,0.6)&quot;,&quot;rgb(255,209,191,0.6)&quot;,&quot;rgb(255,163,128,0.6)&quot;,&quot;rgb(31,235,0,0.6)&quot;,&quot;rgb(22,164,0,0.6)&quot;],&quot;data&quot;:[&quot;10.96&quot;,&quot;7.49&quot;,&quot;7.63&quot;,&quot;11.63&quot;,&quot;8.28&quot;,&quot;11.97&quot;]}]}")</script>
                                     </canvas>
                                 </div>
                                 <div class="chart">
-                                    <canvas id="MonitorDocker_query_polarArea2">
-                                        <script>plotChart("MonitorDocker_query_polarArea2", "{&quot;type&quot;:&quot;polarArea&quot;,&quot;title&quot;:&quot;Memory(max) [MB]&quot;,&quot;legend&quot;:true,&quot;labels&quot;:[&quot;peer1.research.healthcare.com&quot;,&quot;peer1.hprovider.healthcare.com&quot;,&quot;peer0.research.healthcare.com&quot;,&quot;peer0.patient.healthcare.com&quot;,&quot;peer0.hprovider.healthcare.com&quot;,&quot;peer1.patient.healthcare.com&quot;],&quot;datasets&quot;:[{&quot;backgroundColor&quot;:[&quot;rgb(255,71,0,0.6)&quot;,&quot;rgb(179,50,0,0.6)&quot;,&quot;rgb(255,209,191,0.6)&quot;,&quot;rgb(255,163,128,0.6)&quot;,&quot;rgb(31,235,0,0.6)&quot;,&quot;rgb(22,164,0,0.6)&quot;],&quot;data&quot;:[&quot;73.8&quot;,&quot;100&quot;,&quot;119&quot;,&quot;92.6&quot;,&quot;121&quot;,&quot;72.9&quot;]}]}")</script>
+                                    <canvas id="MonitorDocker_create-250_horizontalBar1">
+                                        <script>plotChart("MonitorDocker_create-250_horizontalBar1", "{&quot;type&quot;:&quot;horizontalBar&quot;,&quot;title&quot;:&quot;Memory(avg) [MB]&quot;,&quot;legend&quot;:false,&quot;labels&quot;:[&quot;peer0.patient.healthcare.com&quot;,&quot;peer1.research.healthcare.com&quot;,&quot;peer1.patient.healthcare.com&quot;,&quot;peer0.research.healthcare.com&quot;,&quot;peer1.hprovider.healthcare.com&quot;,&quot;peer0.hprovider.healthcare.com&quot;],&quot;datasets&quot;:[{&quot;backgroundColor&quot;:[&quot;rgb(255,71,0,0.6)&quot;,&quot;rgb(179,50,0,0.6)&quot;,&quot;rgb(255,209,191,0.6)&quot;,&quot;rgb(255,163,128,0.6)&quot;,&quot;rgb(31,235,0,0.6)&quot;,&quot;rgb(22,164,0,0.6)&quot;],&quot;data&quot;:[&quot;130&quot;,&quot;122&quot;,&quot;98.6&quot;,&quot;169&quot;,&quot;122&quot;,&quot;199&quot;]}]}")</script>
+                                    </canvas>
+                                </div>
+                            </div>
+            </div>
+
+            <div style="border-bottom: 1px solid #d9d9d9; padding-bottom: 10px;" id="query-50">
+                <h2>Benchmark round: query-50</h2>
+                <p>Query dicom asset 50 rate</p>
+                <pre style="overflow: visible;white-space: pre-wrap;max-height:100%;">rateControl:
+  type: fixed-rate
+  opts:
+    tps: 50
+</pre>
+                        <h3>Performance metrics for query-50</h3>
+                            <table style="min-width: 100%;">
+                                <tr>
+                                     <th>Name</th> <th>Succ</th> <th>Fail</th> <th>Send Rate (TPS)</th> <th>Max Latency (s)</th> <th>Min Latency (s)</th> <th>Avg Latency (s)</th> <th>Throughput (TPS)</th>
+                                </tr>
+                                <tr>
+                                     <td>query-50</td> <td>450</td> <td>50</td> <td>50.1</td> <td>28.37</td> <td>0.63</td> <td>21.72</td> <td>13.3</td>
+                                </tr>
+                            </table>
+                        <h3>Resource utilization for query-50</h3>
+                            <h4>Resource monitor: docker</h4>
+                            <table style="min-width: 100%;">
+                                <tr>
+                                <table>
+                                    <tr>
+                                         <th>Name</th> <th>CPU%(max)</th> <th>CPU%(avg)</th> <th>Memory(max) [MB]</th> <th>Memory(avg) [MB]</th> <th>Traffic In [MB]</th> <th>Traffic Out [MB]</th> <th>Disc Write [B]</th> <th>Disc Read [B]</th>
+                                    </tr>
+                                    <tr>
+                                         <td>peer0.patient.healthcare.com</td> <td>21.44</td> <td>13.28</td> <td>132</td> <td>132</td> <td>1.89</td> <td>2.52</td> <td>0.00</td> <td>0.00</td>
+                                    </tr>
+                                    <tr>
+                                         <td>peer1.research.healthcare.com</td> <td>7.46</td> <td>3.31</td> <td>123</td> <td>123</td> <td>0.161</td> <td>0.154</td> <td>0.00</td> <td>0.00</td>
+                                    </tr>
+                                    <tr>
+                                         <td>peer1.patient.healthcare.com</td> <td>5.54</td> <td>3.34</td> <td>101</td> <td>101</td> <td>0.169</td> <td>0.164</td> <td>0.00</td> <td>0.00</td>
+                                    </tr>
+                                    <tr>
+                                         <td>peer0.research.healthcare.com</td> <td>20.62</td> <td>13.42</td> <td>171</td> <td>170</td> <td>1.88</td> <td>2.26</td> <td>0.00</td> <td>0.00</td>
+                                    </tr>
+                                    <tr>
+                                         <td>peer1.hprovider.healthcare.com</td> <td>9.20</td> <td>3.90</td> <td>124</td> <td>124</td> <td>0.174</td> <td>0.167</td> <td>0.00</td> <td>0.00</td>
+                                    </tr>
+                                    <tr>
+                                         <td>peer0.hprovider.healthcare.com</td> <td>20.38</td> <td>13.02</td> <td>201</td> <td>201</td> <td>1.48</td> <td>1.84</td> <td>0.00</td> <td>0.00</td>
+                                    </tr>
+                                </table>
+                                </tr>
+                            </table>
+                            <div class="charting">
+                                <div class="chart">
+                                    <canvas id="MonitorDocker_query-50_horizontalBar0">
+                                        <script>plotChart("MonitorDocker_query-50_horizontalBar0", "{&quot;type&quot;:&quot;horizontalBar&quot;,&quot;title&quot;:&quot;CPU%(avg)&quot;,&quot;legend&quot;:false,&quot;labels&quot;:[&quot;peer0.patient.healthcare.com&quot;,&quot;peer1.research.healthcare.com&quot;,&quot;peer1.patient.healthcare.com&quot;,&quot;peer0.research.healthcare.com&quot;,&quot;peer1.hprovider.healthcare.com&quot;,&quot;peer0.hprovider.healthcare.com&quot;],&quot;datasets&quot;:[{&quot;backgroundColor&quot;:[&quot;rgb(255,71,0,0.6)&quot;,&quot;rgb(179,50,0,0.6)&quot;,&quot;rgb(255,209,191,0.6)&quot;,&quot;rgb(255,163,128,0.6)&quot;,&quot;rgb(31,235,0,0.6)&quot;,&quot;rgb(22,164,0,0.6)&quot;],&quot;data&quot;:[&quot;13.28&quot;,&quot;3.31&quot;,&quot;3.34&quot;,&quot;13.42&quot;,&quot;3.90&quot;,&quot;13.02&quot;]}]}")</script>
                                     </canvas>
                                 </div>
                                 <div class="chart">
-                                    <canvas id="MonitorDocker_query_polarArea3">
-                                        <script>plotChart("MonitorDocker_query_polarArea3", "{&quot;type&quot;:&quot;polarArea&quot;,&quot;title&quot;:&quot;Memory(avg) [MB]&quot;,&quot;legend&quot;:true,&quot;labels&quot;:[&quot;peer1.research.healthcare.com&quot;,&quot;peer1.hprovider.healthcare.com&quot;,&quot;peer0.research.healthcare.com&quot;,&quot;peer0.patient.healthcare.com&quot;,&quot;peer0.hprovider.healthcare.com&quot;,&quot;peer1.patient.healthcare.com&quot;],&quot;datasets&quot;:[{&quot;backgroundColor&quot;:[&quot;rgb(255,71,0,0.6)&quot;,&quot;rgb(179,50,0,0.6)&quot;,&quot;rgb(255,209,191,0.6)&quot;,&quot;rgb(255,163,128,0.6)&quot;,&quot;rgb(31,235,0,0.6)&quot;,&quot;rgb(22,164,0,0.6)&quot;],&quot;data&quot;:[&quot;73.8&quot;,&quot;100&quot;,&quot;119&quot;,&quot;92.6&quot;,&quot;121&quot;,&quot;72.9&quot;]}]}")</script>
+                                    <canvas id="MonitorDocker_query-50_horizontalBar1">
+                                        <script>plotChart("MonitorDocker_query-50_horizontalBar1", "{&quot;type&quot;:&quot;horizontalBar&quot;,&quot;title&quot;:&quot;Memory(avg) [MB]&quot;,&quot;legend&quot;:false,&quot;labels&quot;:[&quot;peer0.patient.healthcare.com&quot;,&quot;peer1.research.healthcare.com&quot;,&quot;peer1.patient.healthcare.com&quot;,&quot;peer0.research.healthcare.com&quot;,&quot;peer1.hprovider.healthcare.com&quot;,&quot;peer0.hprovider.healthcare.com&quot;],&quot;datasets&quot;:[{&quot;backgroundColor&quot;:[&quot;rgb(255,71,0,0.6)&quot;,&quot;rgb(179,50,0,0.6)&quot;,&quot;rgb(255,209,191,0.6)&quot;,&quot;rgb(255,163,128,0.6)&quot;,&quot;rgb(31,235,0,0.6)&quot;,&quot;rgb(22,164,0,0.6)&quot;],&quot;data&quot;:[&quot;132&quot;,&quot;123&quot;,&quot;101&quot;,&quot;170&quot;,&quot;124&quot;,&quot;201&quot;]}]}")</script>
+                                    </canvas>
+                                </div>
+                            </div>
+            </div>
+
+            <div style="border-bottom: 1px solid #d9d9d9; padding-bottom: 10px;" id="query-100">
+                <h2>Benchmark round: query-100</h2>
+                <p>Query dicom asset 100 rate</p>
+                <pre style="overflow: visible;white-space: pre-wrap;max-height:100%;">rateControl:
+  type: fixed-rate
+  opts:
+    tps: 100
+</pre>
+                        <h3>Performance metrics for query-100</h3>
+                            <table style="min-width: 100%;">
+                                <tr>
+                                     <th>Name</th> <th>Succ</th> <th>Fail</th> <th>Send Rate (TPS)</th> <th>Max Latency (s)</th> <th>Min Latency (s)</th> <th>Avg Latency (s)</th> <th>Throughput (TPS)</th>
+                                </tr>
+                                <tr>
+                                     <td>query-100</td> <td>450</td> <td>50</td> <td>100.2</td> <td>29.93</td> <td>0.23</td> <td>24.15</td> <td>13.8</td>
+                                </tr>
+                            </table>
+                        <h3>Resource utilization for query-100</h3>
+                            <h4>Resource monitor: docker</h4>
+                            <table style="min-width: 100%;">
+                                <tr>
+                                <table>
+                                    <tr>
+                                         <th>Name</th> <th>CPU%(max)</th> <th>CPU%(avg)</th> <th>Memory(max) [MB]</th> <th>Memory(avg) [MB]</th> <th>Traffic In [MB]</th> <th>Traffic Out [MB]</th> <th>Disc Write [B]</th> <th>Disc Read [B]</th>
+                                    </tr>
+                                    <tr>
+                                         <td>peer0.patient.healthcare.com</td> <td>18.59</td> <td>13.04</td> <td>133</td> <td>132</td> <td>1.81</td> <td>2.44</td> <td>0.00</td> <td>0.00</td>
+                                    </tr>
+                                    <tr>
+                                         <td>peer1.research.healthcare.com</td> <td>6.36</td> <td>3.15</td> <td>123</td> <td>123</td> <td>0.172</td> <td>0.161</td> <td>0.00</td> <td>0.00</td>
+                                    </tr>
+                                    <tr>
+                                         <td>peer1.patient.healthcare.com</td> <td>9.52</td> <td>3.48</td> <td>101</td> <td>101</td> <td>0.170</td> <td>0.154</td> <td>0.00</td> <td>0.00</td>
+                                    </tr>
+                                    <tr>
+                                         <td>peer0.research.healthcare.com</td> <td>22.25</td> <td>13.31</td> <td>171</td> <td>171</td> <td>1.80</td> <td>2.43</td> <td>0.00</td> <td>0.00</td>
+                                    </tr>
+                                    <tr>
+                                         <td>peer1.hprovider.healthcare.com</td> <td>9.13</td> <td>3.72</td> <td>124</td> <td>124</td> <td>0.177</td> <td>0.170</td> <td>0.00</td> <td>0.00</td>
+                                    </tr>
+                                    <tr>
+                                         <td>peer0.hprovider.healthcare.com</td> <td>21.21</td> <td>13.17</td> <td>201</td> <td>201</td> <td>1.54</td> <td>1.81</td> <td>0.00</td> <td>0.00</td>
+                                    </tr>
+                                </table>
+                                </tr>
+                            </table>
+                            <div class="charting">
+                                <div class="chart">
+                                    <canvas id="MonitorDocker_query-100_horizontalBar0">
+                                        <script>plotChart("MonitorDocker_query-100_horizontalBar0", "{&quot;type&quot;:&quot;horizontalBar&quot;,&quot;title&quot;:&quot;CPU%(avg)&quot;,&quot;legend&quot;:false,&quot;labels&quot;:[&quot;peer0.patient.healthcare.com&quot;,&quot;peer1.research.healthcare.com&quot;,&quot;peer1.patient.healthcare.com&quot;,&quot;peer0.research.healthcare.com&quot;,&quot;peer1.hprovider.healthcare.com&quot;,&quot;peer0.hprovider.healthcare.com&quot;],&quot;datasets&quot;:[{&quot;backgroundColor&quot;:[&quot;rgb(255,71,0,0.6)&quot;,&quot;rgb(179,50,0,0.6)&quot;,&quot;rgb(255,209,191,0.6)&quot;,&quot;rgb(255,163,128,0.6)&quot;,&quot;rgb(31,235,0,0.6)&quot;,&quot;rgb(22,164,0,0.6)&quot;],&quot;data&quot;:[&quot;13.04&quot;,&quot;3.15&quot;,&quot;3.48&quot;,&quot;13.31&quot;,&quot;3.72&quot;,&quot;13.17&quot;]}]}")</script>
                                     </canvas>
                                 </div>
                                 <div class="chart">
-                                    <canvas id="MonitorDocker_query_polarArea4">
-                                        <script>plotChart("MonitorDocker_query_polarArea4", "{&quot;type&quot;:&quot;polarArea&quot;,&quot;title&quot;:&quot;Traffic In [KB]&quot;,&quot;legend&quot;:true,&quot;labels&quot;:[&quot;peer1.research.healthcare.com&quot;,&quot;peer1.hprovider.healthcare.com&quot;,&quot;peer0.research.healthcare.com&quot;,&quot;peer0.patient.healthcare.com&quot;,&quot;peer0.hprovider.healthcare.com&quot;,&quot;peer1.patient.healthcare.com&quot;],&quot;datasets&quot;:[{&quot;backgroundColor&quot;:[&quot;rgb(255,71,0,0.6)&quot;,&quot;rgb(179,50,0,0.6)&quot;,&quot;rgb(255,209,191,0.6)&quot;,&quot;rgb(255,163,128,0.6)&quot;,&quot;rgb(31,235,0,0.6)&quot;,&quot;rgb(22,164,0,0.6)&quot;],&quot;data&quot;:[&quot;58.4&quot;,&quot;60.3&quot;,&quot;354&quot;,&quot;338&quot;,&quot;379&quot;,&quot;52.5&quot;]}]}")</script>
+                                    <canvas id="MonitorDocker_query-100_horizontalBar1">
+                                        <script>plotChart("MonitorDocker_query-100_horizontalBar1", "{&quot;type&quot;:&quot;horizontalBar&quot;,&quot;title&quot;:&quot;Memory(avg) [MB]&quot;,&quot;legend&quot;:false,&quot;labels&quot;:[&quot;peer0.patient.healthcare.com&quot;,&quot;peer1.research.healthcare.com&quot;,&quot;peer1.patient.healthcare.com&quot;,&quot;peer0.research.healthcare.com&quot;,&quot;peer1.hprovider.healthcare.com&quot;,&quot;peer0.hprovider.healthcare.com&quot;],&quot;datasets&quot;:[{&quot;backgroundColor&quot;:[&quot;rgb(255,71,0,0.6)&quot;,&quot;rgb(179,50,0,0.6)&quot;,&quot;rgb(255,209,191,0.6)&quot;,&quot;rgb(255,163,128,0.6)&quot;,&quot;rgb(31,235,0,0.6)&quot;,&quot;rgb(22,164,0,0.6)&quot;],&quot;data&quot;:[&quot;132&quot;,&quot;123&quot;,&quot;101&quot;,&quot;171&quot;,&quot;124&quot;,&quot;201&quot;]}]}")</script>
+                                    </canvas>
+                                </div>
+                            </div>
+            </div>
+
+            <div style="border-bottom: 1px solid #d9d9d9; padding-bottom: 10px;" id="query-150">
+                <h2>Benchmark round: query-150</h2>
+                <p>Query dicom asset 150 rate</p>
+                <pre style="overflow: visible;white-space: pre-wrap;max-height:100%;">rateControl:
+  type: fixed-rate
+  opts:
+    tps: 150
+</pre>
+                        <h3>Performance metrics for query-150</h3>
+                            <table style="min-width: 100%;">
+                                <tr>
+                                     <th>Name</th> <th>Succ</th> <th>Fail</th> <th>Send Rate (TPS)</th> <th>Max Latency (s)</th> <th>Min Latency (s)</th> <th>Avg Latency (s)</th> <th>Throughput (TPS)</th>
+                                </tr>
+                                <tr>
+                                     <td>query-150</td> <td>441</td> <td>59</td> <td>127.8</td> <td>30.60</td> <td>1.65</td> <td>24.19</td> <td>13.5</td>
+                                </tr>
+                            </table>
+                        <h3>Resource utilization for query-150</h3>
+                            <h4>Resource monitor: docker</h4>
+                            <table style="min-width: 100%;">
+                                <tr>
+                                <table>
+                                    <tr>
+                                         <th>Name</th> <th>CPU%(max)</th> <th>CPU%(avg)</th> <th>Memory(max) [MB]</th> <th>Memory(avg) [MB]</th> <th>Traffic In [MB]</th> <th>Traffic Out [MB]</th> <th>Disc Write [B]</th> <th>Disc Read [B]</th>
+                                    </tr>
+                                    <tr>
+                                         <td>peer0.patient.healthcare.com</td> <td>21.99</td> <td>12.82</td> <td>133</td> <td>133</td> <td>1.78</td> <td>2.30</td> <td>0.00</td> <td>0.00</td>
+                                    </tr>
+                                    <tr>
+                                         <td>peer1.research.healthcare.com</td> <td>8.47</td> <td>3.60</td> <td>123</td> <td>123</td> <td>0.177</td> <td>0.166</td> <td>0.00</td> <td>0.00</td>
+                                    </tr>
+                                    <tr>
+                                         <td>peer1.patient.healthcare.com</td> <td>6.66</td> <td>2.70</td> <td>101</td> <td>101</td> <td>0.160</td> <td>0.152</td> <td>0.00</td> <td>0.00</td>
+                                    </tr>
+                                    <tr>
+                                         <td>peer0.research.healthcare.com</td> <td>18.67</td> <td>12.95</td> <td>171</td> <td>171</td> <td>1.78</td> <td>2.12</td> <td>0.00</td> <td>0.00</td>
+                                    </tr>
+                                    <tr>
+                                         <td>peer1.hprovider.healthcare.com</td> <td>10.67</td> <td>3.41</td> <td>124</td> <td>124</td> <td>0.164</td> <td>0.155</td> <td>0.00</td> <td>0.00</td>
+                                    </tr>
+                                    <tr>
+                                         <td>peer0.hprovider.healthcare.com</td> <td>19.68</td> <td>13.19</td> <td>201</td> <td>201</td> <td>1.36</td> <td>1.68</td> <td>0.00</td> <td>0.00</td>
+                                    </tr>
+                                </table>
+                                </tr>
+                            </table>
+                            <div class="charting">
+                                <div class="chart">
+                                    <canvas id="MonitorDocker_query-150_horizontalBar0">
+                                        <script>plotChart("MonitorDocker_query-150_horizontalBar0", "{&quot;type&quot;:&quot;horizontalBar&quot;,&quot;title&quot;:&quot;CPU%(avg)&quot;,&quot;legend&quot;:false,&quot;labels&quot;:[&quot;peer0.patient.healthcare.com&quot;,&quot;peer1.research.healthcare.com&quot;,&quot;peer1.patient.healthcare.com&quot;,&quot;peer0.research.healthcare.com&quot;,&quot;peer1.hprovider.healthcare.com&quot;,&quot;peer0.hprovider.healthcare.com&quot;],&quot;datasets&quot;:[{&quot;backgroundColor&quot;:[&quot;rgb(255,71,0,0.6)&quot;,&quot;rgb(179,50,0,0.6)&quot;,&quot;rgb(255,209,191,0.6)&quot;,&quot;rgb(255,163,128,0.6)&quot;,&quot;rgb(31,235,0,0.6)&quot;,&quot;rgb(22,164,0,0.6)&quot;],&quot;data&quot;:[&quot;12.82&quot;,&quot;3.60&quot;,&quot;2.70&quot;,&quot;12.95&quot;,&quot;3.41&quot;,&quot;13.19&quot;]}]}")</script>
                                     </canvas>
                                 </div>
                                 <div class="chart">
-                                    <canvas id="MonitorDocker_query_polarArea5">
-                                        <script>plotChart("MonitorDocker_query_polarArea5", "{&quot;type&quot;:&quot;polarArea&quot;,&quot;title&quot;:&quot;Traffic Out [KB]&quot;,&quot;legend&quot;:true,&quot;labels&quot;:[&quot;peer1.research.healthcare.com&quot;,&quot;peer1.hprovider.healthcare.com&quot;,&quot;peer0.research.healthcare.com&quot;,&quot;peer0.patient.healthcare.com&quot;,&quot;peer0.hprovider.healthcare.com&quot;,&quot;peer1.patient.healthcare.com&quot;],&quot;datasets&quot;:[{&quot;backgroundColor&quot;:[&quot;rgb(255,71,0,0.6)&quot;,&quot;rgb(179,50,0,0.6)&quot;,&quot;rgb(255,209,191,0.6)&quot;,&quot;rgb(255,163,128,0.6)&quot;,&quot;rgb(31,235,0,0.6)&quot;,&quot;rgb(22,164,0,0.6)&quot;],&quot;data&quot;:[&quot;58.2&quot;,&quot;55.6&quot;,&quot;431&quot;,&quot;424&quot;,&quot;430&quot;,&quot;53.6&quot;]}]}")</script>
+                                    <canvas id="MonitorDocker_query-150_horizontalBar1">
+                                        <script>plotChart("MonitorDocker_query-150_horizontalBar1", "{&quot;type&quot;:&quot;horizontalBar&quot;,&quot;title&quot;:&quot;Memory(avg) [MB]&quot;,&quot;legend&quot;:false,&quot;labels&quot;:[&quot;peer0.patient.healthcare.com&quot;,&quot;peer1.research.healthcare.com&quot;,&quot;peer1.patient.healthcare.com&quot;,&quot;peer0.research.healthcare.com&quot;,&quot;peer1.hprovider.healthcare.com&quot;,&quot;peer0.hprovider.healthcare.com&quot;],&quot;datasets&quot;:[{&quot;backgroundColor&quot;:[&quot;rgb(255,71,0,0.6)&quot;,&quot;rgb(179,50,0,0.6)&quot;,&quot;rgb(255,209,191,0.6)&quot;,&quot;rgb(255,163,128,0.6)&quot;,&quot;rgb(31,235,0,0.6)&quot;,&quot;rgb(22,164,0,0.6)&quot;],&quot;data&quot;:[&quot;133&quot;,&quot;123&quot;,&quot;101&quot;,&quot;171&quot;,&quot;124&quot;,&quot;201&quot;]}]}")</script>
+                                    </canvas>
+                                </div>
+                            </div>
+            </div>
+
+            <div style="border-bottom: 1px solid #d9d9d9; padding-bottom: 10px;" id="query-200">
+                <h2>Benchmark round: query-200</h2>
+                <p>Query dicom asset 200 rate</p>
+                <pre style="overflow: visible;white-space: pre-wrap;max-height:100%;">rateControl:
+  type: fixed-rate
+  opts:
+    tps: 200
+</pre>
+                        <h3>Performance metrics for query-200</h3>
+                            <table style="min-width: 100%;">
+                                <tr>
+                                     <th>Name</th> <th>Succ</th> <th>Fail</th> <th>Send Rate (TPS)</th> <th>Max Latency (s)</th> <th>Min Latency (s)</th> <th>Avg Latency (s)</th> <th>Throughput (TPS)</th>
+                                </tr>
+                                <tr>
+                                     <td>query-200</td> <td>443</td> <td>56</td> <td>124.7</td> <td>32.49</td> <td>3.26</td> <td>26.33</td> <td>13.4</td>
+                                </tr>
+                            </table>
+                        <h3>Resource utilization for query-200</h3>
+                            <h4>Resource monitor: docker</h4>
+                            <table style="min-width: 100%;">
+                                <tr>
+                                <table>
+                                    <tr>
+                                         <th>Name</th> <th>CPU%(max)</th> <th>CPU%(avg)</th> <th>Memory(max) [MB]</th> <th>Memory(avg) [MB]</th> <th>Traffic In [MB]</th> <th>Traffic Out [MB]</th> <th>Disc Write [B]</th> <th>Disc Read [B]</th>
+                                    </tr>
+                                    <tr>
+                                         <td>peer0.patient.healthcare.com</td> <td>18.60</td> <td>12.44</td> <td>133</td> <td>133</td> <td>1.78</td> <td>2.11</td> <td>0.00</td> <td>0.00</td>
+                                    </tr>
+                                    <tr>
+                                         <td>peer1.research.healthcare.com</td> <td>8.98</td> <td>3.36</td> <td>123</td> <td>123</td> <td>0.164</td> <td>0.152</td> <td>0.00</td> <td>0.00</td>
+                                    </tr>
+                                    <tr>
+                                         <td>peer1.patient.healthcare.com</td> <td>6.62</td> <td>3.46</td> <td>101</td> <td>101</td> <td>0.165</td> <td>0.157</td> <td>0.00</td> <td>0.00</td>
+                                    </tr>
+                                    <tr>
+                                         <td>peer0.research.healthcare.com</td> <td>23.34</td> <td>12.70</td> <td>171</td> <td>171</td> <td>1.77</td> <td>2.26</td> <td>0.00</td> <td>0.00</td>
+                                    </tr>
+                                    <tr>
+                                         <td>peer1.hprovider.healthcare.com</td> <td>7.92</td> <td>3.49</td> <td>124</td> <td>124</td> <td>0.152</td> <td>0.146</td> <td>0.00</td> <td>0.00</td>
+                                    </tr>
+                                    <tr>
+                                         <td>peer0.hprovider.healthcare.com</td> <td>20.63</td> <td>12.48</td> <td>202</td> <td>201</td> <td>1.38</td> <td>1.72</td> <td>0.00</td> <td>0.00</td>
+                                    </tr>
+                                </table>
+                                </tr>
+                            </table>
+                            <div class="charting">
+                                <div class="chart">
+                                    <canvas id="MonitorDocker_query-200_horizontalBar0">
+                                        <script>plotChart("MonitorDocker_query-200_horizontalBar0", "{&quot;type&quot;:&quot;horizontalBar&quot;,&quot;title&quot;:&quot;CPU%(avg)&quot;,&quot;legend&quot;:false,&quot;labels&quot;:[&quot;peer0.patient.healthcare.com&quot;,&quot;peer1.research.healthcare.com&quot;,&quot;peer1.patient.healthcare.com&quot;,&quot;peer0.research.healthcare.com&quot;,&quot;peer1.hprovider.healthcare.com&quot;,&quot;peer0.hprovider.healthcare.com&quot;],&quot;datasets&quot;:[{&quot;backgroundColor&quot;:[&quot;rgb(255,71,0,0.6)&quot;,&quot;rgb(179,50,0,0.6)&quot;,&quot;rgb(255,209,191,0.6)&quot;,&quot;rgb(255,163,128,0.6)&quot;,&quot;rgb(31,235,0,0.6)&quot;,&quot;rgb(22,164,0,0.6)&quot;],&quot;data&quot;:[&quot;12.44&quot;,&quot;3.36&quot;,&quot;3.46&quot;,&quot;12.70&quot;,&quot;3.49&quot;,&quot;12.48&quot;]}]}")</script>
                                     </canvas>
                                 </div>
                                 <div class="chart">
-                                    <canvas id="MonitorDocker_query_polarArea6">
-                                        <script>plotChart("MonitorDocker_query_polarArea6", "{&quot;type&quot;:&quot;polarArea&quot;,&quot;title&quot;:&quot;Disc Write [B]&quot;,&quot;legend&quot;:true,&quot;labels&quot;:[&quot;peer1.research.healthcare.com&quot;,&quot;peer1.hprovider.healthcare.com&quot;,&quot;peer0.research.healthcare.com&quot;,&quot;peer0.patient.healthcare.com&quot;,&quot;peer0.hprovider.healthcare.com&quot;,&quot;peer1.patient.healthcare.com&quot;],&quot;datasets&quot;:[{&quot;backgroundColor&quot;:[&quot;rgb(255,71,0,0.6)&quot;,&quot;rgb(179,50,0,0.6)&quot;,&quot;rgb(255,209,191,0.6)&quot;,&quot;rgb(255,163,128,0.6)&quot;,&quot;rgb(31,235,0,0.6)&quot;,&quot;rgb(22,164,0,0.6)&quot;],&quot;data&quot;:[&quot;0.00&quot;,&quot;0.00&quot;,&quot;0.00&quot;,&quot;0.00&quot;,&quot;0.00&quot;,&quot;0.00&quot;]}]}")</script>
+                                    <canvas id="MonitorDocker_query-200_horizontalBar1">
+                                        <script>plotChart("MonitorDocker_query-200_horizontalBar1", "{&quot;type&quot;:&quot;horizontalBar&quot;,&quot;title&quot;:&quot;Memory(avg) [MB]&quot;,&quot;legend&quot;:false,&quot;labels&quot;:[&quot;peer0.patient.healthcare.com&quot;,&quot;peer1.research.healthcare.com&quot;,&quot;peer1.patient.healthcare.com&quot;,&quot;peer0.research.healthcare.com&quot;,&quot;peer1.hprovider.healthcare.com&quot;,&quot;peer0.hprovider.healthcare.com&quot;],&quot;datasets&quot;:[{&quot;backgroundColor&quot;:[&quot;rgb(255,71,0,0.6)&quot;,&quot;rgb(179,50,0,0.6)&quot;,&quot;rgb(255,209,191,0.6)&quot;,&quot;rgb(255,163,128,0.6)&quot;,&quot;rgb(31,235,0,0.6)&quot;,&quot;rgb(22,164,0,0.6)&quot;],&quot;data&quot;:[&quot;133&quot;,&quot;123&quot;,&quot;101&quot;,&quot;171&quot;,&quot;124&quot;,&quot;201&quot;]}]}")</script>
+                                    </canvas>
+                                </div>
+                            </div>
+            </div>
+
+            <div style="border-bottom: 1px solid #d9d9d9; padding-bottom: 10px;" id="query-250">
+                <h2>Benchmark round: query-250</h2>
+                <p>Query dicom asset 250 rate</p>
+                <pre style="overflow: visible;white-space: pre-wrap;max-height:100%;">rateControl:
+  type: fixed-rate
+  opts:
+    tps: 250
+</pre>
+                        <h3>Performance metrics for query-250</h3>
+                            <table style="min-width: 100%;">
+                                <tr>
+                                     <th>Name</th> <th>Succ</th> <th>Fail</th> <th>Send Rate (TPS)</th> <th>Max Latency (s)</th> <th>Min Latency (s)</th> <th>Avg Latency (s)</th> <th>Throughput (TPS)</th>
+                                </tr>
+                                <tr>
+                                     <td>query-250</td> <td>445</td> <td>55</td> <td>127.5</td> <td>32.29</td> <td>4.14</td> <td>25.10</td> <td>13.0</td>
+                                </tr>
+                            </table>
+                        <h3>Resource utilization for query-250</h3>
+                            <h4>Resource monitor: docker</h4>
+                            <table style="min-width: 100%;">
+                                <tr>
+                                <table>
+                                    <tr>
+                                         <th>Name</th> <th>CPU%(max)</th> <th>CPU%(avg)</th> <th>Memory(max) [MB]</th> <th>Memory(avg) [MB]</th> <th>Traffic In [MB]</th> <th>Traffic Out [MB]</th> <th>Disc Write [B]</th> <th>Disc Read [B]</th>
+                                    </tr>
+                                    <tr>
+                                         <td>peer0.patient.healthcare.com</td> <td>20.56</td> <td>13.19</td> <td>133</td> <td>133</td> <td>1.80</td> <td>2.44</td> <td>0.00</td> <td>0.00</td>
+                                    </tr>
+                                    <tr>
+                                         <td>peer1.research.healthcare.com</td> <td>7.34</td> <td>2.98</td> <td>123</td> <td>123</td> <td>0.174</td> <td>0.161</td> <td>0.00</td> <td>0.00</td>
+                                    </tr>
+                                    <tr>
+                                         <td>peer1.patient.healthcare.com</td> <td>9.46</td> <td>3.56</td> <td>101</td> <td>101</td> <td>0.180</td> <td>0.170</td> <td>0.00</td> <td>0.00</td>
+                                    </tr>
+                                    <tr>
+                                         <td>peer0.research.healthcare.com</td> <td>18.05</td> <td>12.86</td> <td>175</td> <td>172</td> <td>1.80</td> <td>2.12</td> <td>0.00</td> <td>0.00</td>
+                                    </tr>
+                                    <tr>
+                                         <td>peer1.hprovider.healthcare.com</td> <td>9.78</td> <td>4.08</td> <td>124</td> <td>124</td> <td>0.180</td> <td>0.165</td> <td>0.00</td> <td>0.00</td>
+                                    </tr>
+                                    <tr>
+                                         <td>peer0.hprovider.healthcare.com</td> <td>18.69</td> <td>12.98</td> <td>201</td> <td>201</td> <td>1.53</td> <td>1.94</td> <td>0.00</td> <td>0.00</td>
+                                    </tr>
+                                </table>
+                                </tr>
+                            </table>
+                            <div class="charting">
+                                <div class="chart">
+                                    <canvas id="MonitorDocker_query-250_horizontalBar0">
+                                        <script>plotChart("MonitorDocker_query-250_horizontalBar0", "{&quot;type&quot;:&quot;horizontalBar&quot;,&quot;title&quot;:&quot;CPU%(avg)&quot;,&quot;legend&quot;:false,&quot;labels&quot;:[&quot;peer0.patient.healthcare.com&quot;,&quot;peer1.research.healthcare.com&quot;,&quot;peer1.patient.healthcare.com&quot;,&quot;peer0.research.healthcare.com&quot;,&quot;peer1.hprovider.healthcare.com&quot;,&quot;peer0.hprovider.healthcare.com&quot;],&quot;datasets&quot;:[{&quot;backgroundColor&quot;:[&quot;rgb(255,71,0,0.6)&quot;,&quot;rgb(179,50,0,0.6)&quot;,&quot;rgb(255,209,191,0.6)&quot;,&quot;rgb(255,163,128,0.6)&quot;,&quot;rgb(31,235,0,0.6)&quot;,&quot;rgb(22,164,0,0.6)&quot;],&quot;data&quot;:[&quot;13.19&quot;,&quot;2.98&quot;,&quot;3.56&quot;,&quot;12.86&quot;,&quot;4.08&quot;,&quot;12.98&quot;]}]}")</script>
                                     </canvas>
                                 </div>
                                 <div class="chart">
-                                    <canvas id="MonitorDocker_query_polarArea7">
-                                        <script>plotChart("MonitorDocker_query_polarArea7", "{&quot;type&quot;:&quot;polarArea&quot;,&quot;title&quot;:&quot;Disc Read [B]&quot;,&quot;legend&quot;:true,&quot;labels&quot;:[&quot;peer1.research.healthcare.com&quot;,&quot;peer1.hprovider.healthcare.com&quot;,&quot;peer0.research.healthcare.com&quot;,&quot;peer0.patient.healthcare.com&quot;,&quot;peer0.hprovider.healthcare.com&quot;,&quot;peer1.patient.healthcare.com&quot;],&quot;datasets&quot;:[{&quot;backgroundColor&quot;:[&quot;rgb(255,71,0,0.6)&quot;,&quot;rgb(179,50,0,0.6)&quot;,&quot;rgb(255,209,191,0.6)&quot;,&quot;rgb(255,163,128,0.6)&quot;,&quot;rgb(31,235,0,0.6)&quot;,&quot;rgb(22,164,0,0.6)&quot;],&quot;data&quot;:[&quot;0.00&quot;,&quot;0.00&quot;,&quot;0.00&quot;,&quot;0.00&quot;,&quot;0.00&quot;,&quot;0.00&quot;]}]}")</script>
+                                    <canvas id="MonitorDocker_query-250_horizontalBar1">
+                                        <script>plotChart("MonitorDocker_query-250_horizontalBar1", "{&quot;type&quot;:&quot;horizontalBar&quot;,&quot;title&quot;:&quot;Memory(avg) [MB]&quot;,&quot;legend&quot;:false,&quot;labels&quot;:[&quot;peer0.patient.healthcare.com&quot;,&quot;peer1.research.healthcare.com&quot;,&quot;peer1.patient.healthcare.com&quot;,&quot;peer0.research.healthcare.com&quot;,&quot;peer1.hprovider.healthcare.com&quot;,&quot;peer0.hprovider.healthcare.com&quot;],&quot;datasets&quot;:[{&quot;backgroundColor&quot;:[&quot;rgb(255,71,0,0.6)&quot;,&quot;rgb(179,50,0,0.6)&quot;,&quot;rgb(255,209,191,0.6)&quot;,&quot;rgb(255,163,128,0.6)&quot;,&quot;rgb(31,235,0,0.6)&quot;,&quot;rgb(22,164,0,0.6)&quot;],&quot;data&quot;:[&quot;133&quot;,&quot;123&quot;,&quot;101&quot;,&quot;172&quot;,&quot;124&quot;,&quot;201&quot;]}]}")</script>
                                     </canvas>
                                 </div>
                             </div>
@@ -370,31 +801,100 @@
                 <h2>Test Environment</h2>
                 <h3>benchmark config</h3>
                 <pre id="benchmarkInfo" style="overflow: visible;white-space: pre-wrap;max-height:100%;">name: healthcare
-description: &gt;-
-  This is an example benchmark for caliper, to test the backend DLT&#39;s
-  performance with simple account opening &amp; querying transactions
+description: This is a benchmark for methods using create and query assets without privacy
 workers:
   type: local
   number: 1
 rounds:
-  - label: create
-    description: Create asset dicom
-    txNumber: 250
+  - label: create-50
+    description: Create asset dicom 50 rate
+    txNumber: 500
+    rateControl:
+      type: fixed-rate
+      opts:
+        tps: 50
+    arguments:
+      dicom: 1
+    callback: benchmarks&#x2F;scenario&#x2F;simple&#x2F;bcshield&#x2F;create-asset.js
+  - label: create-100
+    description: Create asset dicom 100 rate
+    txNumber: 500
     rateControl:
       type: fixed-rate
       opts:
         tps: 100
     arguments:
-      dicom: 10
+      dicom: 1
     callback: benchmarks&#x2F;scenario&#x2F;simple&#x2F;bcshield&#x2F;create-asset.js
-  - label: query
-    description: Query dicom asset
-    txNumber: 100
+  - label: create-150
+    description: Create asset dicom 150 rate
+    txNumber: 500
     rateControl:
-      type: linear-rate
+      type: fixed-rate
       opts:
-        startingTps: 50
-        finishingTps: 250
+        tps: 150
+    arguments:
+      dicom: 1
+    callback: benchmarks&#x2F;scenario&#x2F;simple&#x2F;bcshield&#x2F;create-asset.js
+  - label: create-200
+    description: Create asset dicom 200 rate
+    txNumber: 500
+    rateControl:
+      type: fixed-rate
+      opts:
+        tps: 200
+    arguments:
+      dicom: 1
+    callback: benchmarks&#x2F;scenario&#x2F;simple&#x2F;bcshield&#x2F;create-asset.js
+  - label: create-250
+    description: Create asset dicom 250 rate
+    txNumber: 500
+    rateControl:
+      type: fixed-rate
+      opts:
+        tps: 200
+    arguments:
+      dicom: 1
+    callback: benchmarks&#x2F;scenario&#x2F;simple&#x2F;bcshield&#x2F;create-asset.js
+  - label: query-50
+    description: Query dicom asset 50 rate
+    txNumber: 500
+    rateControl:
+      type: fixed-rate
+      opts:
+        tps: 50
+    callback: benchmarks&#x2F;scenario&#x2F;simple&#x2F;bcshield&#x2F;get-asset.js
+  - label: query-100
+    description: Query dicom asset 100 rate
+    txNumber: 500
+    rateControl:
+      type: fixed-rate
+      opts:
+        tps: 100
+    callback: benchmarks&#x2F;scenario&#x2F;simple&#x2F;bcshield&#x2F;get-asset.js
+  - label: query-150
+    description: Query dicom asset 150 rate
+    txNumber: 500
+    rateControl:
+      type: fixed-rate
+      opts:
+        tps: 150
+    callback: benchmarks&#x2F;scenario&#x2F;simple&#x2F;bcshield&#x2F;get-asset.js
+  - label: query-200
+    description: Query dicom asset 200 rate
+    txNumber: 500
+    rateControl:
+      type: fixed-rate
+      opts:
+        tps: 200
+    callback: benchmarks&#x2F;scenario&#x2F;simple&#x2F;bcshield&#x2F;get-asset.js
+  - label: query-250
+    description: Query dicom asset 250 rate
+    txNumber: 500
+    rateControl:
+      type: fixed-rate
+      opts:
+        tps: 250
     callback: benchmarks&#x2F;scenario&#x2F;simple&#x2F;bcshield&#x2F;get-asset.js
 </pre>
                 <h3>SUT</h3>
