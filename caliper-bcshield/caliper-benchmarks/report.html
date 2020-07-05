@@ -158,10 +158,10 @@
                     </tr>
 
                     <tr>
-                         <td>create</td> <td>100</td> <td>0</td> <td>46.3</td> <td>23.09</td> <td>10.86</td> <td>19.66</td> <td>4.0</td>
+                         <td>create</td> <td>100</td> <td>0</td> <td>63.5</td> <td>24.17</td> <td>11.57</td> <td>19.80</td> <td>3.9</td>
                     </tr>
                     <tr>
-                         <td>query</td> <td>100</td> <td>0</td> <td>56.2</td> <td>6.04</td> <td>0.26</td> <td>4.75</td> <td>14.0</td>
+                         <td>query</td> <td>100</td> <td>0</td> <td>51.6</td> <td>5.72</td> <td>0.18</td> <td>4.31</td> <td>14.5</td>
                     </tr>
                 </table>
             </div>
@@ -169,10 +169,31 @@
                 <h2>Benchmark round: create</h2>
                 <p>Create asset dicom</p>
                 <pre style="overflow: visible;white-space: pre-wrap;max-height:100%;">rateControl:
-  type: linear-rate
+  type: composite-rate
   opts:
-    startingTps: 50
-    finishingTps: 250
+    weights:
+      - 1
+      - 1
+      - 1
+      - 1
+      - 1
+    rateControllers:
+      - type: fixed-rate
+        opts:
+          tps: 50
+      - type: fixed-rate
+        opts:
+          tps: 100
+      - type: fixed-rate
+        opts:
+          tps: 150
+      - type: fixed-rate
+        opts:
+          tps: 200
+      - type: fixed-rate
+        opts:
+          tps: 250
+    logChange: true
 </pre>
                         <h3>Performance metrics for create</h3>
                             <table style="min-width: 100%;">
@@ -180,7 +201,7 @@
                                      <th>Name</th> <th>Succ</th> <th>Fail</th> <th>Send Rate (TPS)</th> <th>Max Latency (s)</th> <th>Min Latency (s)</th> <th>Avg Latency (s)</th> <th>Throughput (TPS)</th>
                                 </tr>
                                 <tr>
-                                     <td>create</td> <td>100</td> <td>0</td> <td>46.3</td> <td>23.09</td> <td>10.86</td> <td>19.66</td> <td>4.0</td>
+                                     <td>create</td> <td>100</td> <td>0</td> <td>63.5</td> <td>24.17</td> <td>11.57</td> <td>19.80</td> <td>3.9</td>
                                 </tr>
                             </table>
                         <h3>Resource utilization for create</h3>
@@ -201,7 +222,7 @@
                                      <th>Name</th> <th>Succ</th> <th>Fail</th> <th>Send Rate (TPS)</th> <th>Max Latency (s)</th> <th>Min Latency (s)</th> <th>Avg Latency (s)</th> <th>Throughput (TPS)</th>
                                 </tr>
                                 <tr>
-                                     <td>query</td> <td>100</td> <td>0</td> <td>56.2</td> <td>6.04</td> <td>0.26</td> <td>4.75</td> <td>14.0</td>
+                                     <td>query</td> <td>100</td> <td>0</td> <td>51.6</td> <td>5.72</td> <td>0.18</td> <td>4.31</td> <td>14.5</td>
                                 </tr>
                             </table>
                         <h3>Resource utilization for query</h3>
@@ -222,10 +243,31 @@ rounds:
     description: Create asset dicom
     txNumber: 100
     rateControl:
-      type: linear-rate
+      type: composite-rate
       opts:
-        startingTps: 50
-        finishingTps: 250
+        weights:
+          - 1
+          - 1
+          - 1
+          - 1
+          - 1
+        rateControllers:
+          - type: fixed-rate
+            opts:
+              tps: 50
+          - type: fixed-rate
+            opts:
+              tps: 100
+          - type: fixed-rate
+            opts:
+              tps: 150
+          - type: fixed-rate
+            opts:
+              tps: 200
+          - type: fixed-rate
+            opts:
+              tps: 250
+        logChange: true
     arguments:
       dicom: 10
     callback: benchmarks&#x2F;scenario&#x2F;simple&#x2F;bcshield&#x2F;create-asset.js
