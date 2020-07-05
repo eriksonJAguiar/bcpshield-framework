@@ -9,33 +9,11 @@ test:
   rounds:
   - label: create
     description: Create asset dicom
-    txNumber: 100
+    txNumber: 250
     rateControl:
-      type: composite-rate
+      type: fixed-rate
       opts:
-        weights:
-          - 1
-          - 1
-          - 1
-          - 1
-          - 1
-        rateControllers:
-          - type: fixed-rate
-            opts:
-              tps: 50
-          - type: fixed-rate
-            opts:
-              tps: 100
-          - type: fixed-rate
-            opts:
-              tps: 150
-          - type: fixed-rate
-            opts:
-              tps: 200
-          - type: fixed-rate
-            opts:
-              tps: 250
-        logChange: true
+        tps: 100
     arguments:
       dicom: 10
     callback: benchmarks/scenario/simple/bcshield/create-asset.js
@@ -105,6 +83,24 @@ test:
   #   arguments:
   #       money: 100
   #   callback: benchmarks/scenario/simple/transfer.js
+
+monitor:
+  type:
+  - docker
+  docker:  
+    containers:
+      - peer0.hprovider.healthcare.com
+      - peer1.hprovider.healthcare.com
+      - peer0.research.healthcare.com
+      - peer1.research.healthcare.com
+      - peer0.patient.healthcare.com 
+      - peer1.patient.healthcare.com 
+    charting:
+      bar:
+        metrics: [Memory(avg), CPU%(avg)]
+      polar:
+        metrics: [all]
+
 # monitor:
 #   type:
 #   - docker
@@ -116,71 +112,12 @@ test:
 #     - peer1.research.healthcare.com
 #     - peer0.patient.healthcare.com 
 #     - peer1.patient.healthcare.com 
-#     charting:
-#       bar:
-#         metrics: [Memory(avg), CPU%(avg)]
 #   interval: 5
+#   charting:
+#   bar:
+#     metrics: [Memory(avg), CPU%(avg)]
+#   polar:
+#     metrics: [all]
 # observer:
 #     type: local
 #     interval: 30
-
-monitor:
-  type:
-    - docker
-  docker:
-    metrics:
-      ignore:
-        - prometheus
-        - pushGateway
-        - cadvisor
-        - grafana
-        - node-exporter
-        - ca.hprovider.healthcare.com
-        - ca.research.healthcare.com
-        - ca.patient.healthcare.com
-      include:
-        Avg Memory (MB):
-          query: 'sum(container_memory_rss{name=~".+"}) by (name)'
-          step: 10
-          label: name
-          statistic: avg
-          multiplier: 0.000001
-        CPU (%):
-          query: >-
-            sum(rate(container_cpu_usage_seconds_total{name=~".+"}[1m])) by
-            (name)
-          step: 10
-          label: name
-          statistic: avg
-          multiplier: 100
-        Network In (MB):
-          query: >-
-            sum(rate(container_network_receive_bytes_total{name=~".+"}[1m])) by
-            (name)
-          step: 10
-          label: name
-          statistic: sum
-          multiplier: 0.000001
-        Network Out (MB):
-          query: >-
-            sum(rate(container_network_transmit_bytes_total{name=~".+"}[1m])) by
-            (name)
-          step: 10
-          label: name
-          statistic: sum
-          multiplier: 0.000001
-        Disc Write (MB):
-          query: 'sum(rate(container_fs_writes_bytes_total{name=~".+"}[1m])) by (name)'
-          step: 10
-          label: name
-          statistic: sum
-          multiplier: 0.000001
-        Disc Read (MB):
-          query: 'sum(rate(container_fs_reads_bytes_total{name=~".+"}[1m])) by (name)'
-          step: 10
-          label: name
-          statistic: sum
-          multiplier: 0.000001
-observer:
-  type: local
-  interval: 10
