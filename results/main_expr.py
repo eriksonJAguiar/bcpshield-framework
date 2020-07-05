@@ -52,4 +52,4 @@ class Client():
 
 if __name__ == "__main__":
     c = Client()
-    c.init("read", 1000)
+    c.init("read", 10000)
