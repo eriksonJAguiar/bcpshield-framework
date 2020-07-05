@@ -126,21 +126,22 @@
             <ul>
                 <h3>&nbspBasic information</h3>
                 <li>DLT: &nbsp<span style="font-weight: 500;">fabric</span></li>
-                <li>Name: &nbsp<span style="font-weight: 500;">simple</span></li>
+                <li>Name: &nbsp<span style="font-weight: 500;">healthcare</span></li>
                 <li>Description: &nbsp<span style="font-weight: 500;">This is an example benchmark for caliper, to test the backend DLT&#39;s performance with simple account opening &amp; querying transactions</span></li>
-                <li>Benchmark Rounds: &nbsp<span style="font-weight: 500;">1</span></li>
+                <li>Benchmark Rounds: &nbsp<span style="font-weight: 500;">2</span></li>
                 <li><a href="#benchmarkInfo">Details</a></li>
             </ul>
             <ul>
                 <h3>&nbspBenchmark results</h3>
                 <li><a href="#benchmarksummary">Summary</a></li>
-                    <li><a href="#open">open</a></li>
+                    <li><a href="#create">create</a></li>
+                    <li><a href="#query">query</a></li>
             </ul>
             <ul>
                 <h3>&nbspSystem under test</h3>
-                <li>Version: &nbsp<span style="font-weight: 500;">2.0.0</span></li>
-                <li>Size: &nbsp<span style="font-weight: 500;">2 Orgs with 1 Peer</span></li>
-                <li>Orderer: &nbsp<span style="font-weight: 500;">Raft</span></li>
+                <li>Version: &nbsp<span style="font-weight: 500;">1.4.4</span></li>
+                <li>Size: &nbsp<span style="font-weight: 500;">3 Orgs with 2 Peer</span></li>
+                <li>Orderer: &nbsp<span style="font-weight: 500;">Solo</span></li>
                 <li>Distribution: &nbsp<span style="font-weight: 500;">Single Host</span></li>
                 <li>StateDB: &nbsp<span style="font-weight: 500;">CouchDB</span></li>
                 <li><a href="#sutdetails">Details</a></li>
@@ -157,34 +158,59 @@
                     </tr>
 
                     <tr>
-                         <td>open</td> <td>9</td> <td>1</td> <td>6.3</td> <td>2.62</td> <td>1.03</td> <td>1.83</td> <td>3.4</td>
+                         <td>create</td> <td>100</td> <td>0</td> <td>46.3</td> <td>23.09</td> <td>10.86</td> <td>19.66</td> <td>4.0</td>
+                    </tr>
+                    <tr>
+                         <td>query</td> <td>100</td> <td>0</td> <td>56.2</td> <td>6.04</td> <td>0.26</td> <td>4.75</td> <td>14.0</td>
                     </tr>
                 </table>
             </div>
-            <div style="border-bottom: 1px solid #d9d9d9; padding-bottom: 10px;" id="open">
-                <h2>Benchmark round: open</h2>
-                <p>Test description for the opening of an account through the deployed chaincode</p>
+            <div style="border-bottom: 1px solid #d9d9d9; padding-bottom: 10px;" id="create">
+                <h2>Benchmark round: create</h2>
+                <p>Create asset dicom</p>
                 <pre style="overflow: visible;white-space: pre-wrap;max-height:100%;">rateControl:
-  type: fixed-rate
+  type: linear-rate
   opts:
-    tps: 5
+    startingTps: 50
+    finishingTps: 250
 </pre>
-                        <h3>Performance metrics for open</h3>
+                        <h3>Performance metrics for create</h3>
                             <table style="min-width: 100%;">
                                 <tr>
                                      <th>Name</th> <th>Succ</th> <th>Fail</th> <th>Send Rate (TPS)</th> <th>Max Latency (s)</th> <th>Min Latency (s)</th> <th>Avg Latency (s)</th> <th>Throughput (TPS)</th>
                                 </tr>
                                 <tr>
-                                     <td>open</td> <td>9</td> <td>1</td> <td>6.3</td> <td>2.62</td> <td>1.03</td> <td>1.83</td> <td>3.4</td>
+                                     <td>create</td> <td>100</td> <td>0</td> <td>46.3</td> <td>23.09</td> <td>10.86</td> <td>19.66</td> <td>4.0</td>
                                 </tr>
                             </table>
-                        <h3>Resource utilization for open</h3>
+                        <h3>Resource utilization for create</h3>
+            </div>
+
+            <div style="border-bottom: 1px solid #d9d9d9; padding-bottom: 10px;" id="query">
+                <h2>Benchmark round: query</h2>
+                <p>Query dicom asset</p>
+                <pre style="overflow: visible;white-space: pre-wrap;max-height:100%;">rateControl:
+  type: linear-rate
+  opts:
+    startingTps: 50
+    finishingTps: 250
+</pre>
+                        <h3>Performance metrics for query</h3>
+                            <table style="min-width: 100%;">
+                                <tr>
+                                     <th>Name</th> <th>Succ</th> <th>Fail</th> <th>Send Rate (TPS)</th> <th>Max Latency (s)</th> <th>Min Latency (s)</th> <th>Avg Latency (s)</th> <th>Throughput (TPS)</th>
+                                </tr>
+                                <tr>
+                                     <td>query</td> <td>100</td> <td>0</td> <td>56.2</td> <td>6.04</td> <td>0.26</td> <td>4.75</td> <td>14.0</td>
+                                </tr>
+                            </table>
+                        <h3>Resource utilization for query</h3>
             </div>
 
             <div style="border-bottom: 1px solid #d9d9d9; padding-bottom: 10px;">
                 <h2>Test Environment</h2>
                 <h3>benchmark config</h3>
-                <pre id="benchmarkInfo" style="overflow: visible;white-space: pre-wrap;max-height:100%;">name: simple
+                <pre id="benchmarkInfo" style="overflow: visible;white-space: pre-wrap;max-height:100%;">name: healthcare
 description: &gt;-
   This is an example benchmark for caliper, to test the backend DLT&#39;s
   performance with simple account opening &amp; querying transactions
@@ -192,18 +218,26 @@ workers:
   type: local
   number: 1
 rounds:
-  - label: open
-    description: &gt;-
-      Test description for the opening of an account through the deployed
-      chaincode
-    txNumber: 10
+  - label: create
+    description: Create asset dicom
+    txNumber: 100
     rateControl:
-      type: fixed-rate
+      type: linear-rate
       opts:
-        tps: 5
+        startingTps: 50
+        finishingTps: 250
     arguments:
-      money: 10000
-    callback: benchmarks&#x2F;scenario&#x2F;simple&#x2F;pavan&#x2F;open.js
+      dicom: 10
+    callback: benchmarks&#x2F;scenario&#x2F;simple&#x2F;bcshield&#x2F;create-asset.js
+  - label: query
+    description: Query dicom asset
+    txNumber: 100
+    rateControl:
+      type: linear-rate
+      opts:
+        startingTps: 50
+        finishingTps: 250
+    callback: benchmarks&#x2F;scenario&#x2F;simple&#x2F;bcshield&#x2F;get-asset.js
 </pre>
                 <h3>SUT</h3>
                 <pre id="sutdetails">not provided</pre>

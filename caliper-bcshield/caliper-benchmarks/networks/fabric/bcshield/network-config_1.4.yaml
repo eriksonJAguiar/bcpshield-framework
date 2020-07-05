@@ -11,7 +11,7 @@ caliper:
 info:
   Version: 1.4.4
   Size: 3 Orgs with 2 Peer
-  Orderer: solo
+  Orderer: Solo
   Distribution: Single Host
   StateDB: CouchDB
 
@@ -55,11 +55,11 @@ clients:
 channels:
   healthchannel:
     created: true
-    definition:
-        capabilities: []
-        consortium: 'HealthConsortium'
-        msps: ['HProviderMSP', 'ResearchMSP', 'PatientMSP']
-        version: 0
+    # definition:
+    #     capabilities: []
+    #     consortium: 'HealthConsortium'
+    #     msps: ['HProviderMSP', 'ResearchMSP', 'PatientMSP']
+    #     version: 0
     orderers:
     - orderer.healthcare.com
     peers:
@@ -71,7 +71,7 @@ channels:
         eventSource: true
 
     chaincodes:
-    - id: dicom-caliper
+    - id: dicom-perform
       version: "1"
       language: golang
       path: fabric/imaging-contract

@@ -1,6 +1,6 @@
 ---
 test:
-  name: simple
+  name: healthcare
   description: This is an example benchmark for caliper, to test the backend DLT's
     performance with simple account opening & querying transactions
   workers:
@@ -9,23 +9,24 @@ test:
   rounds:
   - label: create
     description: Create asset dicom
-    txDuration: 15
+    txNumber: 100
     rateControl:
       type: linear-rate
       opts:
-        startingTps: 25
-        finishingTps: 75
+        startingTps: 50
+        finishingTps: 250
     arguments:
-      dicom: 10000
+      dicom: 10
     callback: benchmarks/scenario/simple/bcshield/create-asset.js
-  # - label: query
-  #   description: query dicom asset
-  #   txNumber: 100
-  #   rateControl:
-  #     type: fixed-rate
-  #     opts:
-  #       tps: 100
-  #   callback: benchmarks/scenario/simple/bcshield/get-asset.js
+  - label: query
+    description: Query dicom asset
+    txNumber: 100
+    rateControl:
+      type: linear-rate
+      opts:
+        startingTps: 50
+        finishingTps: 250
+    callback: benchmarks/scenario/simple/bcshield/get-asset.js
 #   - label: transfer
 #     description: Test description for transfering money between accounts
 #     txNumber: 100
@@ -37,13 +38,6 @@ test:
 #         money: 100
 #     callback: benchmarks/scenario/simple/transfer.js
 # monitor:
-  type:
-  - docker
-  docker:
-    name:
-    - all
-  interval: 1
-
 # ---
 # test:
 #   workers:
@@ -95,5 +89,8 @@ monitor:
   - docker
   docker:
     name:
-    - all
+    - all 
+    charting:
+      bar:
+        metrics: [Memory(avg), CPU%(avg)]
   interval: 1
