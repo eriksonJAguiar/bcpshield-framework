@@ -397,7 +397,7 @@ func (cc *HealthcareChaincode) getAssetPriv(stub shim.ChaincodeStubInterface, ar
 // Return: Id hash to represents the request value by a hash
 func (cc *HealthcareChaincode) shareAssetWithDoctor(stub shim.ChaincodeStubInterface, args []string) sc.Response {
 
-	if len(args) < 4 && len(args) > 4 {
+	if len(args) < 5 && len(args) > 5 {
 		return shim.Error("Incorrect number of arguments. Expecting 3")
 	}
 
@@ -407,28 +407,31 @@ func (cc *HealthcareChaincode) shareAssetWithDoctor(stub shim.ChaincodeStubInter
 		return shim.Error("2nd argument must be a numeric string")
 	} else if len(args[2]) <= 0 {
 		return shim.Error("3rd argument must be a numeric string")
+	}else if len(args[3]) <= 0 {
+		return shim.Error("3rd argument must be a numeric string")
 	}
 
 	var dicomShared []string
 
-	holder := args[0]
-	doctorID := args[1]
-	hashIPFS := args[2]
-	dicomShared = append(dicomShared, args[3])
+	batchID := args[0]
+	holder := args[1]
+	doctorID := args[2]
+	hashIPFS := args[3]
+	dicomShared = append(dicomShared, args[4])
 
 	//Configure IPFS
 	ipfsReference := hashIPFS
 	getTime := time.Now()
 
-	hs := sha1.New()
+	// hs := sha1.New()
 
-	concatValues := holder + doctorID + ipfsReference + holder + getTime.String()
+	// concatValues := holder + doctorID + ipfsReference + holder + getTime.String()
 
-	hs.Write([]byte(concatValues))
+	// hs.Write([]byte(concatValues))
 
-	hexBatchID := hs.Sum(nil)
+	// hexBatchID := hs.Sum(nil)
 
-	batchID := hex.EncodeToString(hexBatchID)
+	// batchID := hex.EncodeToString(hexBatchID)
 
 	asset := &SharedDicom{
 		BatchID:        batchID,

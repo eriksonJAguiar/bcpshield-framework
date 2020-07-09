@@ -71,7 +71,7 @@ channels:
         eventSource: true
 
     chaincodes:
-    - id: dicom-perform
+    - id: dicom-contract
       version: "1"
       language: golang
       path: fabric/imaging-contract

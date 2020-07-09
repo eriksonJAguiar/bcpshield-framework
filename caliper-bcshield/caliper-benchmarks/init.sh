@@ -22,3 +22,19 @@ cp networks/fabric/bcshield/crypto-config/peerOrganizations/patient.healthcare.c
 # export PATIENT_KEY=$(cd networks/fabric/bcshield/crypto-config/peerOrganizations/hprovider.healthcare.com/users/Admin@patient.healthcare.com/msp/keystore && ls *_sk)
 
 # npx caliper launch master --caliper-bind-sut fabric:1.4.4 --caliper-workspace . --caliper-benchconfig benchmarks/scenario/simple/bcshield/config.yaml --caliper-networkconfig networks/fabric/bcshield/network-config_1.4.yaml
+
+
+echo
+echo "|  ____| \ | |  __ \ "
+echo "| |__  |  \| | |  | |"
+echo "|  __| | .   | |  | |"
+echo "| |____| |\  | |__| |"
+echo "|______|_| \_|_____/"
+echo  
+echo                                     
+echo " _____ _   _ _____ _______ _____          _      _____ ______      _______ _____ ____  _   _ "
+echo "|_   _| \ | |_   _|__   __|_   _|   /\   | |    |_   _|___  /   /\|__   __|_   _/ __ \| \ | |"
+echo "  | | |  \| | | |    | |    | |    /  \  | |      | |    / /   /  \  | |    | || |  | |  \| |"
+echo "  | | | .   | | |    | |    | |   / /\ \ | |      | |   / /   / /\ \ | |    | || |  | | .   |"
+echo " _| |_| |\  |_| |_   | |   _| |_ / ____ \| |____ _| |_ / /__ / ____ \| |   _| || |__| | |\  |"
+echo "|_____|_| \_|_____|  |_|  |_____/_/    \_\______|_____/_____/_/    \_\_|  |_____\____/|_| \_|"
