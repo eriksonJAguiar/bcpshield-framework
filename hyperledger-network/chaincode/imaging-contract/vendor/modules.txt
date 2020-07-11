@@ -3,14 +3,14 @@ github.com/Azure/go-ansiterm
 github.com/Azure/go-ansiterm/winterm
 # github.com/BurntSushi/toml v0.3.1
 github.com/BurntSushi/toml
-# github.com/Microsoft/go-winio v0.4.15-0.20190919025122-fc70bd9a86b5
+# github.com/Microsoft/go-winio v0.4.15-0.20200113171025-3fe6c5262873
 github.com/Microsoft/go-winio
 github.com/Microsoft/go-winio/pkg/guid
-# github.com/Microsoft/hcsshim v0.8.7-0.20191101173118-65519b62243c
+# github.com/Microsoft/hcsshim v0.8.7
 github.com/Microsoft/hcsshim/osversion
 # github.com/containerd/containerd v1.3.0
 github.com/containerd/containerd/errdefs
-# github.com/containerd/continuity v0.0.0-20190426062206-aaeac12a7ffc
+# github.com/containerd/continuity v0.0.0-20200228182428-0f16d7a0959c
 github.com/containerd/continuity/fs
 github.com/containerd/continuity/syscallx
 github.com/containerd/continuity/sysx
@@ -45,13 +45,13 @@ github.com/docker/docker/pkg/term/windows
 github.com/docker/go-connections/nat
 # github.com/docker/go-units v0.4.0
 github.com/docker/go-units
-# github.com/eriksonJAguiar/godiffpriv v0.0.0-20200709150836-0566e6bf2737
+# github.com/eriksonJAguiar/godiffpriv v0.0.0-20200710005506-019936efad83
 github.com/eriksonJAguiar/godiffpriv
 # github.com/fsnotify/fsnotify v1.4.7
 github.com/fsnotify/fsnotify
-# github.com/fsouza/go-dockerclient v1.6.0
+# github.com/fsouza/go-dockerclient v1.6.5
 github.com/fsouza/go-dockerclient
-# github.com/gogo/protobuf v1.3.0
+# github.com/gogo/protobuf v1.3.1
 github.com/gogo/protobuf/proto
 # github.com/golang/protobuf v1.3.2
 github.com/golang/protobuf/proto
@@ -122,7 +122,7 @@ github.com/miekg/pkcs11
 github.com/mitchellh/mapstructure
 # github.com/montanaflynn/stats v0.6.3
 github.com/montanaflynn/stats
-# github.com/morikuni/aec v0.0.0-20170113033406-39771216ff4c
+# github.com/morikuni/aec v1.0.0
 github.com/morikuni/aec
 # github.com/op/go-logging v0.0.0-20160315200505-970db520ece7
 github.com/op/go-logging
@@ -246,8 +246,9 @@ gonum.org/v1/gonum/stat/combin
 gonum.org/v1/gonum/stat/distuv
 # google.golang.org/genproto v0.0.0-20190819201941-24fa4b261c55
 google.golang.org/genproto/googleapis/rpc/status
-# google.golang.org/grpc v1.25.1
+# google.golang.org/grpc v1.27.1
 google.golang.org/grpc
+google.golang.org/grpc/attributes
 google.golang.org/grpc/backoff
 google.golang.org/grpc/balancer
 google.golang.org/grpc/balancer/base
@@ -282,7 +283,7 @@ google.golang.org/grpc/serviceconfig
 google.golang.org/grpc/stats
 google.golang.org/grpc/status
 google.golang.org/grpc/tap
-# gopkg.in/yaml.v2 v2.2.5
+# gopkg.in/yaml.v2 v2.2.8
 gopkg.in/yaml.v2
 # honnef.co/go/tools v0.0.1-2019.2.3
 honnef.co/go/tools/arg

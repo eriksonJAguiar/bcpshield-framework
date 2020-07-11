@@ -5,13 +5,9 @@
     "version": "0.2.0",
     "configurations": [
         {
-            "name": "Launch",
-            "type": "go",
+            "type": "fabric:go",
             "request": "launch",
-            "mode": "auto",
-            "program": "${fileDirname}",
-            "env": {},
-            "args": []
+            "name": "Debug Smart Contract"
         }
     ]
 }

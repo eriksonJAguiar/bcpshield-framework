@@ -1,5 +1,5 @@
 # The module godiffpriv
-### Godiffpriv is a golang module for help to work differential privacy in golang projects. The module has support to queries with numeric and symbolic values. Besides, we apply the probability Laplace distribution to generate a random numbers.
+**Godiffpriv is a golang module for help to work differential privacy in golang projects. The module has support to queries with numeric and symbolic values. Besides, we apply the probability Laplace distribution to generate a random numbers.**
 
 
 ### How it works?
@@ -25,7 +25,7 @@ import "github.com/eriksonJAguiar/godiffpriv"
 
 - **For symbolic data:**
 
-```	
+```go	
 	package main
 
 	import (
@@ -54,7 +54,7 @@ import "github.com/eriksonJAguiar/godiffpriv"
 
 - **For numeric data:**
 
-```
+```go
   	package main
 
 	import (
