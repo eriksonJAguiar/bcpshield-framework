@@ -8,11 +8,8 @@ package main
 
 import (
 	"bytes"
-	"crypto/sha1"
-	"encoding/hex"
 	"encoding/json"
 	"fmt"
-	"math/rand"
 	"strconv"
 	"time"
 
@@ -411,7 +408,7 @@ func (cc *HealthcareChaincode) shareAssetWithDoctor(stub shim.ChaincodeStubInter
 
 	var dicomShared []string
 
-	batchID := agrs[0]
+	batchID := args[0]
 	holder := args[1]
 	doctorID := args[2]
 	hashIPFS := args[3]
@@ -420,16 +417,6 @@ func (cc *HealthcareChaincode) shareAssetWithDoctor(stub shim.ChaincodeStubInter
 	//Configure IPFS
 	ipfsReference := hashIPFS
 	getTime := time.Now()
-
-	hs := sha1.New()
-
-	// concatValues := holder + doctorID + ipfsReference + holder + getTime.String()
-
-	// hs.Write([]byte(concatValues))
-
-	// hexBatchID := hs.Sum(nil)
-
-	// batchID := hex.EncodeToString(hexBatchID)
 
 	asset := &SharedDicom{
 		BatchID:        batchID,
@@ -517,12 +504,17 @@ func (cc *HealthcareChaincode) getSharedAssetWithDoctor(stub shim.ChaincodeStubI
 	// Nesse ponto deve ser implementando a comunicação com o IPFS para compartilhar DICOM
 
 	//Create id log image
-	rand.Seed(time.Now().UnixNano())
-	id := strconv.Itoa(rand.Int()) + time.Now().String()
-	hs := sha1.New()
-	hs.Write([]byte(id))
-	hexLogID := hs.Sum(nil)
-	logID := hex.EncodeToString(hexLogID)
+	// rand.Seed(time.Now().UnixNano())
+	// id := strconv.Itoa(rand.Int()) + time.Now().String()
+	// hs := sha1.New()
+	// hs.Write([]byte(id))
+	// hexLogID := hs.Sum(nil)
+	// logID := hex.EncodeToString(hexLogID)
+	auxid, err := uuid.NewRandom()
+	if err != nil {
+		return shim.Error("Erro genereta UUID: " + err.Error())
+	}
+	logID := auxid.String()
 
 	// Deve ser aplicado a K-Anonimity antes de enviar os dados para o médico
 	queryString := "{\"selector\":{\"docType\":\"Dicom\"}}"
@@ -599,12 +591,17 @@ func (cc *HealthcareChaincode) requestAssetForResearcher(stub shim.ChaincodeStub
 	patientID := args[2]
 
 	timeGet := time.Now()
-	rand.Seed(time.Now().UnixNano())
-	id := strconv.Itoa(rand.Int()) + timeGet.String()
-	hs := sha1.New()
-	hs.Write([]byte(id))
-	hexReqID := hs.Sum(nil)
-	reqID := hex.EncodeToString(hexReqID)
+	// rand.Seed(time.Now().UnixNano())
+	// id := strconv.Itoa(rand.Int()) + timeGet.String()
+	// hs := sha1.New()
+	// hs.Write([]byte(id))
+	// hexReqID := hs.Sum(nil)
+	// reqID := hex.EncodeToString(hexReqID)
+	auxid, err := uuid.NewRandom()
+	if err != nil {
+		return shim.Error("Erro genereta UUID: " + err.Error())
+	}
+	reqID := auxid.String()
 
 	request := &Request{
 		RequestID:       reqID,
@@ -688,16 +685,21 @@ func (cc *HealthcareChaincode) shareAssetForResearcher(stub shim.ChaincodeStubIn
 		i++
 	}
 
-	timeGet := time.Now()
-	sd := rand.NewSource(time.Now().UnixNano())
-	rd := rand.New(sd)
-	id := strconv.Itoa(rd.Int()) + timeGet.String()
-	hs := sha1.New()
-	hs.Write([]byte(id))
-	auxSharedObjID := hs.Sum(nil)
+	// timeGet := time.Now()
+	// sd := rand.NewSource(time.Now().UnixNano())
+	// rd := rand.New(sd)
+	// id := strconv.Itoa(rd.Int()) + timeGet.String()
+	// hs := sha1.New()
+	// hs.Write([]byte(id))
+	// auxSharedObjID := hs.Sum(nil)
+
+	auxid, err := uuid.NewRandom()
+	if err != nil {
+		return shim.Error("Erro genereta UUID: " + err.Error())
+	}
 
 	sharedDicomObj := &SharedDicom{
-		BatchID:       hex.EncodeToString(auxSharedObjID),
+		BatchID:       auxid.String(),
 		DocType:       "SharedDicom",
 		IpfsReference: hashIPFS,
 		DicomShared:   dicomShared,
@@ -808,12 +810,18 @@ func (cc *HealthcareChaincode) getSharedAssetForResearcher(stub shim.ChaincodeSt
 	}
 
 	//Recovery accessed imaging logs
-	rand.Seed(time.Now().UnixNano())
-	newID := strconv.Itoa(rand.Intn(10000000)) + time.Now().String() + sharedDicomValues.BatchID
-	hs := sha1.New()
-	hs.Write([]byte(newID))
-	hexLogID := hs.Sum(nil)
-	logID := hex.EncodeToString(hexLogID)
+	// rand.Seed(time.Now().UnixNano())
+	// newID := strconv.Itoa(rand.Intn(10000000)) + time.Now().String() + sharedDicomValues.BatchID
+	// hs := sha1.New()
+	// hs.Write([]byte(newID))
+	// hexLogID := hs.Sum(nil)
+	// logID := hex.EncodeToString(hexLogID)
+
+	auxid, err := uuid.NewRandom()
+	if err != nil {
+		return shim.Error("Erro genereta UUID:" + err.Error())
+	}
+	logID := auxid.String()
 
 	log := Log{
 		LogID:        logID,
@@ -962,6 +970,9 @@ func anonimizeDiffPriv(stub shim.ChaincodeStubInterface, assets []Dicom, amount 
 	var orgNoise, raceNoise, sexNoise, ageNoise, weigthNoise, heigthNoise map[string]float64
 
 	id, err := uuid.NewRandom()
+	if err != nil {
+		return nil, err
+	}
 	dicomWithNoise["DicomID"] = id.String()
 
 	privOrg := dp.PrivateDataFactory(patientOrganization)
