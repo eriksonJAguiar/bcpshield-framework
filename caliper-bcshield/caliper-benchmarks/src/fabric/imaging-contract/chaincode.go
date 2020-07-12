@@ -8,15 +8,13 @@ package main
 
 import (
 	"bytes"
-	"crypto/sha1"
-	"encoding/hex"
 	"encoding/json"
 	"fmt"
-	"math/rand"
 	"strconv"
-	"strings"
 	"time"
 
+	dp "github.com/eriksonJAguiar/godiffpriv"
+	"github.com/google/uuid"
 	"github.com/hyperledger/fabric/core/chaincode/shim"
 	sc "github.com/hyperledger/fabric/protos/peer"
 )
@@ -147,10 +145,7 @@ func (cc *HealthcareChaincode) addAsset(stub shim.ChaincodeStubInterface, args [
 	if err != nil {
 		return shim.Error("7 argument must be a numeric string")
 	}
-	timestamp, err := time.Parse(time.RFC3339, "2020-06-24T21:30:55.906555738Z")
-	if err != nil {
-		return shim.Error("Erro convert date argument must be a datetime string")
-	}
+	timestamp := time.Now()
 	patientWeigth, err := strconv.ParseFloat(args[14], 64)
 	if err != nil {
 		return shim.Error("14 argument must be a numeric string")
@@ -393,12 +388,12 @@ func (cc *HealthcareChaincode) getAssetPriv(stub shim.ChaincodeStubInterface, ar
 }
 
 // Patient Sharing imaging with a doctor and add asset for sharing asset in blockchain
-// Params: (Three args) patientID, poctorID, hashIPFS repository and dicomShared represents the ID files to sharing with doctor
+// Params: (Four args) batchID, patientID, doctorID, hashIPFS repository and dicomShared represents the ID files to sharing with doctor
 // Return: Id hash to represents the request value by a hash
 func (cc *HealthcareChaincode) shareAssetWithDoctor(stub shim.ChaincodeStubInterface, args []string) sc.Response {
 
 	if len(args) < 5 && len(args) > 5 {
-		return shim.Error("Incorrect number of arguments. Expecting 3")
+		return shim.Error("Incorrect number of arguments. Expecting 5")
 	}
 
 	if len(args[0]) <= 0 {
@@ -407,8 +402,8 @@ func (cc *HealthcareChaincode) shareAssetWithDoctor(stub shim.ChaincodeStubInter
 		return shim.Error("2nd argument must be a numeric string")
 	} else if len(args[2]) <= 0 {
 		return shim.Error("3rd argument must be a numeric string")
-	}else if len(args[3]) <= 0 {
-		return shim.Error("3rd argument must be a numeric string")
+	} else if len(args[3]) <= 0 {
+		return shim.Error("4rd argument must be a numeric string")
 	}
 
 	var dicomShared []string
@@ -422,16 +417,6 @@ func (cc *HealthcareChaincode) shareAssetWithDoctor(stub shim.ChaincodeStubInter
 	//Configure IPFS
 	ipfsReference := hashIPFS
 	getTime := time.Now()
-
-	// hs := sha1.New()
-
-	// concatValues := holder + doctorID + ipfsReference + holder + getTime.String()
-
-	// hs.Write([]byte(concatValues))
-
-	// hexBatchID := hs.Sum(nil)
-
-	// batchID := hex.EncodeToString(hexBatchID)
 
 	asset := &SharedDicom{
 		BatchID:        batchID,
@@ -468,7 +453,7 @@ func (cc *HealthcareChaincode) shareAssetWithDoctor(stub shim.ChaincodeStubInter
 }
 
 // Doctor can get patient's data shared
-// Params: (One args) batchID for get exams shared
+// Params: (Two args) batchID for get exams shared
 // Returns: Dicom structure type anonymized and IPFS hash value to get real imaging
 func (cc *HealthcareChaincode) getSharedAssetWithDoctor(stub shim.ChaincodeStubInterface, args []string) sc.Response {
 	var batchID, jsonResp string
@@ -519,12 +504,17 @@ func (cc *HealthcareChaincode) getSharedAssetWithDoctor(stub shim.ChaincodeStubI
 	// Nesse ponto deve ser implementando a comunicação com o IPFS para compartilhar DICOM
 
 	//Create id log image
-	rand.Seed(time.Now().UnixNano())
-	id := strconv.Itoa(rand.Int()) + time.Now().String()
-	hs := sha1.New()
-	hs.Write([]byte(id))
-	hexLogID := hs.Sum(nil)
-	logID := hex.EncodeToString(hexLogID)
+	// rand.Seed(time.Now().UnixNano())
+	// id := strconv.Itoa(rand.Int()) + time.Now().String()
+	// hs := sha1.New()
+	// hs.Write([]byte(id))
+	// hexLogID := hs.Sum(nil)
+	// logID := hex.EncodeToString(hexLogID)
+	auxid, err := uuid.NewRandom()
+	if err != nil {
+		return shim.Error("Erro genereta UUID: " + err.Error())
+	}
+	logID := auxid.String()
 
 	// Deve ser aplicado a K-Anonimity antes de enviar os dados para o médico
 	queryString := "{\"selector\":{\"docType\":\"Dicom\"}}"
@@ -601,12 +591,17 @@ func (cc *HealthcareChaincode) requestAssetForResearcher(stub shim.ChaincodeStub
 	patientID := args[2]
 
 	timeGet := time.Now()
-	rand.Seed(time.Now().UnixNano())
-	id := strconv.Itoa(rand.Int()) + timeGet.String()
-	hs := sha1.New()
-	hs.Write([]byte(id))
-	hexReqID := hs.Sum(nil)
-	reqID := hex.EncodeToString(hexReqID)
+	// rand.Seed(time.Now().UnixNano())
+	// id := strconv.Itoa(rand.Int()) + timeGet.String()
+	// hs := sha1.New()
+	// hs.Write([]byte(id))
+	// hexReqID := hs.Sum(nil)
+	// reqID := hex.EncodeToString(hexReqID)
+	auxid, err := uuid.NewRandom()
+	if err != nil {
+		return shim.Error("Erro genereta UUID: " + err.Error())
+	}
+	reqID := auxid.String()
 
 	request := &Request{
 		RequestID:       reqID,
@@ -690,16 +685,21 @@ func (cc *HealthcareChaincode) shareAssetForResearcher(stub shim.ChaincodeStubIn
 		i++
 	}
 
-	timeGet := time.Now()
-	sd := rand.NewSource(time.Now().UnixNano())
-	rd := rand.New(sd)
-	id := strconv.Itoa(rd.Int()) + timeGet.String()
-	hs := sha1.New()
-	hs.Write([]byte(id))
-	auxSharedObjID := hs.Sum(nil)
+	// timeGet := time.Now()
+	// sd := rand.NewSource(time.Now().UnixNano())
+	// rd := rand.New(sd)
+	// id := strconv.Itoa(rd.Int()) + timeGet.String()
+	// hs := sha1.New()
+	// hs.Write([]byte(id))
+	// auxSharedObjID := hs.Sum(nil)
+
+	auxid, err := uuid.NewRandom()
+	if err != nil {
+		return shim.Error("Erro genereta UUID: " + err.Error())
+	}
 
 	sharedDicomObj := &SharedDicom{
-		BatchID:       hex.EncodeToString(auxSharedObjID),
+		BatchID:       auxid.String(),
 		DocType:       "SharedDicom",
 		IpfsReference: hashIPFS,
 		DicomShared:   dicomShared,
@@ -725,20 +725,22 @@ func (cc *HealthcareChaincode) shareAssetForResearcher(stub shim.ChaincodeStubIn
 
 }
 
-//94bcc206e4a3f7c293af9f35dd28f83cea89f631
 // Researcher get imaging shared
-// Params: (one arg) "sharedDicomID" describes hash value requested ID
+// Params: (two args) "sharedDicomID" describes hash value requested ID; and epsilon to apply defferential privacy
 // Returns: Dicom structure type anonymized and Hash IPFS to get images from IFPS structure
 func (cc *HealthcareChaincode) getSharedAssetForResearcher(stub shim.ChaincodeStubInterface, args []string) sc.Response {
 	var jsonResp string
 	var err error
 
-	if len(args) != 1 {
+	if len(args) != 2 {
 		shim.Error("We expected one element as params")
 	}
 
 	sharedDicomID := args[0]
-	epsilon := 0.1
+	epsilon, err := strconv.ParseFloat(args[1], 64)
+	if err != nil {
+		return shim.Error("Faild Convert epsilon value: " + err.Error())
+	}
 
 	SharedDicomBytes, err := stub.GetState(sharedDicomID)
 	if err != nil {
@@ -811,12 +813,18 @@ func (cc *HealthcareChaincode) getSharedAssetForResearcher(stub shim.ChaincodeSt
 	}
 
 	//Recovery accessed imaging logs
-	rand.Seed(time.Now().UnixNano())
-	newID := strconv.Itoa(rand.Intn(10000000)) + time.Now().String() + sharedDicomValues.BatchID
-	hs := sha1.New()
-	hs.Write([]byte(newID))
-	hexLogID := hs.Sum(nil)
-	logID := hex.EncodeToString(hexLogID)
+	// rand.Seed(time.Now().UnixNano())
+	// newID := strconv.Itoa(rand.Intn(10000000)) + time.Now().String() + sharedDicomValues.BatchID
+	// hs := sha1.New()
+	// hs.Write([]byte(newID))
+	// hexLogID := hs.Sum(nil)
+	// logID := hex.EncodeToString(hexLogID)
+
+	auxid, err := uuid.NewRandom()
+	if err != nil {
+		return shim.Error("Erro genereta UUID:" + err.Error())
+	}
+	logID := auxid.String()
 
 	log := Log{
 		LogID:        logID,
@@ -882,68 +890,6 @@ func (cc *HealthcareChaincode) addLog(stub shim.ChaincodeStubInterface, log Log)
 
 }
 
-// query data on blockchain
-// Internal function
-func (cc *HealthcareChaincode) queryGeneral(stub shim.ChaincodeStubInterface, args []string) sc.Response {
-	query := args[0]
-
-	queryRes, err := getQueryResultForQueryString(stub, query)
-
-	if err != nil {
-		return shim.Error("Query error: " + err.Error())
-	}
-
-	var alldcm []Dicom
-
-	err = json.Unmarshal(queryRes, &alldcm)
-
-	if err != nil {
-		shim.Error("Error Unmarshal Dicom to Json: " + err.Error())
-	}
-
-	var patientID []int
-
-	for _, dcm := range alldcm {
-		id, err := strconv.Atoi(dcm.PatientID)
-		if err != nil {
-			return shim.Error("Error convert value " + err.Error())
-		}
-		patientID = append(patientID, id)
-	}
-
-	databasePatientID := TransforIntData(patientID)
-	if len(databasePatientID) == 0 {
-		return shim.Error("Error get Patient ID")
-	}
-
-	queryPatientID := Query(databasePatientID, 2)
-	if len(queryPatientID) == 0 {
-		return shim.Error("Error Dicom ID")
-	}
-
-	epsilon := 0.1
-	var noise []Matrix
-	fmt.Println("Patient Apply Priv")
-	valPatientID := DiffPriv(queryPatientID, 2, databasePatientID, epsilon)
-	err = json.Unmarshal(valPatientID, &noise)
-	if err != nil {
-		return shim.Error(err.Error())
-	}
-	if len(noise) == 0 {
-		return shim.Error("Error Noise value is Null")
-	}
-	fmt.Println("Dicom noise result")
-	fmt.Println(noise)
-
-	value, err := json.Marshal(noise)
-	if err != nil {
-		return shim.Error("Error Marshal" + err.Error())
-	}
-
-	return shim.Success(value)
-
-}
-
 // Internal function
 func getQueryResultForQueryString(stub shim.ChaincodeStubInterface, queryString string) ([]byte, error) {
 
@@ -979,11 +925,12 @@ func getQueryResultForQueryString(stub shim.ChaincodeStubInterface, queryString 
 	// fmt.Printf("- getQueryResultForQueryString queryResult:\n%s\n", buffer.String())
 
 	return buffer.Bytes(), nil
+
 }
 
 //Apply differential privacy on data
 // Internal function
-func anonimizeDiffPriv(stub shim.ChaincodeStubInterface, assets []Dicom, amount int, epsilon float64) ([]Dicom, error) {
+func anonimizeDiffPriv(stub shim.ChaincodeStubInterface, assets []Dicom, amount int, epsilon float64) (map[string]interface{}, error) {
 
 	queryString := "{ \"selector\":{ \"docType\":\"Dicom\" }}"
 
@@ -1002,11 +949,10 @@ func anonimizeDiffPriv(stub shim.ChaincodeStubInterface, assets []Dicom, amount 
 		return nil, err
 	}
 
-	var patientFirstnames, patientLastnames, patientTelephones []string
-	var patientBirth, patientOrganization, patientMothername, patientReligion []string
+	var patientOrganization, patientRace []string
 	var patientSex, patientGender, patientAddress []string
-	var patientAge, dicomID, patientID []int
-	var patientWeigth, patientHeigth []float64
+	var dicomID []int
+	var patientWeigth, patientHeigth, patientAge []float64
 
 	for _, dcm := range allDicom {
 		id, err := strconv.Atoi(dcm.DicomID)
@@ -1014,257 +960,76 @@ func anonimizeDiffPriv(stub shim.ChaincodeStubInterface, assets []Dicom, amount 
 			return nil, err
 		}
 		dicomID = append(dicomID, id)
-		pid, err := strconv.Atoi(dcm.PatientID)
-		if err != nil {
-			return nil, err
-		}
-		patientID = append(patientID, pid)
-		patientFirstnames = append(patientFirstnames, dcm.PatientFirstname)
-		patientLastnames = append(patientLastnames, dcm.PatientLastname)
-		patientTelephones = append(patientTelephones, dcm.PatientTelephone)
-		patientBirth = append(patientBirth, dcm.PatientBirth)
 		patientOrganization = append(patientOrganization, dcm.PatientOrganization)
-		patientMothername = append(patientMothername, dcm.PatientMothername)
-		patientReligion = append(patientReligion, dcm.PatientReligion)
+		patientRace = append(patientRace, dcm.PatientReligion)
 		patientSex = append(patientSex, dcm.PatientSex)
 		patientAddress = append(patientAddress, dcm.PatientAddress)
-		patientAge = append(patientAge, dcm.PatientAge)
+		patientAge = append(patientAge, float64(dcm.PatientAge))
 		patientWeigth = append(patientWeigth, dcm.PatientWeigth)
 		patientHeigth = append(patientHeigth, dcm.PatientHeigth)
 		patientGender = append(patientGender, dcm.PatientGender)
 	}
+	var dicomWithNoise map[string]interface{}
+	var orgNoise, raceNoise, sexNoise, ageNoise, weigthNoise, heigthNoise map[string]float64
 
-	databaseDicomID := TransforIntData(dicomID)
-	databasePatientID := TransforIntData(patientID)
-	databaseFirstName := TransforSymbolicData(patientFirstnames)
-	databaseLastName := TransforSymbolicData(patientLastnames)
-	databaseTelephone := TransforSymbolicData(patientTelephones)
-	databaseBirth := TransforSymbolicData(patientBirth)
-	databaseOrganization := TransforSymbolicData(patientOrganization)
-	databaseMothername := TransforSymbolicData(patientMothername)
-	databaseReligion := TransforSymbolicData(patientReligion)
-	databaseSex := TransforSymbolicData(patientSex)
-	databaseAddress := TransforSymbolicData(patientAddress)
-	databaseGender := TransforSymbolicData(patientGender)
-	databaseAge := TransforIntData(patientAge)
-	databaseWeigth := TransforFloatData(patientWeigth)
-	databaseHeigth := TransforFloatData(patientHeigth)
-
-	var patientFirstnamesQ, patientLastnamesQ, patientTelephonesQ []string
-	var patientBirthQ, patientOrganizationQ, patientMothernameQ, patientReligionQ []string
-	var patientSexQ, patientGenderQ, patientAddressQ []string
-	var patientAgeQ, dicomIDQ, patientIDQ []int
-	var patientWeigthQ, patientHeigthQ []float64
-
-	for _, dcm := range assets {
-		id, err := strconv.Atoi(dcm.DicomID)
-		if err != nil {
-			return nil, err
-		}
-		dicomIDQ = append(dicomIDQ, id)
-		pid, err := strconv.Atoi(dcm.PatientID)
-		if err != nil {
-			return nil, err
-		}
-		patientIDQ = append(patientIDQ, pid)
-		patientFirstnamesQ = append(patientFirstnamesQ, dcm.PatientFirstname)
-		patientLastnamesQ = append(patientLastnamesQ, dcm.PatientLastname)
-		patientTelephonesQ = append(patientTelephonesQ, dcm.PatientTelephone)
-		patientBirthQ = append(patientBirthQ, dcm.PatientBirth)
-		patientOrganizationQ = append(patientOrganizationQ, dcm.PatientOrganization)
-		patientMothernameQ = append(patientMothernameQ, dcm.PatientMothername)
-		patientReligionQ = append(patientReligionQ, dcm.PatientReligion)
-		patientSexQ = append(patientSexQ, dcm.PatientSex)
-		patientAddressQ = append(patientAddressQ, dcm.PatientAddress)
-		patientAgeQ = append(patientAgeQ, dcm.PatientAge)
-		patientWeigthQ = append(patientWeigthQ, dcm.PatientWeigth)
-		patientHeigthQ = append(patientHeigthQ, dcm.PatientHeigth)
-		patientGenderQ = append(patientGenderQ, dcm.PatientGender)
+	id, err := uuid.NewRandom()
+	if err != nil {
+		return nil, err
 	}
+	dicomWithNoise["DicomID"] = id.String()
 
-	queryDicomID := TransforIntData(dicomIDQ)
-	queryPatientID := TransforIntData(patientIDQ)
-	queryFirstName := TransforSymbolicData(patientFirstnamesQ)
-	queryLastName := TransforSymbolicData(patientLastnamesQ)
-	queryTelephone := TransforSymbolicData(patientTelephonesQ)
-	queryBirth := TransforSymbolicData(patientBirthQ)
-	queryOrganization := TransforSymbolicData(patientOrganizationQ)
-	queryMothername := TransforSymbolicData(patientMothernameQ)
-	queryReligion := TransforSymbolicData(patientReligionQ)
-	querySex := TransforSymbolicData(patientSexQ)
-	queryAddress := TransforSymbolicData(patientAddressQ)
-	queryGender := TransforSymbolicData(patientGenderQ)
-	queryAge := TransforIntData(patientAgeQ)
-	queryWeigth := TransforFloatData(patientWeigthQ)
-	queryHeigth := TransforFloatData(patientHeigthQ)
-
-	fmt.Println("Query PatientID values")
-	fmt.Println(queryDicomID)
-
-	fmt.Println("Query FirtName values")
-	fmt.Println(queryFirstName)
-
-	fmt.Println("Start Apply privacy")
-
-	var noisedQueries []interface{}
-	var noiseDicomID, noisePatientID, noiseFirstName, noiseLastName, noiseTelephone []Matrix
-	var noiseBirth, noiseOrganization, noiseMothername, noiseReligion []Matrix
-	var noiseSex, noiseAddress, noiseGender, noiseAge, noiseWeigth, noiseHeigth []Matrix
-	var errNoise error
-
-	fmt.Println("Dicom ID")
-	valDicomID := DiffPriv(queryDicomID, amount, databaseDicomID, epsilon)
-	errNoise = json.Unmarshal(valDicomID, &noiseDicomID)
-	if errNoise != nil {
-		return nil, errNoise
+	privOrg := dp.PrivateDataFactory(patientOrganization)
+	auxPrivOrg, err := privOrg.ApplyPrivacy(epsilon)
+	err = json.Unmarshal(auxPrivOrg, &orgNoise)
+	if err != nil {
+		return nil, err
 	}
-	fmt.Println(noiseDicomID)
+	dicomWithNoise["Org"] = orgNoise
 
-	fmt.Println("Patient Noise")
-	valPatientID := DiffPriv(queryPatientID, amount, databasePatientID, epsilon)
-	errNoise = json.Unmarshal(valPatientID, &noisePatientID)
-	if errNoise != nil {
-		return nil, errNoise
+	privRace := dp.PrivateDataFactory(patientRace)
+	auxPrivRace, err := privRace.ApplyPrivacy(epsilon)
+	err = json.Unmarshal(auxPrivRace, &raceNoise)
+	if err != nil {
+		return nil, err
 	}
-	fmt.Println(noisePatientID)
+	dicomWithNoise["Race"] = raceNoise
 
-	fmt.Println("First name Noise")
-	valFirtName := DiffPriv(queryFirstName, amount, databaseFirstName, epsilon)
-	errNoise = json.Unmarshal(valFirtName, &noiseFirstName)
-	if errNoise != nil {
-		return nil, errNoise
+	privSex := dp.PrivateDataFactory(patientSex)
+	auxPrivSex, err := privSex.ApplyPrivacy(epsilon)
+	err = json.Unmarshal(auxPrivSex, &sexNoise)
+	if err != nil {
+		return nil, err
 	}
-	fmt.Println(noiseFirstName)
+	dicomWithNoise["Sex"] = sexNoise
 
-	fmt.Println("Last Name noise")
-	valLastName := DiffPriv(queryLastName, amount, databaseLastName, epsilon)
-	errNoise = json.Unmarshal(valLastName, &noiseLastName)
-	if errNoise != nil {
-		return nil, errNoise
+	privAge := dp.PrivateDataFactory(patientAge)
+	auxPrivAge, err := privAge.ApplyPrivacy(epsilon)
+	err = json.Unmarshal(auxPrivAge, &ageNoise)
+	if err != nil {
+		return nil, err
 	}
-	fmt.Println(noiseLastName)
+	dicomWithNoise["Age"] = ageNoise
 
-	fmt.Println("Telephone noise")
-	valTelephone := DiffPriv(queryTelephone, amount, databaseTelephone, epsilon)
-	errNoise = json.Unmarshal(valTelephone, &noiseTelephone)
-	if errNoise != nil {
-		return nil, errNoise
+	privWeigth := dp.PrivateDataFactory(patientWeigth)
+	auxPrivWeigth, err := privWeigth.ApplyPrivacy(epsilon)
+	err = json.Unmarshal(auxPrivWeigth, &weigthNoise)
+	if err != nil {
+		return nil, err
 	}
-	fmt.Println(noiseTelephone)
+	dicomWithNoise["Weigth"] = weigthNoise
 
-	fmt.Println("Birth noise")
-	valBirth := DiffPriv(queryBirth, amount, databaseBirth, epsilon)
-	errNoise = json.Unmarshal(valBirth, &noiseBirth)
-	if errNoise != nil {
-		return nil, errNoise
+	privHeigth := dp.PrivateDataFactory(patientHeigth)
+	auxPrivHeigth, err := privHeigth.ApplyPrivacy(epsilon)
+	err = json.Unmarshal(auxPrivHeigth, &heigthNoise)
+	if err != nil {
+		return nil, err
 	}
-	fmt.Println(noiseBirth)
-
-	fmt.Println("Organization noise")
-	valOrganization := DiffPriv(queryOrganization, amount, databaseOrganization, epsilon)
-	errNoise = json.Unmarshal(valOrganization, &noiseOrganization)
-	if errNoise != nil {
-		return nil, errNoise
-	}
-	fmt.Println(noiseOrganization)
-
-	fmt.Println("Mothername noise")
-	valMothername := DiffPriv(queryMothername, amount, databaseMothername, epsilon)
-	errNoise = json.Unmarshal(valMothername, &noiseMothername)
-	if errNoise != nil {
-		return nil, errNoise
-	}
-	fmt.Println(noiseMothername)
-
-	fmt.Println("Religion noise")
-	valReligion := DiffPriv(queryReligion, amount, databaseReligion, epsilon)
-	errNoise = json.Unmarshal(valReligion, &noiseReligion)
-	if errNoise != nil {
-		return nil, errNoise
-	}
-	fmt.Println(noiseReligion)
-
-	fmt.Println("Sex noise")
-	valSex := DiffPriv(querySex, amount, databaseSex, epsilon)
-	errNoise = json.Unmarshal(valSex, &noiseSex)
-	if errNoise != nil {
-		return nil, errNoise
-	}
-	fmt.Println(noiseSex)
-
-	fmt.Println("Noise Address")
-	valAddress := DiffPriv(queryAddress, amount, databaseAddress, epsilon)
-	errNoise = json.Unmarshal(valAddress, &noiseAddress)
-	if errNoise != nil {
-		return nil, errNoise
-	}
-	fmt.Println(noiseAddress)
-
-	fmt.Println("Noise gender")
-	valGender := DiffPriv(queryGender, amount, databaseGender, epsilon)
-	errNoise = json.Unmarshal(valGender, &noiseGender)
-	if errNoise != nil {
-		return nil, errNoise
-	}
-	fmt.Println(noiseGender)
-
-	fmt.Println("Age noise")
-	valAge := DiffPriv(queryAge, amount, databaseAge, epsilon)
-	errNoise = json.Unmarshal(valAge, &noiseAge)
-	if errNoise != nil {
-		return nil, errNoise
-	}
-	fmt.Println(noiseAge)
-
-	fmt.Println("Weight noise")
-	valWeigth := DiffPriv(queryWeigth, amount, databaseWeigth, epsilon)
-	errNoise = json.Unmarshal(valWeigth, &noiseWeigth)
-	if errNoise != nil {
-		return nil, errNoise
-	}
-	fmt.Println(noiseWeigth)
-
-	fmt.Println("Heigth noise")
-	valHeigth := DiffPriv(queryHeigth, amount, databaseHeigth, epsilon)
-	errNoise = json.Unmarshal(valHeigth, &noiseHeigth)
-	if errNoise != nil {
-		return nil, errNoise
-	}
-	noisedQueries = append(noisedQueries, noiseHeigth)
-	fmt.Println(noiseHeigth)
-
-	fmt.Println("End Apply privacy")
-
-	var dicomWithNoise []Dicom
-
-	for i := 0; i < amount; i++ {
-		var auxDcm Dicom
-
-		auxDcm.DicomID = strconv.FormatFloat(noiseDicomID[0].Data[i], 'f', -1, 64)
-		auxDcm.PatientID = strconv.FormatFloat(noisePatientID[0].Data[i], 'f', -1, 64)
-		auxDcm.PatientWeigth = noiseWeigth[0].Data[i]
-		auxDcm.PatientHeigth = noiseHeigth[0].Data[i]
-		auxDcm.PatientAge = int(noiseAge[0].Data[i])
-
-		auxDcm.PatientFirstname = strings.Trim(strings.Join(strings.Fields(fmt.Sprint(noiseFirstName[i].Data)), " "), "[]")
-		auxDcm.PatientLastname = strings.Trim(strings.Join(strings.Fields(fmt.Sprint(noiseLastName[i].Data)), " "), "[]")
-		auxDcm.PatientTelephone = strings.Trim(strings.Join(strings.Fields(fmt.Sprint(noiseTelephone[i].Data)), " "), "[]")
-		auxDcm.PatientBirth = strings.Trim(strings.Join(strings.Fields(fmt.Sprint(noiseBirth[i].Data)), " "), "[]")
-		auxDcm.PatientOrganization = strings.Trim(strings.Join(strings.Fields(fmt.Sprint(noiseOrganization[i].Data)), " "), "[]")
-		auxDcm.PatientMothername = strings.Trim(strings.Join(strings.Fields(fmt.Sprint(noiseMothername[i].Data)), " "), "[]")
-		auxDcm.PatientReligion = strings.Trim(strings.Join(strings.Fields(fmt.Sprint(noiseReligion[i].Data)), " "), "[]")
-		auxDcm.PatientSex = strings.Trim(strings.Join(strings.Fields(fmt.Sprint(noiseSex[i].Data)), " "), "[]")
-		auxDcm.PatientAddress = strings.Trim(strings.Join(strings.Fields(fmt.Sprint(noiseAddress[i].Data)), " "), "[]")
-		auxDcm.PatientGender = strings.Trim(strings.Join(strings.Fields(fmt.Sprint(noiseGender[i].Data)), " "), "[]")
-
-		dicomWithNoise = append(dicomWithNoise, auxDcm)
-
-	}
+	dicomWithNoise["Heigth"] = heigthNoise
 
 	return dicomWithNoise, nil
 }
 
-//Apply K-anonymity privacy on data
+// Apply K-anonymity privacy on data
 // Internal function
 func anonimizeKAnonimity(allDicom []Dicom, assets []Dicom) ([]byte, error) {
 
@@ -1408,8 +1173,6 @@ func (cc *HealthcareChaincode) Invoke(stub shim.ChaincodeStubInterface) sc.Respo
 		return cc.getSharedAssetForResearcher(stub, args)
 	} else if fun == "auditLogs" {
 		return cc.auditLogs(stub, args)
-	} else if fun == "query" {
-		return cc.queryGeneral(stub, args)
 	}
 
 	fmt.Println("invoke did not find func: " + fun) //error
