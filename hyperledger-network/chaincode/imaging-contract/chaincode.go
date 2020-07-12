@@ -738,6 +738,9 @@ func (cc *HealthcareChaincode) getSharedAssetForResearcher(stub shim.ChaincodeSt
 
 	sharedDicomID := args[0]
 	epsilon, err := strconv.ParseFloat(args[1], 64)
+	if err != nil {
+		return shim.Error("Faild Convert epsilon value: " + err.Error())
+	}
 
 	SharedDicomBytes, err := stub.GetState(sharedDicomID)
 	if err != nil {
