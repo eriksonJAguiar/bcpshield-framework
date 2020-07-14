@@ -104,31 +104,16 @@ app.post('/api/addAsset', urlencoder, async function (req, res) {
 /**
  * This function notify a requester and add struct on blockchain
  * @param {string} req.body.user user id on blockchain
- * @param {string} req.body.dicomID dicom ID
- * @param {string} req.body.patientID patient ID
- * @param {string} req.body.patientFirstname patient first name
- * @param {string} req.body.patientLastname patient last name
- * @param {string} req.body.patientTelephone patient phone number
- * @param {string} req.body.patientAddress patient address
- * @param {int} req.body.patientAge patient age
- * @param {string} req.body.patientOrganization org which patient to join
- * @param {string} req.body.patienRace  patient insuranceplan
- * @param {string} req.body.patientGender  patient gender
- * @param {string} req.body.patientInsuranceplan patient insuranceplan
- * @param {float} req.body.patientWeigth patient weigth
- * @param {float} req.body.patientHeigth patient heigth
- * @param {string} req.body.machineModel patient insuranceplan
- * @returns {number} that number, plus one.
+ * @param {string} req.body.requestID ID for request
+ * @param {string} req.body.assets assets shared
+ * @returns {json} updated shared log
  */
 app.post('/api/notify', urlencoder, async function (req, res) {
 
   try {
     const contract = await fabricNetwork.connectNetwork('connection-hprovider.json', '../wallet/wallet-hprovider', req.body.user.toString());
     console.log(req.body);
-    let response = await contract.submitTransaction('addAsset', req.body.dicomID.toString(), req.body.patientID.toString(), req.body.patientFirstname.toString(), req.body.patientLastname.toString(), 
-                                              req.body.patientTelephone.toString(), req.body.patientAddress.toString(), req.body.patientAge.toString(), req.body.patientOrganization.toString(), 
-                                              req.body.patientRace.toString(), req.body.patientGender.toString(), req.body.patientInsuranceplan.toString(), 
-                                              req.body.patientWeigth.toString(), req.body.patientHeigth.toString(), req.body.machineModel.toString());
+    let response = await contract.submitTransaction('notifyRequester', req.body.requestID.toString(), req.body.assets.toString());
     res.json({
       status: 'OK - Transaction has been submitted',
       result: response
