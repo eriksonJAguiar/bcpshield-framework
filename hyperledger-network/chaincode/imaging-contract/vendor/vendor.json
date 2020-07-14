@@ -241,25 +241,11 @@
 			"revisionTime": "2019-10-06T16:56:17Z"
 		},
 		{
-			"checksumSHA1": "kdPxQ5YYFoykvijrO+4CAFSHIJ8=",
-			"origin": "github.com/imaging-contract/vendor/github.com/montanaflynn/stats",
-			"path": "github.com/montanaflynn/stats",
-			"revision": "ed2e8316f17ccffde20618721ff6739b00410de3",
-			"revisionTime": "2020-02-18T08:36:24Z"
-		},
-		{
 			"checksumSHA1": "8mpsU+DlXZaQhXvDf0yl3CdFpQA=",
 			"origin": "github.com/imaging-contract/vendor/golang.org/x/crypto/sha3",
 			"path": "golang.org/x/crypto/sha3",
 			"revision": "06a226fb4e3765ef3f48aa2852b401bc7b98e981",
 			"revisionTime": "2020-05-10T12:17:48Z"
-		},
-		{
-			"checksumSHA1": "qOLekPymZ38uF6nb4729K8PcINI=",
-			"origin": "github.com/imaging-contract/vendor/golang.org/x/exp/rand",
-			"path": "golang.org/x/exp/rand",
-			"revision": "e8c3332aa8e5b8e6acb4707c3a7e5979052b20aa",
-			"revisionTime": "2020-03-31T18:55:27Z"
 		},
 		{
 			"checksumSHA1": "vu94bhEYWNO4e5Q4h0ZhAd0ekRE=",
@@ -386,160 +372,6 @@
 			"path": "golang.org/x/tools/internal/packagesinternal",
 			"revision": "1f08ef6002a8333ef34e1455b391a58c0229a816",
 			"revisionTime": "2020-04-10T03:54:23Z"
-		},
-		{
-			"checksumSHA1": "9BVOgS89ZFcJzqtjii1k9qaCQ1g=",
-			"origin": "github.com/imaging-contract/vendor/gonum.org/v1/gonum/blas",
-			"path": "gonum.org/v1/gonum/blas",
-			"revision": "448e2b6d0e3ffaded00aac84f34d17df7fac4d25",
-			"revisionTime": "2020-04-08T10:28:23Z"
-		},
-		{
-			"checksumSHA1": "VzHyW8NnGNLW+BDjK1Jz1yO2mkg=",
-			"origin": "github.com/imaging-contract/vendor/gonum.org/v1/gonum/blas/blas64",
-			"path": "gonum.org/v1/gonum/blas/blas64",
-			"revision": "448e2b6d0e3ffaded00aac84f34d17df7fac4d25",
-			"revisionTime": "2020-04-08T10:28:23Z"
-		},
-		{
-			"checksumSHA1": "z2BqO+g4Ijxt5wSbnqY9khXKNzM=",
-			"origin": "github.com/imaging-contract/vendor/gonum.org/v1/gonum/blas/cblas128",
-			"path": "gonum.org/v1/gonum/blas/cblas128",
-			"revision": "448e2b6d0e3ffaded00aac84f34d17df7fac4d25",
-			"revisionTime": "2020-04-08T10:28:23Z"
-		},
-		{
-			"checksumSHA1": "xpVSrJok5TckISJeqQPc2lhQLwM=",
-			"origin": "github.com/imaging-contract/vendor/gonum.org/v1/gonum/blas/gonum",
-			"path": "gonum.org/v1/gonum/blas/gonum",
-			"revision": "448e2b6d0e3ffaded00aac84f34d17df7fac4d25",
-			"revisionTime": "2020-04-08T10:28:23Z"
-		},
-		{
-			"checksumSHA1": "XQS41ML4DpfJD765BX2H0ZKLGUQ=",
-			"origin": "github.com/imaging-contract/vendor/gonum.org/v1/gonum/floats",
-			"path": "gonum.org/v1/gonum/floats",
-			"revision": "448e2b6d0e3ffaded00aac84f34d17df7fac4d25",
-			"revisionTime": "2020-04-08T10:28:23Z"
-		},
-		{
-			"checksumSHA1": "g6viHoFBJnweoMfLztZiuHYH6ws=",
-			"origin": "github.com/imaging-contract/vendor/gonum.org/v1/gonum/internal/asm/c128",
-			"path": "gonum.org/v1/gonum/internal/asm/c128",
-			"revision": "448e2b6d0e3ffaded00aac84f34d17df7fac4d25",
-			"revisionTime": "2020-04-08T10:28:23Z"
-		},
-		{
-			"checksumSHA1": "RWpLGs52XNv129DOxfe2ObOI31U=",
-			"origin": "github.com/imaging-contract/vendor/gonum.org/v1/gonum/internal/asm/c64",
-			"path": "gonum.org/v1/gonum/internal/asm/c64",
-			"revision": "448e2b6d0e3ffaded00aac84f34d17df7fac4d25",
-			"revisionTime": "2020-04-08T10:28:23Z"
-		},
-		{
-			"checksumSHA1": "6IiS64qEB1vpwxcCiQw8v5vj2V4=",
-			"origin": "github.com/imaging-contract/vendor/gonum.org/v1/gonum/internal/asm/f32",
-			"path": "gonum.org/v1/gonum/internal/asm/f32",
-			"revision": "448e2b6d0e3ffaded00aac84f34d17df7fac4d25",
-			"revisionTime": "2020-04-08T10:28:23Z"
-		},
-		{
-			"checksumSHA1": "k4aV6MWpqKZu8kGE2c+Y957qSZ4=",
-			"origin": "github.com/imaging-contract/vendor/gonum.org/v1/gonum/internal/asm/f64",
-			"path": "gonum.org/v1/gonum/internal/asm/f64",
-			"revision": "448e2b6d0e3ffaded00aac84f34d17df7fac4d25",
-			"revisionTime": "2020-04-08T10:28:23Z"
-		},
-		{
-			"checksumSHA1": "sh0VNuD/5uRTutWF7fRinMwZVbk=",
-			"origin": "github.com/imaging-contract/vendor/gonum.org/v1/gonum/internal/cmplx64",
-			"path": "gonum.org/v1/gonum/internal/cmplx64",
-			"revision": "448e2b6d0e3ffaded00aac84f34d17df7fac4d25",
-			"revisionTime": "2020-04-08T10:28:23Z"
-		},
-		{
-			"checksumSHA1": "v70VyXNL1CGBjMobhW8Xf/+SCNU=",
-			"origin": "github.com/imaging-contract/vendor/gonum.org/v1/gonum/internal/math32",
-			"path": "gonum.org/v1/gonum/internal/math32",
-			"revision": "448e2b6d0e3ffaded00aac84f34d17df7fac4d25",
-			"revisionTime": "2020-04-08T10:28:23Z"
-		},
-		{
-			"checksumSHA1": "z1wZpv/G4nnIv0tB5x3i8orVNJc=",
-			"origin": "github.com/imaging-contract/vendor/gonum.org/v1/gonum/lapack",
-			"path": "gonum.org/v1/gonum/lapack",
-			"revision": "448e2b6d0e3ffaded00aac84f34d17df7fac4d25",
-			"revisionTime": "2020-04-08T10:28:23Z"
-		},
-		{
-			"checksumSHA1": "S7dXMnOdZwfwnJqOIo5pW9Xn9dc=",
-			"origin": "github.com/imaging-contract/vendor/gonum.org/v1/gonum/lapack/gonum",
-			"path": "gonum.org/v1/gonum/lapack/gonum",
-			"revision": "448e2b6d0e3ffaded00aac84f34d17df7fac4d25",
-			"revisionTime": "2020-04-08T10:28:23Z"
-		},
-		{
-			"checksumSHA1": "omfo34GsZ6xWzYxhCvM6qNe+Zd8=",
-			"origin": "github.com/imaging-contract/vendor/gonum.org/v1/gonum/lapack/lapack64",
-			"path": "gonum.org/v1/gonum/lapack/lapack64",
-			"revision": "448e2b6d0e3ffaded00aac84f34d17df7fac4d25",
-			"revisionTime": "2020-04-08T10:28:23Z"
-		},
-		{
-			"checksumSHA1": "Aczo9qZuotw17XTwuPX6oCC8k04=",
-			"origin": "github.com/imaging-contract/vendor/gonum.org/v1/gonum/mat",
-			"path": "gonum.org/v1/gonum/mat",
-			"revision": "448e2b6d0e3ffaded00aac84f34d17df7fac4d25",
-			"revisionTime": "2020-04-08T10:28:23Z"
-		},
-		{
-			"checksumSHA1": "V4lcSDlsJJoWzS1i/gqjrlkUEBM=",
-			"origin": "github.com/imaging-contract/vendor/gonum.org/v1/gonum/mathext",
-			"path": "gonum.org/v1/gonum/mathext",
-			"revision": "448e2b6d0e3ffaded00aac84f34d17df7fac4d25",
-			"revisionTime": "2020-04-08T10:28:23Z"
-		},
-		{
-			"checksumSHA1": "dzQTeVZK3lWmGFkSSVfgc918OnU=",
-			"origin": "github.com/imaging-contract/vendor/gonum.org/v1/gonum/mathext/internal/amos",
-			"path": "gonum.org/v1/gonum/mathext/internal/amos",
-			"revision": "448e2b6d0e3ffaded00aac84f34d17df7fac4d25",
-			"revisionTime": "2020-04-08T10:28:23Z"
-		},
-		{
-			"checksumSHA1": "Kh4voxmsP9FSkh1943UrmkVU+uk=",
-			"origin": "github.com/imaging-contract/vendor/gonum.org/v1/gonum/mathext/internal/cephes",
-			"path": "gonum.org/v1/gonum/mathext/internal/cephes",
-			"revision": "448e2b6d0e3ffaded00aac84f34d17df7fac4d25",
-			"revisionTime": "2020-04-08T10:28:23Z"
-		},
-		{
-			"checksumSHA1": "LyN569ZarzYHLNJeDUrQr90E4sM=",
-			"origin": "github.com/imaging-contract/vendor/gonum.org/v1/gonum/mathext/internal/gonum",
-			"path": "gonum.org/v1/gonum/mathext/internal/gonum",
-			"revision": "448e2b6d0e3ffaded00aac84f34d17df7fac4d25",
-			"revisionTime": "2020-04-08T10:28:23Z"
-		},
-		{
-			"checksumSHA1": "HHv//ljtSkJK94r/OtiNA7u7NIs=",
-			"origin": "github.com/imaging-contract/vendor/gonum.org/v1/gonum/stat",
-			"path": "gonum.org/v1/gonum/stat",
-			"revision": "448e2b6d0e3ffaded00aac84f34d17df7fac4d25",
-			"revisionTime": "2020-04-08T10:28:23Z"
-		},
-		{
-			"checksumSHA1": "vl7HrUNef5kUf9rqBPa2eKDCa8Q=",
-			"origin": "github.com/imaging-contract/vendor/gonum.org/v1/gonum/stat/combin",
-			"path": "gonum.org/v1/gonum/stat/combin",
-			"revision": "448e2b6d0e3ffaded00aac84f34d17df7fac4d25",
-			"revisionTime": "2020-04-08T10:28:23Z"
-		},
-		{
-			"checksumSHA1": "mF0c2HijOwsjpcpIPUGGBcaIEEQ=",
-			"origin": "github.com/imaging-contract/vendor/gonum.org/v1/gonum/stat/distuv",
-			"path": "gonum.org/v1/gonum/stat/distuv",
-			"revision": "448e2b6d0e3ffaded00aac84f34d17df7fac4d25",
-			"revisionTime": "2020-04-08T10:28:23Z"
 		}
 	],
 	"rootPath": "github.com/imaging-contract"

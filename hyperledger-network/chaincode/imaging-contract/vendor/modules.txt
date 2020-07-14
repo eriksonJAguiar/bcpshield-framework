@@ -45,8 +45,6 @@ github.com/docker/docker/pkg/term/windows
 github.com/docker/go-connections/nat
 # github.com/docker/go-units v0.4.0
 github.com/docker/go-units
-# github.com/eriksonJAguiar/godiffpriv v0.0.0-20200710005506-019936efad83
-github.com/eriksonJAguiar/godiffpriv
 # github.com/fsnotify/fsnotify v1.4.7
 github.com/fsnotify/fsnotify
 # github.com/fsouza/go-dockerclient v1.6.5
@@ -120,8 +118,6 @@ github.com/magiconair/properties
 github.com/miekg/pkcs11
 # github.com/mitchellh/mapstructure v1.1.2
 github.com/mitchellh/mapstructure
-# github.com/montanaflynn/stats v0.6.3
-github.com/montanaflynn/stats
 # github.com/morikuni/aec v1.0.0
 github.com/morikuni/aec
 # github.com/op/go-logging v0.0.0-20160315200505-970db520ece7
@@ -171,8 +167,6 @@ go.uber.org/zap/zapcore
 go.uber.org/zap/zapgrpc
 # golang.org/x/crypto v0.0.0-20200622213623-75b288015ac9
 golang.org/x/crypto/sha3
-# golang.org/x/exp v0.0.0-20200513190911-00229845015e
-golang.org/x/exp/rand
 # golang.org/x/lint v0.0.0-20190930215403-16217165b5de
 golang.org/x/lint
 golang.org/x/lint/golint
@@ -221,29 +215,6 @@ golang.org/x/tools/internal/typesinternal
 # golang.org/x/xerrors v0.0.0-20191204190536-9bdfabe68543
 golang.org/x/xerrors
 golang.org/x/xerrors/internal
-# gonum.org/v1/gonum v0.7.0
-gonum.org/v1/gonum/blas
-gonum.org/v1/gonum/blas/blas64
-gonum.org/v1/gonum/blas/cblas128
-gonum.org/v1/gonum/blas/gonum
-gonum.org/v1/gonum/floats
-gonum.org/v1/gonum/internal/asm/c128
-gonum.org/v1/gonum/internal/asm/c64
-gonum.org/v1/gonum/internal/asm/f32
-gonum.org/v1/gonum/internal/asm/f64
-gonum.org/v1/gonum/internal/cmplx64
-gonum.org/v1/gonum/internal/math32
-gonum.org/v1/gonum/lapack
-gonum.org/v1/gonum/lapack/gonum
-gonum.org/v1/gonum/lapack/lapack64
-gonum.org/v1/gonum/mat
-gonum.org/v1/gonum/mathext
-gonum.org/v1/gonum/mathext/internal/amos
-gonum.org/v1/gonum/mathext/internal/cephes
-gonum.org/v1/gonum/mathext/internal/gonum
-gonum.org/v1/gonum/stat
-gonum.org/v1/gonum/stat/combin
-gonum.org/v1/gonum/stat/distuv
 # google.golang.org/genproto v0.0.0-20190819201941-24fa4b261c55
 google.golang.org/genproto/googleapis/rpc/status
 # google.golang.org/grpc v1.27.1

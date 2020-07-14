@@ -61,7 +61,7 @@ func Invoke(test *testing.T, stub *shim.MockStub, function string, args ...strin
 
 func TestAddAsset(t *testing.T) {
 	stub := Init(t)
-	Invoke(t, stub, "addAsset", "10005", "11110", "Bob", "Singer", "(43) 9900 0000", "São Paulo SP", "28", "1992-15-08", "USP", "AAAAA", "None", "Male", "ASASSAS", "Plan X", "75.5", "1.89", "ASAEDF")
+	Invoke(t, stub, "addAsset", "10005", "11110", "Bob", "Singer", "(43) 9900 0000", "São Paulo SP", "28", "USP", "white", "Male", "Plan X", "75.5", "1.89", "ASAEDF")
 	Invoke(t, stub, "addAsset", "10006", "11110", "Alice", "Truth", "(43) 8100 0000", "Londrina PR", "23", "1996-05-10", "IBM", "BBBB", "None", "Male", "ASASSAS", "Plan X", "80.1", "1.75", "ASIFA")
 	Invoke(t, stub, "addAsset", "10007", "11110", "Bob", "Winshester", "(43) 4200 0000", "São Carlos SP", "41", "1979-31-08", "Microsoft", "EEEEE", "None", "Female", "ASASSAS", "Plan X", "60", "1.60", "QOASXA")
 	Invoke(t, stub, "addAsset", "10008", "11110", "Jonh", "Truth", "(43) 9300 0000", "Rib Preto SP", "30", "1990-31-08", "Apple", "DDDDD", "None", "Male", "ASASSAS", "Plan X", "75.5", "1.80", "OASKZA")
