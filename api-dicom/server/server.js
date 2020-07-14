@@ -10,7 +10,11 @@ urlencoder = bodyParser.urlencoded({ extended: true });
 const {v4:uuid} = require('uuid');
 
 
-
+/**
+ * This function starting blockchain network and add admin credentials
+ * @public
+ * @returns {json} status respose
+ */
 app.get('/api/initNetwork', urlencoder, async function (req, res) {
   try {
       enrollAdmin.enrollAdmin('hprovider', 'HProviderMSP');
@@ -30,6 +34,12 @@ app.get('/api/initNetwork', urlencoder, async function (req, res) {
 
 });
 
+/**
+ * This function adds one to its input.
+ * @param {string} req.body.org organization {hprovider, research or patient}
+ * @param {string} req.body.msp organization MSP {HProviderMSP, ResearchMSP or PatientMSP}
+ * @returns {json} status json
+ */
 app.post('/api/registerUser', urlencoder, async function (req, res) {
   try {
     let userID = uuid();
@@ -49,6 +59,25 @@ app.post('/api/registerUser', urlencoder, async function (req, res) {
   }
 });
 
+/**
+ * This function adds asset on blockchain
+ * @param {string} req.body.user user id on blockchain
+ * @param {string} req.body.dicomID dicom ID
+ * @param {string} req.body.patientID patient ID
+ * @param {string} req.body.patientFirstname patient first name
+ * @param {string} req.body.patientLastname patient last name
+ * @param {string} req.body.patientTelephone patient phone number
+ * @param {string} req.body.patientAddress patient address
+ * @param {int} req.body.patientAge patient age
+ * @param {string} req.body.patientOrganization org which patient to join
+ * @param {string} req.body.patienRace  patient insuranceplan
+ * @param {string} req.body.patientGender  patient gender
+ * @param {string} req.body.patientInsuranceplan patient insuranceplan
+ * @param {float} req.body.patientWeigth patient weigth
+ * @param {float} req.body.patientHeigth patient heigth
+ * @param {string} req.body.machineModel patient insuranceplan
+ * @returns {number} that number, plus one.
+ */
 app.post('/api/addAsset', urlencoder, async function (req, res) {
 
   try {
@@ -72,6 +101,25 @@ app.post('/api/addAsset', urlencoder, async function (req, res) {
 
 });
 
+/**
+ * This function notify a requester and add struct on blockchain
+ * @param {string} req.body.user user id on blockchain
+ * @param {string} req.body.dicomID dicom ID
+ * @param {string} req.body.patientID patient ID
+ * @param {string} req.body.patientFirstname patient first name
+ * @param {string} req.body.patientLastname patient last name
+ * @param {string} req.body.patientTelephone patient phone number
+ * @param {string} req.body.patientAddress patient address
+ * @param {int} req.body.patientAge patient age
+ * @param {string} req.body.patientOrganization org which patient to join
+ * @param {string} req.body.patienRace  patient insuranceplan
+ * @param {string} req.body.patientGender  patient gender
+ * @param {string} req.body.patientInsuranceplan patient insuranceplan
+ * @param {float} req.body.patientWeigth patient weigth
+ * @param {float} req.body.patientHeigth patient heigth
+ * @param {string} req.body.machineModel patient insuranceplan
+ * @returns {number} that number, plus one.
+ */
 app.post('/api/notify', urlencoder, async function (req, res) {
 
   try {
@@ -95,6 +143,25 @@ app.post('/api/notify', urlencoder, async function (req, res) {
 
 });
 
+/**
+ * This function add private assets on blockchain
+ * @param {string} req.body.user user id on blockchain
+ * @param {string} req.body.dicomID dicom ID
+ * @param {string} req.body.patientID patient ID
+ * @param {string} req.body.patientFirstname patient first name
+ * @param {string} req.body.patientLastname patient last name
+ * @param {string} req.body.patientTelephone patient phone number
+ * @param {string} req.body.patientAddress patient address
+ * @param {int} req.body.patientAge patient age
+ * @param {string} req.body.patientOrganization org which patient to join
+ * @param {string} req.body.patienRace  patient insuranceplan
+ * @param {string} req.body.patientGender  patient gender
+ * @param {string} req.body.patientInsuranceplan patient insuranceplan
+ * @param {float} req.body.patientWeigth patient weigth
+ * @param {float} req.body.patientHeigth patient heigth
+ * @param {string} req.body.machineModel patient insuranceplan
+ * @returns {number} that number, plus one.
+ */
 app.post('/api/addAssetPriv', urlencoder, async function (req, res) {
 
   try {
@@ -118,6 +185,12 @@ app.post('/api/addAssetPriv', urlencoder, async function (req, res) {
 
 });
 
+/**
+ * This get asset on blockchain
+ * @param {string} req.body.user user id on blockchain
+ * @param {string} req.body.dicomID dicom ID
+ * @returns {json:Dicom} asset request
+ */
 app.get('/api/getAsset', async function (req, res) {
   try {
     const contract = await fabricNetwork.connectNetwork('connection-hprovider.json', '../wallet/wallet-hprovider', req.body.user);
@@ -136,6 +209,11 @@ app.get('/api/getAsset', async function (req, res) {
   }
 });
 
+/**
+ * This get private asset on blockchain
+ * @param {number} input any number
+ * @returns {number} that number, plus one.
+ */
 app.get('/api/getAssetPriv', async function (req, res) {
   try {
     const contract = await fabricNetwork.connectNetwork('connection-hprovider.json', '../wallet/wallet-hprovider', req.body.user);
@@ -154,11 +232,17 @@ app.get('/api/getAssetPriv', async function (req, res) {
   }
 });
 
+/**
+ * This function a doctor request asset from patient
+ * @param {string} req.body.user user id on blockchain
+ * @param {string} req.body.patientID patient that own the imaging
+ * @returns {json:Dicom} asset request
+ */
 app.post('/api/requestAssetDoctor', urlencoder, async function (req, res) {
   try {
     const contract = await fabricNetwork.connectNetwork('connection-hprovider.json', '../wallet/wallet-hprovider', req.body.user.toString());
     console.log(req.body);
-    let response = await contract.submitTransaction('requestAsset', req.body.patientID, req.body.doctorID, "Doctor");
+    let response = await contract.submitTransaction('requestAsset', req.body.user.toString(), req.body.patientID.toString(), "Doctor");
     res.json({
       status: 'OK - Transaction has been submitted',
       result: response.toString()
@@ -172,11 +256,17 @@ app.post('/api/requestAssetDoctor', urlencoder, async function (req, res) {
   }
 });
 
+/**
+ * This function a researcher request asset to study it 
+ *  @param {string}  req.body.user  researcher ID
+ * @param {string}  req.body.patientID the patient that asset owns
+ * @returns {json:string} A string with request ID 
+ */
 app.post('/api/requestAssetResearcher', urlencoder, async function (req, res) {
   try {
     const contract = await fabricNetwork.connectNetwork('connection-research.json', '../wallet/wallet-research', req.body.user.toString());
     console.log(req.body);
-    let response = await contract.submitTransaction('requestAsset', req.body.patientID, req.body.researcherID, "Researcher");
+    let response = await contract.submitTransaction('requestAsset', req.body.user.toString(), req.body.patientID.toString(), "Researcher");
     res.json({
       status: 'OK - Transaction has been submitted',
       result: response.toString()
@@ -190,6 +280,13 @@ app.post('/api/requestAssetResearcher', urlencoder, async function (req, res) {
   }
 });
 
+/**
+/**
+ * This function to get a asset shared with doctor
+ *  @param {string}  req.body.user  doctor ID
+ * @param {string}  req.body.accessID patient that asset owns
+ * @returns {json:string} A string with request ID 
+ */
 app.get('/api/getRequestedDoctor', urlencoder, async function (req, res) {
   try {
     const contract = await fabricNetwork.connectNetwork('connection-hprovider.json', '../wallet/wallet-hprovider', req.body.user);
@@ -206,6 +303,13 @@ app.get('/api/getRequestedDoctor', urlencoder, async function (req, res) {
 
 });
 
+/**
+/**
+ * This function to get a asset shared with doctor
+ *  @param {string}  req.body.user  doctor ID
+ * @param {string}  req.body.accessID patient that asset owns
+ * @returns {json:string} A string with request ID 
+ */
 app.get('/api/getRequestedResearcher', urlencoder, async function (req, res) {
   try {
     const contract = await fabricNetwork.connectNetwork('connection-research.json', '../wallet/wallet-research', req.body.user);
@@ -222,7 +326,12 @@ app.get('/api/getRequestedResearcher', urlencoder, async function (req, res) {
 
 });
 
-
+/**
+ * This function observer imaging requested on blockchain
+ * @param {string} req.body.user id hprovider
+ * @param {string} req.body.timestamp last time observing
+ * @returns {json} json with last requests
+ */
 app.get('/api/observerRequests', urlencoder, async function (req, res) {
   try {
     const contract = await fabricNetwork.connectNetwork('connection-hprovider.json', '../wallet/wallet-hprovider', req.body.user);
@@ -239,6 +348,13 @@ app.get('/api/observerRequests', urlencoder, async function (req, res) {
 
 });
 
+/**
+/**
+ * This function to get a asset shared with doctor
+ *  @param {string}  req.body.user  doctor ID
+ * @param {string}  req.body.tokenID token ID to audit leakage on blockchain
+ * @returns {json} Logs from token ID
+ */
 app.get('/api/auditLog', urlencoder, async function (req, res) {
   try {
     const contract = await fabricNetwork.connectNetwork('connection-hprovider.json', '../wallet/wallet-hprovider', req.body.user);
