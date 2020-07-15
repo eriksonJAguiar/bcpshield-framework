@@ -101,6 +101,36 @@ app.post('/api/addAsset', urlencoder, async function (req, res) {
 
 });
 
+//addAssetDiff
+
+
+/**
+ * This function add asset on blockchain apply differential privacy
+ * @param {string} req.body.user user id on blockchain
+ * @param {string} req.body.dicomID dicom private will add on blockchain
+ * @param {string} req.body.asset string for convert to byte
+ * @returns {json} updated shared log
+ */
+app.post('/api/addAssetDiff', urlencoder, async function (req, res) {
+
+  try {
+    const contract = await fabricNetwork.connectNetwork('connection-hprovider.json', '../wallet/wallet-hprovider', req.body.user.toString());
+    console.log(req.body);
+    let response = await contract.submitTransaction('addAssetDiff', req.body.dicomID.toString(), req.body.asset.toString());
+    res.json({
+      status: 'OK - Transaction has been submitted',
+      result: response
+    });
+    console.log('OK - Transaction has been submitted');
+  } catch (error) {
+    console.error(`Failed to evaluate transaction: ${error}`);
+    res.status(500).json({
+      error: error
+    });
+  }
+
+});
+
 /**
  * This function notify a requester and add struct on blockchain
  * @param {string} req.body.user user id on blockchain
