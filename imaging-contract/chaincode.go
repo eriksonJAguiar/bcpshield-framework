@@ -622,15 +622,19 @@ func (cc *HealthcareChaincode) notifyRequester(stub shim.ChaincodeStubInterface,
 	if err != nil {
 		shim.Error("Error to get asset through requestID")
 	}
+	if len(byteReq) == 0 {
+		return shim.Error("Request doesn't exists")
+	}
 
 	var shared SharedDicom
 	if err = json.Unmarshal(byteReq, &shared); err != nil {
 		return shim.Error("Error convert shared Dicom")
 	}
 
-	//shared.DicomShared =
+	if len(shared.DicomShared) == 0 {
+		shared.DicomShared = []string{}
+	}
 
-	shared.DicomShared = make([]string, (len(args) - 1))
 	for i := 1; i < len(args); i++ {
 		shared.DicomShared = append(shared.DicomShared, args[i])
 	}
@@ -665,6 +669,8 @@ func (cc *HealthcareChaincode) Invoke(stub shim.ChaincodeStubInterface) sc.Respo
 		return cc.requestAsset(stub, args)
 	} else if fun == "observerRequests" {
 		return cc.observerRequests(stub, args)
+	} else if fun == "notifyRequester" {
+		return cc.notifyRequester(stub, args)
 	} else if fun == "auditLogs" {
 		return cc.auditLogs(stub, args)
 	}

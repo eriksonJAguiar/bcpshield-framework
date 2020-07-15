@@ -10,6 +10,8 @@ import (
 	"time"
 )
 
+var USER string
+
 type dicom struct {
 	DicomID              string  `json:"dicomID"`
 	PatientID            string  `json:"patientID"`
@@ -35,13 +37,16 @@ func observeBlockchain(ip string, port string) {
 	for listen {
 		lastObseration := time.Now()
 
-		payload := strings.NewReader(fmt.Sprintf("{\n\t\"user\": \"0590d195-6669-4823-8dc4-1f3118acc57d\", \n\t\"timestamp\": \"%s\"\n}", lastObseration))
+		payload := strings.NewReader(fmt.Sprintf("{\n\t\"user\": \"%s\", \n\t\"timestamp\": \"%s\"\n}", USER, lastObseration))
 		req, _ := http.NewRequest("GET", url, payload)
 		req.Header.Add("Content-Type", "application/json")
 
 		res, _ := http.DefaultClient.Do(req)
 		defer res.Body.Close()
 		body, _ := ioutil.ReadAll(res.Body)
+		if len(body) == 0 {
+			continue
+		}
 		var resBody map[string]string
 		json.Unmarshal(body, &resBody)
 
@@ -51,7 +56,8 @@ func observeBlockchain(ip string, port string) {
 			dcmID := callPrivacyKanonymity()
 			notifyRequester(reqID, dcmID)
 		} else if userType == "Researcher" {
-
+			dcmID := callDiffPrivacy()
+			notifyRequester(reqID, dcmID)
 		}
 		time.Sleep(100)
 		//lastObseration = time.Now().Format(time.RFC3339)
@@ -71,7 +77,7 @@ func callPrivacyKanonymity() []string {
 
 	url = "http://35.211.244.95:3000/api/addAsset"
 	for _, dcm := range resBody {
-		dcm.User = "0590d195-6669-4823-8dc4-1f3118acc57d"
+		dcm.User = USER
 		aux, _ := json.Marshal(dcm)
 		byteDcm := bytes.NewReader(aux)
 		http.Post(url, "application/json", byteDcm)
@@ -100,28 +106,43 @@ func callDiffPrivacy() []string {
 	var resBody []noise
 	json.Unmarshal(body, &resBody)
 
+	type request struct {
+		User    string `json:"user"`
+		DicomID string `json:"dicomID"`
+		Asset   string `json:"asset"`
+	}
+
 	var dcmID []string
 
-	// url = "http://35.211.244.95:3000/api/addAsset"
-	// for _, dcm := range resBody {
-	// 	var auxDcm dicom
-	// 	auxDcm.User = "0590d195-6669-4823-8dc4-1f3118acc57d"
-	// 	aux, _ := json.Marshal(dcm)
-	// 	byteDcm := bytes.NewReader(aux)
-	// 	http.Post(url, "application/json", byteDcm)
-	// 	dcmID = append(dcmID, auxDcm.DicomID)
-	// }
+	url = "http://35.211.244.95:3000/api/addAssetDiff"
+	for _, dcm := range resBody {
+		//var auxDcm dicom
+		var req request
+		req.DicomID = dcm.DicomID.(string)
+		req.User = USER
+		auxDcm, _ := json.Marshal(dcm)
+		req.Asset = string(auxDcm[:])
+		auxReq, _ := json.Marshal(req)
+		byteReq := bytes.NewReader(auxReq)
+		http.Post(url, "application/json", byteReq)
+		dcmID = append(dcmID, req.DicomID)
+	}
 
 	return dcmID
 }
 
 func notifyRequester(reqID string, dcmIDs []string) {
 	url := "http://35.211.244.95:3000/api/notify"
+	type request struct {
+		User      string `json:"user"`
+		RequestID string `json:"requestID"`
+		Assets    string `json:"assets"`
+	}
 	for _, id := range dcmIDs {
-		var notify map[string]string
-		notify["user"] = "0590d195-6669-4823-8dc4-1f3118acc57d"
-		notify["requestID"] = reqID
-		notify["assets"] = id
+		var notify request
+		notify.User = USER
+		notify.RequestID = reqID
+		notify.Assets = id
 
 		aux, _ := json.Marshal(notify)
 		byteReq := bytes.NewReader(aux)
@@ -133,6 +154,8 @@ func main() {
 	//fmt.Println(time.Now().Format(time.RFC3339))
 	fmt.Println("Starting sentinel ...")
 	//observeBlockchain("127.0.0.1", "5000")
-	callDiffPrivacy()
+	USER = "10d95088-bb1b-4af9-9c89-e61e51f308dd"
+	//callDiffPrivacy()
+	notifyRequester("a48f3df8-a47b-436b-838b-f9548b2b7a11", []string{"80e74659-3814-42a2-8d9b-94f06a11892d"})
 	fmt.Println("End sentinel ...")
 }
