@@ -116,7 +116,7 @@ app.post('/api/addAssetDiff', urlencoder, async function (req, res) {
   try {
     const contract = await fabricNetwork.connectNetwork('connection-hprovider.json', '../wallet/wallet-hprovider', req.body.user.toString());
     console.log(req.body);
-    let response = await contract.submitTransaction('addAssetDiff', req.body.dicomID.toString(), req.body.asset.toString());
+    let response = await contract.submitTransaction('addAssetDiff', req.body.dicomID.toString(), req.body.asset);
     res.json({
       status: 'OK - Transaction has been submitted',
       result: response
