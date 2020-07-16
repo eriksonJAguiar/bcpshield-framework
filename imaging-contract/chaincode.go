@@ -599,13 +599,16 @@ func (cc *HealthcareChaincode) observerRequests(stub shim.ChaincodeStubInterface
 	if err != nil {
 		return shim.Error("Query error: " + err.Error())
 	}
-	// var result interface{}
-	// err = json.Unmarshal(queryRes, &result)
-	// if err != nil {
-	// 	return shim.Error("Error convert query result: " + err.Error())
-	// }
 
-	return shim.Success(queryRes)
+	var result []SharedDicom
+	err = json.Unmarshal(queryRes, &result)
+	if err != nil {
+		return shim.Error("Error convert query result: " + err.Error())
+	}
+
+	bt, _ := json.Marshal(result)
+
+	return shim.Success(bt)
 
 }
 

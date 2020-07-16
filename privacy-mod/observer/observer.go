@@ -6,7 +6,6 @@ import (
 	"fmt"
 	"io/ioutil"
 	"net/http"
-	"strings"
 	"time"
 )
 
@@ -34,10 +33,18 @@ func observeBlockchain(ip string, port string) {
 	//cli := httputil.NewClientConn()
 	listen := true
 	url := "http://35.211.244.95:3000/api/observerRequests"
+	type request struct {
+		User      string `json:"user"`
+		Timestamp string `json:"timestamp"`
+	}
+	lastObseration := time.Now().Format("2020-07-15")
 	for listen {
-		lastObseration := time.Now()
-
-		payload := strings.NewReader(fmt.Sprintf("{\n\t\"user\": \"%s\", \n\t\"timestamp\": \"%s\"\n}", USER, lastObseration))
+		var reqPayload request
+		reqPayload.User = USER
+		reqPayload.Timestamp = lastObseration
+		aux, _ := json.Marshal(reqPayload)
+		payload := bytes.NewReader(aux)
+		//payload := strings.NewReader(fmt.Sprintf("{\n\t\"user\": \"%s\", \n\t\"timestamp\": \"%s\"\n}", USER, lastObseration))
 		req, _ := http.NewRequest("GET", url, payload)
 		req.Header.Add("Content-Type", "application/json")
 
@@ -59,8 +66,9 @@ func observeBlockchain(ip string, port string) {
 			dcmID := callDiffPrivacy()
 			notifyRequester(reqID, dcmID)
 		}
+		//lastObseration := time.Now()
 		time.Sleep(100)
-		//lastObseration = time.Now().Format(time.RFC3339)
+		lastObseration = time.Now().Format(time.RFC3339)
 	}
 
 }
@@ -153,9 +161,9 @@ func notifyRequester(reqID string, dcmIDs []string) {
 func main() {
 	//fmt.Println(time.Now().Format(time.RFC3339))
 	fmt.Println("Starting sentinel ...")
-	//observeBlockchain("127.0.0.1", "5000")
-	USER = "10d95088-bb1b-4af9-9c89-e61e51f308dd"
+	USER = "97921473-d222-4dc4-8bf8-6ade5272504a"
+	observeBlockchain("127.0.0.1", "5000")
 	//callDiffPrivacy()
-	notifyRequester("a48f3df8-a47b-436b-838b-f9548b2b7a11", []string{"80e74659-3814-42a2-8d9b-94f06a11892d"})
+	//notifyRequester("7d6b9b42-788f-44dd-9d66-83a76f390b2c", []string{"80e74659-3814-42a2-8d9b-94f06a11892d"})
 	fmt.Println("End sentinel ...")
 }
