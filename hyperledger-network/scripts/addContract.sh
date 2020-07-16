@@ -31,7 +31,7 @@ echo $NEW_VERSION_CHAINCODE
 : ${TIMEOUT:="10"}
 : ${VERBOSE:="false"}
 : ${NO_CHAINCODE:="false"}
-: ${NEW_VERSION_CHAINCODE:="1.0"}
+: ${NEW_VERSION_CHAINCODE:="2.0"}
 LANGUAGE=`echo "$LANGUAGE" | tr [:upper:] [:lower:]`
 COUNTER=1
 MAX_RETRY=10
@@ -105,7 +105,7 @@ installChaincode() {
   setGlobals $PEER $ORG
   VERSION=${3:-${VER}}
   set -x
-  peer chaincode install -n ${CONTRACT} -v ${VERSION} -l ${LANGUAGE} -p ${CC_SRC_PATH} >&log.txt
+  peer chaincode install -n ${CONTRACT} -v ${NEW_VERSION_CHAINCODE} -l ${LANGUAGE} -p ${CC_SRC_PATH} >&log.txt
   res=$?
   set +x
   cat log.txt
@@ -127,13 +127,13 @@ instantiateChaincode() {
   if [ -z "$CORE_PEER_TLS_ENABLED" -o "$CORE_PEER_TLS_ENABLED" = "false" ]; then
     set -x
     #peer chaincode instantiate -o orderer.healthcare.com:7050 -C $CHANNEL_NAME -n ${CONTRACT} -l ${LANGUAGE} -v ${VERSION} -c '{"Args":[]}' -P "AND ('HProviderMSP.peer','ResearchMSP.peer', 'PatientMSP.peer')" >&log.txt
-    peer chaincode instantiate -o orderer.healthcare.com:7050 -C $CHANNEL_NAME -n ${CONTRACT} -l ${LANGUAGE} -v ${VERSION} -c '{"Args":[]}'  > &log.txt
+    peer chaincode instantiate -o orderer.healthcare.com:7050 -C $CHANNEL_NAME -n ${CONTRACT} -l ${LANGUAGE} -v ${NEW_VERSION_CHAINCODE} -c '{"Args":[]}'  > &log.txt
     res=$?
     set +x
   else
     set -x
     #peer chaincode instantiate -o orderer.healthcare.com:7050 --tls $CORE_PEER_TLS_ENABLED --cafile $ORDERER_CA -C $CHANNEL_NAME -n ${CONTRACT} -l ${LANGUAGE} -v ${VERSION} -c '{"Args":[]}' -P "AND ('HProviderMSP.peer','ResearchMSP.peer', 'PatientMSP.peer')" >&log.txt
-    peer chaincode instantiate -o orderer.healthcare.com:7050 --tls $CORE_PEER_TLS_ENABLED --cafile $ORDERER_CA -C $CHANNEL_NAME -n ${CONTRACT} -l ${LANGUAGE} -v ${VERSION} -c '{"Args":[]}' >&log.txt
+    peer chaincode instantiate -o orderer.healthcare.com:7050 --tls $CORE_PEER_TLS_ENABLED --cafile $ORDERER_CA -C $CHANNEL_NAME -n ${CONTRACT} -l ${LANGUAGE} -v ${NEW_VERSION_CHAINCODE} -c '{"Args":[]}' >&log.txt
     res=$?
     set +x
   fi
@@ -151,7 +151,7 @@ upgradeChaincode() {
   VERSION=${3:-${VER}}
 
   set -x
-  peer chaincode upgrade -o orderer.healthcare.com:7050 --tls $CORE_PEER_TLS_ENABLED --cafile $ORDERER_CA -C $CHANNEL_NAME -n ${CONTRACT} -v ${VERSION} -c '{"Args":[]}' -P "AND ('HProviderMSP.peer','ResearchMSP.peer','Org3MSP.peer')"
+  peer chaincode upgrade -o orderer.healthcare.com:7050 --tls $CORE_PEER_TLS_ENABLED --cafile $ORDERER_CA -C $CHANNEL_NAME -n ${CONTRACT} -v ${NEW_VERSION_CHAINCODE} -c '{"Args":[]}'
   res=$?
   set +x
   cat log.txt
@@ -232,8 +232,11 @@ elif [ "${NO_CHAINCODE}" != "true" -a "${NEW_VERSION_CHAINCODE}" > "1.0" ]; then
   echo "Install chaincode on peer0.patient..."
   installChaincode 0 3 $NEW_VERSION_CHAINCODE
 
-  echo "Install chaincode on peer3.patient..."
+  echo "Install chaincode on peer1.patient..."
   installChaincode 1 3 $NEW_VERSION_CHAINCODE
+
+  # echo "Install chaincode on peer3.research..."
+  # installChaincode 4 2 $NEW_VERSION_CHAINCODE
 
   # echo "Install chaincode on peer3.research..."
   # installChaincode 4 2 $NEW_VERSION_CHAINCODE
