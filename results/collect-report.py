@@ -4,7 +4,7 @@ import numpy as np
 import os
 
 
-with open("../caliper-bcshield/caliper-benchmarks/report.html") as fp:
+with open("../caliper-bcshield/caliper-benchmarks/reports/Simple/report-5.html") as fp:
     soup = BeautifulSoup(fp)
 
 # table_summary = soup.find('div', attrs={'id':'benchmarksummary'})

@@ -15,8 +15,21 @@ services:
     networks:
       - bcshield_local
 
+  # assets_banco:
+  #   image: bcshield-assets
+  #   container_name: assets_banco
+  #   ports: 
+  #    - 4000:4000
+  #   command: python3 add_assets.py
+  #   volumes: 
+  #     - ./data/:/home/debian/
+  #   networks:
+  #     - bcshield_local
+  #   depends_on: 
+  #     - bcshield_mongo
+
   bcshield_privacy:
-    image: bcshield_privacy
+    image: bcshield-privacy
     ports: 
       - 5000:5000
     networks:
@@ -25,7 +38,7 @@ services:
       - bcshield_mongo
 
   bcshield_observer:
-    image: bcshield_observer
+    image: bcshield-observer
     ports: 
       - 6000:6000
     networks:
