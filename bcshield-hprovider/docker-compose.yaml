@@ -1,0 +1,34 @@
+version: '3'
+
+
+networks:
+  bcshield_local:
+
+
+services: 
+  
+  bcshield_mongo:
+    image: mongo
+    container_name: bcshield_mongo
+    ports: 
+     - 27020:27017
+    networks:
+      - bcshield_local
+
+  bcshield_privacy:
+    image: bcshield_privacy
+    ports: 
+      - 5000:5000
+    networks:
+      - bcshield_local
+    depends_on: 
+      - bcshield_mongo
+
+  bcshield_observer:
+    image: bcshield_observer
+    ports: 
+      - 6000:6000
+    networks:
+      - bcshield_local
+    depends_on: 
+      bcshield_privacy

@@ -33,10 +33,25 @@ func observeBlockchain(ip string, port string) {
 	//cli := httputil.NewClientConn()
 	listen := true
 	url := "http://35.211.244.95:3000/api/observerRequests"
+
 	type request struct {
 		User      string `json:"user"`
 		Timestamp string `json:"timestamp"`
 	}
+
+	type sharedDicom struct {
+		BatchID        string    `json:"batchID"`
+		DocType        string    `json:"docType"`
+		IpfsReference  string    `json:"ipfsReference"`
+		DicomShared    []string  `json:"dicomShared"`
+		Holder         string    `json:"holder"`
+		HolderAccepted bool      `json:"holderAccepted"`
+		Timestamp      time.Time `json:"timestamp"`
+		DataAmount     int       `json:"dataAmount"`
+		WhoAccessed    string    `json:"whoAccessed"`
+		AccessLevel    string    `json:"accessLevel"`
+	}
+
 	lastObseration := time.Now().Format("2020-07-15")
 	for listen {
 		var reqPayload request
@@ -54,20 +69,25 @@ func observeBlockchain(ip string, port string) {
 		if len(body) == 0 {
 			continue
 		}
-		var resBody map[string]string
+		var resBody string
 		json.Unmarshal(body, &resBody)
 
-		userType := resBody["accessLevel"]
-		reqID := resBody["batchID"]
-		if userType == "Doctor" {
-			dcmID := callPrivacyKanonymity()
-			notifyRequester(reqID, dcmID)
-		} else if userType == "Researcher" {
-			dcmID := callDiffPrivacy()
-			notifyRequester(reqID, dcmID)
+		var result []sharedDicom
+		json.Unmarshal([]byte(resBody), &result)
+
+		for _, resp := range result {
+			userType := resp.AccessLevel
+			reqID := resp.BatchID
+			if userType == "Doctor" {
+				dcmID := callPrivacyKanonymity()
+				notifyRequester(reqID, dcmID)
+			} else if userType == "Researcher" {
+				dcmID := callDiffPrivacy()
+				notifyRequester(reqID, dcmID)
+			}
 		}
 		//lastObseration := time.Now()
-		time.Sleep(100)
+		time.Sleep(5 * 60)
 		lastObseration = time.Now().Format(time.RFC3339)
 	}
 

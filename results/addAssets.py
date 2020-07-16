@@ -26,7 +26,7 @@ if __name__ == "__main__":
     dicoms = dicoms.replace(np.nan, "Unknown", regex=True)
     values_json = dicoms.reset_index(drop=True).to_dict(orient='records')
 
-    mongo_client = MongoClient('mongodb://localhost:27017')
+    mongo_client = MongoClient('mongodb://localhost:27020')
 
     db = mongo_client.get_database('private')
     col = db.create_collection('privData')
