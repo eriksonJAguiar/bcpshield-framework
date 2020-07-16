@@ -351,8 +351,8 @@ app.get('/api/observerRequests', urlencoder, async function (req, res) {
   try {
     const contract = await fabricNetwork.connectNetwork('connection-hprovider.json', '../wallet/wallet-hprovider', req.body.user);
     let result = await contract.submitTransaction('observerRequests',  req.body.user.toString(),req.body.timestamp.toString());
-    const response = JSON.parse(result.toString());
-    res.json({ result: response.toString() });
+    const response = JSON.parse(JSON.stringify(result.toString()));
+    res.json(response);
     console.log('OK - Transaction has been submitted');
   } catch (error) {
     console.error(`Failed to evaluate transaction: ${error}`);
