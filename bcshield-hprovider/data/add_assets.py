@@ -8,7 +8,7 @@ from datetime import datetime
 from pymongo import MongoClient
 
 if __name__ == "__main__":
-    dicoms = pd.read_csv("./patients_dicom_new.csv", sep=";")
+    dicoms = pd.read_csv("patients_dicom_new.csv", sep=";")
     dicoms = dicoms.dropna(subset=['dicomID'])
     dicoms['machineModel'] = list(map(lambda x: "AXAX1E20", range(len(dicoms['patientID']))))
     dicoms['patientAge'] = dicoms['patientAge'].replace(np.nan, 0, regex=True)

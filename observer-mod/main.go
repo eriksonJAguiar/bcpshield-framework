@@ -5,11 +5,19 @@ import (
 	"encoding/json"
 	"fmt"
 	"io/ioutil"
+	"log"
 	"net/http"
+	"os"
+	"path"
 	"time"
+
+	"github.com/gorilla/mux"
+	shell "github.com/ipfs/go-ipfs-api"
 )
 
 var USER string
+var lastObservation string
+var SERVER string
 
 type dicom struct {
 	DicomID              string  `json:"dicomID"`
@@ -31,7 +39,6 @@ type dicom struct {
 
 func observeBlockchain(ip string, port string) {
 	//cli := httputil.NewClientConn()
-	listen := true
 	url := "http://35.211.244.95:3000/api/observerRequests"
 
 	type request struct {
@@ -52,50 +59,64 @@ func observeBlockchain(ip string, port string) {
 		AccessLevel    string    `json:"accessLevel"`
 	}
 
-	lastObseration := time.Now().Format("2020-07-15")
-	for listen {
-		var reqPayload request
-		reqPayload.User = USER
-		reqPayload.Timestamp = lastObseration
-		aux, _ := json.Marshal(reqPayload)
-		payload := bytes.NewReader(aux)
-		//payload := strings.NewReader(fmt.Sprintf("{\n\t\"user\": \"%s\", \n\t\"timestamp\": \"%s\"\n}", USER, lastObseration))
-		req, _ := http.NewRequest("GET", url, payload)
-		req.Header.Add("Content-Type", "application/json")
+	var reqPayload request
+	reqPayload.User = USER
+	reqPayload.Timestamp = lastObservation
+	aux, _ := json.Marshal(reqPayload)
+	payload := bytes.NewReader(aux)
+	//payload := strings.NewReader(fmt.Sprintf("{\n\t\"user\": \"%s\", \n\t\"timestamp\": \"%s\"\n}", USER, lastObservation ))
+	req, _ := http.NewRequest("GET", url, payload)
+	req.Header.Add("Content-Type", "application/json")
 
-		res, _ := http.DefaultClient.Do(req)
-		defer res.Body.Close()
-		body, _ := ioutil.ReadAll(res.Body)
-		if len(body) == 0 {
-			continue
+	res, _ := http.DefaultClient.Do(req)
+	defer res.Body.Close()
+	body, _ := ioutil.ReadAll(res.Body)
+	if len(body) == 0 {
+		return
+	}
+	var resBody string
+	json.Unmarshal(body, &resBody)
+
+	var result []sharedDicom
+	json.Unmarshal([]byte(resBody), &result)
+
+	for _, resp := range result {
+		userType := resp.AccessLevel
+		reqID := resp.BatchID
+		if userType == "Doctor" {
+			dcmID := callPrivacyKanonymity()
+			notifyRequester(reqID, dcmID)
+		} else if userType == "Researcher" {
+			dcmID := callDiffPrivacy()
+			notifyRequester(reqID, dcmID)
 		}
-		var resBody string
-		json.Unmarshal(body, &resBody)
+		home, _ := os.UserHomeDir()
+		getIPFS(path.Join(home, "shared-dicom"), resp.IpfsReference)
 
-		var result []sharedDicom
-		json.Unmarshal([]byte(resBody), &result)
-
-		for _, resp := range result {
-			userType := resp.AccessLevel
-			reqID := resp.BatchID
-			if userType == "Doctor" {
-				dcmID := callPrivacyKanonymity()
-				notifyRequester(reqID, dcmID)
-			} else if userType == "Researcher" {
-				dcmID := callDiffPrivacy()
-				notifyRequester(reqID, dcmID)
-			}
-		}
-		//lastObseration := time.Now()
-		time.Sleep(5 * 60)
-		lastObseration = time.Now().Format(time.RFC3339)
+		lastObservation = time.Now().Format(time.RFC3339)
 	}
 
 }
 
+func getIPFS(path string, ref string) {
+	sh := shell.NewShell("35.233.252.12:5001")
+
+	if _, err := os.Stat(path); err != nil {
+		os.Mkdir(path, os.ModePerm.Perm())
+	}
+	err := sh.Get(ref, path)
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "error: %s", err)
+		return
+	}
+
+	fmt.Sprintf("[Log] sucess to get %s \n", path)
+}
+
 func callPrivacyKanonymity() []string {
 
-	url := "http://localhost:5000/api/getPriv"
+	url := fmt.Sprintf("http://%s:5000/api/getPriv", SERVER)
+	fmt.Println(url)
 	res, _ := http.Get(url)
 	body, _ := ioutil.ReadAll(res.Body)
 	var resBody []dicom
@@ -117,7 +138,8 @@ func callPrivacyKanonymity() []string {
 
 func callDiffPrivacy() []string {
 
-	url := "http://localhost:5000/api/getPrivDiff"
+	url := fmt.Sprintf("http://%s:5000/api/getPrivDiff", SERVER)
+	fmt.Println(url)
 	res, _ := http.Get(url)
 	body, _ := ioutil.ReadAll(res.Body)
 
@@ -178,12 +200,26 @@ func notifyRequester(reqID string, dcmIDs []string) {
 	}
 }
 
+func getObserve(w http.ResponseWriter, r *http.Request) {
+	observeBlockchain(SERVER, "5000")
+	w.WriteHeader(200)
+	w.Header().Set("Content-Type", "application/json")
+	w.Write([]byte(`Ok`))
+}
+
 func main() {
-	//fmt.Println(time.Now().Format(time.RFC3339))
+
+	USER = "1e5ac8e4-fb82-455a-bd8c-c3b0f7f6d7ec"
+	lastObservation = time.Now().Local().Format("2006-01-02")
+	SERVER = "localhost"
 	fmt.Println("Starting sentinel ...")
-	USER = "97921473-d222-4dc4-8bf8-6ade5272504a"
-	observeBlockchain("127.0.0.1", "5000")
-	//callDiffPrivacy()
-	//notifyRequester("7d6b9b42-788f-44dd-9d66-83a76f390b2c", []string{"80e74659-3814-42a2-8d9b-94f06a11892d"})
+
+	router := mux.NewRouter().StrictSlash(true)
+	router.HandleFunc("/api/getObserve", getObserve)
+
+	fmt.Println("Stating Server ...")
+
+	log.Fatal(http.ListenAndServe(":6000", router))
+
 	fmt.Println("End sentinel ...")
 }

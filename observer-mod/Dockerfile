@@ -1,13 +1,10 @@
 FROM golang
 
-ADD . /go/src/observer-mod
+ADD . /go/src/github.com/observer-mod
 
-RUN go install observer-mod
+
+RUN go install github.com/observer-mod
 
 ENTRYPOINT /go/bin/observer-mod
-
-VOLUME [ "/home/debian/" ]
-
-CMD [ "go run", "main.go" ]
 
 EXPOSE 6000

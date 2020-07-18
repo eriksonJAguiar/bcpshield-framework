@@ -3,6 +3,10 @@ version: '3'
 
 networks:
   bcshield_local:
+    driver: bridge
+    ipam:
+      config:
+        - subnet: 172.19.0.0/16
 
 
 services: 
@@ -10,38 +14,32 @@ services:
   bcshield_mongo:
     image: mongo
     container_name: bcshield_mongo
+    restart: always
     ports: 
      - 27020:27017
     networks:
       - bcshield_local
 
-  # assets_banco:
-  #   image: bcshield-assets
-  #   container_name: assets_banco
-  #   ports: 
-  #    - 4000:4000
-  #   command: python3 add_assets.py
-  #   volumes: 
-  #     - ./data/:/home/debian/
-  #   networks:
-  #     - bcshield_local
-  #   depends_on: 
-  #     - bcshield_mongo
-
   bcshield_privacy:
-    image: bcshield-privacy
+    container_name: bcshield_privacy
+    restart: always
+    build: "../privacy-mod"
+    command: go run main.go
     ports: 
       - 5000:5000
     networks:
-      - bcshield_local
+      bcshield_local:
+        ipv4_address: 172.19.0.3
     depends_on: 
       - bcshield_mongo
 
   bcshield_observer:
-    image: bcshield-observer
-    ports: 
+    container_name: bcshield_observer
+    build: "../observer-mod"
+    restart: always
+    ports:   
       - 6000:6000
     networks:
       - bcshield_local
     depends_on: 
-      bcshield_privacy
+      - bcshield_privacy

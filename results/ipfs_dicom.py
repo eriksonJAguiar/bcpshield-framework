@@ -23,7 +23,7 @@ class IpfsDicom(object):
                 os.makedirs(self.__ipfs_path)
         
     
-    def __search_files(self, file_name: str) -> str:
+    def search_files(self, file_name: str) -> str:
         """Search local files on respository
 
         Args:
@@ -70,7 +70,7 @@ class IpfsDicom(object):
         """
         try:
             #! manage dicom images
-            url_file = self.__search_files(file_name)
+            url_file = self.search_files(file_name)
             self.__insert_token(token, url_file)
 
             #! Enviar para o ifps
