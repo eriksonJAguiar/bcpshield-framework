@@ -1,0 +1,2702 @@
+[
+    {
+        "PatientAge": 2412.3564419780023,
+        "PatientWeigth": -43530.452065131976,
+        "PatientHeigth": -33802.51533008815
+    },
+    {
+        "PatientAge": 12301.163357311525,
+        "PatientWeigth": 16893.571475795397,
+        "PatientHeigth": 20459.73368603236
+    },
+    {
+        "PatientAge": -95.66083481127033,
+        "PatientWeigth": -269.2832535074382,
+        "PatientHeigth": 90805.40964494
+    },
+    {
+        "PatientAge": 3853.596988445561,
+        "PatientWeigth": 11265.257515905763,
+        "PatientHeigth": 92567.56678358787
+    },
+    {
+        "PatientAge": 7101.247411567402,
+        "PatientWeigth": -42267.376157706385,
+        "PatientHeigth": -77855.86361728283
+    },
+    {
+        "PatientAge": -33110.440433872376,
+        "PatientWeigth": 37575.142799905465,
+        "PatientHeigth": -2636.320228397946
+    },
+    {
+        "PatientAge": -497.79233464924675,
+        "PatientWeigth": 12795.221568062696,
+        "PatientHeigth": -43708.21739943332
+    },
+    {
+        "PatientAge": -4962.133859808924,
+        "PatientWeigth": -2354.101164421682,
+        "PatientHeigth": 51460.59847268884
+    },
+    {
+        "PatientAge": -3688.2766567963517,
+        "PatientWeigth": 171356.46779591817,
+        "PatientHeigth": 34790.82139292919
+    },
+    {
+        "PatientAge": 5256.388836049491,
+        "PatientWeigth": 5325.4927693373,
+        "PatientHeigth": -109918.59940389151
+    },
+    {
+        "PatientAge": -11996.941573128352,
+        "PatientWeigth": 3009.047555215464,
+        "PatientHeigth": -13482.501163775576
+    },
+    {
+        "PatientAge": -2280.5658353467234,
+        "PatientWeigth": 46048.67122601502,
+        "PatientHeigth": -24686.765330812414
+    },
+    {
+        "PatientAge": 10510.524333174877,
+        "PatientWeigth": -34682.00376399717,
+        "PatientHeigth": -33803.910417075494
+    },
+    {
+        "PatientAge": 8869.4951122817,
+        "PatientWeigth": 17588.593339760617,
+        "PatientHeigth": -7901.507016616204
+    },
+    {
+        "PatientAge": -4252.9960586051575,
+        "PatientWeigth": -8859.95486963186,
+        "PatientHeigth": -1945.9012956831616
+    },
+    {
+        "PatientAge": 3785.178839857085,
+        "PatientWeigth": -6676.218850466751,
+        "PatientHeigth": 55510.94459231467
+    },
+    {
+        "PatientAge": 10275.816075785255,
+        "PatientWeigth": 32884.550573131884,
+        "PatientHeigth": -8229.493606863509
+    },
+    {
+        "PatientAge": -695.1722190293775,
+        "PatientWeigth": -4239.1822851622355,
+        "PatientHeigth": 23842.353523144942
+    },
+    {
+        "PatientAge": -10399.370499402656,
+        "PatientWeigth": 45726.02155116946,
+        "PatientHeigth": 18862.321743661334
+    },
+    {
+        "PatientAge": 3141.736320533137,
+        "PatientWeigth": 44481.46482412336,
+        "PatientHeigth": 91055.96314751846
+    },
+    {
+        "PatientAge": -25030.401334242022,
+        "PatientWeigth": 15763.945059783837,
+        "PatientHeigth": 40366.33234965486
+    },
+    {
+        "PatientAge": -5859.63665307451,
+        "PatientWeigth": -8954.62484124466,
+        "PatientHeigth": -539761.0345576805
+    },
+    {
+        "PatientAge": -8346.00090152825,
+        "PatientWeigth": -1257.5483333113361,
+        "PatientHeigth": -19027.48298078247
+    },
+    {
+        "PatientAge": -10861.11464515471,
+        "PatientWeigth": -55182.51627991152,
+        "PatientHeigth": 32044.691774700572
+    },
+    {
+        "PatientAge": -1392.2082385960214,
+        "PatientWeigth": 6248.213750988711,
+        "PatientHeigth": 81547.1178471075
+    },
+    {
+        "PatientAge": -2083.5541716288612,
+        "PatientWeigth": 21642.464861308006,
+        "PatientHeigth": 94895.11228731505
+    },
+    {
+        "PatientAge": -13735.659393141252,
+        "PatientWeigth": 28598.192072835354,
+        "PatientHeigth": 18719.218253878364
+    },
+    {
+        "PatientAge": -15574.836035190663,
+        "PatientWeigth": -48887.352638668555,
+        "PatientHeigth": 34998.2796533055
+    },
+    {
+        "PatientAge": -83.96740283829762,
+        "PatientWeigth": -50196.52414348001,
+        "PatientHeigth": 27998.723191515703
+    },
+    {
+        "PatientAge": -3050.2640426573385,
+        "PatientWeigth": -19487.891841068387,
+        "PatientHeigth": -47330.223015579606
+    },
+    {
+        "PatientAge": 2138.3923874795364,
+        "PatientWeigth": -6499.183021901759,
+        "PatientHeigth": 868.603110941485
+    },
+    {
+        "PatientAge": -1866.866301621985,
+        "PatientWeigth": 3356.407596456604,
+        "PatientHeigth": 10488.434699145098
+    },
+    {
+        "PatientAge": -741.5708185364842,
+        "PatientWeigth": -3442.9347359052576,
+        "PatientHeigth": -411.954001353113
+    },
+    {
+        "PatientAge": 1444.0926832327905,
+        "PatientWeigth": -5379.2095096559415,
+        "PatientHeigth": -8044.499720220661
+    },
+    {
+        "PatientAge": 299.9709653566996,
+        "PatientWeigth": -3358.242643811286,
+        "PatientHeigth": -4651.464055130874
+    },
+    {
+        "PatientAge": 2108.1440001831597,
+        "PatientWeigth": -2888.330482683632,
+        "PatientHeigth": 14105.215489181317
+    },
+    {
+        "PatientAge": -750.2361414607536,
+        "PatientWeigth": 7444.607989007533,
+        "PatientHeigth": 16959.46783428085
+    },
+    {
+        "PatientAge": 778.0415592045375,
+        "PatientWeigth": -567.081006477167,
+        "PatientHeigth": 6359.921606357489
+    },
+    {
+        "PatientAge": 262.06945062093433,
+        "PatientWeigth": -6574.1584623661565,
+        "PatientHeigth": 1956.6502785637238
+    },
+    {
+        "PatientAge": -116.89359023404721,
+        "PatientWeigth": -10369.714583208783,
+        "PatientHeigth": 2228.8600541136557
+    },
+    {
+        "PatientAge": -548.7222794356945,
+        "PatientWeigth": 5988.170546255622,
+        "PatientHeigth": -111.2444886796338
+    },
+    {
+        "PatientAge": -323.66335313960997,
+        "PatientWeigth": 2718.165151702282,
+        "PatientHeigth": 5200.4654180554235
+    },
+    {
+        "PatientAge": 2871.1308099722078,
+        "PatientWeigth": 4424.931627806867,
+        "PatientHeigth": -4263.5623742151
+    },
+    {
+        "PatientAge": -1333.9548304761727,
+        "PatientWeigth": 5462.889183947584,
+        "PatientHeigth": 4757.091658498785
+    },
+    {
+        "PatientAge": 1868.688060190111,
+        "PatientWeigth": 475.1544801270627,
+        "PatientHeigth": 5219.757031012916
+    },
+    {
+        "PatientAge": -26.946887099840538,
+        "PatientWeigth": 467.2207722614301,
+        "PatientHeigth": 5853.65441566366
+    },
+    {
+        "PatientAge": -146.7074002822281,
+        "PatientWeigth": -2504.724363064608,
+        "PatientHeigth": 10797.131615960836
+    },
+    {
+        "PatientAge": -279.91578574290946,
+        "PatientWeigth": -3526.7425462007554,
+        "PatientHeigth": -6197.721420802283
+    },
+    {
+        "PatientAge": 534.4664679416835,
+        "PatientWeigth": -1756.0877784911188,
+        "PatientHeigth": 8714.619003482847
+    },
+    {
+        "PatientAge": -1202.4250408051153,
+        "PatientWeigth": -1031.8148800556253,
+        "PatientHeigth": 6145.010759981656
+    },
+    {
+        "PatientAge": 666.0317434983182,
+        "PatientWeigth": 3585.4265615165878,
+        "PatientHeigth": -851.6918404261494
+    },
+    {
+        "PatientAge": -121.70644383916344,
+        "PatientWeigth": 5326.881631048032,
+        "PatientHeigth": -3684.066972475217
+    },
+    {
+        "PatientAge": 2635.2328545802047,
+        "PatientWeigth": 2239.8021001963425,
+        "PatientHeigth": 6436.609435809255
+    },
+    {
+        "PatientAge": -841.5099920937924,
+        "PatientWeigth": 7972.443708733981,
+        "PatientHeigth": -3846.2618721369013
+    },
+    {
+        "PatientAge": 1229.9275829162477,
+        "PatientWeigth": -3345.827004912362,
+        "PatientHeigth": 2198.6309605229894
+    },
+    {
+        "PatientAge": 240.09754308446986,
+        "PatientWeigth": -6543.654624252553,
+        "PatientHeigth": 9570.269499757813
+    },
+    {
+        "PatientAge": 245.2306498379466,
+        "PatientWeigth": 8426.381998284643,
+        "PatientHeigth": 2636.1317250180127
+    },
+    {
+        "PatientAge": 390.62303718182926,
+        "PatientWeigth": -11915.888210613493,
+        "PatientHeigth": -24664.403487050076
+    },
+    {
+        "PatientAge": -1739.339081491545,
+        "PatientWeigth": -4351.061770010516,
+        "PatientHeigth": -2712.5847842655226
+    },
+    {
+        "PatientAge": 2289.0258225926054,
+        "PatientWeigth": -1797.897990533832,
+        "PatientHeigth": 6603.4564069367225
+    },
+    {
+        "PatientAge": 90.05781634975529,
+        "PatientWeigth": 135.6530817158589,
+        "PatientHeigth": 283.98904368768694
+    },
+    {
+        "PatientAge": 196.71679292454337,
+        "PatientWeigth": -486.1008436259214,
+        "PatientHeigth": -1269.7479201636677
+    },
+    {
+        "PatientAge": 4.8136166496243575,
+        "PatientWeigth": -839.0567321622233,
+        "PatientHeigth": 880.8334174332676
+    },
+    {
+        "PatientAge": 336.9862535699597,
+        "PatientWeigth": 15.332801714713263,
+        "PatientHeigth": 309.03637961044194
+    },
+    {
+        "PatientAge": -19.998834748837226,
+        "PatientWeigth": 85.47366168710815,
+        "PatientHeigth": 477.5528614309902
+    },
+    {
+        "PatientAge": -106.43553528921426,
+        "PatientWeigth": -11.888169598284406,
+        "PatientHeigth": 2306.657118664601
+    },
+    {
+        "PatientAge": -32.96308521826339,
+        "PatientWeigth": 206.28224751023754,
+        "PatientHeigth": -527.9794496102985
+    },
+    {
+        "PatientAge": 59.875933895643726,
+        "PatientWeigth": 237.13664236178613,
+        "PatientHeigth": -425.86432892299285
+    },
+    {
+        "PatientAge": 85.05917973346186,
+        "PatientWeigth": -332.58064809959194,
+        "PatientHeigth": -1398.9868844304613
+    },
+    {
+        "PatientAge": 179.77165772111977,
+        "PatientWeigth": 147.72036718658546,
+        "PatientHeigth": 762.9704576426986
+    },
+    {
+        "PatientAge": -49.81925446371544,
+        "PatientWeigth": 466.6682424099676,
+        "PatientHeigth": 922.8641836816549
+    },
+    {
+        "PatientAge": 82.133263219942,
+        "PatientWeigth": -43.703307703091895,
+        "PatientHeigth": -2.9588208675337455
+    },
+    {
+        "PatientAge": 31.71467220138762,
+        "PatientWeigth": 1634.87646875345,
+        "PatientHeigth": 1355.2970946075213
+    },
+    {
+        "PatientAge": 4.716777488121139,
+        "PatientWeigth": 333.85794640742995,
+        "PatientHeigth": 532.6580664142198
+    },
+    {
+        "PatientAge": 80.48496236985649,
+        "PatientWeigth": -1342.5091960879897,
+        "PatientHeigth": -949.550966739166
+    },
+    {
+        "PatientAge": 84.51237281356919,
+        "PatientWeigth": 187.2458185322778,
+        "PatientHeigth": 235.02762710642293
+    },
+    {
+        "PatientAge": -170.23941078638768,
+        "PatientWeigth": -111.18338322370131,
+        "PatientHeigth": 986.6253386647959
+    },
+    {
+        "PatientAge": 9.954097167602121,
+        "PatientWeigth": 200.12313201051631,
+        "PatientHeigth": -786.1928997933541
+    },
+    {
+        "PatientAge": 268.7092270774497,
+        "PatientWeigth": -418.46018160471584,
+        "PatientHeigth": -499.87846717751495
+    },
+    {
+        "PatientAge": 21.360315998811913,
+        "PatientWeigth": 117.66730446766303,
+        "PatientHeigth": -1638.7768273735583
+    },
+    {
+        "PatientAge": 89.57748827116656,
+        "PatientWeigth": -19.596158967579584,
+        "PatientHeigth": 1362.3681405539928
+    },
+    {
+        "PatientAge": 116.71983646958292,
+        "PatientWeigth": 659.5062687162747,
+        "PatientHeigth": 726.61550423051
+    },
+    {
+        "PatientAge": 3.6068821294046884,
+        "PatientWeigth": -18.721920788171275,
+        "PatientHeigth": 936.4645530964384
+    },
+    {
+        "PatientAge": -247.0593184478838,
+        "PatientWeigth": -9.336171690811568,
+        "PatientHeigth": 435.3540343638783
+    },
+    {
+        "PatientAge": 193.45783765856982,
+        "PatientWeigth": 204.3998592423157,
+        "PatientHeigth": 3960.9867881109817
+    },
+    {
+        "PatientAge": 70.82138015053458,
+        "PatientWeigth": -475.7849500681405,
+        "PatientHeigth": 128.6097661689379
+    },
+    {
+        "PatientAge": 49.81373982988573,
+        "PatientWeigth": 57.5668393843942,
+        "PatientHeigth": 878.8373323497848
+    },
+    {
+        "PatientAge": 68.470594927973,
+        "PatientWeigth": 830.0737346301455,
+        "PatientHeigth": 106.63757837614904
+    },
+    {
+        "PatientAge": 92.57081624219052,
+        "PatientWeigth": 440.15236297686977,
+        "PatientHeigth": 1326.183538800132
+    },
+    {
+        "PatientAge": 124.84286176917419,
+        "PatientWeigth": 61.61081946556787,
+        "PatientHeigth": -307.43510913617513
+    },
+    {
+        "PatientAge": 65.53052047219354,
+        "PatientWeigth": 74.98894940760111,
+        "PatientHeigth": 161.90790198171763
+    },
+    {
+        "PatientAge": 66.16930943786556,
+        "PatientWeigth": 64.37425472317287,
+        "PatientHeigth": 156.66971891110921
+    },
+    {
+        "PatientAge": 65.28218735829053,
+        "PatientWeigth": 69.38850354722582,
+        "PatientHeigth": 162.77238066279838
+    },
+    {
+        "PatientAge": 65.36040600118987,
+        "PatientWeigth": 81.91726364483777,
+        "PatientHeigth": 162.9042033768675
+    },
+    {
+        "PatientAge": 65.50308195693351,
+        "PatientWeigth": 70.4978385380869,
+        "PatientHeigth": 180.30817118543956
+    },
+    {
+        "PatientAge": 65.5005313070135,
+        "PatientWeigth": 71.06510878043494,
+        "PatientHeigth": 164.9435934028803
+    },
+    {
+        "PatientAge": 65.75239684518722,
+        "PatientWeigth": 73.38867246660925,
+        "PatientHeigth": 170.632865584293
+    },
+    {
+        "PatientAge": 66.15146755858042,
+        "PatientWeigth": 68.22936220454349,
+        "PatientHeigth": 166.1494015720255
+    },
+    {
+        "PatientAge": 64.77777513313868,
+        "PatientWeigth": 69.24928770746655,
+        "PatientHeigth": 153.70030678492685
+    },
+    {
+        "PatientAge": 64.27965957748033,
+        "PatientWeigth": 77.8011246238668,
+        "PatientHeigth": 165.0521487519642
+    },
+    {
+        "PatientAge": 66.01801299921145,
+        "PatientWeigth": 75.42832819349343,
+        "PatientHeigth": 161.0397649301975
+    },
+    {
+        "PatientAge": 65.41138033865197,
+        "PatientWeigth": 78.9254972142503,
+        "PatientHeigth": 167.9454226164383
+    },
+    {
+        "PatientAge": 66.01536511386404,
+        "PatientWeigth": 82.3557232261194,
+        "PatientHeigth": 173.82016094091554
+    },
+    {
+        "PatientAge": 63.868031113734055,
+        "PatientWeigth": 74.12856716004885,
+        "PatientHeigth": 166.57451483543025
+    },
+    {
+        "PatientAge": 64.53434193041049,
+        "PatientWeigth": 65.81534259861876,
+        "PatientHeigth": 151.6287267205091
+    },
+    {
+        "PatientAge": 66.56607325151916,
+        "PatientWeigth": 82.89694417614677,
+        "PatientHeigth": 162.50406379187942
+    },
+    {
+        "PatientAge": 65.1950383142013,
+        "PatientWeigth": 61.10662480782984,
+        "PatientHeigth": 155.82587125485807
+    },
+    {
+        "PatientAge": 64.02319180493947,
+        "PatientWeigth": 78.28248275115534,
+        "PatientHeigth": 167.77766178000203
+    },
+    {
+        "PatientAge": 63.89061091025674,
+        "PatientWeigth": 73.09714203789916,
+        "PatientHeigth": 163.33177625080745
+    },
+    {
+        "PatientAge": 64.35387746402188,
+        "PatientWeigth": 72.05553895324304,
+        "PatientHeigth": 164.24341547795163
+    },
+    {
+        "PatientAge": 64.25876637029565,
+        "PatientWeigth": 81.40184290176543,
+        "PatientHeigth": 172.9961116754548
+    },
+    {
+        "PatientAge": 65.34857894421755,
+        "PatientWeigth": 74.7892361145662,
+        "PatientHeigth": 163.9545747162497
+    },
+    {
+        "PatientAge": 62.2502989679365,
+        "PatientWeigth": 78.41963947916223,
+        "PatientHeigth": 174.7649623383859
+    },
+    {
+        "PatientAge": 62.8669872193439,
+        "PatientWeigth": 80.89228204008373,
+        "PatientHeigth": 170.10140060883145
+    },
+    {
+        "PatientAge": 64.77677308735748,
+        "PatientWeigth": 66.93345643515966,
+        "PatientHeigth": 171.4156807739075
+    },
+    {
+        "PatientAge": 64.94168934392138,
+        "PatientWeigth": 73.98472135431491,
+        "PatientHeigth": 157.1035211497365
+    },
+    {
+        "PatientAge": 64.68024257080187,
+        "PatientWeigth": 80.49560308875367,
+        "PatientHeigth": 155.9622873906969
+    },
+    {
+        "PatientAge": 67.20455923819262,
+        "PatientWeigth": 73.67424645981984,
+        "PatientHeigth": 162.00762026786134
+    },
+    {
+        "PatientAge": 64.11281951581965,
+        "PatientWeigth": 73.74704671947,
+        "PatientHeigth": 159.2722276252365
+    },
+    {
+        "PatientAge": 66.15140172575157,
+        "PatientWeigth": 69.28742057857373,
+        "PatientHeigth": 158.2657683933283
+    },
+    {
+        "PatientAge": 64.67235342799611,
+        "PatientWeigth": 69.89911291229177,
+        "PatientHeigth": 168.022825868081
+    },
+    {
+        "PatientAge": 64.245760134288,
+        "PatientWeigth": 72.23815434164281,
+        "PatientHeigth": 161.43124608288576
+    },
+    {
+        "PatientAge": 64.7024311627993,
+        "PatientWeigth": 69.59614116252136,
+        "PatientHeigth": 164.2521150423923
+    },
+    {
+        "PatientAge": 65.92340462270973,
+        "PatientWeigth": 75.79854901321632,
+        "PatientHeigth": 165.30016170819664
+    },
+    {
+        "PatientAge": 63.25563267909869,
+        "PatientWeigth": 71.67008716357057,
+        "PatientHeigth": 167.9018514262233
+    },
+    {
+        "PatientAge": 65.88171382573732,
+        "PatientWeigth": 73.59640437287563,
+        "PatientHeigth": 168.62488451432233
+    },
+    {
+        "PatientAge": 64.45871797660766,
+        "PatientWeigth": 70.93789309878032,
+        "PatientHeigth": 163.74462636084468
+    },
+    {
+        "PatientAge": 65.72649562914552,
+        "PatientWeigth": 72.10649918950917,
+        "PatientHeigth": 164.03775077065026
+    },
+    {
+        "PatientAge": 64.37953502983633,
+        "PatientWeigth": 84.27829698642444,
+        "PatientHeigth": 164.43596882525333
+    },
+    {
+        "PatientAge": 64.74241379250957,
+        "PatientWeigth": 76.32217350402438,
+        "PatientHeigth": 166.6101975710298
+    },
+    {
+        "PatientAge": 64.34716403538462,
+        "PatientWeigth": 75.26139262208748,
+        "PatientHeigth": 163.73797110921322
+    },
+    {
+        "PatientAge": 64.74418411809009,
+        "PatientWeigth": 69.35377887855172,
+        "PatientHeigth": 167.58537626836585
+    },
+    {
+        "PatientAge": 65.05309522603586,
+        "PatientWeigth": 75.11864364068019,
+        "PatientHeigth": 164.97409448431935
+    },
+    {
+        "PatientAge": 64.23221725442787,
+        "PatientWeigth": 72.65853139917172,
+        "PatientHeigth": 167.32598688810316
+    },
+    {
+        "PatientAge": 64.09722317165023,
+        "PatientWeigth": 78.73536886881016,
+        "PatientHeigth": 167.9629756547844
+    },
+    {
+        "PatientAge": 64.63274277766284,
+        "PatientWeigth": 72.76450661965902,
+        "PatientHeigth": 173.12893079549906
+    },
+    {
+        "PatientAge": 64.07181312588668,
+        "PatientWeigth": 71.75462530432759,
+        "PatientHeigth": 163.0300240360494
+    },
+    {
+        "PatientAge": 65.41534898636286,
+        "PatientWeigth": 70.34785971876242,
+        "PatientHeigth": 158.6306488257086
+    },
+    {
+        "PatientAge": 64.25531950735784,
+        "PatientWeigth": 71.39640619557417,
+        "PatientHeigth": 172.05578141899556
+    },
+    {
+        "PatientAge": 66.04402228292349,
+        "PatientWeigth": 75.85635254197565,
+        "PatientHeigth": 164.95711851149247
+    },
+    {
+        "PatientAge": 64.17338485276353,
+        "PatientWeigth": 72.86404272342709,
+        "PatientHeigth": 157.44351877244455
+    },
+    {
+        "PatientAge": 64.43657476228331,
+        "PatientWeigth": 70.72434682410051,
+        "PatientHeigth": 161.58341033979247
+    },
+    {
+        "PatientAge": 65.12520220393456,
+        "PatientWeigth": 74.58402741373779,
+        "PatientHeigth": 166.49575029194494
+    },
+    {
+        "PatientAge": 64.30279543722544,
+        "PatientWeigth": 73.42083961843583,
+        "PatientHeigth": 167.65218228284323
+    },
+    {
+        "PatientAge": 64.799259890414,
+        "PatientWeigth": 72.00459022635954,
+        "PatientHeigth": 159.52861836702868
+    },
+    {
+        "PatientAge": 65.06132435569107,
+        "PatientWeigth": 70.94462293705469,
+        "PatientHeigth": 165.02073315647243
+    },
+    {
+        "PatientAge": 64.67049694897064,
+        "PatientWeigth": 78.82905485699374,
+        "PatientHeigth": 162.87761052843953
+    },
+    {
+        "PatientAge": 64.63421799751318,
+        "PatientWeigth": 72.46656722389403,
+        "PatientHeigth": 161.86066483812417
+    },
+    {
+        "PatientAge": 64.78050586977832,
+        "PatientWeigth": 71.02187505162469,
+        "PatientHeigth": 166.04491235334268
+    },
+    {
+        "PatientAge": 64.07325219243037,
+        "PatientWeigth": 73.44605945213726,
+        "PatientHeigth": 171.04977107963776
+    },
+    {
+        "PatientAge": 64.76453274788852,
+        "PatientWeigth": 71.35644010519718,
+        "PatientHeigth": 165.45112663309465
+    },
+    {
+        "PatientAge": 65.87542409986816,
+        "PatientWeigth": 73.53963690301998,
+        "PatientHeigth": 156.62793586923132
+    },
+    {
+        "PatientAge": 65.24438731177437,
+        "PatientWeigth": 72.89122553788596,
+        "PatientHeigth": 163.34234182167634
+    },
+    {
+        "PatientAge": 64.62133975848192,
+        "PatientWeigth": 72.62671703200267,
+        "PatientHeigth": 160.72343587769768
+    },
+    {
+        "PatientAge": 64.7910038836525,
+        "PatientWeigth": 74.28113426161323,
+        "PatientHeigth": 164.57757595743564
+    },
+    {
+        "PatientAge": 64.90559395756073,
+        "PatientWeigth": 73.32872563166313,
+        "PatientHeigth": 164.31500302735813
+    },
+    {
+        "PatientAge": 64.36792935666737,
+        "PatientWeigth": 72.79432049731467,
+        "PatientHeigth": 174.34515577594667
+    },
+    {
+        "PatientAge": 64.72699883030002,
+        "PatientWeigth": 72.06973196717296,
+        "PatientHeigth": 161.35017856170788
+    },
+    {
+        "PatientAge": 64.86634195061663,
+        "PatientWeigth": 71.87039392927416,
+        "PatientHeigth": 167.91689459177502
+    },
+    {
+        "PatientAge": 64.60472683345158,
+        "PatientWeigth": 73.74006446097975,
+        "PatientHeigth": 162.7582630392492
+    },
+    {
+        "PatientAge": 64.28001786028575,
+        "PatientWeigth": 71.80065962260069,
+        "PatientHeigth": 161.02215277388416
+    },
+    {
+        "PatientAge": 64.8876432223398,
+        "PatientWeigth": 70.89294115789436,
+        "PatientHeigth": 164.84238184135128
+    },
+    {
+        "PatientAge": 65.40575578833074,
+        "PatientWeigth": 72.98525921344253,
+        "PatientHeigth": 162.85543079577698
+    },
+    {
+        "PatientAge": 64.25660811700698,
+        "PatientWeigth": 71.54951102561547,
+        "PatientHeigth": 162.5519630137285
+    },
+    {
+        "PatientAge": 64.43191095907312,
+        "PatientWeigth": 74.56286568871526,
+        "PatientHeigth": 168.09313440619698
+    },
+    {
+        "PatientAge": 64.23472987765507,
+        "PatientWeigth": 73.8832286004842,
+        "PatientHeigth": 166.12084442006918
+    },
+    {
+        "PatientAge": 64.74988954380086,
+        "PatientWeigth": 72.05333652419091,
+        "PatientHeigth": 163.5506225388504
+    },
+    {
+        "PatientAge": 64.84641179020123,
+        "PatientWeigth": 72.6182993794355,
+        "PatientHeigth": 161.3559614287841
+    },
+    {
+        "PatientAge": 65.23405211949147,
+        "PatientWeigth": 74.34627214650817,
+        "PatientHeigth": 164.1529289005985
+    },
+    {
+        "PatientAge": 64.50931745201319,
+        "PatientWeigth": 72.05280660403334,
+        "PatientHeigth": 163.45437240729981
+    },
+    {
+        "PatientAge": 64.8386477762951,
+        "PatientWeigth": 73.55419549620365,
+        "PatientHeigth": 163.2968895489549
+    },
+    {
+        "PatientAge": 64.5900199244645,
+        "PatientWeigth": 70.77568919085367,
+        "PatientHeigth": 170.57559727284567
+    },
+    {
+        "PatientAge": 64.59372994990338,
+        "PatientWeigth": 72.80519249944234,
+        "PatientHeigth": 164.7100564183957
+    },
+    {
+        "PatientAge": 64.33814124110476,
+        "PatientWeigth": 72.27805150297695,
+        "PatientHeigth": 169.1243238830537
+    },
+    {
+        "PatientAge": 63.325979078068364,
+        "PatientWeigth": 72.1632145355954,
+        "PatientHeigth": 157.88075752506242
+    },
+    {
+        "PatientAge": 64.13297423421928,
+        "PatientWeigth": 74.39229823090453,
+        "PatientHeigth": 167.23718696058904
+    },
+    {
+        "PatientAge": 64.3079093750144,
+        "PatientWeigth": 72.78402969019238,
+        "PatientHeigth": 165.02042141764454
+    },
+    {
+        "PatientAge": 65.5933275756125,
+        "PatientWeigth": 72.14722508956332,
+        "PatientHeigth": 168.61735866362378
+    },
+    {
+        "PatientAge": 65.30813653956143,
+        "PatientWeigth": 75.30840619609239,
+        "PatientHeigth": 166.5362637911355
+    },
+    {
+        "PatientAge": 64.82504769138498,
+        "PatientWeigth": 72.27704615381992,
+        "PatientHeigth": 166.18155574470046
+    },
+    {
+        "PatientAge": 63.88675123925531,
+        "PatientWeigth": 73.11929260005904,
+        "PatientHeigth": 164.1178968874142
+    },
+    {
+        "PatientAge": 65.38829387664616,
+        "PatientWeigth": 74.0676275988313,
+        "PatientHeigth": 165.53898662101926
+    },
+    {
+        "PatientAge": 64.91688153207757,
+        "PatientWeigth": 72.82505505324612,
+        "PatientHeigth": 161.51586467394858
+    },
+    {
+        "PatientAge": 64.78229645779851,
+        "PatientWeigth": 76.35242361541394,
+        "PatientHeigth": 167.4222363748534
+    },
+    {
+        "PatientAge": 65.12455564358523,
+        "PatientWeigth": 73.11903028917752,
+        "PatientHeigth": 163.7303252803623
+    },
+    {
+        "PatientAge": 64.95947502551718,
+        "PatientWeigth": 72.6156652116555,
+        "PatientHeigth": 165.64374210148443
+    },
+    {
+        "PatientAge": 64.8522477571845,
+        "PatientWeigth": 72.30000209937121,
+        "PatientHeigth": 164.69803043504686
+    },
+    {
+        "PatientAge": 64.86117212431884,
+        "PatientWeigth": 72.23099236500428,
+        "PatientHeigth": 164.7711462235541
+    },
+    {
+        "PatientAge": 63.730732033638105,
+        "PatientWeigth": 71.47799955713951,
+        "PatientHeigth": 162.539225844085
+    },
+    {
+        "PatientAge": 64.79591559028724,
+        "PatientWeigth": 74.09741283803157,
+        "PatientHeigth": 164.3642826544742
+    },
+    {
+        "PatientAge": 64.94096532388572,
+        "PatientWeigth": 71.23565934760094,
+        "PatientHeigth": 156.69975013009528
+    },
+    {
+        "PatientAge": 64.63117751956875,
+        "PatientWeigth": 75.17395370813617,
+        "PatientHeigth": 163.4441312160253
+    },
+    {
+        "PatientAge": 64.20811107029733,
+        "PatientWeigth": 74.49721500568086,
+        "PatientHeigth": 161.4113922651653
+    },
+    {
+        "PatientAge": 65.00781904902377,
+        "PatientWeigth": 72.7214571018782,
+        "PatientHeigth": 158.09630260487944
+    },
+    {
+        "PatientAge": 64.08787190991386,
+        "PatientWeigth": 73.73049739883412,
+        "PatientHeigth": 164.51088719252502
+    },
+    {
+        "PatientAge": 64.78224600596913,
+        "PatientWeigth": 73.28988837807206,
+        "PatientHeigth": 159.8855945713759
+    },
+    {
+        "PatientAge": 65.11635083186827,
+        "PatientWeigth": 72.16275208051225,
+        "PatientHeigth": 164.49908802532977
+    },
+    {
+        "PatientAge": 64.82541948432748,
+        "PatientWeigth": 73.27756199322349,
+        "PatientHeigth": 164.5942052323482
+    },
+    {
+        "PatientAge": 64.69725105309521,
+        "PatientWeigth": 70.81978647734466,
+        "PatientHeigth": 163.72218332806202
+    },
+    {
+        "PatientAge": 65.01088083600989,
+        "PatientWeigth": 70.54553369321488,
+        "PatientHeigth": 164.5512848186035
+    },
+    {
+        "PatientAge": 64.56781395749509,
+        "PatientWeigth": 73.72889582755371,
+        "PatientHeigth": 160.23599959202693
+    },
+    {
+        "PatientAge": 64.67431738259658,
+        "PatientWeigth": 73.0358897403737,
+        "PatientHeigth": 168.06797427728299
+    },
+    {
+        "PatientAge": 64.94132479119972,
+        "PatientWeigth": 72.44034360196558,
+        "PatientHeigth": 162.46065836258057
+    },
+    {
+        "PatientAge": 64.44658451569832,
+        "PatientWeigth": 72.77481366191253,
+        "PatientHeigth": 163.14266787943185
+    },
+    {
+        "PatientAge": 64.87979191999959,
+        "PatientWeigth": 73.04056445333256,
+        "PatientHeigth": 160.25769531972665
+    },
+    {
+        "PatientAge": 64.72491091275624,
+        "PatientWeigth": 70.81190491469428,
+        "PatientHeigth": 162.4561543139106
+    },
+    {
+        "PatientAge": 64.80549221342596,
+        "PatientWeigth": 70.84662089663557,
+        "PatientHeigth": 166.88826160455517
+    },
+    {
+        "PatientAge": 64.97735923217563,
+        "PatientWeigth": 72.69233138276459,
+        "PatientHeigth": 163.66973511733522
+    },
+    {
+        "PatientAge": 64.19601447652883,
+        "PatientWeigth": 71.94071840617255,
+        "PatientHeigth": 163.04011713544992
+    },
+    {
+        "PatientAge": 64.7339810450464,
+        "PatientWeigth": 73.69337809504299,
+        "PatientHeigth": 161.177419530851
+    },
+    {
+        "PatientAge": 64.81645005767737,
+        "PatientWeigth": 73.07417836738986,
+        "PatientHeigth": 165.43893480061828
+    },
+    {
+        "PatientAge": 64.94890757631127,
+        "PatientWeigth": 70.36506469191912,
+        "PatientHeigth": 163.8119918800195
+    },
+    {
+        "PatientAge": 65.06357933395186,
+        "PatientWeigth": 72.62180616299851,
+        "PatientHeigth": 163.0642669868078
+    },
+    {
+        "PatientAge": 64.62272657549275,
+        "PatientWeigth": 71.36631174968191,
+        "PatientHeigth": 161.9875411594153
+    },
+    {
+        "PatientAge": 64.68926556441563,
+        "PatientWeigth": 73.52221153238838,
+        "PatientHeigth": 164.5321129295206
+    },
+    {
+        "PatientAge": 64.8226833998126,
+        "PatientWeigth": 72.02991516383862,
+        "PatientHeigth": 161.43684588848083
+    },
+    {
+        "PatientAge": 64.87044314192129,
+        "PatientWeigth": 73.3348591625447,
+        "PatientHeigth": 161.56541097717542
+    },
+    {
+        "PatientAge": 64.5284224655463,
+        "PatientWeigth": 72.2760095624105,
+        "PatientHeigth": 164.17918911521463
+    },
+    {
+        "PatientAge": 64.73301545011562,
+        "PatientWeigth": 72.83418091158939,
+        "PatientHeigth": 163.2988056784745
+    },
+    {
+        "PatientAge": 64.92036508723318,
+        "PatientWeigth": 72.27479122955394,
+        "PatientHeigth": 165.27692167756513
+    },
+    {
+        "PatientAge": 64.72308916877205,
+        "PatientWeigth": 73.3070010392673,
+        "PatientHeigth": 163.59371082787925
+    },
+    {
+        "PatientAge": 64.67369965194592,
+        "PatientWeigth": 72.14794297278874,
+        "PatientHeigth": 165.1308106945636
+    },
+    {
+        "PatientAge": 65.04606219311809,
+        "PatientWeigth": 72.4446104659755,
+        "PatientHeigth": 164.17314315210987
+    },
+    {
+        "PatientAge": 63.696923019918714,
+        "PatientWeigth": 72.99518709681655,
+        "PatientHeigth": 161.7380124162102
+    },
+    {
+        "PatientAge": 64.7292199330438,
+        "PatientWeigth": 73.10042739034475,
+        "PatientHeigth": 163.66767823214096
+    },
+    {
+        "PatientAge": 64.40970481883878,
+        "PatientWeigth": 73.26195855473088,
+        "PatientHeigth": 162.37919717885867
+    },
+    {
+        "PatientAge": 64.7472011799045,
+        "PatientWeigth": 71.57539158579922,
+        "PatientHeigth": 163.70817477387703
+    },
+    {
+        "PatientAge": 64.87768901828535,
+        "PatientWeigth": 74.67276781005071,
+        "PatientHeigth": 160.40404679196664
+    },
+    {
+        "PatientAge": 64.8967676026339,
+        "PatientWeigth": 72.88224568787996,
+        "PatientHeigth": 160.40813531542324
+    },
+    {
+        "PatientAge": 64.6741028429704,
+        "PatientWeigth": 72.24364876109689,
+        "PatientHeigth": 162.45488678102262
+    },
+    {
+        "PatientAge": 64.94666501378818,
+        "PatientWeigth": 71.56691361539716,
+        "PatientHeigth": 164.6791203125177
+    },
+    {
+        "PatientAge": 64.62195971939634,
+        "PatientWeigth": 72.08293718874918,
+        "PatientHeigth": 163.17546010348076
+    },
+    {
+        "PatientAge": 64.74908218557913,
+        "PatientWeigth": 71.81728228005618,
+        "PatientHeigth": 161.18338602221405
+    },
+    {
+        "PatientAge": 65.16728036369146,
+        "PatientWeigth": 73.99147364748312,
+        "PatientHeigth": 163.77989375703828
+    },
+    {
+        "PatientAge": 65.08258698116451,
+        "PatientWeigth": 72.51276215626804,
+        "PatientHeigth": 163.4299558074908
+    },
+    {
+        "PatientAge": 64.68244887130697,
+        "PatientWeigth": 71.25506608435754,
+        "PatientHeigth": 165.33701665053212
+    },
+    {
+        "PatientAge": 64.82448996094794,
+        "PatientWeigth": 71.56002787621483,
+        "PatientHeigth": 171.39811701624515
+    },
+    {
+        "PatientAge": 65.21254368151472,
+        "PatientWeigth": 73.27819315339133,
+        "PatientHeigth": 160.22839281985762
+    },
+    {
+        "PatientAge": 65.12600942007589,
+        "PatientWeigth": 72.11045303496344,
+        "PatientHeigth": 162.54188141569495
+    },
+    {
+        "PatientAge": 64.79801362833638,
+        "PatientWeigth": 72.56127913063561,
+        "PatientHeigth": 164.50233495333637
+    },
+    {
+        "PatientAge": 65.02878135598054,
+        "PatientWeigth": 73.65498773133596,
+        "PatientHeigth": 161.71300212531597
+    },
+    {
+        "PatientAge": 64.6044668174957,
+        "PatientWeigth": 72.47142839355173,
+        "PatientHeigth": 163.04612134255655
+    },
+    {
+        "PatientAge": 64.83148554595459,
+        "PatientWeigth": 73.16987645364469,
+        "PatientHeigth": 166.28530709975252
+    },
+    {
+        "PatientAge": 64.67711671391328,
+        "PatientWeigth": 72.84306807000246,
+        "PatientHeigth": 162.19847848780933
+    },
+    {
+        "PatientAge": 64.66220951690732,
+        "PatientWeigth": 72.79198658853616,
+        "PatientHeigth": 163.269823360175
+    },
+    {
+        "PatientAge": 64.68671509459166,
+        "PatientWeigth": 73.10951730942737,
+        "PatientHeigth": 162.87799093000163
+    },
+    {
+        "PatientAge": 65.30408793192053,
+        "PatientWeigth": 74.69760060280798,
+        "PatientHeigth": 162.5309177372315
+    },
+    {
+        "PatientAge": 64.40473955922012,
+        "PatientWeigth": 75.89034968263655,
+        "PatientHeigth": 164.57185535736878
+    },
+    {
+        "PatientAge": 64.67750609581624,
+        "PatientWeigth": 72.63139533960845,
+        "PatientHeigth": 165.282886916562
+    },
+    {
+        "PatientAge": 64.83879523173839,
+        "PatientWeigth": 73.29937604122932,
+        "PatientHeigth": 159.2943501073979
+    },
+    {
+        "PatientAge": 64.59764697060926,
+        "PatientWeigth": 74.07445538810211,
+        "PatientHeigth": 164.9456969266992
+    },
+    {
+        "PatientAge": 64.90347897885472,
+        "PatientWeigth": 75.48678294080801,
+        "PatientHeigth": 163.09701823796055
+    },
+    {
+        "PatientAge": 64.73163247694767,
+        "PatientWeigth": 72.84401459729519,
+        "PatientHeigth": 164.22315052607064
+    },
+    {
+        "PatientAge": 64.02196726546627,
+        "PatientWeigth": 72.05663467519105,
+        "PatientHeigth": 165.11412421676187
+    },
+    {
+        "PatientAge": 64.83894198632015,
+        "PatientWeigth": 72.01935286976753,
+        "PatientHeigth": 163.39049460304423
+    },
+    {
+        "PatientAge": 64.72671831996159,
+        "PatientWeigth": 74.67090885134796,
+        "PatientHeigth": 163.57829912071654
+    },
+    {
+        "PatientAge": 64.79623018404803,
+        "PatientWeigth": 70.70467797848228,
+        "PatientHeigth": 165.11107685488065
+    },
+    {
+        "PatientAge": 64.72294186590351,
+        "PatientWeigth": 73.28573720875193,
+        "PatientHeigth": 163.92453704245116
+    },
+    {
+        "PatientAge": 64.8616523787578,
+        "PatientWeigth": 69.15030983279287,
+        "PatientHeigth": 163.7227648211657
+    },
+    {
+        "PatientAge": 64.80987259949785,
+        "PatientWeigth": 73.14660190170217,
+        "PatientHeigth": 163.93051849715891
+    },
+    {
+        "PatientAge": 65.01443033621867,
+        "PatientWeigth": 73.5664153969307,
+        "PatientHeigth": 164.15733625006467
+    },
+    {
+        "PatientAge": 64.74035645215568,
+        "PatientWeigth": 73.64297343605509,
+        "PatientHeigth": 168.47746036736737
+    },
+    {
+        "PatientAge": 64.81487930267521,
+        "PatientWeigth": 72.69680500291577,
+        "PatientHeigth": 163.99409495646356
+    },
+    {
+        "PatientAge": 64.75180262118569,
+        "PatientWeigth": 74.04579774081841,
+        "PatientHeigth": 161.51082002767174
+    },
+    {
+        "PatientAge": 64.55199656911013,
+        "PatientWeigth": 73.3920809960015,
+        "PatientHeigth": 165.35116969337471
+    },
+    {
+        "PatientAge": 64.76030603950957,
+        "PatientWeigth": 73.29308751978215,
+        "PatientHeigth": 162.031443455023
+    },
+    {
+        "PatientAge": 64.8872202721709,
+        "PatientWeigth": 71.82782927324304,
+        "PatientHeigth": 163.1320907813371
+    },
+    {
+        "PatientAge": 64.45405766828603,
+        "PatientWeigth": 70.08620379999982,
+        "PatientHeigth": 166.0485496188837
+    },
+    {
+        "PatientAge": 64.89134150873869,
+        "PatientWeigth": 73.34740517999346,
+        "PatientHeigth": 164.24260424394873
+    },
+    {
+        "PatientAge": 64.83852976300041,
+        "PatientWeigth": 72.9598307554066,
+        "PatientHeigth": 163.6815719555361
+    },
+    {
+        "PatientAge": 64.8612429198705,
+        "PatientWeigth": 74.07004192868357,
+        "PatientHeigth": 164.55795888134958
+    },
+    {
+        "PatientAge": 64.90377895640522,
+        "PatientWeigth": 70.50586508781102,
+        "PatientHeigth": 162.98691502322737
+    },
+    {
+        "PatientAge": 64.60153533921326,
+        "PatientWeigth": 72.3613860578197,
+        "PatientHeigth": 161.60568613893366
+    },
+    {
+        "PatientAge": 64.80735140351167,
+        "PatientWeigth": 72.47613006250421,
+        "PatientHeigth": 163.23039604763824
+    },
+    {
+        "PatientAge": 64.51221246618657,
+        "PatientWeigth": 72.38682058948575,
+        "PatientHeigth": 164.47093462545791
+    },
+    {
+        "PatientAge": 64.75232367420448,
+        "PatientWeigth": 72.65501747854337,
+        "PatientHeigth": 167.08938654963458
+    },
+    {
+        "PatientAge": 64.66914629645031,
+        "PatientWeigth": 74.84990334370579,
+        "PatientHeigth": 163.68707846134623
+    },
+    {
+        "PatientAge": 64.72020477405431,
+        "PatientWeigth": 73.25458218658864,
+        "PatientHeigth": 164.1307645453649
+    },
+    {
+        "PatientAge": 64.70300928963474,
+        "PatientWeigth": 73.51350953041161,
+        "PatientHeigth": 163.65783035912165
+    },
+    {
+        "PatientAge": 64.76329772947919,
+        "PatientWeigth": 72.77276140265809,
+        "PatientHeigth": 167.67393172414293
+    },
+    {
+        "PatientAge": 64.8075847775681,
+        "PatientWeigth": 72.44670460235476,
+        "PatientHeigth": 158.16757392973858
+    },
+    {
+        "PatientAge": 64.64837303366774,
+        "PatientWeigth": 73.03019253348481,
+        "PatientHeigth": 164.84144886131932
+    },
+    {
+        "PatientAge": 64.69412875495749,
+        "PatientWeigth": 73.01766354521342,
+        "PatientHeigth": 160.3279177620818
+    },
+    {
+        "PatientAge": 64.75050799031298,
+        "PatientWeigth": 73.93107482108636,
+        "PatientHeigth": 164.62484818853716
+    },
+    {
+        "PatientAge": 64.98356110972342,
+        "PatientWeigth": 72.5595407780768,
+        "PatientHeigth": 163.25687450165267
+    },
+    {
+        "PatientAge": 64.70789127843771,
+        "PatientWeigth": 73.96038599169066,
+        "PatientHeigth": 164.1658486832633
+    },
+    {
+        "PatientAge": 64.66439914456718,
+        "PatientWeigth": 72.12772845998457,
+        "PatientHeigth": 163.14193819742715
+    },
+    {
+        "PatientAge": 64.41648317392601,
+        "PatientWeigth": 74.39445195809455,
+        "PatientHeigth": 164.7619973166253
+    },
+    {
+        "PatientAge": 65.20595928796739,
+        "PatientWeigth": 72.47964503988574,
+        "PatientHeigth": 163.24432924214565
+    },
+    {
+        "PatientAge": 64.93345417689667,
+        "PatientWeigth": 72.57693534359191,
+        "PatientHeigth": 160.58508729214114
+    },
+    {
+        "PatientAge": 64.83788013636726,
+        "PatientWeigth": 72.62807748507613,
+        "PatientHeigth": 162.48533056900362
+    },
+    {
+        "PatientAge": 64.82030445701825,
+        "PatientWeigth": 71.8809502566196,
+        "PatientHeigth": 163.39119753207677
+    },
+    {
+        "PatientAge": 64.82764864826473,
+        "PatientWeigth": 73.36301518917483,
+        "PatientHeigth": 159.60181428031805
+    },
+    {
+        "PatientAge": 64.82595504786939,
+        "PatientWeigth": 72.83159508273916,
+        "PatientHeigth": 162.98744599221607
+    },
+    {
+        "PatientAge": 64.71720590097304,
+        "PatientWeigth": 71.9813485865243,
+        "PatientHeigth": 163.33011572854386
+    },
+    {
+        "PatientAge": 64.79770693798783,
+        "PatientWeigth": 72.28134086236598,
+        "PatientHeigth": 161.19141624451066
+    },
+    {
+        "PatientAge": 64.56154876688996,
+        "PatientWeigth": 72.09363474613103,
+        "PatientHeigth": 163.55569699936947
+    },
+    {
+        "PatientAge": 64.87113069775862,
+        "PatientWeigth": 71.97271484224669,
+        "PatientHeigth": 162.02957121769344
+    },
+    {
+        "PatientAge": 64.77621195075821,
+        "PatientWeigth": 71.01135402546946,
+        "PatientHeigth": 162.07449887825658
+    },
+    {
+        "PatientAge": 64.73623189126258,
+        "PatientWeigth": 75.21435852787204,
+        "PatientHeigth": 160.9747922273358
+    },
+    {
+        "PatientAge": 64.9499934512186,
+        "PatientWeigth": 73.02351520195147,
+        "PatientHeigth": 163.10110945188703
+    },
+    {
+        "PatientAge": 64.26065852517364,
+        "PatientWeigth": 70.98455341970858,
+        "PatientHeigth": 164.89124705870978
+    },
+    {
+        "PatientAge": 64.98325724562973,
+        "PatientWeigth": 72.87321327240855,
+        "PatientHeigth": 163.71381434341336
+    },
+    {
+        "PatientAge": 64.49523110400298,
+        "PatientWeigth": 72.70373381204459,
+        "PatientHeigth": 160.66727140728173
+    },
+    {
+        "PatientAge": 64.8818534466138,
+        "PatientWeigth": 72.78948882174174,
+        "PatientHeigth": 161.9238071758728
+    },
+    {
+        "PatientAge": 64.69298031661316,
+        "PatientWeigth": 71.15739887018279,
+        "PatientHeigth": 161.66312364347957
+    },
+    {
+        "PatientAge": 65.01711134951358,
+        "PatientWeigth": 72.82947515294121,
+        "PatientHeigth": 163.67141445367585
+    },
+    {
+        "PatientAge": 65.08500901016393,
+        "PatientWeigth": 73.06340376101706,
+        "PatientHeigth": 162.58599771432708
+    },
+    {
+        "PatientAge": 64.96045307931765,
+        "PatientWeigth": 72.91150141165012,
+        "PatientHeigth": 163.24251855666262
+    },
+    {
+        "PatientAge": 64.88560525161445,
+        "PatientWeigth": 72.9227740267736,
+        "PatientHeigth": 163.69916415286383
+    },
+    {
+        "PatientAge": 64.95813299253074,
+        "PatientWeigth": 73.46142573616673,
+        "PatientHeigth": 163.95078107941166
+    },
+    {
+        "PatientAge": 64.86014580746634,
+        "PatientWeigth": 72.92223742818047,
+        "PatientHeigth": 161.47824792649
+    },
+    {
+        "PatientAge": 64.75317435602169,
+        "PatientWeigth": 72.58944473000585,
+        "PatientHeigth": 163.02714192952726
+    },
+    {
+        "PatientAge": 64.6247162508529,
+        "PatientWeigth": 74.6215940625967,
+        "PatientHeigth": 164.1449719342193
+    },
+    {
+        "PatientAge": 64.74505226171112,
+        "PatientWeigth": 71.66944482693587,
+        "PatientHeigth": 162.7262134632599
+    },
+    {
+        "PatientAge": 64.15044253215784,
+        "PatientWeigth": 73.29691806736716,
+        "PatientHeigth": 164.0359263375967
+    },
+    {
+        "PatientAge": 64.52471579534811,
+        "PatientWeigth": 73.09930841426218,
+        "PatientHeigth": 163.07465849880424
+    },
+    {
+        "PatientAge": 64.20849855893086,
+        "PatientWeigth": 73.7817553478444,
+        "PatientHeigth": 163.6869549457949
+    },
+    {
+        "PatientAge": 64.75439356113084,
+        "PatientWeigth": 72.95535086413156,
+        "PatientHeigth": 162.92618599264546
+    },
+    {
+        "PatientAge": 64.8109278644353,
+        "PatientWeigth": 73.25079982840232,
+        "PatientHeigth": 164.58584563728297
+    },
+    {
+        "PatientAge": 64.89493523344336,
+        "PatientWeigth": 72.49871483241643,
+        "PatientHeigth": 163.7249566741839
+    },
+    {
+        "PatientAge": 64.5036530002019,
+        "PatientWeigth": 74.24242465610126,
+        "PatientHeigth": 162.74991215093203
+    },
+    {
+        "PatientAge": 64.62491222890073,
+        "PatientWeigth": 72.38970583005701,
+        "PatientHeigth": 163.94160116783945
+    },
+    {
+        "PatientAge": 64.68651293972357,
+        "PatientWeigth": 73.34210205092748,
+        "PatientHeigth": 163.024564272023
+    },
+    {
+        "PatientAge": 64.93452491065474,
+        "PatientWeigth": 72.11820251090911,
+        "PatientHeigth": 163.405320297217
+    },
+    {
+        "PatientAge": 64.74685452001013,
+        "PatientWeigth": 72.92383101291465,
+        "PatientHeigth": 163.04799434706953
+    },
+    {
+        "PatientAge": 65.26879746460394,
+        "PatientWeigth": 73.04427790120438,
+        "PatientHeigth": 163.7471138352454
+    },
+    {
+        "PatientAge": 64.92938818966418,
+        "PatientWeigth": 73.58533545676252,
+        "PatientHeigth": 162.50963412874148
+    },
+    {
+        "PatientAge": 64.72154180594185,
+        "PatientWeigth": 73.17067449037765,
+        "PatientHeigth": 162.35469353785152
+    },
+    {
+        "PatientAge": 64.45215599964023,
+        "PatientWeigth": 72.53432453158447,
+        "PatientHeigth": 163.58689153706285
+    },
+    {
+        "PatientAge": 64.89255911441253,
+        "PatientWeigth": 73.23822247835969,
+        "PatientHeigth": 163.62710256455034
+    },
+    {
+        "PatientAge": 64.77381956507543,
+        "PatientWeigth": 72.83923666883885,
+        "PatientHeigth": 163.4782261117559
+    },
+    {
+        "PatientAge": 64.83494341797353,
+        "PatientWeigth": 73.51542367871633,
+        "PatientHeigth": 163.57659978565883
+    },
+    {
+        "PatientAge": 65.380371457863,
+        "PatientWeigth": 73.06661267517546,
+        "PatientHeigth": 164.07437809251766
+    },
+    {
+        "PatientAge": 64.8581381076544,
+        "PatientWeigth": 72.19210798268426,
+        "PatientHeigth": 164.97314489523424
+    },
+    {
+        "PatientAge": 64.77306752984325,
+        "PatientWeigth": 73.29973816780809,
+        "PatientHeigth": 164.02365942773005
+    },
+    {
+        "PatientAge": 64.63129197611295,
+        "PatientWeigth": 73.85213478063598,
+        "PatientHeigth": 163.43870075343034
+    },
+    {
+        "PatientAge": 65.01345128771088,
+        "PatientWeigth": 72.6394027556985,
+        "PatientHeigth": 162.54492741226454
+    },
+    {
+        "PatientAge": 64.99707663576353,
+        "PatientWeigth": 73.45252567378779,
+        "PatientHeigth": 163.67307164605288
+    },
+    {
+        "PatientAge": 64.67947235011168,
+        "PatientWeigth": 73.04899086151201,
+        "PatientHeigth": 164.7132397550204
+    },
+    {
+        "PatientAge": 64.76097994944497,
+        "PatientWeigth": 72.63041020446255,
+        "PatientHeigth": 162.92102280814697
+    },
+    {
+        "PatientAge": 64.70503073899512,
+        "PatientWeigth": 71.53615343149896,
+        "PatientHeigth": 160.86906076223462
+    },
+    {
+        "PatientAge": 64.51375741604483,
+        "PatientWeigth": 72.52225050005549,
+        "PatientHeigth": 162.3916924266164
+    },
+    {
+        "PatientAge": 64.67264322250102,
+        "PatientWeigth": 73.11916395395785,
+        "PatientHeigth": 164.47607746993162
+    },
+    {
+        "PatientAge": 64.89294426060182,
+        "PatientWeigth": 72.80579957411439,
+        "PatientHeigth": 164.08275379707638
+    },
+    {
+        "PatientAge": 64.61701993416392,
+        "PatientWeigth": 72.90808758308387,
+        "PatientHeigth": 163.04408186650073
+    },
+    {
+        "PatientAge": 64.79135890455274,
+        "PatientWeigth": 72.73803983350969,
+        "PatientHeigth": 161.51726682778138
+    },
+    {
+        "PatientAge": 64.6847002898494,
+        "PatientWeigth": 73.11321429204654,
+        "PatientHeigth": 164.08168057229088
+    },
+    {
+        "PatientAge": 64.64532156869508,
+        "PatientWeigth": 73.45386429423797,
+        "PatientHeigth": 163.3650410048961
+    },
+    {
+        "PatientAge": 64.55126623605963,
+        "PatientWeigth": 72.53060615625239,
+        "PatientHeigth": 160.97878906710022
+    },
+    {
+        "PatientAge": 64.83793990611548,
+        "PatientWeigth": 73.44851281564559,
+        "PatientHeigth": 163.70620835258057
+    },
+    {
+        "PatientAge": 64.83818892992915,
+        "PatientWeigth": 73.01307054850203,
+        "PatientHeigth": 163.36332607052623
+    },
+    {
+        "PatientAge": 64.98010922326317,
+        "PatientWeigth": 71.72868191321102,
+        "PatientHeigth": 164.98652138693635
+    },
+    {
+        "PatientAge": 64.98112658881504,
+        "PatientWeigth": 72.43105907606758,
+        "PatientHeigth": 163.77683438042015
+    },
+    {
+        "PatientAge": 64.57248418096485,
+        "PatientWeigth": 76.26755214183596,
+        "PatientHeigth": 164.50575946694676
+    },
+    {
+        "PatientAge": 64.77046587335742,
+        "PatientWeigth": 73.25970544377206,
+        "PatientHeigth": 164.26873288107979
+    },
+    {
+        "PatientAge": 65.01612172568176,
+        "PatientWeigth": 72.64017456400113,
+        "PatientHeigth": 164.67599815973824
+    },
+    {
+        "PatientAge": 64.76306069973997,
+        "PatientWeigth": 72.48812455029872,
+        "PatientHeigth": 166.62053145212207
+    },
+    {
+        "PatientAge": 64.75240348078869,
+        "PatientWeigth": 72.80488613076564,
+        "PatientHeigth": 163.05929445396094
+    },
+    {
+        "PatientAge": 64.5941333904575,
+        "PatientWeigth": 72.72556616165873,
+        "PatientHeigth": 163.05237409787176
+    },
+    {
+        "PatientAge": 64.4980358024056,
+        "PatientWeigth": 71.85634834729481,
+        "PatientHeigth": 163.151449846877
+    },
+    {
+        "PatientAge": 64.36664932465705,
+        "PatientWeigth": 72.57430043871071,
+        "PatientHeigth": 163.60495848746322
+    },
+    {
+        "PatientAge": 64.9088732059215,
+        "PatientWeigth": 72.86643796834035,
+        "PatientHeigth": 165.67418826129625
+    },
+    {
+        "PatientAge": 64.73469354355026,
+        "PatientWeigth": 72.39987400340236,
+        "PatientHeigth": 164.0604266291114
+    },
+    {
+        "PatientAge": 64.63803977196386,
+        "PatientWeigth": 71.45669653110158,
+        "PatientHeigth": 166.6966165366383
+    },
+    {
+        "PatientAge": 64.7668242307303,
+        "PatientWeigth": 72.06532769192391,
+        "PatientHeigth": 163.6925650459535
+    },
+    {
+        "PatientAge": 64.78045226592809,
+        "PatientWeigth": 72.44158765650855,
+        "PatientHeigth": 162.7478501218832
+    },
+    {
+        "PatientAge": 64.88087823314342,
+        "PatientWeigth": 72.95422342607446,
+        "PatientHeigth": 164.1367028625927
+    },
+    {
+        "PatientAge": 64.7703977235928,
+        "PatientWeigth": 72.80148357118262,
+        "PatientHeigth": 163.5355935072486
+    },
+    {
+        "PatientAge": 65.04968567872353,
+        "PatientWeigth": 72.81637292436959,
+        "PatientHeigth": 161.9716425343054
+    },
+    {
+        "PatientAge": 64.89856138660937,
+        "PatientWeigth": 72.50411326271615,
+        "PatientHeigth": 162.5152879983513
+    },
+    {
+        "PatientAge": 64.86225046339943,
+        "PatientWeigth": 73.69018505383661,
+        "PatientHeigth": 164.72518445179927
+    },
+    {
+        "PatientAge": 64.70024803439104,
+        "PatientWeigth": 72.69092128653283,
+        "PatientHeigth": 163.36062455465225
+    },
+    {
+        "PatientAge": 64.80508810057198,
+        "PatientWeigth": 72.83829106384627,
+        "PatientHeigth": 163.5735933277197
+    },
+    {
+        "PatientAge": 64.58541504324504,
+        "PatientWeigth": 74.11046737962741,
+        "PatientHeigth": 163.40839816700984
+    },
+    {
+        "PatientAge": 64.76124054685657,
+        "PatientWeigth": 71.88247582446773,
+        "PatientHeigth": 159.07078473636992
+    },
+    {
+        "PatientAge": 64.85473885883104,
+        "PatientWeigth": 74.04717447404644,
+        "PatientHeigth": 166.62764197080077
+    },
+    {
+        "PatientAge": 64.8125809852271,
+        "PatientWeigth": 72.92392969857356,
+        "PatientHeigth": 161.60299380843216
+    },
+    {
+        "PatientAge": 65.12542604083603,
+        "PatientWeigth": 73.17563879249396,
+        "PatientHeigth": 162.86597560326354
+    },
+    {
+        "PatientAge": 64.79668020627858,
+        "PatientWeigth": 71.99742138659379,
+        "PatientHeigth": 165.72275355094465
+    },
+    {
+        "PatientAge": 64.93024278422922,
+        "PatientWeigth": 72.60874908302007,
+        "PatientHeigth": 163.95405636700548
+    },
+    {
+        "PatientAge": 64.57791134599225,
+        "PatientWeigth": 72.45813824988676,
+        "PatientHeigth": 164.8973320178589
+    },
+    {
+        "PatientAge": 64.96167801206215,
+        "PatientWeigth": 72.20773311301497,
+        "PatientHeigth": 160.39907410144528
+    },
+    {
+        "PatientAge": 64.6079185147927,
+        "PatientWeigth": 71.58494737302087,
+        "PatientHeigth": 163.2312595518843
+    },
+    {
+        "PatientAge": 65.09221025313518,
+        "PatientWeigth": 72.0427195607356,
+        "PatientHeigth": 162.42311053948643
+    },
+    {
+        "PatientAge": 64.56078996710711,
+        "PatientWeigth": 72.61692439643633,
+        "PatientHeigth": 164.32966392400456
+    },
+    {
+        "PatientAge": 64.62218270014226,
+        "PatientWeigth": 72.98539751776353,
+        "PatientHeigth": 161.53180648132917
+    },
+    {
+        "PatientAge": 64.78648484169719,
+        "PatientWeigth": 73.84113384715633,
+        "PatientHeigth": 163.1461301667206
+    },
+    {
+        "PatientAge": 64.60389789825724,
+        "PatientWeigth": 72.60339259237419,
+        "PatientHeigth": 166.10560009915457
+    },
+    {
+        "PatientAge": 64.87350027258768,
+        "PatientWeigth": 71.77067176681923,
+        "PatientHeigth": 162.55276664012524
+    },
+    {
+        "PatientAge": 64.67261733090923,
+        "PatientWeigth": 73.73087899309317,
+        "PatientHeigth": 163.157983294712
+    },
+    {
+        "PatientAge": 64.7048991670366,
+        "PatientWeigth": 73.27258567798886,
+        "PatientHeigth": 164.34648296133767
+    },
+    {
+        "PatientAge": 64.78236273423383,
+        "PatientWeigth": 72.72710491407778,
+        "PatientHeigth": 163.40887164788504
+    },
+    {
+        "PatientAge": 64.68421854303598,
+        "PatientWeigth": 73.04365540950299,
+        "PatientHeigth": 163.50444582464925
+    },
+    {
+        "PatientAge": 64.6996871306229,
+        "PatientWeigth": 72.94891512086083,
+        "PatientHeigth": 163.20211712469361
+    },
+    {
+        "PatientAge": 64.74025226980234,
+        "PatientWeigth": 72.27754271624437,
+        "PatientHeigth": 164.82534371220044
+    },
+    {
+        "PatientAge": 64.8372443851354,
+        "PatientWeigth": 71.34746995823735,
+        "PatientHeigth": 164.93076152041476
+    },
+    {
+        "PatientAge": 64.66618561020374,
+        "PatientWeigth": 72.81400960705069,
+        "PatientHeigth": 163.43904738826194
+    },
+    {
+        "PatientAge": 64.87924014678386,
+        "PatientWeigth": 72.82421697557568,
+        "PatientHeigth": 165.36066622058846
+    },
+    {
+        "PatientAge": 64.3508857320204,
+        "PatientWeigth": 72.03686894490744,
+        "PatientHeigth": 162.24860862622288
+    },
+    {
+        "PatientAge": 64.72303132002942,
+        "PatientWeigth": 72.43676705750768,
+        "PatientHeigth": 163.88033364086607
+    },
+    {
+        "PatientAge": 64.85186950806856,
+        "PatientWeigth": 74.29541102867515,
+        "PatientHeigth": 163.28687496719607
+    },
+    {
+        "PatientAge": 64.75052678355114,
+        "PatientWeigth": 72.44088755226164,
+        "PatientHeigth": 163.07103562448864
+    },
+    {
+        "PatientAge": 64.78012714774482,
+        "PatientWeigth": 73.52990045793898,
+        "PatientHeigth": 163.68615673434763
+    },
+    {
+        "PatientAge": 64.8959917525636,
+        "PatientWeigth": 72.89832713462815,
+        "PatientHeigth": 162.11058452966094
+    },
+    {
+        "PatientAge": 64.65281605995662,
+        "PatientWeigth": 73.936069650819,
+        "PatientHeigth": 163.10042342995357
+    },
+    {
+        "PatientAge": 64.80840867828097,
+        "PatientWeigth": 73.15396935691189,
+        "PatientHeigth": 163.77115364038357
+    },
+    {
+        "PatientAge": 64.82972738961199,
+        "PatientWeigth": 73.20839636952942,
+        "PatientHeigth": 161.81614156883796
+    },
+    {
+        "PatientAge": 64.8225004867109,
+        "PatientWeigth": 73.25608730583913,
+        "PatientHeigth": 163.08253345474472
+    },
+    {
+        "PatientAge": 64.92186794162112,
+        "PatientWeigth": 72.91538241665386,
+        "PatientHeigth": 163.4258915684054
+    },
+    {
+        "PatientAge": 64.76137010755238,
+        "PatientWeigth": 71.59548486274056,
+        "PatientHeigth": 163.82524690186145
+    },
+    {
+        "PatientAge": 64.84774399552873,
+        "PatientWeigth": 73.20928784903546,
+        "PatientHeigth": 163.28865869088145
+    },
+    {
+        "PatientAge": 64.75465017261209,
+        "PatientWeigth": 72.69186204024754,
+        "PatientHeigth": 163.54859210699962
+    },
+    {
+        "PatientAge": 64.56357264158322,
+        "PatientWeigth": 72.85082885943216,
+        "PatientHeigth": 163.34978257093982
+    },
+    {
+        "PatientAge": 64.7792203052382,
+        "PatientWeigth": 72.8025259153652,
+        "PatientHeigth": 162.73293068209847
+    },
+    {
+        "PatientAge": 65.06803266971644,
+        "PatientWeigth": 72.6902075661326,
+        "PatientHeigth": 164.35838762190556
+    },
+    {
+        "PatientAge": 65.22548164356532,
+        "PatientWeigth": 73.04743547381605,
+        "PatientHeigth": 162.06444568709867
+    },
+    {
+        "PatientAge": 64.55457015265965,
+        "PatientWeigth": 72.5264071348985,
+        "PatientHeigth": 163.73752276496313
+    },
+    {
+        "PatientAge": 64.84243117755841,
+        "PatientWeigth": 73.14711943902671,
+        "PatientHeigth": 164.644153502899
+    },
+    {
+        "PatientAge": 64.77757758380021,
+        "PatientWeigth": 73.09338500005026,
+        "PatientHeigth": 163.74101880258078
+    },
+    {
+        "PatientAge": 64.76392800700823,
+        "PatientWeigth": 71.75597092387953,
+        "PatientHeigth": 163.11616979847358
+    },
+    {
+        "PatientAge": 65.1446975225867,
+        "PatientWeigth": 73.5389492690757,
+        "PatientHeigth": 163.74172356252
+    },
+    {
+        "PatientAge": 64.85184664132738,
+        "PatientWeigth": 73.40398981754944,
+        "PatientHeigth": 163.3199733334077
+    },
+    {
+        "PatientAge": 64.77045965040162,
+        "PatientWeigth": 72.5752775939813,
+        "PatientHeigth": 163.1465016312884
+    },
+    {
+        "PatientAge": 64.63565345214364,
+        "PatientWeigth": 73.19347645026889,
+        "PatientHeigth": 164.25768768025856
+    },
+    {
+        "PatientAge": 64.83830560147688,
+        "PatientWeigth": 72.25590744871758,
+        "PatientHeigth": 162.39923827494576
+    },
+    {
+        "PatientAge": 64.66429669914021,
+        "PatientWeigth": 70.56220120050276,
+        "PatientHeigth": 163.76044087653287
+    },
+    {
+        "PatientAge": 64.54949796411115,
+        "PatientWeigth": 72.84099149694896,
+        "PatientHeigth": 163.63437775243946
+    },
+    {
+        "PatientAge": 64.76861303744553,
+        "PatientWeigth": 72.58800149347117,
+        "PatientHeigth": 168.1090806678252
+    },
+    {
+        "PatientAge": 64.81669032943329,
+        "PatientWeigth": 72.43114577294455,
+        "PatientHeigth": 162.85680914532384
+    },
+    {
+        "PatientAge": 64.73613401501284,
+        "PatientWeigth": 73.26019733622782,
+        "PatientHeigth": 163.98396194274736
+    },
+    {
+        "PatientAge": 64.81590212226477,
+        "PatientWeigth": 71.43530047142805,
+        "PatientHeigth": 163.412387004845
+    },
+    {
+        "PatientAge": 64.79438071333246,
+        "PatientWeigth": 72.51483993352504,
+        "PatientHeigth": 164.25655116079966
+    },
+    {
+        "PatientAge": 64.89214631677703,
+        "PatientWeigth": 73.42323318361406,
+        "PatientHeigth": 165.95579847447047
+    },
+    {
+        "PatientAge": 64.68246984749459,
+        "PatientWeigth": 73.33144947169711,
+        "PatientHeigth": 164.77402424151953
+    },
+    {
+        "PatientAge": 64.5844941817561,
+        "PatientWeigth": 73.19470208941011,
+        "PatientHeigth": 163.56978505204947
+    },
+    {
+        "PatientAge": 64.7306201601425,
+        "PatientWeigth": 73.01537111216282,
+        "PatientHeigth": 163.68302828635362
+    },
+    {
+        "PatientAge": 64.5908579163777,
+        "PatientWeigth": 72.75541146093063,
+        "PatientHeigth": 163.7509071472953
+    },
+    {
+        "PatientAge": 64.72016928696098,
+        "PatientWeigth": 73.52671135452158,
+        "PatientHeigth": 163.13530516250987
+    },
+    {
+        "PatientAge": 64.77071087672078,
+        "PatientWeigth": 72.86916714736972,
+        "PatientHeigth": 162.6835494184614
+    },
+    {
+        "PatientAge": 64.73666413788608,
+        "PatientWeigth": 73.31159536387649,
+        "PatientHeigth": 162.19133546164764
+    },
+    {
+        "PatientAge": 64.90157084156874,
+        "PatientWeigth": 71.60805750428105,
+        "PatientHeigth": 164.37725309007914
+    },
+    {
+        "PatientAge": 64.77630740887679,
+        "PatientWeigth": 72.93661068497842,
+        "PatientHeigth": 163.42901265484957
+    },
+    {
+        "PatientAge": 65.22692665972204,
+        "PatientWeigth": 73.4996169534175,
+        "PatientHeigth": 164.19705347873912
+    },
+    {
+        "PatientAge": 64.76078771111229,
+        "PatientWeigth": 72.30180775036519,
+        "PatientHeigth": 163.47373664218682
+    },
+    {
+        "PatientAge": 65.1355587977103,
+        "PatientWeigth": 73.02430928405838,
+        "PatientHeigth": 162.7256167247891
+    },
+    {
+        "PatientAge": 64.98028027743258,
+        "PatientWeigth": 74.16404044733507,
+        "PatientHeigth": 163.21379990168117
+    },
+    {
+        "PatientAge": 64.92771591649847,
+        "PatientWeigth": 71.61638680252489,
+        "PatientHeigth": 165.34966119523511
+    },
+    {
+        "PatientAge": 64.72317431905257,
+        "PatientWeigth": 72.60909337904208,
+        "PatientHeigth": 162.99234871006362
+    },
+    {
+        "PatientAge": 64.5570498262574,
+        "PatientWeigth": 73.09879695726521,
+        "PatientHeigth": 160.78588757983027
+    },
+    {
+        "PatientAge": 64.77335804747757,
+        "PatientWeigth": 72.50653390719637,
+        "PatientHeigth": 163.2834312845001
+    },
+    {
+        "PatientAge": 64.7254811124491,
+        "PatientWeigth": 72.38642852503905,
+        "PatientHeigth": 163.51047460434802
+    },
+    {
+        "PatientAge": 64.71494853979618,
+        "PatientWeigth": 73.02627115314671,
+        "PatientHeigth": 163.20093213753273
+    },
+    {
+        "PatientAge": 64.77001548956832,
+        "PatientWeigth": 72.8359147978076,
+        "PatientHeigth": 163.18280986073128
+    },
+    {
+        "PatientAge": 64.88729162211236,
+        "PatientWeigth": 73.60709981745471,
+        "PatientHeigth": 163.18519118473506
+    },
+    {
+        "PatientAge": 64.22509901983024,
+        "PatientWeigth": 73.59691824740966,
+        "PatientHeigth": 164.7346586902841
+    },
+    {
+        "PatientAge": 64.92637652982441,
+        "PatientWeigth": 70.73471191175139,
+        "PatientHeigth": 164.28065687805216
+    },
+    {
+        "PatientAge": 64.44157282161936,
+        "PatientWeigth": 71.78802675227281,
+        "PatientHeigth": 163.22144903606258
+    },
+    {
+        "PatientAge": 64.80453184061149,
+        "PatientWeigth": 73.56590453601969,
+        "PatientHeigth": 163.27307909873767
+    },
+    {
+        "PatientAge": 64.79965165879075,
+        "PatientWeigth": 72.6620755295666,
+        "PatientHeigth": 163.30942992140302
+    },
+    {
+        "PatientAge": 64.71229426489302,
+        "PatientWeigth": 70.49402112396723,
+        "PatientHeigth": 162.25929720369484
+    },
+    {
+        "PatientAge": 64.76890825378787,
+        "PatientWeigth": 72.74732978825807,
+        "PatientHeigth": 162.58700634689222
+    },
+    {
+        "PatientAge": 64.71680995889346,
+        "PatientWeigth": 73.22737054538648,
+        "PatientHeigth": 161.91202561151007
+    },
+    {
+        "PatientAge": 64.66682302006407,
+        "PatientWeigth": 72.80354105743771,
+        "PatientHeigth": 164.002397696357
+    },
+    {
+        "PatientAge": 64.67650506230791,
+        "PatientWeigth": 72.83010112640075,
+        "PatientHeigth": 163.82246172193385
+    },
+    {
+        "PatientAge": 64.90065630302438,
+        "PatientWeigth": 72.13945729740904,
+        "PatientHeigth": 162.8785963695869
+    },
+    {
+        "PatientAge": 64.80037052104841,
+        "PatientWeigth": 72.85266085605149,
+        "PatientHeigth": 160.797406571246
+    },
+    {
+        "PatientAge": 64.71162634018964,
+        "PatientWeigth": 72.25926351749493,
+        "PatientHeigth": 163.5012454458241
+    },
+    {
+        "PatientAge": 64.87738152974768,
+        "PatientWeigth": 73.37913404202833,
+        "PatientHeigth": 163.12911365349242
+    },
+    {
+        "PatientAge": 65.03435926030419,
+        "PatientWeigth": 72.9441428688769,
+        "PatientHeigth": 162.82144789237452
+    },
+    {
+        "PatientAge": 64.79459736382191,
+        "PatientWeigth": 74.01616715518676,
+        "PatientHeigth": 163.85026502188336
+    },
+    {
+        "PatientAge": 64.83094712886017,
+        "PatientWeigth": 73.56602959325856,
+        "PatientHeigth": 163.67970339764696
+    },
+    {
+        "PatientAge": 64.78158618473,
+        "PatientWeigth": 71.8611353187009,
+        "PatientHeigth": 163.5162997235382
+    },
+    {
+        "PatientAge": 64.81318180149125,
+        "PatientWeigth": 73.07431405325316,
+        "PatientHeigth": 163.414340796074
+    },
+    {
+        "PatientAge": 64.80389059187014,
+        "PatientWeigth": 72.9194106542282,
+        "PatientHeigth": 162.7781616078721
+    },
+    {
+        "PatientAge": 64.75203038272026,
+        "PatientWeigth": 73.10029048521156,
+        "PatientHeigth": 162.34313893496162
+    },
+    {
+        "PatientAge": 65.11503392586346,
+        "PatientWeigth": 72.48765981120644,
+        "PatientHeigth": 164.01597225073792
+    },
+    {
+        "PatientAge": 64.48203397357905,
+        "PatientWeigth": 72.85313979060096,
+        "PatientHeigth": 162.56051854486887
+    },
+    {
+        "PatientAge": 64.7370790208391,
+        "PatientWeigth": 72.82474318703096,
+        "PatientHeigth": 163.75374718903748
+    },
+    {
+        "PatientAge": 64.71319826985776,
+        "PatientWeigth": 72.3039549500674,
+        "PatientHeigth": 163.27894008506854
+    },
+    {
+        "PatientAge": 64.81383212941691,
+        "PatientWeigth": 72.87545072163866,
+        "PatientHeigth": 162.31211081393593
+    },
+    {
+        "PatientAge": 64.73684409049503,
+        "PatientWeigth": 71.19180734069604,
+        "PatientHeigth": 163.1015964234774
+    },
+    {
+        "PatientAge": 64.9177274089261,
+        "PatientWeigth": 72.1881918375617,
+        "PatientHeigth": 164.7248194725669
+    },
+    {
+        "PatientAge": 64.80805352448819,
+        "PatientWeigth": 72.64711661817591,
+        "PatientHeigth": 163.91506278794506
+    },
+    {
+        "PatientAge": 64.77414655086332,
+        "PatientWeigth": 72.3233336956456,
+        "PatientHeigth": 163.2956453527812
+    },
+    {
+        "PatientAge": 64.63222930942422,
+        "PatientWeigth": 72.99359508308976,
+        "PatientHeigth": 163.5526896834237
+    },
+    {
+        "PatientAge": 64.79528649747742,
+        "PatientWeigth": 73.29712761980589,
+        "PatientHeigth": 163.646732085737
+    },
+    {
+        "PatientAge": 64.87443401094367,
+        "PatientWeigth": 72.65559227307884,
+        "PatientHeigth": 162.97307607284102
+    },
+    {
+        "PatientAge": 64.6760065526202,
+        "PatientWeigth": 74.65840759242194,
+        "PatientHeigth": 163.47979671900075
+    },
+    {
+        "PatientAge": 64.72929205351437,
+        "PatientWeigth": 72.83660108301015,
+        "PatientHeigth": 161.61329884610444
+    },
+    {
+        "PatientAge": 64.73054178673321,
+        "PatientWeigth": 72.41754296327093,
+        "PatientHeigth": 164.40021808912456
+    },
+    {
+        "PatientAge": 64.79609564230736,
+        "PatientWeigth": 72.19574734521967,
+        "PatientHeigth": 162.86074307872516
+    },
+    {
+        "PatientAge": 64.72615583090085,
+        "PatientWeigth": 72.73838838524124,
+        "PatientHeigth": 163.62794120597223
+    },
+    {
+        "PatientAge": 65.19737610253291,
+        "PatientWeigth": 72.81939564206566,
+        "PatientHeigth": 163.78583457092753
+    },
+    {
+        "PatientAge": 64.77356226526064,
+        "PatientWeigth": 72.54045090823286,
+        "PatientHeigth": 163.34420566216446
+    },
+    {
+        "PatientAge": 64.76615009888015,
+        "PatientWeigth": 72.92901246775675,
+        "PatientHeigth": 162.07497333977798
+    },
+    {
+        "PatientAge": 64.57171322688136,
+        "PatientWeigth": 73.57551394017645,
+        "PatientHeigth": 165.57258599313872
+    },
+    {
+        "PatientAge": 64.79506095496099,
+        "PatientWeigth": 74.14049108953495,
+        "PatientHeigth": 166.92473577657614
+    },
+    {
+        "PatientAge": 64.9555494242033,
+        "PatientWeigth": 73.09543840807244,
+        "PatientHeigth": 162.99550735229772
+    },
+    {
+        "PatientAge": 64.75332659709892,
+        "PatientWeigth": 72.45022118712731,
+        "PatientHeigth": 163.70316597085497
+    },
+    {
+        "PatientAge": 64.53965657667618,
+        "PatientWeigth": 73.04968547008829,
+        "PatientHeigth": 163.34874566090545
+    },
+    {
+        "PatientAge": 64.77839215939532,
+        "PatientWeigth": 71.72696797388275,
+        "PatientHeigth": 163.3457844639186
+    },
+    {
+        "PatientAge": 64.77998993920536,
+        "PatientWeigth": 72.8172548045049,
+        "PatientHeigth": 163.33310992186605
+    },
+    {
+        "PatientAge": 65.02234846753696,
+        "PatientWeigth": 72.56236582720254,
+        "PatientHeigth": 162.7353936629117
+    },
+    {
+        "PatientAge": 64.93391828992124,
+        "PatientWeigth": 73.00538749031907,
+        "PatientHeigth": 164.54691555974625
+    },
+    {
+        "PatientAge": 64.79340723575686,
+        "PatientWeigth": 72.92419789765965,
+        "PatientHeigth": 163.04278639239413
+    },
+    {
+        "PatientAge": 64.69230645596218,
+        "PatientWeigth": 72.96692336771409,
+        "PatientHeigth": 163.47075257602478
+    },
+    {
+        "PatientAge": 64.31149760952779,
+        "PatientWeigth": 72.93100273889029,
+        "PatientHeigth": 163.44062620622918
+    },
+    {
+        "PatientAge": 64.7101014179274,
+        "PatientWeigth": 72.80249679170383,
+        "PatientHeigth": 163.4299568433289
+    },
+    {
+        "PatientAge": 64.70340307458814,
+        "PatientWeigth": 72.36915203855824,
+        "PatientHeigth": 163.64963439086748
+    },
+    {
+        "PatientAge": 64.87937900623183,
+        "PatientWeigth": 73.05730772504879,
+        "PatientHeigth": 163.16116431097115
+    },
+    {
+        "PatientAge": 64.58223499027608,
+        "PatientWeigth": 72.85827426773976,
+        "PatientHeigth": 163.60931182383052
+    },
+    {
+        "PatientAge": 64.75995093352051,
+        "PatientWeigth": 72.70381997979494,
+        "PatientHeigth": 161.35133704435168
+    },
+    {
+        "PatientAge": 64.72429654227786,
+        "PatientWeigth": 73.00177104793879,
+        "PatientHeigth": 163.43337296582402
+    },
+    {
+        "PatientAge": 64.92731417525235,
+        "PatientWeigth": 73.42062538630277,
+        "PatientHeigth": 163.93920849999023
+    },
+    {
+        "PatientAge": 64.7045658179583,
+        "PatientWeigth": 72.63083545125092,
+        "PatientHeigth": 163.7811397506324
+    },
+    {
+        "PatientAge": 64.78345360140453,
+        "PatientWeigth": 72.57383612683614,
+        "PatientHeigth": 163.80413337132651
+    },
+    {
+        "PatientAge": 65.10375036015635,
+        "PatientWeigth": 72.66844900508838,
+        "PatientHeigth": 162.65177280412593
+    },
+    {
+        "PatientAge": 64.77136485235165,
+        "PatientWeigth": 72.77832904313311,
+        "PatientHeigth": 163.92211802102975
+    },
+    {
+        "PatientAge": 65.16382526130153,
+        "PatientWeigth": 72.85810723958086,
+        "PatientHeigth": 163.78666058591054
+    },
+    {
+        "PatientAge": 64.87259093486777,
+        "PatientWeigth": 73.23387095202314,
+        "PatientHeigth": 163.55670935500106
+    },
+    {
+        "PatientAge": 64.81614870354613,
+        "PatientWeigth": 73.22604499958095,
+        "PatientHeigth": 163.37362776263717
+    },
+    {
+        "PatientAge": 64.7635105624734,
+        "PatientWeigth": 72.25567014187985,
+        "PatientHeigth": 163.78707361102684
+    },
+    {
+        "PatientAge": 64.78668934421358,
+        "PatientWeigth": 72.55178595075063,
+        "PatientHeigth": 163.50170017211758
+    },
+    {
+        "PatientAge": 64.76909190383014,
+        "PatientWeigth": 71.65080734105594,
+        "PatientHeigth": 163.55236236420672
+    },
+    {
+        "PatientAge": 64.74781644999537,
+        "PatientWeigth": 71.68508997288646,
+        "PatientHeigth": 162.18294535785623
+    },
+    {
+        "PatientAge": 64.7989305856797,
+        "PatientWeigth": 72.65848077710065,
+        "PatientHeigth": 163.14424802782358
+    },
+    {
+        "PatientAge": 64.6394340518789,
+        "PatientWeigth": 72.73242963654245,
+        "PatientHeigth": 161.89594552982035
+    },
+    {
+        "PatientAge": 64.64676130570832,
+        "PatientWeigth": 73.35042317293544,
+        "PatientHeigth": 162.05160113620786
+    },
+    {
+        "PatientAge": 64.98680890817224,
+        "PatientWeigth": 73.05167969289403,
+        "PatientHeigth": 164.26147829289545
+    },
+    {
+        "PatientAge": 64.81418981885547,
+        "PatientWeigth": 72.92418931529839,
+        "PatientHeigth": 163.1949821009706
+    },
+    {
+        "PatientAge": 64.77161423656037,
+        "PatientWeigth": 72.5841519929328,
+        "PatientHeigth": 163.3512100902342
+    },
+    {
+        "PatientAge": 64.7464467836992,
+        "PatientWeigth": 75.63725454774006,
+        "PatientHeigth": 163.60554792807974
+    },
+    {
+        "PatientAge": 64.73727541333935,
+        "PatientWeigth": 72.84647614970694,
+        "PatientHeigth": 163.37537867052
+    },
+    {
+        "PatientAge": 64.95419294704905,
+        "PatientWeigth": 73.02179765932725,
+        "PatientHeigth": 163.08443679889882
+    },
+    {
+        "PatientAge": 64.77407580600232,
+        "PatientWeigth": 72.78107891840023,
+        "PatientHeigth": 163.98852205059853
+    },
+    {
+        "PatientAge": 64.71363581777557,
+        "PatientWeigth": 74.05594296271295,
+        "PatientHeigth": 164.88245530571535
+    },
+    {
+        "PatientAge": 64.7551530648758,
+        "PatientWeigth": 72.3933759961513,
+        "PatientHeigth": 162.88307852517624
+    },
+    {
+        "PatientAge": 64.6798349928734,
+        "PatientWeigth": 72.4391749113568,
+        "PatientHeigth": 163.32260530399662
+    },
+    {
+        "PatientAge": 65.05254955428464,
+        "PatientWeigth": 73.109326659726,
+        "PatientHeigth": 160.16531362933492
+    }
+]

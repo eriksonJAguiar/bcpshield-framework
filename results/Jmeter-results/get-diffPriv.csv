@@ -1,0 +1,459 @@
+timeStamp,elapsed,label,responseCode,responseMessage,threadName,dataType,success,failureMessage,bytes,sentBytes,grpThreads,allThreads,URL,Latency,IdleTime,Connect
+1595029402808,46020,GetObserver-diffPriv,Non HTTP response code: java.net.SocketException,Non HTTP response message: Socket closed,Grupo de Usuários 1-10,text,false,,2667,0,10,10,http://127.0.0.1:6000/api/getObserve,0,0,2
+1595029402113,46719,GetObserver-diffPriv,Non HTTP response code: java.net.SocketException,Non HTTP response message: Socket closed,Grupo de Usuários 1-3,text,false,,2667,0,10,10,http://127.0.0.1:6000/api/getObserve,0,0,0
+1595029402012,46798,GetObserver-diffPriv,Non HTTP response code: java.net.SocketException,Non HTTP response message: Socket closed,Grupo de Usuários 1-2,text,false,,2667,0,10,10,http://127.0.0.1:6000/api/getObserve,0,0,0
+1595029402607,46235,GetObserver-diffPriv,Non HTTP response code: java.net.SocketException,Non HTTP response message: Socket closed,Grupo de Usuários 1-8,text,false,,2667,0,10,10,http://127.0.0.1:6000/api/getObserve,0,0,1
+1595029402511,46337,GetObserver-diffPriv,Non HTTP response code: java.net.SocketException,Non HTTP response message: Socket closed,Grupo de Usuários 1-7,text,false,,2667,0,10,10,http://127.0.0.1:6000/api/getObserve,0,0,1
+1595029401924,46936,GetObserver-diffPriv,Non HTTP response code: java.net.SocketException,Non HTTP response message: Socket closed,Grupo de Usuários 1-1,text,false,,2667,0,10,10,http://127.0.0.1:6000/api/getObserve,0,0,4
+1595029402215,46649,GetObserver-diffPriv,Non HTTP response code: java.net.SocketException,Non HTTP response message: Socket closed,Grupo de Usuários 1-4,text,false,,2667,0,9,9,http://127.0.0.1:6000/api/getObserve,0,0,0
+1595029402413,46466,GetObserver-diffPriv,Non HTTP response code: java.net.SocketException,Non HTTP response message: Socket closed,Grupo de Usuários 1-6,text,false,,2667,0,3,3,http://127.0.0.1:6000/api/getObserve,0,0,1
+1595029402709,46184,GetObserver-diffPriv,Non HTTP response code: java.net.SocketException,Non HTTP response message: Socket closed,Grupo de Usuários 1-9,text,false,,2667,0,2,2,http://127.0.0.1:6000/api/getObserve,0,0,1
+1595029402309,46591,GetObserver-diffPriv,Non HTTP response code: java.net.SocketException,Non HTTP response message: Socket closed,Grupo de Usuários 1-5,text,false,,2667,0,1,1,http://127.0.0.1:6000/api/getObserve,0,0,1
+1595030217381,6657,GetObserver-diffPriv,200,OK,Grupo de Usuários 1-6,text,true,,118,126,10,10,http://127.0.0.1:6000/api/getObserve,6638,0,0
+1595030217581,6457,GetObserver-diffPriv,200,OK,Grupo de Usuários 1-8,text,true,,118,126,10,10,http://127.0.0.1:6000/api/getObserve,6438,0,0
+1595030216985,7053,GetObserver-diffPriv,200,OK,Grupo de Usuários 1-2,text,true,,118,126,10,10,http://127.0.0.1:6000/api/getObserve,7034,0,1
+1595030217680,6358,GetObserver-diffPriv,200,OK,Grupo de Usuários 1-9,text,true,,118,126,10,10,http://127.0.0.1:6000/api/getObserve,6339,0,1
+1595030216894,7144,GetObserver-diffPriv,200,OK,Grupo de Usuários 1-1,text,true,,118,126,10,10,http://127.0.0.1:6000/api/getObserve,7125,0,2
+1595030217483,8819,GetObserver-diffPriv,200,OK,Grupo de Usuários 1-7,text,true,,118,126,10,10,http://127.0.0.1:6000/api/getObserve,8819,0,1
+1595030217283,9061,GetObserver-diffPriv,200,OK,Grupo de Usuários 1-5,text,true,,118,126,10,10,http://127.0.0.1:6000/api/getObserve,9061,0,1
+1595030217189,9155,GetObserver-diffPriv,200,OK,Grupo de Usuários 1-4,text,true,,118,126,10,10,http://127.0.0.1:6000/api/getObserve,9155,0,0
+1595030217085,9260,GetObserver-diffPriv,200,OK,Grupo de Usuários 1-3,text,true,,118,126,10,10,http://127.0.0.1:6000/api/getObserve,9260,0,0
+1595030217782,8564,GetObserver-diffPriv,200,OK,Grupo de Usuários 1-10,text,true,,118,126,10,10,http://127.0.0.1:6000/api/getObserve,8564,0,0
+1595030224046,8193,GetObserver-diffPriv,200,OK,Grupo de Usuários 1-2,text,true,,118,126,10,10,http://127.0.0.1:6000/api/getObserve,8193,0,0
+1595030224046,8193,GetObserver-diffPriv,200,OK,Grupo de Usuários 1-8,text,true,,118,126,10,10,http://127.0.0.1:6000/api/getObserve,8193,0,0
+1595030224046,8193,GetObserver-diffPriv,200,OK,Grupo de Usuários 1-9,text,true,,118,126,10,10,http://127.0.0.1:6000/api/getObserve,8193,0,0
+1595030224046,8194,GetObserver-diffPriv,200,OK,Grupo de Usuários 1-6,text,true,,118,126,10,10,http://127.0.0.1:6000/api/getObserve,8194,0,0
+1595030224045,8196,GetObserver-diffPriv,200,OK,Grupo de Usuários 1-1,text,true,,118,126,10,10,http://127.0.0.1:6000/api/getObserve,8196,0,0
+1595030226303,7403,GetObserver-diffPriv,200,OK,Grupo de Usuários 1-7,text,true,,118,126,10,10,http://127.0.0.1:6000/api/getObserve,7403,0,0
+1595030226345,7361,GetObserver-diffPriv,200,OK,Grupo de Usuários 1-4,text,true,,118,126,10,10,http://127.0.0.1:6000/api/getObserve,7361,0,0
+1595030226347,7359,GetObserver-diffPriv,200,OK,Grupo de Usuários 1-10,text,true,,118,126,10,10,http://127.0.0.1:6000/api/getObserve,7359,0,0
+1595030226346,7360,GetObserver-diffPriv,200,OK,Grupo de Usuários 1-3,text,true,,118,126,10,10,http://127.0.0.1:6000/api/getObserve,7360,0,0
+1595030226345,7375,GetObserver-diffPriv,200,OK,Grupo de Usuários 1-5,text,true,,118,126,10,10,http://127.0.0.1:6000/api/getObserve,7375,0,0
+1595030232241,7498,GetObserver-diffPriv,200,OK,Grupo de Usuários 1-9,text,true,,118,126,10,10,http://127.0.0.1:6000/api/getObserve,7498,0,0
+1595030232240,7499,GetObserver-diffPriv,200,OK,Grupo de Usuários 1-2,text,true,,118,126,10,10,http://127.0.0.1:6000/api/getObserve,7499,0,0
+1595030233708,6031,GetObserver-diffPriv,200,OK,Grupo de Usuários 1-3,text,true,,118,126,10,10,http://127.0.0.1:6000/api/getObserve,6031,0,0
+1595030232242,7497,GetObserver-diffPriv,200,OK,Grupo de Usuários 1-1,text,true,,118,126,10,10,http://127.0.0.1:6000/api/getObserve,7497,0,0
+1595030232241,7499,GetObserver-diffPriv,200,OK,Grupo de Usuários 1-8,text,true,,118,126,10,10,http://127.0.0.1:6000/api/getObserve,7499,0,0
+1595030233707,6036,GetObserver-diffPriv,200,OK,Grupo de Usuários 1-10,text,true,,118,126,10,10,http://127.0.0.1:6000/api/getObserve,6036,0,0
+1595030232241,7502,GetObserver-diffPriv,200,OK,Grupo de Usuários 1-6,text,true,,118,126,10,10,http://127.0.0.1:6000/api/getObserve,7502,0,0
+1595030233721,7543,GetObserver-diffPriv,200,OK,Grupo de Usuários 1-5,text,true,,118,126,10,10,http://127.0.0.1:6000/api/getObserve,7543,0,0
+1595030233708,7556,GetObserver-diffPriv,200,OK,Grupo de Usuários 1-7,text,true,,118,126,10,10,http://127.0.0.1:6000/api/getObserve,7556,0,0
+1595030233708,7725,GetObserver-diffPriv,200,OK,Grupo de Usuários 1-4,text,true,,118,126,10,10,http://127.0.0.1:6000/api/getObserve,7725,0,0
+1595030239740,7040,GetObserver-diffPriv,200,OK,Grupo de Usuários 1-8,text,true,,118,126,10,10,http://127.0.0.1:6000/api/getObserve,7040,0,0
+1595030239742,7038,GetObserver-diffPriv,200,OK,Grupo de Usuários 1-10,text,true,,118,126,10,10,http://127.0.0.1:6000/api/getObserve,7038,0,0
+1595030241264,5576,GetObserver-diffPriv,200,OK,Grupo de Usuários 1-5,text,true,,118,126,10,10,http://127.0.0.1:6000/api/getObserve,5576,0,0
+1595030239742,7098,GetObserver-diffPriv,200,OK,Grupo de Usuários 1-6,text,true,,118,126,10,10,http://127.0.0.1:6000/api/getObserve,7098,0,0
+1595030239738,7106,GetObserver-diffPriv,200,OK,Grupo de Usuários 1-9,text,true,,118,126,10,10,http://127.0.0.1:6000/api/getObserve,7106,0,0
+1595030239738,7463,GetObserver-diffPriv,200,OK,Grupo de Usuários 1-1,text,true,,118,126,10,10,http://127.0.0.1:6000/api/getObserve,7462,0,0
+1595030239738,7462,GetObserver-diffPriv,200,OK,Grupo de Usuários 1-2,text,true,,118,126,10,10,http://127.0.0.1:6000/api/getObserve,7462,0,0
+1595030239738,7462,GetObserver-diffPriv,200,OK,Grupo de Usuários 1-3,text,true,,118,126,10,10,http://127.0.0.1:6000/api/getObserve,7462,0,0
+1595030241264,8069,GetObserver-diffPriv,200,OK,Grupo de Usuários 1-7,text,true,,118,126,10,10,http://127.0.0.1:6000/api/getObserve,8069,0,0
+1595030241433,7901,GetObserver-diffPriv,200,OK,Grupo de Usuários 1-4,text,true,,118,126,10,10,http://127.0.0.1:6000/api/getObserve,7901,0,0
+1595030249337,5172,GetObserver-diffPriv,200,OK,Grupo de Usuários 1-4,text,true,,118,126,10,10,http://127.0.0.1:6000/api/getObserve,5170,0,0
+1595030247203,7493,GetObserver-diffPriv,200,OK,Grupo de Usuários 1-2,text,true,,118,126,10,10,http://127.0.0.1:6000/api/getObserve,7493,0,0
+1595030246782,7923,GetObserver-diffPriv,200,OK,Grupo de Usuários 1-10,text,true,,118,126,10,10,http://127.0.0.1:6000/api/getObserve,7923,0,0
+1595030246846,7862,GetObserver-diffPriv,200,OK,Grupo de Usuários 1-9,text,true,,118,126,10,10,http://127.0.0.1:6000/api/getObserve,7862,0,0
+1595030246782,7928,GetObserver-diffPriv,200,OK,Grupo de Usuários 1-8,text,true,,118,126,10,10,http://127.0.0.1:6000/api/getObserve,7928,0,0
+1595030247203,7524,GetObserver-diffPriv,200,OK,Grupo de Usuários 1-3,text,true,,118,126,10,10,http://127.0.0.1:6000/api/getObserve,7523,0,0
+1595030249337,5390,GetObserver-diffPriv,200,OK,Grupo de Usuários 1-7,text,true,,118,126,10,10,http://127.0.0.1:6000/api/getObserve,5390,0,0
+1595030246842,7885,GetObserver-diffPriv,200,OK,Grupo de Usuários 1-6,text,true,,118,126,10,10,http://127.0.0.1:6000/api/getObserve,7885,0,0
+1595030246842,7887,GetObserver-diffPriv,200,OK,Grupo de Usuários 1-5,text,true,,118,126,10,10,http://127.0.0.1:6000/api/getObserve,7884,0,0
+1595030247202,8106,GetObserver-diffPriv,200,OK,Grupo de Usuários 1-1,text,true,,118,126,10,10,http://127.0.0.1:6000/api/getObserve,8106,0,0
+1595030254697,7573,GetObserver-diffPriv,200,OK,Grupo de Usuários 1-2,text,true,,118,126,10,10,http://127.0.0.1:6000/api/getObserve,7573,0,0
+1595030254727,7545,GetObserver-diffPriv,200,OK,Grupo de Usuários 1-3,text,true,,118,126,10,10,http://127.0.0.1:6000/api/getObserve,7545,0,0
+1595030254511,7761,GetObserver-diffPriv,200,OK,Grupo de Usuários 1-4,text,true,,118,126,10,10,http://127.0.0.1:6000/api/getObserve,7761,0,0
+1595030254709,7639,GetObserver-diffPriv,200,OK,Grupo de Usuários 1-9,text,true,,118,126,10,10,http://127.0.0.1:6000/api/getObserve,7639,0,0
+1595030254710,7638,GetObserver-diffPriv,200,OK,Grupo de Usuários 1-8,text,true,,118,126,10,10,http://127.0.0.1:6000/api/getObserve,7638,0,0
+1595030254730,7618,GetObserver-diffPriv,200,OK,Grupo de Usuários 1-5,text,true,,118,126,10,10,http://127.0.0.1:6000/api/getObserve,7618,0,0
+1595030255309,7039,GetObserver-diffPriv,200,OK,Grupo de Usuários 1-1,text,true,,118,126,10,10,http://127.0.0.1:6000/api/getObserve,7039,0,0
+1595030254727,7621,GetObserver-diffPriv,200,OK,Grupo de Usuários 1-7,text,true,,118,126,10,10,http://127.0.0.1:6000/api/getObserve,7621,0,0
+1595030254727,7622,GetObserver-diffPriv,200,OK,Grupo de Usuários 1-6,text,true,,118,126,10,10,http://127.0.0.1:6000/api/getObserve,7622,0,0
+1595030254705,7645,GetObserver-diffPriv,200,OK,Grupo de Usuários 1-10,text,true,,118,126,10,10,http://127.0.0.1:6000/api/getObserve,7645,0,0
+1595030262352,7371,GetObserver-diffPriv,200,OK,Grupo de Usuários 1-8,text,true,,118,126,10,10,http://127.0.0.1:6000/api/getObserve,7371,0,0
+1595030262271,7452,GetObserver-diffPriv,200,OK,Grupo de Usuários 1-2,text,true,,118,126,10,10,http://127.0.0.1:6000/api/getObserve,7452,0,0
+1595030262349,7374,GetObserver-diffPriv,200,OK,Grupo de Usuários 1-5,text,true,,118,126,10,10,http://127.0.0.1:6000/api/getObserve,7374,0,0
+1595030262349,7374,GetObserver-diffPriv,200,OK,Grupo de Usuários 1-1,text,true,,118,126,10,10,http://127.0.0.1:6000/api/getObserve,7374,0,0
+1595030262350,7374,GetObserver-diffPriv,200,OK,Grupo de Usuários 1-7,text,true,,118,126,10,10,http://127.0.0.1:6000/api/getObserve,7373,0,0
+1595030262352,7372,GetObserver-diffPriv,200,OK,Grupo de Usuários 1-10,text,true,,118,126,10,10,http://127.0.0.1:6000/api/getObserve,7372,0,0
+1595030262272,7452,GetObserver-diffPriv,200,OK,Grupo de Usuários 1-4,text,true,,118,126,10,10,http://127.0.0.1:6000/api/getObserve,7452,0,0
+1595030262349,7377,GetObserver-diffPriv,200,OK,Grupo de Usuários 1-9,text,true,,118,126,10,10,http://127.0.0.1:6000/api/getObserve,7376,0,0
+1595030262272,7454,GetObserver-diffPriv,200,OK,Grupo de Usuários 1-3,text,true,,118,126,10,10,http://127.0.0.1:6000/api/getObserve,7454,0,0
+1595030262351,7376,GetObserver-diffPriv,200,OK,Grupo de Usuários 1-6,text,true,,118,126,10,10,http://127.0.0.1:6000/api/getObserve,7376,0,0
+1595030269727,4577,GetObserver-diffPriv,Non HTTP response code: java.net.SocketException,Non HTTP response message: Socket closed,Grupo de Usuários 1-3,text,false,,2667,0,10,10,http://127.0.0.1:6000/api/getObserve,0,0,0
+1595030269725,4583,GetObserver-diffPriv,Non HTTP response code: java.net.SocketException,Non HTTP response message: Socket closed,Grupo de Usuários 1-4,text,false,,2667,0,10,10,http://127.0.0.1:6000/api/getObserve,0,0,0
+1595030269725,4584,GetObserver-diffPriv,Non HTTP response code: java.net.SocketException,Non HTTP response message: Socket closed,Grupo de Usuários 1-2,text,false,,2667,0,8,8,http://127.0.0.1:6000/api/getObserve,0,0,0
+1595030269728,4582,GetObserver-diffPriv,Non HTTP response code: java.net.SocketException,Non HTTP response message: Socket closed,Grupo de Usuários 1-6,text,false,,2667,0,8,8,http://127.0.0.1:6000/api/getObserve,0,0,0
+1595030269726,4585,GetObserver-diffPriv,Non HTTP response code: java.net.SocketException,Non HTTP response message: Socket closed,Grupo de Usuários 1-8,text,false,,2667,0,6,6,http://127.0.0.1:6000/api/getObserve,0,0,0
+1595030269725,4588,GetObserver-diffPriv,Non HTTP response code: java.net.SocketException,Non HTTP response message: Socket closed,Grupo de Usuários 1-7,text,false,,2667,0,5,5,http://127.0.0.1:6000/api/getObserve,0,0,0
+1595030269727,4589,GetObserver-diffPriv,Non HTTP response code: java.net.SocketException,Non HTTP response message: Socket closed,Grupo de Usuários 1-9,text,false,,2667,0,4,4,http://127.0.0.1:6000/api/getObserve,0,0,0
+1595030269725,4592,GetObserver-diffPriv,Non HTTP response code: java.net.SocketException,Non HTTP response message: Socket closed,Grupo de Usuários 1-5,text,false,,2667,0,3,3,http://127.0.0.1:6000/api/getObserve,0,0,0
+1595030269725,4594,GetObserver-diffPriv,Non HTTP response code: java.net.SocketException,Non HTTP response message: Socket closed,Grupo de Usuários 1-1,text,false,,2667,0,2,2,http://127.0.0.1:6000/api/getObserve,0,0,0
+1595030269725,4595,GetObserver-diffPriv,Non HTTP response code: java.net.SocketException,Non HTTP response message: Socket closed,Grupo de Usuários 1-10,text,false,,2667,0,1,1,http://127.0.0.1:6000/api/getObserve,0,0,0
+1595030325861,7734,GetObserver-diffPriv,200,OK,Grupo de Usuários 1-3,text,true,,118,126,10,10,http://127.0.0.1:6000/api/getObserve,7734,0,0
+1595030325761,7834,GetObserver-diffPriv,200,OK,Grupo de Usuários 1-2,text,true,,118,126,10,10,http://127.0.0.1:6000/api/getObserve,7834,0,0
+1595030325661,7934,GetObserver-diffPriv,200,OK,Grupo de Usuários 1-1,text,true,,118,126,10,10,http://127.0.0.1:6000/api/getObserve,7934,0,2
+1595030326362,7234,GetObserver-diffPriv,200,OK,Grupo de Usuários 1-8,text,true,,118,126,10,10,http://127.0.0.1:6000/api/getObserve,7234,0,0
+1595030326463,7133,GetObserver-diffPriv,200,OK,Grupo de Usuários 1-9,text,true,,118,126,10,10,http://127.0.0.1:6000/api/getObserve,7133,0,0
+1595030326162,7434,GetObserver-diffPriv,200,OK,Grupo de Usuários 1-6,text,true,,118,126,10,10,http://127.0.0.1:6000/api/getObserve,7434,0,0
+1595030326061,7537,GetObserver-diffPriv,200,OK,Grupo de Usuários 1-5,text,true,,118,126,10,10,http://127.0.0.1:6000/api/getObserve,7537,0,0
+1595030326564,7034,GetObserver-diffPriv,200,OK,Grupo de Usuários 1-10,text,true,,118,126,10,10,http://127.0.0.1:6000/api/getObserve,7034,0,0
+1595030325964,7634,GetObserver-diffPriv,200,OK,Grupo de Usuários 1-4,text,true,,118,126,10,10,http://127.0.0.1:6000/api/getObserve,7634,0,0
+1595030326262,7336,GetObserver-diffPriv,200,OK,Grupo de Usuários 1-7,text,true,,118,126,10,10,http://127.0.0.1:6000/api/getObserve,7336,0,1
+1595030333598,6163,GetObserver-diffPriv,200,OK,Grupo de Usuários 1-5,text,true,,118,126,10,10,http://127.0.0.1:6000/api/getObserve,6163,0,0
+1595030333598,6163,GetObserver-diffPriv,200,OK,Grupo de Usuários 1-10,text,true,,118,126,10,10,http://127.0.0.1:6000/api/getObserve,6163,0,0
+1595030333597,6164,GetObserver-diffPriv,200,OK,Grupo de Usuários 1-8,text,true,,118,126,10,10,http://127.0.0.1:6000/api/getObserve,6164,0,0
+1595030333597,6165,GetObserver-diffPriv,200,OK,Grupo de Usuários 1-6,text,true,,118,126,10,10,http://127.0.0.1:6000/api/getObserve,6165,0,0
+1595030333598,6164,GetObserver-diffPriv,200,OK,Grupo de Usuários 1-7,text,true,,118,126,10,10,http://127.0.0.1:6000/api/getObserve,6164,0,0
+1595030333598,8721,GetObserver-diffPriv,200,OK,Grupo de Usuários 1-4,text,true,,118,126,10,10,http://127.0.0.1:6000/api/getObserve,8721,0,0
+1595030333596,8723,GetObserver-diffPriv,200,OK,Grupo de Usuários 1-3,text,true,,118,126,10,10,http://127.0.0.1:6000/api/getObserve,8723,0,0
+1595030333597,8723,GetObserver-diffPriv,200,OK,Grupo de Usuários 1-9,text,true,,118,126,10,10,http://127.0.0.1:6000/api/getObserve,8723,0,0
+1595030333596,8724,GetObserver-diffPriv,200,OK,Grupo de Usuários 1-1,text,true,,118,126,10,10,http://127.0.0.1:6000/api/getObserve,8724,0,0
+1595030333596,8724,GetObserver-diffPriv,200,OK,Grupo de Usuários 1-2,text,true,,118,126,10,10,http://127.0.0.1:6000/api/getObserve,8724,0,0
+1595030339762,7721,GetObserver-diffPriv,200,OK,Grupo de Usuários 1-7,text,true,,118,126,10,10,http://127.0.0.1:6000/api/getObserve,7721,0,0
+1595030339762,7728,GetObserver-diffPriv,200,OK,Grupo de Usuários 1-6,text,true,,118,126,10,10,http://127.0.0.1:6000/api/getObserve,7728,0,0
+1595030339762,7732,GetObserver-diffPriv,200,OK,Grupo de Usuários 1-5,text,true,,118,126,10,10,http://127.0.0.1:6000/api/getObserve,7732,0,0
+1595030339762,7736,GetObserver-diffPriv,200,OK,Grupo de Usuários 1-10,text,true,,118,126,10,10,http://127.0.0.1:6000/api/getObserve,7736,0,0
+1595030339763,7735,GetObserver-diffPriv,200,OK,Grupo de Usuários 1-8,text,true,,118,126,10,10,http://127.0.0.1:6000/api/getObserve,7735,0,0
+1595030342321,7590,GetObserver-diffPriv,200,OK,Grupo de Usuários 1-1,text,true,,118,126,10,10,http://127.0.0.1:6000/api/getObserve,7590,0,0
+1595030342321,7590,GetObserver-diffPriv,200,OK,Grupo de Usuários 1-3,text,true,,118,126,10,10,http://127.0.0.1:6000/api/getObserve,7590,0,0
+1595030342321,7590,GetObserver-diffPriv,200,OK,Grupo de Usuários 1-2,text,true,,118,126,10,10,http://127.0.0.1:6000/api/getObserve,7590,0,0
+1595030342321,7591,GetObserver-diffPriv,200,OK,Grupo de Usuários 1-4,text,true,,118,126,10,10,http://127.0.0.1:6000/api/getObserve,7591,0,0
+1595030342321,7591,GetObserver-diffPriv,200,OK,Grupo de Usuários 1-9,text,true,,118,126,10,10,http://127.0.0.1:6000/api/getObserve,7591,0,0
+1595030347495,8034,GetObserver-diffPriv,200,OK,Grupo de Usuários 1-5,text,true,,118,126,10,10,http://127.0.0.1:6000/api/getObserve,8034,0,0
+1595030347484,8045,GetObserver-diffPriv,200,OK,Grupo de Usuários 1-7,text,true,,118,126,10,10,http://127.0.0.1:6000/api/getObserve,8045,0,0
+1595030347499,8031,GetObserver-diffPriv,200,OK,Grupo de Usuários 1-10,text,true,,118,126,10,10,http://127.0.0.1:6000/api/getObserve,8031,0,0
+1595030347491,8038,GetObserver-diffPriv,200,OK,Grupo de Usuários 1-6,text,true,,118,126,10,10,http://127.0.0.1:6000/api/getObserve,8038,0,0
+1595030347499,8031,GetObserver-diffPriv,200,OK,Grupo de Usuários 1-8,text,true,,118,126,10,10,http://127.0.0.1:6000/api/getObserve,8031,0,0
+1595030349913,7668,GetObserver-diffPriv,200,OK,Grupo de Usuários 1-9,text,true,,118,126,10,10,http://127.0.0.1:6000/api/getObserve,7668,0,0
+1595030349911,7670,GetObserver-diffPriv,200,OK,Grupo de Usuários 1-1,text,true,,118,126,10,10,http://127.0.0.1:6000/api/getObserve,7670,0,0
+1595030349912,7670,GetObserver-diffPriv,200,OK,Grupo de Usuários 1-4,text,true,,118,126,10,10,http://127.0.0.1:6000/api/getObserve,7670,0,0
+1595030349911,7671,GetObserver-diffPriv,200,OK,Grupo de Usuários 1-2,text,true,,118,126,10,10,http://127.0.0.1:6000/api/getObserve,7671,0,0
+1595030349911,7671,GetObserver-diffPriv,200,OK,Grupo de Usuários 1-3,text,true,,118,126,10,10,http://127.0.0.1:6000/api/getObserve,7671,0,0
+1595030355529,7076,GetObserver-diffPriv,200,OK,Grupo de Usuários 1-10,text,true,,118,126,10,10,http://127.0.0.1:6000/api/getObserve,7076,0,0
+1595030355529,7076,GetObserver-diffPriv,200,OK,Grupo de Usuários 1-6,text,true,,118,126,10,10,http://127.0.0.1:6000/api/getObserve,7076,0,0
+1595030355529,7076,GetObserver-diffPriv,200,OK,Grupo de Usuários 1-5,text,true,,118,126,10,10,http://127.0.0.1:6000/api/getObserve,7076,0,0
+1595030357582,5025,GetObserver-diffPriv,200,OK,Grupo de Usuários 1-3,text,true,,118,126,10,10,http://127.0.0.1:6000/api/getObserve,5025,0,0
+1595030355529,7077,GetObserver-diffPriv,200,OK,Grupo de Usuários 1-7,text,true,,118,126,10,10,http://127.0.0.1:6000/api/getObserve,7077,0,0
+1595030355529,7076,GetObserver-diffPriv,200,OK,Grupo de Usuários 1-8,text,true,,118,126,10,10,http://127.0.0.1:6000/api/getObserve,7076,0,0
+1595030357582,7670,GetObserver-diffPriv,200,OK,Grupo de Usuários 1-1,text,true,,118,126,10,10,http://127.0.0.1:6000/api/getObserve,7670,0,0
+1595030357582,7670,GetObserver-diffPriv,200,OK,Grupo de Usuários 1-4,text,true,,118,126,10,10,http://127.0.0.1:6000/api/getObserve,7670,0,0
+1595030357582,7670,GetObserver-diffPriv,200,OK,Grupo de Usuários 1-9,text,true,,118,126,10,10,http://127.0.0.1:6000/api/getObserve,7670,0,0
+1595030357582,7670,GetObserver-diffPriv,200,OK,Grupo de Usuários 1-2,text,true,,118,126,10,10,http://127.0.0.1:6000/api/getObserve,7670,0,0
+1595030362606,7281,GetObserver-diffPriv,200,OK,Grupo de Usuários 1-10,text,true,,118,126,10,10,http://127.0.0.1:6000/api/getObserve,7281,0,0
+1595030362607,7427,GetObserver-diffPriv,200,OK,Grupo de Usuários 1-7,text,true,,118,126,10,10,http://127.0.0.1:6000/api/getObserve,7427,0,0
+1595030362606,7428,GetObserver-diffPriv,200,OK,Grupo de Usuários 1-5,text,true,,118,126,10,10,http://127.0.0.1:6000/api/getObserve,7428,0,0
+1595030362607,7433,GetObserver-diffPriv,200,OK,Grupo de Usuários 1-8,text,true,,118,126,10,10,http://127.0.0.1:6000/api/getObserve,7433,0,0
+1595030362607,7435,GetObserver-diffPriv,200,OK,Grupo de Usuários 1-3,text,true,,118,126,10,10,http://127.0.0.1:6000/api/getObserve,7435,0,0
+1595030362607,7444,GetObserver-diffPriv,200,OK,Grupo de Usuários 1-6,text,true,,118,126,10,10,http://127.0.0.1:6000/api/getObserve,7444,0,0
+1595030365252,8601,GetObserver-diffPriv,200,OK,Grupo de Usuários 1-4,text,true,,118,126,10,10,http://127.0.0.1:6000/api/getObserve,8601,0,0
+1595030365252,8601,GetObserver-diffPriv,200,OK,Grupo de Usuários 1-9,text,true,,118,126,10,10,http://127.0.0.1:6000/api/getObserve,8601,0,0
+1595030365252,8601,GetObserver-diffPriv,200,OK,Grupo de Usuários 1-2,text,true,,118,126,10,10,http://127.0.0.1:6000/api/getObserve,8601,0,0
+1595030365252,8602,GetObserver-diffPriv,200,OK,Grupo de Usuários 1-1,text,true,,118,126,10,10,http://127.0.0.1:6000/api/getObserve,8602,0,0
+1595030370035,8336,GetObserver-diffPriv,200,OK,Grupo de Usuários 1-7,text,true,,118,126,10,10,http://127.0.0.1:6000/api/getObserve,8336,0,0
+1595030370042,8329,GetObserver-diffPriv,200,OK,Grupo de Usuários 1-3,text,true,,118,126,10,10,http://127.0.0.1:6000/api/getObserve,8329,0,0
+1595030369887,8485,GetObserver-diffPriv,200,OK,Grupo de Usuários 1-10,text,true,,118,126,10,10,http://127.0.0.1:6000/api/getObserve,8485,0,0
+1595030370042,8330,GetObserver-diffPriv,200,OK,Grupo de Usuários 1-8,text,true,,118,126,10,10,http://127.0.0.1:6000/api/getObserve,8328,0,0
+1595030370052,8416,GetObserver-diffPriv,200,OK,Grupo de Usuários 1-6,text,true,,118,126,10,10,http://127.0.0.1:6000/api/getObserve,8416,0,0
+1595030370035,8433,GetObserver-diffPriv,200,OK,Grupo de Usuários 1-5,text,true,,118,126,10,10,http://127.0.0.1:6000/api/getObserve,8433,0,0
+1595030373855,8666,GetObserver-diffPriv,200,OK,Grupo de Usuários 1-1,text,true,,118,126,10,10,http://127.0.0.1:6000/api/getObserve,8666,0,0
+1595030373855,8666,GetObserver-diffPriv,200,OK,Grupo de Usuários 1-2,text,true,,118,126,10,10,http://127.0.0.1:6000/api/getObserve,8666,0,0
+1595030373854,8724,GetObserver-diffPriv,200,OK,Grupo de Usuários 1-9,text,true,,118,126,10,10,http://127.0.0.1:6000/api/getObserve,8724,0,0
+1595030373854,8733,GetObserver-diffPriv,200,OK,Grupo de Usuários 1-4,text,true,,118,126,10,10,http://127.0.0.1:6000/api/getObserve,8733,0,0
+1595030378469,8475,GetObserver-diffPriv,200,OK,Grupo de Usuários 1-6,text,true,,118,126,10,10,http://127.0.0.1:6000/api/getObserve,8475,0,0
+1595030378469,8485,GetObserver-diffPriv,200,OK,Grupo de Usuários 1-5,text,true,,118,126,10,10,http://127.0.0.1:6000/api/getObserve,8485,0,0
+1595030378373,8670,GetObserver-diffPriv,200,OK,Grupo de Usuários 1-8,text,true,,118,126,10,10,http://127.0.0.1:6000/api/getObserve,8670,0,0
+1595030378371,8672,GetObserver-diffPriv,200,OK,Grupo de Usuários 1-7,text,true,,118,126,10,10,http://127.0.0.1:6000/api/getObserve,8672,0,0
+1595030378371,8672,GetObserver-diffPriv,200,OK,Grupo de Usuários 1-3,text,true,,118,126,10,10,http://127.0.0.1:6000/api/getObserve,8672,0,0
+1595030378373,8676,GetObserver-diffPriv,200,OK,Grupo de Usuários 1-10,text,true,,118,126,10,10,http://127.0.0.1:6000/api/getObserve,8676,0,0
+1595030382522,7553,GetObserver-diffPriv,200,OK,Grupo de Usuários 1-2,text,true,,118,126,10,10,http://127.0.0.1:6000/api/getObserve,7553,0,0
+1595030382588,7803,GetObserver-diffPriv,200,OK,Grupo de Usuários 1-4,text,true,,118,126,10,10,http://127.0.0.1:6000/api/getObserve,7803,0,0
+1595030382522,7872,GetObserver-diffPriv,200,OK,Grupo de Usuários 1-1,text,true,,118,126,10,10,http://127.0.0.1:6000/api/getObserve,7872,0,0
+1595030382578,7816,GetObserver-diffPriv,200,OK,Grupo de Usuários 1-9,text,true,,118,126,10,10,http://127.0.0.1:6000/api/getObserve,7816,0,0
+1595030387051,7820,GetObserver-diffPriv,200,OK,Grupo de Usuários 1-10,text,true,,118,126,10,10,http://127.0.0.1:6000/api/getObserve,7820,0,1
+1595030387044,7827,GetObserver-diffPriv,200,OK,Grupo de Usuários 1-3,text,true,,118,126,10,10,http://127.0.0.1:6000/api/getObserve,7827,0,2
+1595030387045,7826,GetObserver-diffPriv,200,OK,Grupo de Usuários 1-7,text,true,,118,126,10,10,http://127.0.0.1:6000/api/getObserve,7826,0,2
+1595030386956,7917,GetObserver-diffPriv,200,OK,Grupo de Usuários 1-5,text,true,,118,126,10,10,http://127.0.0.1:6000/api/getObserve,7917,0,0
+1595030386946,7927,GetObserver-diffPriv,200,OK,Grupo de Usuários 1-6,text,true,,118,126,10,10,http://127.0.0.1:6000/api/getObserve,7927,0,2
+1595030387045,7828,GetObserver-diffPriv,200,OK,Grupo de Usuários 1-8,text,true,,118,126,10,10,http://127.0.0.1:6000/api/getObserve,7828,0,1
+1595030390391,7630,GetObserver-diffPriv,200,OK,Grupo de Usuários 1-4,text,true,,118,126,10,10,http://127.0.0.1:6000/api/getObserve,7629,0,1
+1595030390076,7995,GetObserver-diffPriv,200,OK,Grupo de Usuários 1-2,text,true,,118,126,10,10,http://127.0.0.1:6000/api/getObserve,7995,0,0
+1595030390395,7676,GetObserver-diffPriv,200,OK,Grupo de Usuários 1-9,text,true,,118,126,10,10,http://127.0.0.1:6000/api/getObserve,7676,0,0
+1595030390395,7676,GetObserver-diffPriv,200,OK,Grupo de Usuários 1-1,text,true,,118,126,10,10,http://127.0.0.1:6000/api/getObserve,7676,0,0
+1595030394873,8594,GetObserver-diffPriv,200,OK,Grupo de Usuários 1-5,text,true,,118,126,10,10,http://127.0.0.1:6000/api/getObserve,8594,0,0
+1595030394873,8594,GetObserver-diffPriv,200,OK,Grupo de Usuários 1-8,text,true,,118,126,10,10,http://127.0.0.1:6000/api/getObserve,8594,0,0
+1595030394872,8595,GetObserver-diffPriv,200,OK,Grupo de Usuários 1-3,text,true,,118,126,10,10,http://127.0.0.1:6000/api/getObserve,8595,0,0
+1595030394873,8595,GetObserver-diffPriv,200,OK,Grupo de Usuários 1-6,text,true,,118,126,10,10,http://127.0.0.1:6000/api/getObserve,8595,0,0
+1595030394872,8606,GetObserver-diffPriv,200,OK,Grupo de Usuários 1-10,text,true,,118,126,10,10,http://127.0.0.1:6000/api/getObserve,8606,0,0
+1595030394872,8988,GetObserver-diffPriv,200,OK,Grupo de Usuários 1-7,text,true,,118,126,10,10,http://127.0.0.1:6000/api/getObserve,8988,0,0
+1595030398075,7629,GetObserver-diffPriv,200,OK,Grupo de Usuários 1-1,text,true,,118,126,10,10,http://127.0.0.1:6000/api/getObserve,7629,0,0
+1595030398022,7713,GetObserver-diffPriv,200,OK,Grupo de Usuários 1-4,text,true,,118,126,10,10,http://127.0.0.1:6000/api/getObserve,7713,0,0
+1595030398074,7661,GetObserver-diffPriv,200,OK,Grupo de Usuários 1-2,text,true,,118,126,10,10,http://127.0.0.1:6000/api/getObserve,7661,0,0
+1595030398073,7662,GetObserver-diffPriv,200,OK,Grupo de Usuários 1-9,text,true,,118,126,10,10,http://127.0.0.1:6000/api/getObserve,7662,0,0
+1595030405704,4815,GetObserver-diffPriv,200,OK,Grupo de Usuários 1-1,text,true,,118,126,10,10,http://127.0.0.1:6000/api/getObserve,4815,0,0
+1595030403469,7050,GetObserver-diffPriv,200,OK,Grupo de Usuários 1-8,text,true,,118,126,10,10,http://127.0.0.1:6000/api/getObserve,7050,0,0
+1595030403479,7040,GetObserver-diffPriv,200,OK,Grupo de Usuários 1-10,text,true,,118,126,10,10,http://127.0.0.1:6000/api/getObserve,7040,0,0
+1595030403468,7051,GetObserver-diffPriv,200,OK,Grupo de Usuários 1-5,text,true,,118,126,10,10,http://127.0.0.1:6000/api/getObserve,7051,0,0
+1595030403860,6659,GetObserver-diffPriv,200,OK,Grupo de Usuários 1-7,text,true,,118,126,10,10,http://127.0.0.1:6000/api/getObserve,6659,0,0
+1595030403468,7969,GetObserver-diffPriv,200,OK,Grupo de Usuários 1-6,text,true,,118,126,10,10,http://127.0.0.1:6000/api/getObserve,7969,0,0
+1595030403468,7969,GetObserver-diffPriv,200,OK,Grupo de Usuários 1-3,text,true,,118,126,10,10,http://127.0.0.1:6000/api/getObserve,7969,0,0
+1595030405734,7766,GetObserver-diffPriv,200,OK,Grupo de Usuários 1-9,text,true,,118,126,10,10,http://127.0.0.1:6000/api/getObserve,7766,0,0
+1595030405734,7838,GetObserver-diffPriv,200,OK,Grupo de Usuários 1-4,text,true,,118,126,10,10,http://127.0.0.1:6000/api/getObserve,7838,0,0
+1595030405734,7838,GetObserver-diffPriv,200,OK,Grupo de Usuários 1-2,text,true,,118,126,10,10,http://127.0.0.1:6000/api/getObserve,7838,0,0
+1595030410520,8198,GetObserver-diffPriv,200,OK,Grupo de Usuários 1-5,text,true,,118,126,10,10,http://127.0.0.1:6000/api/getObserve,8198,0,0
+1595030410520,8198,GetObserver-diffPriv,200,OK,Grupo de Usuários 1-8,text,true,,118,126,10,10,http://127.0.0.1:6000/api/getObserve,8198,0,0
+1595030411439,7280,GetObserver-diffPriv,200,OK,Grupo de Usuários 1-3,text,true,,118,126,10,10,http://127.0.0.1:6000/api/getObserve,7279,0,0
+1595030411439,7281,GetObserver-diffPriv,200,OK,Grupo de Usuários 1-6,text,true,,118,126,10,10,http://127.0.0.1:6000/api/getObserve,7281,0,0
+1595030410520,8200,GetObserver-diffPriv,200,OK,Grupo de Usuários 1-7,text,true,,118,126,10,10,http://127.0.0.1:6000/api/getObserve,8200,0,0
+1595030413501,5220,GetObserver-diffPriv,200,OK,Grupo de Usuários 1-9,text,true,,118,126,10,10,http://127.0.0.1:6000/api/getObserve,5220,0,0
+1595030410521,8200,GetObserver-diffPriv,200,OK,Grupo de Usuários 1-10,text,true,,118,126,10,10,http://127.0.0.1:6000/api/getObserve,8200,0,0
+1595030410520,8205,GetObserver-diffPriv,200,OK,Grupo de Usuários 1-1,text,true,,118,126,10,10,http://127.0.0.1:6000/api/getObserve,8205,0,0
+1595030413574,7501,GetObserver-diffPriv,200,OK,Grupo de Usuários 1-2,text,true,,118,126,10,10,http://127.0.0.1:6000/api/getObserve,7501,0,0
+1595030413574,7501,GetObserver-diffPriv,200,OK,Grupo de Usuários 1-4,text,true,,118,126,10,10,http://127.0.0.1:6000/api/getObserve,7501,0,0
+1595030418720,6974,GetObserver-diffPriv,200,OK,Grupo de Usuários 1-3,text,true,,118,126,10,10,http://127.0.0.1:6000/api/getObserve,6974,0,0
+1595030418720,6974,GetObserver-diffPriv,200,OK,Grupo de Usuários 1-7,text,true,,118,126,10,10,http://127.0.0.1:6000/api/getObserve,6974,0,0
+1595030418725,6972,GetObserver-diffPriv,200,OK,Grupo de Usuários 1-10,text,true,,118,126,10,10,http://127.0.0.1:6000/api/getObserve,6972,0,0
+1595030418721,7053,GetObserver-diffPriv,200,OK,Grupo de Usuários 1-5,text,true,,118,126,10,10,http://127.0.0.1:6000/api/getObserve,7053,0,0
+1595030418721,7093,GetObserver-diffPriv,200,OK,Grupo de Usuários 1-9,text,true,,118,126,10,10,http://127.0.0.1:6000/api/getObserve,7093,0,0
+1595030421076,4739,GetObserver-diffPriv,200,OK,Grupo de Usuários 1-4,text,true,,118,126,10,10,http://127.0.0.1:6000/api/getObserve,4739,0,0
+1595030418718,7117,GetObserver-diffPriv,200,OK,Grupo de Usuários 1-8,text,true,,118,126,10,10,http://127.0.0.1:6000/api/getObserve,7117,0,0
+1595030418720,7115,GetObserver-diffPriv,200,OK,Grupo de Usuários 1-6,text,true,,118,126,10,10,http://127.0.0.1:6000/api/getObserve,7115,0,0
+1595030418725,7110,GetObserver-diffPriv,200,OK,Grupo de Usuários 1-1,text,true,,118,126,10,10,http://127.0.0.1:6000/api/getObserve,7110,0,0
+1595030421075,4760,GetObserver-diffPriv,200,OK,Grupo de Usuários 1-2,text,true,,118,126,10,10,http://127.0.0.1:6000/api/getObserve,4760,0,0
+1595030425816,6724,GetObserver-diffPriv,200,OK,Grupo de Usuários 1-4,text,true,,118,126,10,10,http://127.0.0.1:6000/api/getObserve,6724,0,0
+1595030425698,6842,GetObserver-diffPriv,200,OK,Grupo de Usuários 1-10,text,true,,118,126,10,10,http://127.0.0.1:6000/api/getObserve,6842,0,0
+1595030425835,6705,GetObserver-diffPriv,200,OK,Grupo de Usuários 1-6,text,true,,118,126,10,10,http://127.0.0.1:6000/api/getObserve,6705,0,0
+1595030425694,6847,GetObserver-diffPriv,200,OK,Grupo de Usuários 1-7,text,true,,118,126,10,10,http://127.0.0.1:6000/api/getObserve,6847,0,0
+1595030425694,6846,GetObserver-diffPriv,200,OK,Grupo de Usuários 1-3,text,true,,118,126,10,10,http://127.0.0.1:6000/api/getObserve,6846,0,0
+1595030425815,8606,GetObserver-diffPriv,200,OK,Grupo de Usuários 1-9,text,true,,118,126,10,10,http://127.0.0.1:6000/api/getObserve,8606,0,0
+1595030425774,8788,GetObserver-diffPriv,200,OK,Grupo de Usuários 1-5,text,true,,118,126,10,10,http://127.0.0.1:6000/api/getObserve,8788,0,0
+1595030425835,8879,GetObserver-diffPriv,200,OK,Grupo de Usuários 1-1,text,true,,118,126,10,10,http://127.0.0.1:6000/api/getObserve,8879,0,0
+1595030425835,8897,GetObserver-diffPriv,200,OK,Grupo de Usuários 1-8,text,true,,118,126,10,10,http://127.0.0.1:6000/api/getObserve,8897,0,0
+1595030425835,8897,GetObserver-diffPriv,200,OK,Grupo de Usuários 1-2,text,true,,118,126,10,10,http://127.0.0.1:6000/api/getObserve,8897,0,0
+1595030432541,7411,GetObserver-diffPriv,200,OK,Grupo de Usuários 1-4,text,true,,118,126,10,10,http://127.0.0.1:6000/api/getObserve,7411,0,0
+1595030432541,7421,GetObserver-diffPriv,200,OK,Grupo de Usuários 1-3,text,true,,118,126,10,10,http://127.0.0.1:6000/api/getObserve,7421,0,0
+1595030432541,7427,GetObserver-diffPriv,200,OK,Grupo de Usuários 1-10,text,true,,118,126,10,10,http://127.0.0.1:6000/api/getObserve,7424,0,0
+1595030432541,7463,GetObserver-diffPriv,200,OK,Grupo de Usuários 1-6,text,true,,118,126,10,10,http://127.0.0.1:6000/api/getObserve,7463,0,0
+1595030434421,5660,GetObserver-diffPriv,200,OK,Grupo de Usuários 1-9,text,true,,118,126,10,10,http://127.0.0.1:6000/api/getObserve,5660,0,0
+1595030432541,7540,GetObserver-diffPriv,200,OK,Grupo de Usuários 1-7,text,true,,118,126,10,10,http://127.0.0.1:6000/api/getObserve,7540,0,0
+1595030434733,7561,GetObserver-diffPriv,200,OK,Grupo de Usuários 1-8,text,true,,118,126,10,10,http://127.0.0.1:6000/api/getObserve,7561,0,0
+1595030434714,7585,GetObserver-diffPriv,200,OK,Grupo de Usuários 1-1,text,true,,118,126,10,10,http://127.0.0.1:6000/api/getObserve,7584,0,0
+1595030434562,8347,GetObserver-diffPriv,200,OK,Grupo de Usuários 1-5,text,true,,118,126,10,10,http://127.0.0.1:6000/api/getObserve,8347,0,0
+1595030434733,8193,GetObserver-diffPriv,200,OK,Grupo de Usuários 1-2,text,true,,118,126,10,10,http://127.0.0.1:6000/api/getObserve,8193,0,0
+1595030442296,5230,GetObserver-diffPriv,200,OK,Grupo de Usuários 1-8,text,true,,118,126,10,10,http://127.0.0.1:6000/api/getObserve,5230,0,0
+1595030440004,7576,GetObserver-diffPriv,200,OK,Grupo de Usuários 1-6,text,true,,118,126,10,10,http://127.0.0.1:6000/api/getObserve,7576,0,0
+1595030439955,7625,GetObserver-diffPriv,200,OK,Grupo de Usuários 1-4,text,true,,118,126,10,10,http://127.0.0.1:6000/api/getObserve,7625,0,0
+1595030439965,7615,GetObserver-diffPriv,200,OK,Grupo de Usuários 1-3,text,true,,118,126,10,10,http://127.0.0.1:6000/api/getObserve,7615,0,0
+1595030439970,7617,GetObserver-diffPriv,200,OK,Grupo de Usuários 1-10,text,true,,118,126,10,10,http://127.0.0.1:6000/api/getObserve,7617,0,0
+1595030440081,7506,GetObserver-diffPriv,200,OK,Grupo de Usuários 1-9,text,true,,118,126,10,10,http://127.0.0.1:6000/api/getObserve,7506,0,0
+1595030440081,7506,GetObserver-diffPriv,200,OK,Grupo de Usuários 1-7,text,true,,118,126,10,10,http://127.0.0.1:6000/api/getObserve,7506,0,0
+1595030442927,7115,GetObserver-diffPriv,200,OK,Grupo de Usuários 1-2,text,true,,118,126,10,10,http://127.0.0.1:6000/api/getObserve,7115,0,0
+1595030442910,7289,GetObserver-diffPriv,200,OK,Grupo de Usuários 1-5,text,true,,118,126,10,10,http://127.0.0.1:6000/api/getObserve,7289,0,0
+1595030442301,7951,GetObserver-diffPriv,200,OK,Grupo de Usuários 1-1,text,true,,118,126,10,10,http://127.0.0.1:6000/api/getObserve,7951,0,0
+1595030447588,7044,GetObserver-diffPriv,200,OK,Grupo de Usuários 1-10,text,true,,118,126,10,10,http://127.0.0.1:6000/api/getObserve,7044,0,1
+1595030447526,7213,GetObserver-diffPriv,200,OK,Grupo de Usuários 1-8,text,true,,118,126,10,10,http://127.0.0.1:6000/api/getObserve,7213,0,0
+1595030447582,7161,GetObserver-diffPriv,200,OK,Grupo de Usuários 1-3,text,true,,118,126,10,10,http://127.0.0.1:6000/api/getObserve,7161,0,1
+1595030447582,7161,GetObserver-diffPriv,200,OK,Grupo de Usuários 1-4,text,true,,118,126,10,10,http://127.0.0.1:6000/api/getObserve,7161,0,0
+1595030447582,7165,GetObserver-diffPriv,200,OK,Grupo de Usuários 1-6,text,true,,118,126,10,10,http://127.0.0.1:6000/api/getObserve,7165,0,1
+1595030447589,7198,GetObserver-diffPriv,200,OK,Grupo de Usuários 1-7,text,true,,118,126,10,10,http://127.0.0.1:6000/api/getObserve,7198,0,0
+1595030447588,7199,GetObserver-diffPriv,200,OK,Grupo de Usuários 1-9,text,true,,118,126,10,10,http://127.0.0.1:6000/api/getObserve,7199,0,0
+1595030450043,7719,GetObserver-diffPriv,200,OK,Grupo de Usuários 1-2,text,true,,118,126,10,10,http://127.0.0.1:6000/api/getObserve,7719,0,0
+1595030450253,7545,GetObserver-diffPriv,200,OK,Grupo de Usuários 1-1,text,true,,118,126,10,10,http://127.0.0.1:6000/api/getObserve,7545,0,0
+1595030450199,7599,GetObserver-diffPriv,200,OK,Grupo de Usuários 1-5,text,true,,118,126,10,10,http://127.0.0.1:6000/api/getObserve,7599,0,1
+1595030454743,8207,GetObserver-diffPriv,200,OK,Grupo de Usuários 1-3,text,true,,118,126,10,10,http://127.0.0.1:6000/api/getObserve,8207,0,0
+1595030454743,8287,GetObserver-diffPriv,200,OK,Grupo de Usuários 1-4,text,true,,118,126,10,10,http://127.0.0.1:6000/api/getObserve,8287,0,1
+1595030454631,8407,GetObserver-diffPriv,200,OK,Grupo de Usuários 1-10,text,true,,118,126,10,10,http://127.0.0.1:6000/api/getObserve,8407,0,0
+1595030454746,8292,GetObserver-diffPriv,200,OK,Grupo de Usuários 1-6,text,true,,118,126,10,10,http://127.0.0.1:6000/api/getObserve,8292,0,0
+1595030454786,8254,GetObserver-diffPriv,200,OK,Grupo de Usuários 1-9,text,true,,118,126,10,10,http://127.0.0.1:6000/api/getObserve,8254,0,1
+1595030454738,8304,GetObserver-diffPriv,200,OK,Grupo de Usuários 1-8,text,true,,118,126,10,10,http://127.0.0.1:6000/api/getObserve,8304,0,0
+1595030454786,8256,GetObserver-diffPriv,200,OK,Grupo de Usuários 1-7,text,true,,118,126,10,10,http://127.0.0.1:6000/api/getObserve,8256,0,0
+1595030457798,6930,GetObserver-diffPriv,200,OK,Grupo de Usuários 1-1,text,true,,118,126,10,10,http://127.0.0.1:6000/api/getObserve,6930,0,1
+1595030457798,6930,GetObserver-diffPriv,200,OK,Grupo de Usuários 1-5,text,true,,118,126,10,10,http://127.0.0.1:6000/api/getObserve,6930,0,0
+1595030457762,6967,GetObserver-diffPriv,200,OK,Grupo de Usuários 1-2,text,true,,118,126,10,10,http://127.0.0.1:6000/api/getObserve,6967,0,1
+1595030463044,7014,GetObserver-diffPriv,200,OK,Grupo de Usuários 1-8,text,true,,118,126,10,10,http://127.0.0.1:6000/api/getObserve,7014,0,0
+1595030462952,7109,GetObserver-diffPriv,200,OK,Grupo de Usuários 1-3,text,true,,118,126,10,10,http://127.0.0.1:6000/api/getObserve,7109,0,0
+1595030463041,7021,GetObserver-diffPriv,200,OK,Grupo de Usuários 1-6,text,true,,118,126,10,10,http://127.0.0.1:6000/api/getObserve,7021,0,0
+1595030463040,7023,GetObserver-diffPriv,200,OK,Grupo de Usuários 1-10,text,true,,118,126,10,10,http://127.0.0.1:6000/api/getObserve,7023,0,0
+1595030463031,7045,GetObserver-diffPriv,200,OK,Grupo de Usuários 1-4,text,true,,118,126,10,10,http://127.0.0.1:6000/api/getObserve,7045,0,0
+1595030463043,7033,GetObserver-diffPriv,200,OK,Grupo de Usuários 1-9,text,true,,118,126,10,10,http://127.0.0.1:6000/api/getObserve,7033,0,0
+1595030464729,5348,GetObserver-diffPriv,200,OK,Grupo de Usuários 1-5,text,true,,118,126,10,10,http://127.0.0.1:6000/api/getObserve,5348,0,0
+1595030464729,5379,GetObserver-diffPriv,200,OK,Grupo de Usuários 1-2,text,true,,118,126,10,10,http://127.0.0.1:6000/api/getObserve,5379,0,0
+1595030464729,5379,GetObserver-diffPriv,200,OK,Grupo de Usuários 1-1,text,true,,118,126,10,10,http://127.0.0.1:6000/api/getObserve,5379,0,0
+1595030463044,7066,GetObserver-diffPriv,200,OK,Grupo de Usuários 1-7,text,true,,118,126,10,10,http://127.0.0.1:6000/api/getObserve,7066,0,0
+1595030470058,6998,GetObserver-diffPriv,200,OK,Grupo de Usuários 1-8,text,true,,118,126,10,10,http://127.0.0.1:6000/api/getObserve,6998,0,0
+1595030470110,7063,GetObserver-diffPriv,200,OK,Grupo de Usuários 1-7,text,true,,118,126,10,10,http://127.0.0.1:6000/api/getObserve,7063,0,0
+1595030470062,7111,GetObserver-diffPriv,200,OK,Grupo de Usuários 1-3,text,true,,118,126,10,10,http://127.0.0.1:6000/api/getObserve,7111,0,0
+1595030470076,7097,GetObserver-diffPriv,200,OK,Grupo de Usuários 1-4,text,true,,118,126,10,10,http://127.0.0.1:6000/api/getObserve,7097,0,0
+1595030470063,7111,GetObserver-diffPriv,200,OK,Grupo de Usuários 1-10,text,true,,118,126,10,10,http://127.0.0.1:6000/api/getObserve,7111,0,0
+1595030470062,7113,GetObserver-diffPriv,200,OK,Grupo de Usuários 1-6,text,true,,118,126,10,10,http://127.0.0.1:6000/api/getObserve,7113,0,0
+1595030470076,7099,GetObserver-diffPriv,200,OK,Grupo de Usuários 1-9,text,true,,118,126,10,10,http://127.0.0.1:6000/api/getObserve,7099,0,0
+1595030470109,7067,GetObserver-diffPriv,200,OK,Grupo de Usuários 1-2,text,true,,118,126,10,10,http://127.0.0.1:6000/api/getObserve,7067,0,0
+1595030470078,9053,GetObserver-diffPriv,200,OK,Grupo de Usuários 1-5,text,true,,118,126,10,10,http://127.0.0.1:6000/api/getObserve,9053,0,0
+1595030470111,9020,GetObserver-diffPriv,200,OK,Grupo de Usuários 1-1,text,true,,118,126,10,10,http://127.0.0.1:6000/api/getObserve,9020,0,0
+1595030479131,5219,GetObserver-diffPriv,200,OK,Grupo de Usuários 1-1,text,true,,118,126,10,10,http://127.0.0.1:6000/api/getObserve,5219,0,0
+1595030477174,7799,GetObserver-diffPriv,200,OK,Grupo de Usuários 1-4,text,true,,118,126,10,10,http://127.0.0.1:6000/api/getObserve,7799,0,0
+1595030477056,7917,GetObserver-diffPriv,200,OK,Grupo de Usuários 1-8,text,true,,118,126,10,10,http://127.0.0.1:6000/api/getObserve,7917,0,0
+1595030477176,7797,GetObserver-diffPriv,200,OK,Grupo de Usuários 1-9,text,true,,118,126,10,10,http://127.0.0.1:6000/api/getObserve,7797,0,0
+1595030477175,7798,GetObserver-diffPriv,200,OK,Grupo de Usuários 1-6,text,true,,118,126,10,10,http://127.0.0.1:6000/api/getObserve,7798,0,0
+1595030477176,7797,GetObserver-diffPriv,200,OK,Grupo de Usuários 1-2,text,true,,118,126,10,10,http://127.0.0.1:6000/api/getObserve,7797,0,0
+1595030477173,7800,GetObserver-diffPriv,200,OK,Grupo de Usuários 1-7,text,true,,118,126,10,10,http://127.0.0.1:6000/api/getObserve,7800,0,0
+1595030477173,7802,GetObserver-diffPriv,200,OK,Grupo de Usuários 1-3,text,true,,118,126,10,10,http://127.0.0.1:6000/api/getObserve,7802,0,0
+1595030479131,5844,GetObserver-diffPriv,200,OK,Grupo de Usuários 1-5,text,true,,118,126,10,10,http://127.0.0.1:6000/api/getObserve,5844,0,0
+1595030477174,7801,GetObserver-diffPriv,200,OK,Grupo de Usuários 1-10,text,true,,118,126,10,10,http://127.0.0.1:6000/api/getObserve,7801,0,0
+1595030484974,6450,GetObserver-diffPriv,200,OK,Grupo de Usuários 1-9,text,true,,118,126,10,10,http://127.0.0.1:6000/api/getObserve,6450,0,0
+1595030484352,7072,GetObserver-diffPriv,200,OK,Grupo de Usuários 1-1,text,true,,118,126,10,10,http://127.0.0.1:6000/api/getObserve,7072,0,0
+1595030484975,8368,GetObserver-diffPriv,200,OK,Grupo de Usuários 1-7,text,true,,118,126,10,10,http://127.0.0.1:6000/api/getObserve,8368,0,0
+1595030484976,8367,GetObserver-diffPriv,200,OK,Grupo de Usuários 1-3,text,true,,118,126,10,10,http://127.0.0.1:6000/api/getObserve,8367,0,0
+1595030484974,8383,GetObserver-diffPriv,200,OK,Grupo de Usuários 1-6,text,true,,118,126,8,8,http://127.0.0.1:6000/api/getObserve,8383,0,0
+1595030484975,8382,GetObserver-diffPriv,200,OK,Grupo de Usuários 1-4,text,true,,118,126,8,8,http://127.0.0.1:6000/api/getObserve,8382,0,0
+1595030484974,8607,GetObserver-diffPriv,200,OK,Grupo de Usuários 1-8,text,true,,118,126,6,6,http://127.0.0.1:6000/api/getObserve,8607,0,0
+1595030484975,8611,GetObserver-diffPriv,200,OK,Grupo de Usuários 1-2,text,true,,118,126,5,5,http://127.0.0.1:6000/api/getObserve,8611,0,0
+1595030484976,8621,GetObserver-diffPriv,200,OK,Grupo de Usuários 1-5,text,true,,118,126,4,4,http://127.0.0.1:6000/api/getObserve,8621,0,0
+1595030484977,8620,GetObserver-diffPriv,200,OK,Grupo de Usuários 1-10,text,true,,118,126,4,4,http://127.0.0.1:6000/api/getObserve,8620,0,0
+1595030491424,6380,GetObserver-diffPriv,200,OK,Grupo de Usuários 1-9,text,true,,118,126,2,2,http://127.0.0.1:6000/api/getObserve,6380,0,0
+1595030491424,6380,GetObserver-diffPriv,200,OK,Grupo de Usuários 1-1,text,true,,118,126,2,2,http://127.0.0.1:6000/api/getObserve,6380,0,0
+1595030824851,144531,GetObserver-diffPriv,Non HTTP response code: org.apache.http.NoHttpResponseException,Non HTTP response message: 127.0.0.1:6000 failed to respond,Grupo de Usuários 1-1,text,false,,2067,0,1,1,http://127.0.0.1:6000/api/getObserve,0,0,4
+1595031004600,108135,GetObserver-diffPriv,Non HTTP response code: org.apache.http.NoHttpResponseException,Non HTTP response message: 127.0.0.1:6000 failed to respond,Grupo de Usuários 1-1,text,false,,2067,0,1,1,http://127.0.0.1:6000/api/getObserve,0,0,0
+1595031126564,12,GetObserver-diffPriv,Non HTTP response code: org.apache.http.conn.HttpHostConnectException,Non HTTP response message: Connect to 127.0.0.1:6000 [/127.0.0.1] failed: Connection refused,Grupo de Usuários 1-1,text,false,,2545,0,1,1,http://127.0.0.1:6000/api/getObserve,0,0,12
+1595031140631,73652,GetObserver-diffPriv,Non HTTP response code: org.apache.http.NoHttpResponseException,Non HTTP response message: 127.0.0.1:6000 failed to respond,Grupo de Usuários 1-1,text,false,,2067,0,1,1,http://127.0.0.1:6000/api/getObserve,0,0,0
+1595031441223,13071,GetObserver-diffPriv,Non HTTP response code: org.apache.http.NoHttpResponseException,Non HTTP response message: 127.0.0.1:6000 failed to respond,Grupo de Usuários 1-1,text,false,,2067,0,1,1,http://127.0.0.1:6000/api/getObserve,0,0,2
+1595031471796,1435081,GetObserver-diffPriv,Non HTTP response code: org.apache.http.NoHttpResponseException,Non HTTP response message: 127.0.0.1:6000 failed to respond,Grupo de Usuários 1-1,text,false,,2067,0,1,1,http://127.0.0.1:6000/api/getObserve,0,0,1
+1595033718628,3360,GetObserver-diffPriv,200,OK,Grupo de Usuários 1-1,text,true,,118,126,1,1,http://127.0.0.1:6000/api/getObserve,3359,0,12
+1595034082464,70794,GetObserver-diffPriv,Non HTTP response code: org.apache.http.NoHttpResponseException,Non HTTP response message: 127.0.0.1:6000 failed to respond,Grupo de Usuários 1-1,text,false,,2067,0,1,1,http://127.0.0.1:6000/api/getObserve,0,0,4
+1595034183073,3939787,GetObserver-diffPriv,Non HTTP response code: org.apache.http.NoHttpResponseException,Non HTTP response message: 127.0.0.1:6000 failed to respond,Grupo de Usuários 1-1,text,false,,2067,0,1,1,http://127.0.0.1:6000/api/getObserve,0,0,1
+1595047599261,72158,GetObserver-diffPriv,200,OK,Grupo de Usuários 1-1,text,true,,118,126,1,1,http://127.0.0.1:6000/api/getObserve,72153,0,38
+1595047728591,90286,GetObserver-diffPriv,200,OK,Grupo de Usuários 1-8,text,true,,118,126,10,10,http://127.0.0.1:6000/api/getObserve,90286,0,0
+1595047727890,108737,GetObserver-diffPriv,Non HTTP response code: java.net.SocketException,Non HTTP response message: Socket closed,Grupo de Usuários 1-1,text,false,,2667,0,9,9,http://127.0.0.1:6000/api/getObserve,0,0,1
+1595047728685,107942,GetObserver-diffPriv,Non HTTP response code: java.net.SocketException,Non HTTP response message: Socket closed,Grupo de Usuários 1-9,text,false,,2667,0,9,9,http://127.0.0.1:6000/api/getObserve,0,0,1
+1595047728092,108557,GetObserver-diffPriv,Non HTTP response code: java.net.SocketException,Non HTTP response message: Socket closed,Grupo de Usuários 1-3,text,false,,2667,0,7,7,http://127.0.0.1:6000/api/getObserve,0,0,1
+1595047728787,107874,GetObserver-diffPriv,Non HTTP response code: java.net.SocketException,Non HTTP response message: Socket closed,Grupo de Usuários 1-10,text,false,,2667,0,6,6,http://127.0.0.1:6000/api/getObserve,0,0,1
+1595047728387,108280,GetObserver-diffPriv,Non HTTP response code: java.net.SocketException,Non HTTP response message: Socket closed,Grupo de Usuários 1-6,text,false,,2667,0,5,5,http://127.0.0.1:6000/api/getObserve,0,0,1
+1595047728191,108495,GetObserver-diffPriv,Non HTTP response code: java.net.SocketException,Non HTTP response message: Socket closed,Grupo de Usuários 1-4,text,false,,2667,0,4,4,http://127.0.0.1:6000/api/getObserve,0,0,1
+1595047728288,108403,GetObserver-diffPriv,Non HTTP response code: java.net.SocketException,Non HTTP response message: Socket closed,Grupo de Usuários 1-5,text,false,,2667,0,3,3,http://127.0.0.1:6000/api/getObserve,0,0,1
+1595047727997,108698,GetObserver-diffPriv,Non HTTP response code: java.net.SocketException,Non HTTP response message: Socket closed,Grupo de Usuários 1-2,text,false,,2667,0,2,2,http://127.0.0.1:6000/api/getObserve,0,0,1
+1595047728489,108214,GetObserver-diffPriv,Non HTTP response code: java.net.SocketException,Non HTTP response message: Socket closed,Grupo de Usuários 1-7,text,false,,2667,0,1,1,http://127.0.0.1:6000/api/getObserve,0,0,0
+1595048191859,115978,GetObserver-diffPriv,200,OK,Grupo de Usuários 1-2,text,true,,118,126,10,10,http://127.0.0.1:6000/api/getObserve,115978,0,1
+1595048192358,115479,GetObserver-diffPriv,200,OK,Grupo de Usuários 1-7,text,true,,118,126,10,10,http://127.0.0.1:6000/api/getObserve,115479,0,1
+1595048192060,121521,GetObserver-diffPriv,200,OK,Grupo de Usuários 1-4,text,true,,118,126,10,10,http://127.0.0.1:6000/api/getObserve,121521,0,0
+1595048192659,122468,GetObserver-diffPriv,200,OK,Grupo de Usuários 1-10,text,true,,118,126,10,10,http://127.0.0.1:6000/api/getObserve,122468,0,0
+1595048191957,124006,GetObserver-diffPriv,200,OK,Grupo de Usuários 1-3,text,true,,118,126,10,10,http://127.0.0.1:6000/api/getObserve,124006,0,0
+1595048307854,9287,GetObserver-diffPriv,200,OK,Grupo de Usuários 1-2,text,true,,118,126,10,10,http://127.0.0.1:6000/api/getObserve,9287,0,3
+1595048192255,124886,GetObserver-diffPriv,200,OK,Grupo de Usuários 1-6,text,true,,118,126,10,10,http://127.0.0.1:6000/api/getObserve,124886,0,0
+1595048191754,125390,GetObserver-diffPriv,200,OK,Grupo de Usuários 1-1,text,true,,118,126,10,10,http://127.0.0.1:6000/api/getObserve,125390,0,2
+1595048192159,125900,GetObserver-diffPriv,200,OK,Grupo de Usuários 1-5,text,true,,118,126,10,10,http://127.0.0.1:6000/api/getObserve,125900,0,1
+1595048192554,126908,GetObserver-diffPriv,200,OK,Grupo de Usuários 1-9,text,true,,118,126,10,10,http://127.0.0.1:6000/api/getObserve,126907,0,1
+1595048307854,11631,GetObserver-diffPriv,200,OK,Grupo de Usuários 1-7,text,true,,118,126,10,10,http://127.0.0.1:6000/api/getObserve,11631,0,3
+1595048192463,128543,GetObserver-diffPriv,200,OK,Grupo de Usuários 1-8,text,true,,118,126,10,10,http://127.0.0.1:6000/api/getObserve,128543,0,3
+1595048313584,8317,GetObserver-diffPriv,200,OK,Grupo de Usuários 1-4,text,true,,118,126,10,10,http://127.0.0.1:6000/api/getObserve,8317,0,1
+1595048317142,165768,GetObserver-diffPriv,200,OK,Grupo de Usuários 1-2,text,true,,118,126,10,10,http://127.0.0.1:6000/api/getObserve,165768,0,0
+1595048315966,177766,GetObserver-diffPriv,200,OK,Grupo de Usuários 1-3,text,true,,118,126,10,10,http://127.0.0.1:6000/api/getObserve,177766,0,0
+1595048321902,173681,GetObserver-diffPriv,200,OK,Grupo de Usuários 1-4,text,true,,118,126,10,10,http://127.0.0.1:6000/api/getObserve,173681,0,0
+1595048315130,180510,GetObserver-diffPriv,200,OK,Grupo de Usuários 1-10,text,true,,118,126,10,10,http://127.0.0.1:6000/api/getObserve,180510,0,1
+1595048493752,7683,GetObserver-diffPriv,200,OK,Grupo de Usuários 1-3,text,true,,118,126,10,10,http://127.0.0.1:6000/api/getObserve,7683,0,0
+1595048318062,183353,GetObserver-diffPriv,200,OK,Grupo de Usuários 1-5,text,true,,118,126,10,10,http://127.0.0.1:6000/api/getObserve,183353,0,1
+1595048319485,181947,GetObserver-diffPriv,200,OK,Grupo de Usuários 1-7,text,true,,118,126,10,10,http://127.0.0.1:6000/api/getObserve,181947,0,0
+1595048319466,182010,GetObserver-diffPriv,200,OK,Grupo de Usuários 1-9,text,true,,118,126,10,10,http://127.0.0.1:6000/api/getObserve,182010,0,1
+1595048495602,7049,GetObserver-diffPriv,200,OK,Grupo de Usuários 1-4,text,true,,118,126,10,10,http://127.0.0.1:6000/api/getObserve,7049,0,1
+1595048495661,6990,GetObserver-diffPriv,200,OK,Grupo de Usuários 1-10,text,true,,118,126,10,10,http://127.0.0.1:6000/api/getObserve,6990,0,0
+1595048317147,189957,GetObserver-diffPriv,200,OK,Grupo de Usuários 1-1,text,true,,118,126,10,10,http://127.0.0.1:6000/api/getObserve,189957,0,0
+1595048501497,7473,GetObserver-diffPriv,200,OK,Grupo de Usuários 1-9,text,true,,118,126,10,10,http://127.0.0.1:6000/api/getObserve,7473,0,1
+1595048501437,11935,GetObserver-diffPriv,200,OK,Grupo de Usuários 1-3,text,true,,118,126,10,10,http://127.0.0.1:6000/api/getObserve,11935,0,0
+1595048501437,11935,GetObserver-diffPriv,200,OK,Grupo de Usuários 1-5,text,true,,118,126,10,10,http://127.0.0.1:6000/api/getObserve,11935,0,1
+1595048501453,11919,GetObserver-diffPriv,200,OK,Grupo de Usuários 1-7,text,true,,118,126,10,10,http://127.0.0.1:6000/api/getObserve,11919,0,0
+1595048502655,10719,GetObserver-diffPriv,200,OK,Grupo de Usuários 1-10,text,true,,118,126,10,10,http://127.0.0.1:6000/api/getObserve,10719,0,0
+1595048502655,10720,GetObserver-diffPriv,200,OK,Grupo de Usuários 1-4,text,true,,118,126,10,10,http://127.0.0.1:6000/api/getObserve,10720,0,0
+1595048321009,192347,GetObserver-diffPriv,200,OK,Grupo de Usuários 1-8,text,true,,118,126,10,10,http://127.0.0.1:6000/api/getObserve,192347,0,0
+1595048513376,10020,GetObserver-diffPriv,200,OK,Grupo de Usuários 1-10,text,true,,118,126,10,10,http://127.0.0.1:6000/api/getObserve,10020,0,0
+1595048317144,213691,GetObserver-diffPriv,200,OK,Grupo de Usuários 1-6,text,true,,118,126,10,10,http://127.0.0.1:6000/api/getObserve,213691,0,0
+1595048482927,216231,GetObserver-diffPriv,200,OK,Grupo de Usuários 1-2,text,true,,118,126,10,10,http://127.0.0.1:6000/api/getObserve,216231,0,1
+1595048508972,203579,GetObserver-diffPriv,200,OK,Grupo de Usuários 1-9,text,true,,118,126,10,10,http://127.0.0.1:6000/api/getObserve,203579,0,0
+1595048699171,13391,GetObserver-diffPriv,200,OK,Grupo de Usuários 1-2,text,true,,118,126,10,10,http://127.0.0.1:6000/api/getObserve,13391,0,1
+1595048507127,205428,GetObserver-diffPriv,200,OK,Grupo de Usuários 1-1,text,true,,118,126,10,10,http://127.0.0.1:6000/api/getObserve,205428,0,1
+1595048712562,8989,GetObserver-diffPriv,200,OK,Grupo de Usuários 1-2,text,true,,118,126,10,10,http://127.0.0.1:6000/api/getObserve,8988,0,0
+1595048712559,9012,GetObserver-diffPriv,200,OK,Grupo de Usuários 1-9,text,true,,118,126,10,10,http://127.0.0.1:6000/api/getObserve,9012,0,0
+1595048712562,9090,GetObserver-diffPriv,200,OK,Grupo de Usuários 1-1,text,true,,118,126,10,10,http://127.0.0.1:6000/api/getObserve,9090,0,1
+1595048513380,219749,GetObserver-diffPriv,200,OK,Grupo de Usuários 1-8,text,true,,118,126,10,10,http://127.0.0.1:6000/api/getObserve,219749,0,1
+1595048721653,11483,GetObserver-diffPriv,200,OK,Grupo de Usuários 1-1,text,true,,118,126,10,10,http://127.0.0.1:6000/api/getObserve,11483,0,0
+1595048513376,219791,GetObserver-diffPriv,200,OK,Grupo de Usuários 1-4,text,true,,118,126,10,10,http://127.0.0.1:6000/api/getObserve,219791,0,0
+1595048513375,220266,GetObserver-diffPriv,200,OK,Grupo de Usuários 1-3,text,true,,118,126,10,10,http://127.0.0.1:6000/api/getObserve,220265,0,0
+1595048523396,210260,GetObserver-diffPriv,200,OK,Grupo de Usuários 1-10,text,true,,118,126,10,10,http://127.0.0.1:6000/api/getObserve,210260,0,0
+1595048721573,12101,GetObserver-diffPriv,200,OK,Grupo de Usuários 1-9,text,true,,118,126,10,10,http://127.0.0.1:6000/api/getObserve,12101,0,0
+1595048513375,220292,GetObserver-diffPriv,200,OK,Grupo de Usuários 1-5,text,true,,118,126,10,10,http://127.0.0.1:6000/api/getObserve,220292,0,0
+1595048721552,14956,GetObserver-diffPriv,200,OK,Grupo de Usuários 1-2,text,true,,118,126,10,10,http://127.0.0.1:6000/api/getObserve,14956,0,0
+1595048513376,230174,GetObserver-diffPriv,200,OK,Grupo de Usuários 1-7,text,true,,118,126,10,10,http://127.0.0.1:6000/api/getObserve,230174,0,0
+1595048733174,10383,GetObserver-diffPriv,200,OK,Grupo de Usuários 1-4,text,true,,118,126,10,10,http://127.0.0.1:6000/api/getObserve,10383,0,0
+1595048733136,10421,GetObserver-diffPriv,200,OK,Grupo de Usuários 1-8,text,true,,118,126,10,10,http://127.0.0.1:6000/api/getObserve,10421,0,1
+1595048733137,10420,GetObserver-diffPriv,200,OK,Grupo de Usuários 1-1,text,true,,118,126,10,10,http://127.0.0.1:6000/api/getObserve,10420,0,0
+1595048530861,212803,GetObserver-diffPriv,200,OK,Grupo de Usuários 1-6,text,true,,118,126,10,10,http://127.0.0.1:6000/api/getObserve,212803,0,0
+1595048733674,13180,GetObserver-diffPriv,200,OK,Grupo de Usuários 1-9,text,true,,118,126,10,10,http://127.0.0.1:6000/api/getObserve,13179,0,0
+1595048733663,13191,GetObserver-diffPriv,200,OK,Grupo de Usuários 1-10,text,true,,118,126,10,10,http://127.0.0.1:6000/api/getObserve,13190,0,1
+1595048736508,10346,GetObserver-diffPriv,200,OK,Grupo de Usuários 1-2,text,true,,118,126,10,10,http://127.0.0.1:6000/api/getObserve,10345,0,0
+1595048733675,13179,GetObserver-diffPriv,200,OK,Grupo de Usuários 1-5,text,true,,118,126,10,10,http://127.0.0.1:6000/api/getObserve,13179,0,0
+1595048733648,13344,GetObserver-diffPriv,200,OK,Grupo de Usuários 1-3,text,true,,118,126,10,10,http://127.0.0.1:6000/api/getObserve,13344,0,2
+1595048746993,208265,GetObserver-diffPriv,200,OK,Grupo de Usuários 1-3,text,true,,118,126,10,10,http://127.0.0.1:6000/api/getObserve,208265,0,0
+1595048955264,18059,GetObserver-diffPriv,200,OK,Grupo de Usuários 1-3,text,true,,118,126,10,10,http://127.0.0.1:6000/api/getObserve,18059,0,1
+1595048746854,234273,GetObserver-diffPriv,200,OK,Grupo de Usuários 1-10,text,true,,118,126,10,10,http://127.0.0.1:6000/api/getObserve,234273,0,0
+1595048746854,234273,GetObserver-diffPriv,200,OK,Grupo de Usuários 1-9,text,true,,118,126,10,10,http://127.0.0.1:6000/api/getObserve,234273,0,0
+1595048743557,237572,GetObserver-diffPriv,200,OK,Grupo de Usuários 1-4,text,true,,118,126,10,10,http://127.0.0.1:6000/api/getObserve,237572,0,0
+1595048743557,237696,GetObserver-diffPriv,200,OK,Grupo de Usuários 1-8,text,true,,118,126,10,10,http://127.0.0.1:6000/api/getObserve,237696,0,0
+1595048746854,235947,GetObserver-diffPriv,200,OK,Grupo de Usuários 1-2,text,true,,118,126,10,10,http://127.0.0.1:6000/api/getObserve,235947,0,0
+1595048743671,242809,GetObserver-diffPriv,200,OK,Grupo de Usuários 1-6,text,true,,118,126,10,10,http://127.0.0.1:6000/api/getObserve,242809,0,2
+1595048973324,17203,GetObserver-diffPriv,200,OK,Grupo de Usuários 1-3,text,true,,118,126,10,10,http://127.0.0.1:6000/api/getObserve,17203,0,0
+1595048746855,244792,GetObserver-diffPriv,200,OK,Grupo de Usuários 1-5,text,true,,118,126,10,10,http://127.0.0.1:6000/api/getObserve,244792,0,0
+1595048743557,248179,GetObserver-diffPriv,200,OK,Grupo de Usuários 1-1,text,true,,118,126,10,10,http://127.0.0.1:6000/api/getObserve,248179,0,0
+1595048743557,253936,GetObserver-diffPriv,200,OK,Grupo de Usuários 1-7,text,true,,118,126,10,10,http://127.0.0.1:6000/api/getObserve,253936,0,1
+1595048986488,321953,GetObserver-diffPriv,200,OK,Grupo de Usuários 1-6,text,true,,118,126,10,10,http://127.0.0.1:6000/api/getObserve,321953,0,1
+1595048982809,330404,GetObserver-diffPriv,200,OK,Grupo de Usuários 1-2,text,true,,118,126,10,10,http://127.0.0.1:6000/api/getObserve,330404,0,0
+1595048990528,329758,GetObserver-diffPriv,200,OK,Grupo de Usuários 1-3,text,true,,118,126,10,10,http://127.0.0.1:6000/api/getObserve,329758,0,0
+1595048981134,339402,GetObserver-diffPriv,200,OK,Grupo de Usuários 1-10,text,true,,118,126,10,10,http://127.0.0.1:6000/api/getObserve,339402,0,1
+1595048981135,356347,GetObserver-diffPriv,200,OK,Grupo de Usuários 1-9,text,true,,118,126,10,10,http://127.0.0.1:6000/api/getObserve,356347,0,0
+1595048981260,359411,GetObserver-diffPriv,200,OK,Grupo de Usuários 1-8,text,true,,118,126,10,10,http://127.0.0.1:6000/api/getObserve,359411,0,1
+1595049320297,25147,GetObserver-diffPriv,200,OK,Grupo de Usuários 1-3,text,true,,118,126,10,10,http://127.0.0.1:6000/api/getObserve,25147,0,1
+1595049320548,24932,GetObserver-diffPriv,200,OK,Grupo de Usuários 1-10,text,true,,118,126,10,10,http://127.0.0.1:6000/api/getObserve,24932,0,0
+1595048991745,363763,GetObserver-diffPriv,200,OK,Grupo de Usuários 1-1,text,true,,118,126,10,10,http://127.0.0.1:6000/api/getObserve,363763,0,0
+1595048991655,365592,GetObserver-diffPriv,200,OK,Grupo de Usuários 1-5,text,true,,118,126,10,10,http://127.0.0.1:6000/api/getObserve,365592,0,1
+1595048997501,361016,GetObserver-diffPriv,200,OK,Grupo de Usuários 1-7,text,true,,118,126,10,10,http://127.0.0.1:6000/api/getObserve,361016,0,1
+1595049340682,27730,GetObserver-diffPriv,200,OK,Grupo de Usuários 1-8,text,true,,118,126,10,10,http://127.0.0.1:6000/api/getObserve,27730,0,1
+1595048981136,394854,GetObserver-diffPriv,200,OK,Grupo de Usuários 1-4,text,true,,118,126,10,10,http://127.0.0.1:6000/api/getObserve,394854,0,2
+1595049308450,432688,GetObserver-diffPriv,200,OK,Grupo de Usuários 1-6,text,true,,118,126,10,10,http://127.0.0.1:6000/api/getObserve,432688,0,0
+1595049345444,400506,GetObserver-diffPriv,200,OK,Grupo de Usuários 1-3,text,true,,118,126,10,10,http://127.0.0.1:6000/api/getObserve,400506,0,0
+1595049313223,443394,GetObserver-diffPriv,200,OK,Grupo de Usuários 1-2,text,true,,118,126,10,10,http://127.0.0.1:6000/api/getObserve,443394,0,1
+1595049745974,36700,GetObserver-diffPriv,200,OK,Grupo de Usuários 1-3,text,true,,118,126,10,10,http://127.0.0.1:6000/api/getObserve,36700,0,0
+1595049756641,30021,GetObserver-diffPriv,200,OK,Grupo de Usuários 1-2,text,true,,118,126,10,10,http://127.0.0.1:6000/api/getObserve,30021,0,1
+1595049337493,454247,GetObserver-diffPriv,200,OK,Grupo de Usuários 1-9,text,true,,118,126,10,10,http://127.0.0.1:6000/api/getObserve,454247,0,1
+1595049791765,27841,GetObserver-diffPriv,200,OK,Grupo de Usuários 1-9,text,true,,118,126,10,10,http://127.0.0.1:6000/api/getObserve,27841,0,1
+1595049786662,33770,GetObserver-diffPriv,200,OK,Grupo de Usuários 1-2,text,true,,118,126,10,10,http://127.0.0.1:6000/api/getObserve,33770,0,0
+1595049357257,466737,GetObserver-diffPriv,200,OK,Grupo de Usuários 1-5,text,true,,118,126,10,10,http://127.0.0.1:6000/api/getObserve,466737,0,0
+1595049355519,471034,GetObserver-diffPriv,200,OK,Grupo de Usuários 1-1,text,true,,118,126,10,10,http://127.0.0.1:6000/api/getObserve,471033,0,0
+1595049368413,462555,GetObserver-diffPriv,200,OK,Grupo de Usuários 1-8,text,true,,118,126,10,10,http://127.0.0.1:6000/api/getObserve,462555,0,0
+1595049358528,476668,GetObserver-diffPriv,200,OK,Grupo de Usuários 1-7,text,true,,118,126,10,10,http://127.0.0.1:6000/api/getObserve,476668,0,0
+1595049345480,500323,GetObserver-diffPriv,200,OK,Grupo de Usuários 1-10,text,true,,118,126,10,10,http://127.0.0.1:6000/api/getObserve,500323,0,0
+1595049376003,502881,GetObserver-diffPriv,200,OK,Grupo de Usuários 1-4,text,true,,118,126,10,10,http://127.0.0.1:6000/api/getObserve,502881,0,0
+1595049741162,649882,GetObserver-diffPriv,200,OK,Grupo de Usuários 1-6,text,true,,118,126,10,10,http://127.0.0.1:6000/api/getObserve,649882,0,0
+1595049782675,645929,GetObserver-diffPriv,200,OK,Grupo de Usuários 1-3,text,true,,118,126,10,10,http://127.0.0.1:6000/api/getObserve,645929,0,0
+1595050391066,42870,GetObserver-diffPriv,200,OK,Grupo de Usuários 1-6,text,true,,118,126,10,10,http://127.0.0.1:6000/api/getObserve,42870,0,3
+1595050428624,29132,GetObserver-diffPriv,200,OK,Grupo de Usuários 1-3,text,true,,118,126,10,10,http://127.0.0.1:6000/api/getObserve,29132,0,1
+1595050433939,35810,GetObserver-diffPriv,200,OK,Grupo de Usuários 1-6,text,true,,118,126,10,10,http://127.0.0.1:6000/api/getObserve,35810,0,0
+1595049819606,665055,GetObserver-diffPriv,200,OK,Grupo de Usuários 1-9,text,true,,118,126,10,10,http://127.0.0.1:6000/api/getObserve,665055,0,0
+1595049830993,655641,GetObserver-diffPriv,200,OK,Grupo de Usuários 1-8,text,true,,118,126,10,10,http://127.0.0.1:6000/api/getObserve,655641,0,0
+1595049820433,669365,GetObserver-diffPriv,200,OK,Grupo de Usuários 1-2,text,true,,118,126,10,10,http://127.0.0.1:6000/api/getObserve,669364,0,1
+1595049826578,668345,GetObserver-diffPriv,200,OK,Grupo de Usuários 1-1,text,true,,118,126,10,10,http://127.0.0.1:6000/api/getObserve,668345,0,0
+1595050457757,39935,GetObserver-diffPriv,200,OK,Grupo de Usuários 1-3,text,true,,118,126,10,10,http://127.0.0.1:6000/api/getObserve,39935,0,0
+1595049824019,682047,GetObserver-diffPriv,200,OK,Grupo de Usuários 1-5,text,true,,118,126,10,10,http://127.0.0.1:6000/api/getObserve,682047,0,0
+1595049845830,660465,GetObserver-diffPriv,200,OK,Grupo de Usuários 1-10,text,true,,118,126,10,10,http://127.0.0.1:6000/api/getObserve,660465,0,0
+1595050469750,40598,GetObserver-diffPriv,200,OK,Grupo de Usuários 1-6,text,true,,118,126,10,10,http://127.0.0.1:6000/api/getObserve,40598,0,0
+1595049835220,687004,GetObserver-diffPriv,200,OK,Grupo de Usuários 1-7,text,true,,118,126,10,10,http://127.0.0.1:6000/api/getObserve,687004,0,1
+1595050486654,37575,GetObserver-diffPriv,200,OK,Grupo de Usuários 1-8,text,true,,118,126,10,10,http://127.0.0.1:6000/api/getObserve,37575,0,1
+1595050497695,32266,GetObserver-diffPriv,200,OK,Grupo de Usuários 1-3,text,true,,118,126,10,10,http://127.0.0.1:6000/api/getObserve,32266,0,0
+1595050524230,30495,GetObserver-diffPriv,200,OK,Grupo de Usuários 1-8,text,true,,118,126,10,10,http://127.0.0.1:6000/api/getObserve,30495,0,0
+1595050522245,32480,GetObserver-diffPriv,200,OK,Grupo de Usuários 1-7,text,true,,118,126,10,10,http://127.0.0.1:6000/api/getObserve,32480,0,1
+1595049878911,684516,GetObserver-diffPriv,200,OK,Grupo de Usuários 1-4,text,true,,118,126,10,10,http://127.0.0.1:6000/api/getObserve,684516,0,0
+1595050554731,1633260,GetObserver-diffPriv,Non HTTP response code: java.net.SocketException,Non HTTP response message: Socket closed,Grupo de Usuários 1-7,text,false,,2667,0,10,10,http://127.0.0.1:6000/api/getObserve,0,0,0
+1595050489818,1698150,GetObserver-diffPriv,Non HTTP response code: java.net.SocketException,Non HTTP response message: Socket closed,Grupo de Usuários 1-2,text,false,,2667,0,10,10,http://127.0.0.1:6000/api/getObserve,0,0,0
+1595050494944,1693055,GetObserver-diffPriv,Non HTTP response code: java.net.SocketException,Non HTTP response message: Socket closed,Grupo de Usuários 1-1,text,false,,2667,0,10,10,http://127.0.0.1:6000/api/getObserve,0,0,1
+1595050563449,1624587,GetObserver-diffPriv,Non HTTP response code: java.net.SocketException,Non HTTP response message: Socket closed,Grupo de Usuários 1-4,text,false,,2667,0,7,7,http://127.0.0.1:6000/api/getObserve,0,0,1
+1595050529962,1658074,GetObserver-diffPriv,Non HTTP response code: java.net.SocketException,Non HTTP response message: Socket closed,Grupo de Usuários 1-3,text,false,,2667,0,6,6,http://127.0.0.1:6000/api/getObserve,0,0,0
+1595050510349,1677726,GetObserver-diffPriv,Non HTTP response code: java.net.SocketException,Non HTTP response message: Socket closed,Grupo de Usuários 1-6,text,false,,2667,0,5,5,http://127.0.0.1:6000/api/getObserve,0,0,0
+1595050484681,1703412,GetObserver-diffPriv,Non HTTP response code: java.net.SocketException,Non HTTP response message: Socket closed,Grupo de Usuários 1-9,text,false,,2667,0,4,4,http://127.0.0.1:6000/api/getObserve,0,0,1
+1595050506087,1682019,GetObserver-diffPriv,Non HTTP response code: java.net.SocketException,Non HTTP response message: Socket closed,Grupo de Usuários 1-5,text,false,,2667,0,3,3,http://127.0.0.1:6000/api/getObserve,0,0,1
+1595050506315,1681805,GetObserver-diffPriv,Non HTTP response code: java.net.SocketException,Non HTTP response message: Socket closed,Grupo de Usuários 1-10,text,false,,2667,0,2,2,http://127.0.0.1:6000/api/getObserve,0,0,0
+1595050554730,1633406,GetObserver-diffPriv,Non HTTP response code: java.net.SocketException,Non HTTP response message: Socket closed,Grupo de Usuários 1-8,text,false,,2667,0,1,1,http://127.0.0.1:6000/api/getObserve,0,0,0

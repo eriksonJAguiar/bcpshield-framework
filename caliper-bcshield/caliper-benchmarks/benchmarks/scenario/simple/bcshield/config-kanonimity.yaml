@@ -1,0 +1,73 @@
+---
+test:
+  name: healthcare
+  description: This is a benchmark for methods using create and query assets without privacy 
+  workers:
+    type: local
+    number: 1
+  rounds:
+  - label: getShared-50
+    description: get shared asset with doctor
+    txNumber: 500
+    rateControl:
+      type: fixed-rate
+      opts:
+        tps: 50
+    callback: benchmarks/scenario/simple/bcshield/share-kanonimity.js
+  
+  - label: getShared-100
+    description: get shared asset with doctor
+    txNumber: 500
+    rateControl:
+      type: fixed-rate
+      opts:
+        tps: 50
+    callback: benchmarks/scenario/simple/bcshield/share-get-kanonimity.js
+
+  # - label: getShared-150
+  #   description: get shared asset with doctor 150
+  #   txNumber: 500
+  #   rateControl:
+  #     type: fixed-rate
+  #     opts:
+  #       tps: 150
+  #   arguments:
+  #     dicom: 10
+  #   callback: benchmarks/scenario/simple/bcshield/share-get-kanonimity.js
+
+  # - label: getShared-200
+  #   description: get shared asset with doctor 200
+  #   txNumber: 500
+  #   rateControl:
+  #     type: fixed-rate
+  #     opts:
+  #       tps: 200
+  #   arguments:
+  #     dicom: 10
+  #   callback: benchmarks/scenario/simple/bcshield/share-get-kanonimity.js
+
+  # - label: getShared-250
+  #   description: get shared asset with doctor 250
+  #   txNumber: 500
+  #   rateControl:
+  #     type: fixed-rate
+  #     opts:
+  #       tps: 250
+  #   arguments:
+  #     dicom: 10
+  #   callback: benchmarks/scenario/simple/bcshield/share-get-kanonimity.js
+
+monitor:
+  type:
+  - docker
+  docker:  
+    containers:
+      - peer0.hprovider.healthcare.com
+      - peer1.hprovider.healthcare.com
+      - peer0.research.healthcare.com
+      - peer1.research.healthcare.com
+      - peer0.patient.healthcare.com 
+      - peer1.patient.healthcare.com 
+    charting:
+      bar:
+        metrics: [Memory(avg), CPU%(avg)]

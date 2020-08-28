@@ -9,14 +9,14 @@ volumes:
   orderer.healthcare.com:
   peer0.hprovider.healthcare.com:
   peer1.hprovider.healthcare.com:
-  peer2.hprovider.healthcare.com:  
-  peer3.hprovider.healthcare.com:
-  peer4.hprovider.healthcare.com:
+  # peer2.hprovider.healthcare.com:  
+  # peer3.hprovider.healthcare.com:
+  # peer4.hprovider.healthcare.com:
   peer0.research.healthcare.com:
   peer1.research.healthcare.com:
-  peer2.research.healthcare.com:
-  peer3.research.healthcare.com:
-  peer4.research.healthcare.com:    
+  peer0.patient.healthcare.com:
+  peer1.patient.healthcare.com:
+  # peer4.research.healthcare.com:    
 
 networks:
   health_network:
@@ -64,52 +64,20 @@ services:
       - health_network
 
 #---------------------------------- New Peers -------------------------------
-  
-  peer2.hprovider.healthcare.com:
-    container_name: peer2.hprovider.healthcare.com
+
+  peer0.patient.healthcare.com:
+    container_name: peer0.patient.healthcare.com
     extends:
       file:  base/docker-compose-base.yaml
-      service: peer2.hprovider.healthcare.com
+      service: peer0.patient.healthcare.com
     networks:
       - health_network
 
-  peer3.hprovider.healthcare.com:
-    container_name: peer3.hprovider.healthcare.com
+  peer1.patient.healthcare.com:
+    container_name: peer1.patient.healthcare.com
     extends:
       file:  base/docker-compose-base.yaml
-      service: peer3.hprovider.healthcare.com
-    networks:
-      - health_network
-  
-  peer4.hprovider.healthcare.com:
-    container_name: peer4.hprovider.healthcare.com
-    extends:
-      file:  base/docker-compose-base.yaml
-      service: peer4.hprovider.healthcare.com
-    networks:
-      - health_network
-
-  peer2.research.healthcare.com:
-    container_name: peer2.research.healthcare.com
-    extends:
-      file:  base/docker-compose-base.yaml
-      service: peer2.research.healthcare.com
-    networks:
-      - health_network
-
-  peer3.research.healthcare.com:
-    container_name: peer3.research.healthcare.com
-    extends:
-      file:  base/docker-compose-base.yaml
-      service: peer3.research.healthcare.com
-    networks:
-      - health_network
-
-  peer4.research.healthcare.com:
-    container_name: peer4.research.healthcare.com
-    extends:
-      file:  base/docker-compose-base.yaml
-      service: peer4.research.healthcare.com
+      service: peer1.patient.healthcare.com
     networks:
       - health_network
 
@@ -123,7 +91,7 @@ services:
       - SYS_CHANNEL=$SYS_CHANNEL
       - GOPATH=/opt/gopath
       - CORE_VM_ENDPOINT=unix:///host/var/run/docker.sock
-      #- FABRIC_LOGGING_SPEC=DEBUG
+      - FABRIC_LOGGING_SPEC=DEBUG
       - FABRIC_LOGGING_SPEC=INFO
       - CORE_PEER_ID=cli
       - CORE_PEER_ADDRESS=peer0.hprovider.healthcare.com:7051
@@ -141,17 +109,14 @@ services:
         - ./crypto-config:/opt/gopath/src/github.com/hyperledger/fabric/peer/crypto/
         - ./scripts:/opt/gopath/src/github.com/hyperledger/fabric/peer/scripts/
         - ./channel-artifacts:/opt/gopath/src/github.com/hyperledger/fabric/peer/channel-artifacts
+        - ./collections:/opt/gopath/src/github.com/hyperledger/fabric/peer/
     depends_on:
       - orderer.healthcare.com
       - peer0.hprovider.healthcare.com
       - peer1.hprovider.healthcare.com
-      - peer2.hprovider.healthcare.com
-      - peer3.hprovider.healthcare.com
-      - peer4.hprovider.healthcare.com
       - peer0.research.healthcare.com
       - peer1.research.healthcare.com
-      - peer2.research.healthcare.com
-      - peer3.research.healthcare.com
-      - peer4.research.healthcare.com
+      - peer0.patient.healthcare.com
+      - peer1.patient.healthcare.com
     networks:
       - health_network

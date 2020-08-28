@@ -1,0 +1,2 @@
+timeStamp,elapsed,label,responseCode,responseMessage,threadName,dataType,success,failureMessage,bytes,sentBytes,grpThreads,allThreads,URL,Latency,IdleTime,Connect
+1594950564500,73353,GetObserver,200,OK,Grupo de Usuários 1-1,text,true,,118,126,1,1,http://127.0.0.1:6000/api/getObserve,73349,0,22

@@ -69,7 +69,7 @@ function printHelp() {
   echo "	byfn.sh generate"
   echo "	byfn.sh up"
   echo "	byfn.sh down"
-  echo "Use byfn.sh up -s couchdb -a true (set up CA and Couchdb)"
+  echo "Use byfn.sh up -s couchdb -a true -l golang -i 1.4.4 (set up CA and Couchdb)"
   echo "For install new contract use 'newcontract -a true' "
   echo "For upgrade contract use 'upgradecontract -e VERSION -a true' "
 }
@@ -166,6 +166,7 @@ function networkUp() {
     COMPOSE_FILES="${COMPOSE_FILES} -f ${COMPOSE_FILE_CA}"
     export BYFN_CA1_PRIVATE_KEY=$(cd crypto-config/peerOrganizations/hprovider.healthcare.com/ca && ls *_sk)
     export BYFN_CA2_PRIVATE_KEY=$(cd crypto-config/peerOrganizations/research.healthcare.com/ca && ls *_sk)
+    export BYFN_CA3_PRIVATE_KEY=$(cd crypto-config/peerOrganizations/patient.healthcare.com/ca && ls *_sk)
   fi
   if [ "${CONSENSUS_TYPE}" == "kafka" ]; then
     COMPOSE_FILES="${COMPOSE_FILES} -f ${COMPOSE_FILE_KAFKA}"
@@ -224,6 +225,7 @@ function upgradeNetwork() {
       COMPOSE_FILES="${COMPOSE_FILES} -f ${COMPOSE_FILE_CA}"
       export BYFN_CA1_PRIVATE_KEY=$(cd crypto-config/peerOrganizations/hprovider.healthcare.com/ca && ls *_sk)
       export BYFN_CA2_PRIVATE_KEY=$(cd crypto-config/peerOrganizations/research.healthcare.com/ca && ls *_sk)
+      export BYFN_CA3_PRIVATE_KEY=$(cd crypto-config/peerOrganizations/patient.healthcare.com/ca && ls *_sk)
     fi
     if [ "${CONSENSUS_TYPE}" == "kafka" ]; then
       COMPOSE_FILES="${COMPOSE_FILES} -f ${COMPOSE_FILE_KAFKA}"
@@ -242,7 +244,7 @@ function upgradeNetwork() {
     docker-compose $COMPOSE_FILES stop orderer.healthcare.com
     docker cp -a orderer.healthcare.com:/var/hyperledger/production/orderer $LEDGERS_BACKUP/orderer.healthcare.com
     docker-compose $COMPOSE_FILES up -d --no-deps orderer.healthcare.com
-    for PEER in peer0.hprovider.healthcare.com peer1.hprovider.healthcare.com peer2.hprovider.healthcare.com peer3.hprovider.healthcare.com peer4.hprovider.healthcare.com peer0.research.healthcare.com peer1.research.healthcare.com peer2.research.healthcare.com peer3.research.healthcare.com peer4.research.healthcare.com; do
+    for PEER in peer0.hprovider.healthcare.com peer1.hprovider.healthcare.com peer0.research.healthcare.com peer1.research.healthcare.com peer0.patient.healthcare.com peer1.patient.healthcare.com; do
       echo "Upgrading peer $PEER"
 
       # Stop the peer and backup its ledger
@@ -322,6 +324,9 @@ function replacePrivateKey() {
   PRIV_KEY=$(ls *_sk)
   cd "$CURRENT_DIR"
   sed $OPTS "s/CA2_PRIVATE_KEY/${PRIV_KEY}/g" docker-compose-e2e.yaml
+  PRIV_KEY=$(ls *_sk)
+  cd "$CURRENT_DIR"
+  sed $OPTS "s/CA3_PRIVATE_KEY/${PRIV_KEY}/g" docker-compose-e2e.yaml
   # If MacOSX, remove the temporary backup of the docker-compose file
   if [ "$ARCH" == "Darwin" ]; then
     rm docker-compose-e2e.yamlt
@@ -482,6 +487,19 @@ function generateChannelArtifacts() {
     exit 1
   fi
   echo
+
+  echo "#################################################################"
+  echo "#######    Generating anchor peer update for PatientMSP   ##########"
+  echo "#################################################################"
+  set -x
+  configtxgen -profile HealthOrgsChannel -outputAnchorPeersUpdate \
+    ./channel-artifacts/PatientMSPanchors.tx -channelID $CHANNEL_NAME -asOrg PatientMSP
+  res=$?
+  set +x
+  if [ $res -ne 0 ]; then
+    echo "Failed to generate anchor peer update for PatientMSP..."
+    exit 1
+  fi
 }
 
 function newContract(){
@@ -522,9 +540,9 @@ COMPOSE_FILE_RAFT2=docker-compose-etcdraft2.yaml
 COMPOSE_FILE_CA=docker-compose-ca.yaml
 #
 # use golang as the default language for chaincode
-LANGUAGE=node
+LANGUAGE=golang
 # default image tag
-IMAGETAG="latest"
+IMAGETAG="1.4"
 # default consensus type
 CONSENSUS_TYPE="solo"
 # Parse commandline args

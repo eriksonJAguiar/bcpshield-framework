@@ -1,0 +1,114 @@
+---
+test:
+  name: healthcare
+  description: This is a benchmark for methods using create and query assets without privacy 
+  workers:
+    type: local
+    number: 1
+  rounds:
+  - label: create-50
+    description: Create asset dicom 50 rate
+    txNumber: 500
+    rateControl:
+      type: fixed-rate
+      opts:
+        tps: 50
+    arguments:
+      dicom: 1
+    callback: benchmarks/scenario/simple/bcshield/create-asset.js
+  - label: create-100
+    description: Create asset dicom 100 rate
+    txNumber: 500
+    rateControl:
+      type: fixed-rate
+      opts:
+        tps: 100 
+    arguments:
+      dicom: 1
+    callback: benchmarks/scenario/simple/bcshield/create-asset.js
+  - label: create-150
+    description: Create asset dicom 150 rate
+    txNumber: 500
+    rateControl:
+      type: fixed-rate
+      opts:
+        tps: 150 
+    arguments:
+      dicom: 1
+    callback: benchmarks/scenario/simple/bcshield/create-asset.js
+  - label: create-200
+    description: Create asset dicom 200 rate 
+    txNumber: 500
+    rateControl:
+      type: fixed-rate
+      opts:
+        tps: 200 
+    arguments:
+      dicom: 1
+    callback: benchmarks/scenario/simple/bcshield/create-asset.js
+  - label: create-250
+    description: Create asset dicom 250 rate
+    txNumber: 500
+    rateControl:
+      type: fixed-rate
+      opts:
+        tps: 200 
+    arguments:
+      dicom: 1
+    callback: benchmarks/scenario/simple/bcshield/create-asset.js
+
+  - label: query-50
+    description: Query dicom asset 50 rate
+    txNumber: 500
+    rateControl:
+      type: fixed-rate
+      opts: 
+        tps: 50
+    callback: benchmarks/scenario/simple/bcshield/get-asset.js
+  - label: query-100
+    description: Query dicom asset 100 rate
+    txNumber: 500
+    rateControl:
+      type: fixed-rate
+      opts: 
+        tps: 100
+    callback: benchmarks/scenario/simple/bcshield/get-asset.js
+  - label: query-150
+    description: Query dicom asset 150 rate
+    txNumber: 500
+    rateControl:
+      type: fixed-rate
+      opts: 
+        tps: 150
+    callback: benchmarks/scenario/simple/bcshield/get-asset.js
+  - label: query-200
+    description: Query dicom asset 200 rate
+    txNumber: 500
+    rateControl:
+      type: fixed-rate
+      opts: 
+        tps: 200
+    callback: benchmarks/scenario/simple/bcshield/get-asset.js
+  - label: query-250
+    description: Query dicom asset 250 rate
+    txNumber: 500
+    rateControl:
+      type: fixed-rate
+      opts: 
+        tps: 250
+    callback: benchmarks/scenario/simple/bcshield/get-asset.js    
+
+monitor:
+  type:
+  - docker
+  docker:  
+    containers:
+      - peer0.hprovider.healthcare.com
+      - peer1.hprovider.healthcare.com
+      - peer0.research.healthcare.com
+      - peer1.research.healthcare.com
+      - peer0.patient.healthcare.com 
+      - peer1.patient.healthcare.com 
+    charting:
+      bar:
+        metrics: [Memory(avg), CPU%(avg)]

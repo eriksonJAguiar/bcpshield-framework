@@ -1,0 +1,45 @@
+version: '3'
+
+
+networks:
+  bcshield_local:
+    driver: bridge
+    ipam:
+      config:
+        - subnet: 172.19.0.0/16
+
+
+services: 
+  
+  bcshield_mongo:
+    image: mongo
+    container_name: bcshield_mongo
+    restart: always
+    ports: 
+     - 27020:27017
+    networks:
+      - bcshield_local
+
+  bcshield_privacy:
+    container_name: bcshield_privacy
+    restart: always
+    build: "../privacy-mod"
+    command: go run main.go
+    ports: 
+      - 5000:5000
+    networks:
+      bcshield_local:
+        ipv4_address: 172.19.0.3
+    depends_on: 
+      - bcshield_mongo
+
+  bcshield_observer:
+    container_name: bcshield_observer
+    build: "../observer-mod"
+    restart: always
+    ports:   
+      - 6000:6000
+    networks:
+      - bcshield_local
+    depends_on: 
+      - bcshield_privacy

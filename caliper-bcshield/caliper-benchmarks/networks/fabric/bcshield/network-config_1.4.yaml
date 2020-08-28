@@ -1,0 +1,202 @@
+name: Fabric
+version: "1.0"
+mutual-tls: false
+
+caliper:
+  blockchain: fabric
+  # command:
+  #   start: export FABRIC_VERSION=1.4.4;export FABRIC_CA_VERSION=1.4.4;docker-compose -f networks/fabric/docker-compose/2hproviderpeercouchdb_solo_raft/docker-compose-tls.yaml up -d;sleep 10s
+  #   end: docker-compose -f networks/fabric/docker-compose/2hproviderpeercouchdb_solo_raft/docker-compose-tls.yaml down;(test -z \"$(docker ps -aq)\") || docker rm $(docker ps -aq);(test -z \"$(docker images dev* -q)\") || docker rmi $(docker images dev* -q);rm -rf /tmp/hfc-*
+
+info:
+  Version: 1.4.4
+  Size: 3 Orgs with 2 Peer
+  Orderer: Solo
+  Distribution: Single Host
+  StateDB: CouchDB
+
+clients:
+  client0.hprovider.healthcare.com:
+    client:
+      organization: HProvider
+      credentialStore:
+        path: /tmp/hfc-kvs/hprovider
+        cryptoStore:
+          path: /tmp/hfc-cvs/hprovider
+      clientPrivateKey:
+        path: networks/fabric/bcshield/crypto-config/peerOrganizations/hprovider.healthcare.com/users/User1@hprovider.healthcare.com/msp/keystore/key_sk
+      clientSignedCert:
+        path: networks/fabric/bcshield/crypto-config/peerOrganizations/hprovider.healthcare.com/users/User1@hprovider.healthcare.com/msp/signcerts/User1@hprovider.healthcare.com-cert.pem
+
+  client0.research.healthcare.com:
+    client:
+      organization: Research
+      credentialStore:
+        path: /tmp/hfc-kvs/research
+        cryptoStore:
+          path: /tmp/hfc-cvs/research
+      clientPrivateKey:
+        path: networks/fabric/bcshield/crypto-config/peerOrganizations/research.healthcare.com/users/User1@research.healthcare.com/msp/keystore/key_sk
+      clientSignedCert:
+        path: networks/fabric/bcshield/crypto-config/peerOrganizations/research.healthcare.com/users/User1@research.healthcare.com/msp/signcerts/User1@research.healthcare.com-cert.pem
+
+  client0.patient.healthcare.com:
+    client:
+      organization: Patient
+      credentialStore:
+        path: /tmp/hfc-kvs/patient
+        cryptoStore:
+          path: /tmp/hfc-cvs/patient
+      clientPrivateKey:
+        path: networks/fabric/bcshield/crypto-config/peerOrganizations/patient.healthcare.com/users/User1@patient.healthcare.com/msp/keystore/key_sk
+      clientSignedCert:
+        path: networks/fabric/bcshield/crypto-config/peerOrganizations/patient.healthcare.com/users/User1@patient.healthcare.com/msp/signcerts/User1@patient.healthcare.com-cert.pem
+
+channels:
+  healthchannel:
+    created: true
+    # definition:
+    #     capabilities: []
+    #     consortium: 'HealthConsortium'
+    #     msps: ['HProviderMSP', 'ResearchMSP', 'PatientMSP']
+    #     version: 0
+    orderers:
+    - orderer.healthcare.com
+    peers:
+      peer0.hprovider.healthcare.com:
+        eventSource: true
+      peer0.research.healthcare.com:
+        eventSource: true
+      peer0.patient.healthcare.com:
+        eventSource: true
+
+    chaincodes:
+    - id: dicom-contract
+      version: "1"
+      language: golang
+      path: fabric/imaging-contract
+      #metadataPath: src/fabric/imaging-contract
+
+
+organizations:
+  HProvider:
+    mspid: HProviderMSP
+    peers:
+    - peer0.hprovider.healthcare.com
+    - peer1.hprovider.healthcare.com
+    certificateAuthorities:
+    - ca.hprovider.healthcare.com
+    adminPrivateKey:
+      path: networks/fabric/bcshield/crypto-config/peerOrganizations/hprovider.healthcare.com/users/Admin@hprovider.healthcare.com/msp/keystore/key_sk
+    signedCert:
+      path: networks/fabric/bcshield/crypto-config/peerOrganizations/hprovider.healthcare.com/users/Admin@hprovider.healthcare.com/msp/signcerts/Admin@hprovider.healthcare.com-cert.pem
+
+  Research:
+    mspid: ResearchMSP
+    peers:
+    - peer0.research.healthcare.com
+    - peer1.research.healthcare.com
+    certificateAuthorities:
+    - ca.research.healthcare.com
+    adminPrivateKey:
+      path: networks/fabric/bcshield/crypto-config/peerOrganizations/research.healthcare.com/users/Admin@research.healthcare.com/msp/keystore/key_sk
+    signedCert:
+      path: networks/fabric/bcshield/crypto-config/peerOrganizations/research.healthcare.com/users/Admin@research.healthcare.com/msp/signcerts/Admin@research.healthcare.com-cert.pem
+
+  Patient:
+    mspid: PatientMSP
+    peers:
+    - peer0.patient.healthcare.com
+    - peer1.patient.healthcare.com
+    certificateAuthorities:
+    - ca.patient.healthcare.com
+    adminPrivateKey:
+      path: networks/fabric/bcshield/crypto-config/peerOrganizations/patient.healthcare.com/users/Admin@patient.healthcare.com/msp/keystore/key_sk
+    signedCert:
+      path: networks/fabric/bcshield/crypto-config/peerOrganizations/patient.healthcare.com/users/Admin@patient.healthcare.com/msp/signcerts/Admin@patient.healthcare.com-cert.pem
+
+orderers:
+  orderer.healthcare.com:
+    url: grpcs://localhost:7050
+    grpcOptions:
+      ssl-target-name-override: orderer.healthcare.com
+    tlsCACerts:
+        path: networks/fabric/bcshield/crypto-config/ordererOrganizations/healthcare.com/orderers/orderer.healthcare.com/msp/tlscacerts/tlsca.healthcare.com-cert.pem
+
+peers:
+  peer0.hprovider.healthcare.com:
+    url: grpcs://localhost:7051
+    grpcOptions:
+      ssl-target-name-override: peer0.hprovider.healthcare.com
+      grpc.keepalive_time_ms: 600000
+    tlsCACerts:
+        path: networks/fabric/bcshield/crypto-config/peerOrganizations/hprovider.healthcare.com/peers/peer0.hprovider.healthcare.com/msp/tlscacerts/tlsca.hprovider.healthcare.com-cert.pem
+
+  peer1.hprovider.healthcare.com:
+    url: grpcs://localhost:8051
+    grpcOptions:
+      ssl-target-name-override: peer1.hprovider.healthcare.com
+      grpc.keepalive_time_ms: 600000
+    tlsCACerts:
+        path: networks/fabric/bcshield/crypto-config/peerOrganizations/hprovider.healthcare.com/peers/peer1.hprovider.healthcare.com/msp/tlscacerts/tlsca.hprovider.healthcare.com-cert.pem
+
+  peer0.research.healthcare.com:
+    url: grpcs://localhost:9051
+    grpcOptions:
+      ssl-target-name-override: peer0.research.healthcare.com
+      grpc.keepalive_time_ms: 600000
+    tlsCACerts:
+        path: networks/fabric/bcshield/crypto-config/peerOrganizations/research.healthcare.com/peers/peer0.research.healthcare.com/msp/tlscacerts/tlsca.research.healthcare.com-cert.pem
+  peer1.research.healthcare.com:
+    url: grpcs://localhost:10051
+    grpcOptions:
+      ssl-target-name-override: peer1.research.healthcare.com
+      grpc.keepalive_time_ms: 600000
+    tlsCACerts:
+        path: networks/fabric/bcshield/crypto-config/peerOrganizations/research.healthcare.com/peers/peer1.research.healthcare.com/msp/tlscacerts/tlsca.research.healthcare.com-cert.pem
+
+  peer0.patient.healthcare.com:
+    url: grpcs://localhost:12051
+    grpcOptions:
+      ssl-target-name-override: peer0.patient.healthcare.com
+      grpc.keepalive_time_ms: 600000
+    tlsCACerts:
+        path: networks/fabric/bcshield/crypto-config/peerOrganizations/patient.healthcare.com/peers/peer0.patient.healthcare.com/msp/tlscacerts/tlsca.patient.healthcare.com-cert.pem
+  peer1.patient.healthcare.com:
+    url: grpcs://localhost:13051
+    grpcOptions:
+      ssl-target-name-override: peer1.patient.healthcare.com
+      grpc.keepalive_time_ms: 600000
+    tlsCACerts:
+        path: networks/fabric/bcshield/crypto-config/peerOrganizations/patient.healthcare.com/peers/peer1.patient.healthcare.com/msp/tlscacerts/tlsca.patient.healthcare.com-cert.pem
+
+certificateAuthorities:
+  ca.hprovider.healthcare.com:
+    url: https://localhost:7054
+    httpOptions:
+      verify: false
+    tlsCACerts:
+        path: networks/fabric/bcshield/crypto-config/peerOrganizations/hprovider.healthcare.com/tlsca/tlsca.hprovider.healthcare.com-cert.pem
+    registrar:
+    - enrollId: admin
+      enrollSecret: adminpw
+
+  ca.research.healthcare.com:
+    url: https://localhost:8054
+    httpOptions:
+      verify: false
+    tlsCACerts:
+        path: networks/fabric/bcshield/crypto-config/peerOrganizations/research.healthcare.com/tlsca/tlsca.research.healthcare.com-cert.pem
+    registrar:
+    - enrollId: admin
+      enrollSecret: adminpw
+  
+  ca.patient.healthcare.com:
+    url: https://localhost:9054
+    httpOptions:
+      verify: false
+    tlsCACerts:
+        path: networks/fabric/bcshield/crypto-config/peerOrganizations/patient.healthcare.com/tlsca/tlsca.patient.healthcare.com-cert.pem
+    registrar:
+    - enrollId: admin
+      enrollSecret: adminpw

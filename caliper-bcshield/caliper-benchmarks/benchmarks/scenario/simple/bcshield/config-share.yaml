@@ -1,0 +1,34 @@
+---
+test:
+  name: healthcare
+  description: This is a benchmark for methods using create and query assets without privacy 
+  workers:
+    type: local
+    number: 1
+  rounds:
+
+  - label: shared-50
+    description: get shared asset with doctor
+    txNumber: 250
+    rateControl:
+      type: fixed-rate
+      opts:
+        tps: 50
+    arguments:
+      dicom: 10
+    callback: benchmarks/scenario/simple/bcshield/share-kanonimity.js
+
+monitor:
+  type:
+  - docker
+  docker:  
+    containers:
+      - peer0.hprovider.healthcare.com
+      - peer1.hprovider.healthcare.com
+      - peer0.research.healthcare.com
+      - peer1.research.healthcare.com
+      - peer0.patient.healthcare.com 
+      - peer1.patient.healthcare.com 
+    charting:
+      bar:
+        metrics: [Memory(avg), CPU%(avg)]

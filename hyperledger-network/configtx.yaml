@@ -104,6 +104,37 @@ Organizations:
             - Host: peer0.research.healthcare.com
               Port: 9051
 
+    - &Patient
+        # DefaultOrg defines the organization which is used in the sampleconfig
+        # of the fabric.git development environment
+        Name: PatientMSP
+
+        # ID to load the MSP definition as
+        ID: PatientMSP
+
+        MSPDir: crypto-config/peerOrganizations/patient.healthcare.com/msp
+
+        # Policies defines the set of policies at this level of the config tree
+        # For organization policies, their canonical path is usually
+        #   /Channel/<Application|Orderer>/<OrgName>/<PolicyName>
+        Policies:
+            Readers:
+                Type: Signature
+                Rule: "OR('PatientMSP.admin', 'PatientMSP.peer', 'PatientMSP.client')"
+            Writers:
+                Type: Signature
+                Rule: "OR('PatientMSP.admin', 'PatientMSP.client')"
+            Admins:
+                Type: Signature
+                Rule: "OR('PatientMSP.admin')"
+
+        AnchorPeers:
+            # AnchorPeers defines the location of peers which can be used
+            # for cross org gossip communication.  Note, this value is only
+            # encoded in the genesis block in the Application section context
+            - Host: peer0.patient.healthcare.com
+              Port: 12051
+
 ################################################################################
 #
 #   SECTION: Capabilities
@@ -353,6 +384,7 @@ Profiles:
                 Organizations:
                     - *HProvider
                     - *Research
+                    - *Patient
     HealthOrgsChannel:
         Consortium: HealthConsortium
         <<: *ChannelDefaults
@@ -361,6 +393,7 @@ Profiles:
             Organizations:
                 - *HProvider
                 - *Research
+                - *Patient
             Capabilities:
                 <<: *ApplicationCapabilities
 
@@ -388,6 +421,7 @@ Profiles:
                 Organizations:
                 - *HProvider
                 - *Research
+                - *Patient
 
     HealthMultiNodeEtcdRaft:
         <<: *ChannelDefaults
@@ -438,3 +472,4 @@ Profiles:
                 Organizations:
                 - *HProvider
                 - *Research
+                - *Patient
