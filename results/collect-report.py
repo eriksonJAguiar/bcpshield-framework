@@ -4,7 +4,7 @@ import numpy as np
 import os
 
 
-with open("../caliper-bcshield/caliper-benchmarks/reports/Simple/report-5.html") as fp:
+with open("../caliper-bcshield/caliper-benchmarks/reports/Simple/report-1.html") as fp:
     soup = BeautifulSoup(fp)
 
 # table_summary = soup.find('div', attrs={'id':'benchmarksummary'})
@@ -74,11 +74,17 @@ def save_values(id_table):
     perf = perf[1:]
     #dt_net = np.array(net)
     df_net = pd.DataFrame([net], columns=label_net)
+    tps_rate = int(id_table.split("-")[1])
+    df_net['TPS_Rate'] = [tps_rate for i in range(len(df_net['Name']))]
+    query = id_table.split("-")[0]
+    df_net['Query'] = [query for i in range(len(df_net['Name']))]
     
     #dt_perf = np.array(perf)
     df_perf = pd.DataFrame(perf, columns=label_perf)
     tps_rate = int(id_table.split("-")[1])
     df_perf['TPS_Rate'] = [tps_rate for i in range(len(df_perf['Name']))]
+    query = id_table.split("-")[0]
+    df_perf['Query'] = [query for i in range(len(df_perf['Name']))]
 
     if not os.path.exists("./reports-network-simple.csv"):
         df_net.to_csv("./reports-network-simple.csv", mode="a", index=False, sep=";")

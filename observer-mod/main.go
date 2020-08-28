@@ -8,7 +8,6 @@ import (
 	"log"
 	"net/http"
 	"os"
-	"path"
 	"time"
 
 	"github.com/gorilla/mux"
@@ -39,7 +38,7 @@ type dicom struct {
 
 func observeBlockchain(ip string, port string) {
 	//cli := httputil.NewClientConn()
-	url := "http://35.211.244.95:3000/api/observerRequests"
+	url := "http://35.211.104.239:3000/api/observerRequests"
 
 	type request struct {
 		User      string `json:"user"`
@@ -90,8 +89,8 @@ func observeBlockchain(ip string, port string) {
 			dcmID := callDiffPrivacy()
 			notifyRequester(reqID, dcmID)
 		}
-		home, _ := os.UserHomeDir()
-		getIPFS(path.Join(home, "shared-dicom"), resp.IpfsReference)
+		// home, _ := os.UserHomeDir()
+		// getIPFS(path.Join(home, "shared-dicom"), resp.IpfsReference)
 
 		lastObservation = time.Now().Format(time.RFC3339)
 	}
@@ -124,7 +123,7 @@ func callPrivacyKanonymity() []string {
 
 	var dcmID []string
 
-	url = "http://35.211.244.95:3000/api/addAsset"
+	url = "http://35.211.104.239:3000/api/addAsset"
 	for _, dcm := range resBody {
 		dcm.User = USER
 		aux, _ := json.Marshal(dcm)
@@ -164,7 +163,7 @@ func callDiffPrivacy() []string {
 
 	var dcmID []string
 
-	url = "http://35.211.244.95:3000/api/addAssetDiff"
+	url = "http:/35.211.104.239:3000/api/addAssetDiff"
 	for _, dcm := range resBody {
 		//var auxDcm dicom
 		var req request
@@ -182,7 +181,7 @@ func callDiffPrivacy() []string {
 }
 
 func notifyRequester(reqID string, dcmIDs []string) {
-	url := "http://35.211.244.95:3000/api/notify"
+	url := "http://35.211.104.239:3000/api/notify"
 	type request struct {
 		User      string `json:"user"`
 		RequestID string `json:"requestID"`
@@ -209,7 +208,7 @@ func getObserve(w http.ResponseWriter, r *http.Request) {
 
 func main() {
 
-	USER = "1e5ac8e4-fb82-455a-bd8c-c3b0f7f6d7ec"
+	USER = "982572dc-822d-4318-bc84-c4e4ad8d9c31"
 	lastObservation = time.Now().Local().Format("2006-01-02")
 	SERVER = "localhost"
 	fmt.Println("Starting sentinel ...")

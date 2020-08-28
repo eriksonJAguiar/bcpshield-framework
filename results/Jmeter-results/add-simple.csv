@@ -299,3 +299,6 @@ timeStamp,elapsed,label,responseCode,responseMessage,threadName,dataType,success
 1595054397133,5641,PostSimple,200,OK,Grupo de Usuários 1-8,text,true,,292,679,3,3,http://35.211.244.95:3000/api/addAsset,5640,0,158
 1595054397133,5648,PostSimple,200,OK,Grupo de Usuários 1-2,text,true,,292,679,2,2,http://35.211.244.95:3000/api/addAsset,5648,0,174
 1595054397138,5646,PostSimple,200,OK,Grupo de Usuários 1-4,text,true,,292,679,1,1,http://35.211.244.95:3000/api/addAsset,5646,0,201
+1595356563250,54307,PostSimple,Non HTTP response code: java.net.SocketException,Non HTTP response message: Socket closed,Grupo de Usuários 1-1,text,false,,2201,0,1,1,http://35.211.244.95:3000/api/addAsset,0,0,54301
+1595356642330,5572,PostSimple,200,OK,Grupo de Usuários 1-1,text,true,,292,680,1,1,http://35.211.104.239:3000/api/addAsset,5572,0,191
+1595356881223,5255,PostSimple,200,OK,Grupo de Usuários 1-1,text,true,,292,680,1,1,http://35.211.104.239:3000/api/addAsset,5255,0,228

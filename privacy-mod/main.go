@@ -91,7 +91,7 @@ func getOneMongo(dcmID string) (dicom, error) {
 }
 
 func getSeveralMongo() ([]dicom, error) {
-	client, err := mongo.NewClient(options.Client().ApplyURI("mongodb://localhost:27020"))
+	client, err := mongo.NewClient(options.Client().ApplyURI("mongodb://localhost:27017"))
 	if err != nil {
 		log.Fatal(err)
 	}
@@ -118,7 +118,7 @@ func getSeveralMongo() ([]dicom, error) {
 
 func getAllMongo() ([]dicom, error) {
 	//Database local with mongo
-	client, err := mongo.NewClient(options.Client().ApplyURI("mongodb://localhost:27020"))
+	client, err := mongo.NewClient(options.Client().ApplyURI("mongodb://localhost:27017"))
 	if err != nil {
 		log.Fatal(err)
 	}
