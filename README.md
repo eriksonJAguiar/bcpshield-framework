@@ -1,6 +1,17 @@
 # Privacy blockchain architecture - BCShield
 
-It's an architecture blockchain-based to enhancing privacy on healthcare systems for share data between researcher, besides we are using differential privacy and K-anonymity to privacy preserving.
+It is an architecture blockchain-based to enhancing privacy on healthcare systems to share data between users. Besides, we are using differential privacy and K-anonymity to privacy-preserving, and the Hyperledger Fabric to build a blockchain network.
+
+The modules are:
+
+- **Healthcare provider:** to store and exchange data, also comunicate with blockchain and privacy module.
+- **Privacy:** Apply privacy on data.
+- **Blockchain:** Blockchain network based on Hyperledger Fabric 1.4.4, and Off-chain network through InterPlanetary File System (IPFS)
+- **User inferface:** It is a module make by REST API to establish user, blockchain, Healthcare provider interaction. On the other hand, an interface that applications can connect and uses the architecture.
+
+The user are: patient, doctor, and researcher.
+
+In short, the architecture can enhance data sharing to research and contribute to reliability increase due to joining the blockchain and privacy mechanism.
 
 ## How it works?
 
