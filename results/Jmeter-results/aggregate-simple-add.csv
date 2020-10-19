@@ -1,0 +1,4 @@
+timeStamp,elapsed,label,responseCode,responseMessage,threadName,dataType,success,failureMessage,bytes,sentBytes,grpThreads,allThreads,URL,Latency,IdleTime,Connect
+1595356563250,54307,PostSimple,Non HTTP response code: java.net.SocketException,Non HTTP response message: Socket closed,Grupo de Usuários 1-1,text,false,,2201,0,1,1,http://35.211.244.95:3000/api/addAsset,0,0,54301
+1595356642330,5572,PostSimple,200,OK,Grupo de Usuários 1-1,text,true,,292,680,1,1,http://35.211.104.239:3000/api/addAsset,5572,0,191
+1595356881223,5255,PostSimple,200,OK,Grupo de Usuários 1-1,text,true,,292,680,1,1,http://35.211.104.239:3000/api/addAsset,5255,0,228
