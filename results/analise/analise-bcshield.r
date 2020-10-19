@@ -45,7 +45,7 @@ graph_cpu <- ggplot(data_cpu, aes(fill=label_cpu, y=cpu, x=tps_cpu)) +
         geom_bar(position="dodge", stat="identity") +
         guides(fill=guide_legend(title="Orgs")) +
         xlab("Transaction per sec (TPS)") + ylab("CPU usage (%)") +
-        scale_fill_manual(values = c("#0C1D40", "#5E88BF", "#F2AE2E"))
+        scale_fill_manual(values = c("#115D8C", "#A7D5F2", "#07B0F2"))
 
 png("/Users/erjulioaguiar/Documents/privacy-blockchain/results/analise/cpu_uso_criar_en.png")
 print(graph_cpu)
@@ -79,7 +79,7 @@ graph_cpu <- ggplot(data_cpu, aes(fill=label_cpu, y=cpu, x=tps_cpu)) +
         geom_bar(position="dodge", stat="identity") +
         guides(fill=guide_legend(title="Organização")) +
         xlab("Transações/s (TPS)") + ylab("Uso de CPU (%)") +
-        scale_fill_manual(values = c("#0C1D40", "#5E88BF", "#F2AE2E"))
+        scale_fill_manual(values = c("#115D8C", "#A7D5F2", "#07B0F2"))
 
 png("/Users/erjulioaguiar/Documents/privacy-blockchain/results/analise/cpu_uso_get_pt.png")
 print(graph_cpu)
@@ -93,7 +93,7 @@ graph_cpu <- ggplot(data_cpu, aes(fill=label_cpu, y=cpu, x=tps_cpu)) +
         guides(fill=guide_legend(title="Orgs")) +
         labs(title = "CPU usage on blockchain - Get") +
         xlab("Transaction per sec (TPS)") + ylab("CPU usage (%)") +
-        scale_fill_manual(values = c("#0C1D40", "#5E88BF", "#F2AE2E"))
+        scale_fill_manual(values = c("#115D8C", "#A7D5F2", "#07B0F2"))
 
 png("/Users/erjulioaguiar/Documents/privacy-blockchain/results/analise/cpu_uso_get_en.png")
 print(graph_cpu)
@@ -143,7 +143,7 @@ graph_mem <- ggplot(data_mem, aes(fill=label_mem, y=mem, x=tps_mem)) +
         geom_bar(position="dodge", stat="identity") +
         guides(fill=guide_legend(title="Orgs")) +
         xlab("Transaction per sec (TPS)") + ylab("Memory usage (MB)") +
-        scale_fill_manual(values = c("#0C1D40", "#5E88BF", "#F2AE2E"))
+        scale_fill_manual(values = c("#115D8C", "#A7D5F2", "#07B0F2"))
 
 png("/Users/erjulioaguiar/Documents/privacy-blockchain/results/analise/mem_uso_criar_en.png")
 print(graph_mem)
@@ -192,7 +192,7 @@ graph_mem <- ggplot(data_mem, aes(fill=label_mem, y=mem, x=tps_mem)) +
         geom_bar(position="dodge", stat="identity") +
         guides(fill=guide_legend(title="Orgs")) +
         xlab("Transaction per sec (TPS)") + ylab("Memory usage (MB)") +
-        scale_fill_manual(values = c("#0C1D40", "#5E88BF", "#F2AE2E"))
+        scale_fill_manual(values = c("#115D8C", "#A7D5F2", "#07B0F2"))
 
 png("/Users/erjulioaguiar/Documents/privacy-blockchain/results/analise/mem_uso_get_en.png")
 print(graph_mem)
@@ -334,7 +334,7 @@ entropia_diff <- read.delim2("/Users/erjulioaguiar/Documents/privacy-blockchain/
 entr_diff = read.delim2("/Users/erjulioaguiar/Documents/privacy-blockchain/results/analise/py-diff-entropia-range.txt", sep="\n")
 entr_kano = read.delim2("/Users/erjulioaguiar/Documents/privacy-blockchain/results/analise/entropy-kano.txt", sep="\n")
 epsilon <- c(0.0001, 0.001, 0.01, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9, 1.0)
-dist_diff <- read.delim2("/Users/erjulioaguiar/Documents/privacy-blockchain/results/entropy-values/py-diff-distancia.txt", sep="\n")
+dist_diff <- read.delim2("/Users/erjulioaguiar/Documents/privacy-blockchain/results/entropy-values/py-diff-distancia_.txt", sep="\n")
 
 
 ## Line graph for Entropy for entropy and distance 
@@ -344,8 +344,8 @@ priv_dist_norm <- normalize(as.double(dist_diff$dist))
 
 data_line <- c(priv_entropy_norm, priv_dist_norm)
 
-label <- c(rep("Entropia", (length(data_line)/2)), 
-           rep("Utilidade", length(data_line)/2))
+label <- c(rep("Entropia", (length(priv_entropy_norm))), 
+           rep("Utilidade", length(priv_dist_norm)))
 
 ep <- c(epsilon,epsilon)
 
@@ -356,6 +356,29 @@ ggplot(data=df_priv, aes(x=epsilon, y=quant, group=label, colour=Métricas)) +
         geom_line(size=1.2) +
         geom_point() +
         xlab("Epsilon") + ylab("Quantidade") +
+        #scale_colour_manual(name = "Métricas", values = c("#2CCBBE", "#606F9E")) +
+        guides(group=guide_legend(title="Operation")) +
+        theme_classic()
+dev.off()
+
+
+# Ingles 
+
+priv_entropy_norm <- normalize(as.double(entropia_diff$entropy))
+priv_dist_norm <- normalize(as.double(dist_diff$dist))
+
+label <- c(rep("Entropy", (length(priv_entropy_norm))), 
+           rep("Utility", length(priv_dist_norm)))
+
+ep <- c(epsilon,epsilon)
+
+df_priv <- data.frame("quant"=data_line, "epsilon"= ep, "Metrics"=label)
+
+png("/Users/erjulioaguiar/Documents/privacy-blockchain/results/analise/privacidade/epsilon_vs_entropy_en.png")
+ggplot(data=df_priv, aes(x=epsilon, y=quant, group=label, colour=Metrics)) +
+        geom_line(size=1.2) +
+        geom_point() +
+        xlab("Epsilon") + ylab("Amount") +
         #scale_colour_manual(name = "Métricas", values = c("#2CCBBE", "#606F9E")) +
         guides(group=guide_legend(title="Operation")) +
         theme_classic()
@@ -383,6 +406,21 @@ ggplot(data_entr, aes(x=label, y=entropy)) +
         xlab("Modelo de privacidade") + ylab("Entropia - H(X)")
 dev.off()
 
+
+##Ingles 
+
+
+label_entropy <- c(rep("K-anonymity", length(entr_kano_norm)), 
+                   rep("Differential privacy", length(entr_diff_norm)))
+
+data_entr <- data.frame("entropy"=entropy, "label"=label_entropy)
+
+png("/Users/erjulioaguiar/Documents/privacy-blockchain/results/analise/privacidade/boxplot_entropia_final_en.png")
+ggplot(data_entr, aes(x=label, y=entropy)) + 
+        geom_boxplot() +
+        theme_classic() +
+        xlab("Privacy model") + ylab("Entropy - H(X)")
+dev.off()
 
 
 data <- c(entr_diff_conv$entropy,entr_kano_norm)
@@ -437,6 +475,21 @@ ggplot(dt, aes(x=label, y=distancia)) +
         scale_fill_manual(values = c("#0099c6", "#f4b401"))
 dev.off()
 
+## Inglês
+
+label_dist <- c(rep("K-anonymity", length(dist_kano)),
+                rep("Differential privacy", length(dist_diff)))
+
+dt <- data.frame("distancia"=data_dist, "label"=label_dist)
+
+png("/Users/erjulioaguiar/Documents/privacy-blockchain/results/analise/privacidade/boxplot_utility_en.png")
+ggplot(dt, aes(x=label, y=distancia)) + 
+        geom_boxplot() +
+        theme_classic() +
+        xlab("Privacy model") + ylab("Utility") +
+        scale_fill_manual(values = c("#0099c6", "#f4b401"))
+dev.off()
+
 
 #### Funcoes de densidade para similaridade ####
 
@@ -449,12 +502,39 @@ d <- data.frame("sim"=data_curves, "label"=label_curves)
 ci_kano <- ci(dist_kano, ci = 0.95)
 ci_diff <- ci(dist_diff, ci = 0.95)
 
+
+## Inglês 
+
+data_curves <- c(dist_kano, dist_diff)
+label_curves <- c(rep("K-anonymity", length(dist_kano)), 
+                  rep("Differential privacy", length(dist_diff)))
+
+d <- data.frame("sim"=data_curves, "label"=label_curves)
+
+ci_kano <- ci(dist_kano, ci = 0.95)
+ci_diff <- ci(dist_diff, ci = 0.95)
+
 # PDF
 png("/Users/erjulioaguiar/Documents/privacy-blockchain/results/analise/privacidade/pdf_similaridade.png")
 ggplot(data=d, aes(x=sim, group=label, fill=label)) +
         geom_density(alpha=0.4, size = 1) + 
         xlab("Distância") + ylab("Densidade") +
-        guides(fill=guide_legend(title="Modelos")) +
+        guides(fill=guide_legend(title="Models")) +
+        geom_vline(xintercept=ci_kano$CI_low, color="red", size=0.8, linetype = "dashed") +
+        geom_vline(xintercept=ci_kano$CI_high, color="red", size=0.8, linetype = "dashed") +
+        geom_vline(xintercept=ci_diff$CI_low, color="blue", size=0.8, linetype = "dashed") +
+        geom_vline(xintercept=ci_diff$CI_high, color="blue", size=0.8, linetype = "dashed") +
+        theme_classic() +
+        theme(legend.position = c(0.75, 0.8))
+dev.off()
+
+## inglês
+
+png("/Users/erjulioaguiar/Documents/privacy-blockchain/results/analise/privacidade/pdf_utility_en.png")
+ggplot(data=d, aes(x=sim, group=label, fill=label)) +
+        geom_density(alpha=0.4, size = 1) + 
+        xlab("Utility") + ylab("Density") +
+        guides(fill=guide_legend(title="Models")) +
         geom_vline(xintercept=ci_kano$CI_low, color="red", size=0.8, linetype = "dashed") +
         geom_vline(xintercept=ci_kano$CI_high, color="red", size=0.8, linetype = "dashed") +
         geom_vline(xintercept=ci_diff$CI_low, color="blue", size=0.8, linetype = "dashed") +
@@ -491,12 +571,32 @@ label_edf <- c(rep("K-Anonimato", length(dist_kano)),
 
 data_edf_kano <- data.frame("similaridade"=data_array_kano,"Funções"=label_edf)
 
+## Inglês
+
+label_edf <- c(rep("K-anonymity", length(dist_kano)),
+               rep("Normal", length(normal_dist)), 
+               rep("Exponential", length(lognor_dsit)),
+               rep("T-Student", length(tstu_dist))) 
+
+
+data_edf_kano <- data.frame("Utility"=data_array_kano,"Functions"=label_edf)
+
 png("/Users/erjulioaguiar/Documents/privacy-blockchain/results/analise/privacidade/cdf_similaridade_kanon.png")
 ggplot(data=data_edf_kano, aes(x=similaridade, group=Funções, fill=Funções)) +
         stat_ecdf(aes(color = Funções, linetype = Funções), geom = "step", size = 1) + 
         xlab("Distância") + ylab("Probabilidade acumulada") +
         theme_classic() +
         theme(legend.position = c(0.8, 0.3))
+dev.off()
+
+#Inlgês
+
+png("/Users/erjulioaguiar/Documents/privacy-blockchain/results/analise/privacidade/cdf_utility_kanon_en.png")
+ggplot(data=data_edf_kano, aes(x=Utility, group=Functions, fill=Functions)) +
+        stat_ecdf(aes(color = Functions, linetype = Functions), geom = "step", size = 1) + 
+        xlab("Utility") + ylab("Cumulative probability") +
+        theme_classic() +
+        theme(legend.position = c(0.9, 0.3))
 dev.off()
 
 
@@ -524,13 +624,33 @@ label_edf <- c(rep("Priv diferencial", length(dist_diff)),
                rep("Chi-Quadrada", length(chi_square)),
                rep("Normal", length(normal_dist))) 
 
-
 data_edf_kano <- data.frame("similaridade"=data_array_diff,"Funções"=label_edf)
 
-png("/Users/erjulioaguiar/Documents/privacy-blockchain/results/analise/privacidade/cdf_similaridade_diffpriv.png")
+#Inglês
+
+label_edf <- c(rep("Differential privacy", length(dist_diff)),
+               rep("Exponential", length(exp_dist)),
+               rep("Chi-Square", length(chi_square)),
+               rep("Normal", length(normal_dist))) 
+
+
+data_edf_kano <- data.frame("similaridade"=data_array_diff,"Functions"=label_edf)
+
+png("/Users/erjulioaguiar/Documents/privacy-blockchain/results/analise/privacidade/cdf_utility_diffpriv.png")
 ggplot(data=data_edf_kano, aes(x=similaridade, group=Funções, fill=Funções)) +
         stat_ecdf(aes(color = Funções, linetype = Funções), geom = "step", size = 1) + 
         xlab("Distância") + ylab("Probabilidade acumulada") +
+        theme_classic() +
+        theme(legend.position = c(0.8, 0.3))
+dev.off()
+
+
+## Inglês
+
+png("/Users/erjulioaguiar/Documents/privacy-blockchain/results/analise/privacidade/cdf_utiltiy_diffpriv_en.png")
+ggplot(data=data_edf_kano, aes(x=similaridade, group=Functions, fill=Functions)) +
+        stat_ecdf(aes(color = Functions, linetype = Functions), geom = "step", size = 1) + 
+        xlab("Utility") + ylab("Cumulative probability") +
         theme_classic() +
         theme(legend.position = c(0.8, 0.3))
 dev.off()
@@ -541,6 +661,15 @@ dev.off()
 data_curves <- c(entr_kano_norm, entr_diff_norm)
 label_curves <- c(rep("K-Anonimato", length(entr_kano_norm)),
                   rep("Privacidade Diferencial", length(entr_diff_norm)))
+
+d <- data.frame("sim"=data_curves, "label"=label_curves)
+
+
+## ingles 
+
+data_curves <- c(entr_kano_norm, entr_diff_norm)
+label_curves <- c(rep("K-anonymity", length(entr_kano_norm)),
+                  rep("Differential privacy", length(entr_diff_norm)))
 
 d <- data.frame("sim"=data_curves, "label"=label_curves)
 
@@ -561,6 +690,21 @@ ggplot(data=d, aes(x=sim, group=label, fill=label)) +
         theme(legend.position = c(0.2, 0.8))
 dev.off()
 
+
+## Inglês
+
+png("/Users/erjulioaguiar/Documents/privacy-blockchain/results/analise/privacidade/pdf_entropia_en.png")
+ggplot(data=d, aes(x=sim, group=label, fill=label)) +
+        geom_density(alpha=0.4, size = 1) + 
+        xlab("Entropy - H(X)") + ylab("Density") +
+        guides(fill=guide_legend(title="Models")) +
+        geom_vline(xintercept=ci_kano$CI_low, color="red", size=0.8, linetype = "dashed") +
+        geom_vline(xintercept=ci_kano$CI_high, color="red", size=0.8, linetype = "dashed") +
+        geom_vline(xintercept=ci_diff$CI_low, color="blue", size=0.8, linetype = "dashed") +
+        geom_vline(xintercept=ci_diff$CI_high, color="blue", size=0.8, linetype = "dashed") +
+        theme_classic() +
+        theme(legend.position = c(0.2, 0.8))
+dev.off()
 
 # -------------------------- CDF Entropia K-Anon -----------------------------------
 
@@ -591,6 +735,16 @@ label_edf <- c(rep("K-Anonimato", length(entr_kano_norm)),
 
 data_edf_kano <- data.frame("entropia"=data_array_kano,"Funções"=label_edf)
 
+## Inlglês
+
+label_edf <- c(rep("K-Anonymity", length(entr_kano_norm)),
+               rep("Normal", length(normal_entr)), 
+               rep("Exponential", length(exp_entr)),
+               rep("T-Student", length(tstu_entr))) 
+
+
+data_edf_kano <- data.frame("entropia"=data_array_kano,"Functions"=label_edf)
+
 png("/Users/erjulioaguiar/Documents/privacy-blockchain/results/analise/privacidade/cdf_entropia_kanon.png")
 ggplot(data=data_edf_kano, aes(x=entropia, group=Funções, fill=Funções)) +
         stat_ecdf(aes(color = Funções, linetype = Funções), geom = "step", size = 1) + 
@@ -599,6 +753,16 @@ ggplot(data=data_edf_kano, aes(x=entropia, group=Funções, fill=Funções)) +
         theme(legend.position = c(0.8, 0.3))
 dev.off()
 
+## Inglês
+
+
+png("/Users/erjulioaguiar/Documents/privacy-blockchain/results/analise/privacidade/cdf_entropia_kanon_en.png")
+ggplot(data=data_edf_kano, aes(x=entropia, group=Functions, fill=Functions)) +
+        stat_ecdf(aes(color = Functions, linetype = Functions), geom = "step", size = 1) + 
+        xlab("Entropy - H(X)") + ylab("Cumulative probability") +
+        theme_classic() +
+        theme(legend.position = c(0.8, 0.3))
+dev.off()
 
 # -------------------------- CDF Entropia Diff Priv -----------------------------------
 
@@ -629,6 +793,17 @@ label_edf <- c(rep("Priv Diferencial", length(entr_diff_norm)),
 
 data_edf_kano <- data.frame("entropia"=data_array_diff,"Funções"=label_edf)
 
+## Inglês
+
+label_edf <- c(rep("Differential privacy", length(entr_diff_norm)),
+               rep("Gamma", length(gamm_entr)), 
+               rep("Exponential", length(exp_entr)),
+               rep("Log Normal", length(lognor_entr))) 
+
+
+data_edf_kano <- data.frame("entropia"=data_array_diff,"Functions"=label_edf)
+
+
 png("/Users/erjulioaguiar/Documents/privacy-blockchain/results/analise/privacidade/cdf_entropia_diff.png")
 ggplot(data=data_edf_kano, aes(x=entropia, group=Funções, fill=Funções)) +
         stat_ecdf(aes(color = Funções, linetype = Funções), geom = "step", size = 1) + 
@@ -637,3 +812,12 @@ ggplot(data=data_edf_kano, aes(x=entropia, group=Funções, fill=Funções)) +
         theme(legend.position = c(0.8, 0.3))
 dev.off()
 
+## Inglês
+
+png("/Users/erjulioaguiar/Documents/privacy-blockchain/results/analise/privacidade/cdf_entropia_diff_en.png")
+ggplot(data=data_edf_kano, aes(x=entropia, group=Functions, fill=Functions)) +
+        stat_ecdf(aes(color = Functions, linetype = Functions), geom = "step", size = 1) + 
+        xlab("Entropy - H(X)") + ylab("Cumulative probability") +
+        theme_classic() +
+        theme(legend.position = c(0.8, 0.3))
+dev.off()
