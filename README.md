@@ -1,6 +1,6 @@
-# Privacy blockchain architecture - BCShield
+# Privacy blockchain architecture - BCPShield
 
-It is an architecture blockchain-based to enhancing privacy on healthcare systems to share data between users. Besides, we are using differential privacy and K-anonymity to privacy-preserving, and the Hyperledger Fabric to build a blockchain network.
+The **B**lock**C**hain to **P**rivacy-preserving in **SH**aring sens**I**tive h**E**a**L**th **D**ata (BCPShield) is an architecture blockchain-based to enhancing privacy on healthcare systems to share data between users. Besides, we are using differential privacy and K-anonymity to privacy-preserving, and the Hyperledger Fabric to build a blockchain network.
 
 The modules are:
 
@@ -141,7 +141,10 @@ c) Run the script [ipfs-cli-main.go](https://github.com/eriksonJAguiar/bcshield-
 
 - **Step 5:** 
 
-a) In Healthcare providers machines you may run compents for observer, 
+a) In Healthcare providers machines you may run components for observer, local database, and privacy methods <br \>
+b) First, each machine should have installed Docker, golang, and python 3  <br \>
+c) Then, we can run the command to build Docker container for observer. In folder [bcshield-hprovider](https://github.com/eriksonJAguiar/bcshield-architecture/tree/master/bcshield-hprovider) run the script **.\init.sh**  <br \>
+d) This script will be build a docker containers for obsever, MongoDB local, and privacy methods (K-anonymity and Differencial privacy)
 
 ## Team 
 
