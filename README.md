@@ -1,6 +1,6 @@
 # Privacy blockchain architecture - BCPShield
 
-The **B**lock**C**hain to **P**rivacy-preserving in **SH**aring sens**I**tive h**E**a**L**th **D**ata (BCPShield) is an architecture blockchain-based to enhancing privacy on healthcare systems to share data between users. Besides, we are using differential privacy and K-anonymity to privacy-preserving, and the Hyperledger Fabric to build a blockchain network. <br \>
+The **B**lock**C**hain to **P**rivacy-preserving in **SH**aring sens**I**tive h**E**a**L**th **D**ata (BCPShield) is an architecture blockchain-based to enhancing privacy on healthcare systems to share data between users. Besides, we are using differential privacy and K-anonymity to privacy-preserving, and the Hyperledger Fabric to build a blockchain network.
 
 ![BCPShield Overview](https://github.com/eriksonJAguiar/bcshield-architecture/blob/master/architecture-high-level.png)
 
