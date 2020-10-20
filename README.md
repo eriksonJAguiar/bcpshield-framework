@@ -25,7 +25,7 @@ In short, the architecture can enhance data sharing to research and contribute t
 
 >  **Dicom atributes**:
 
->  * DicomID, PatientID, DocType, PatientFirstname, PatientLastname, PatientTelephone, PatientAddress, PatientAge,       PatientBirth, PatientOrganization, PatientMothername, PatientReligion, PatientSex, PatientGender, PatientInsuranceplan, PatientWeigth, PatientHeigth, MachineModel, Timestamp.
+>  * DicomID, PatientID, DocType, PatientFirstname, PatientLastname, PatientTelephone, PatientAddress, PatientAge, PatientBirth, PatientOrganization, PatientMothername, PatientReligion, PatientSex, PatientGender, PatientInsuranceplan, PatientWeigth, PatientHeigth, MachineModel, Timestamp.
   
  
 #### __Log__
@@ -96,14 +96,16 @@ In short, the architecture can enhance data sharing to research and contribute t
 
 ## How to use ?
 
-The next steps are about blockchian module: <br \>
-
 - **Step 0:**
 
-a) install docker engine and docker-compose <br \>
-b) install golang <br \>
-c) download hyperledger fabric binaries <br \>
-d) node js version = 10.x and npm version >= 6.x <br \>
+a) install docker engine and docker-compose
+
+b) install golang
+
+c) download hyperledger fabric binaries
+
+d) node js version = 10.x and npm version >= 6.x
+
 
 - **Step 1:**
 
@@ -137,16 +139,23 @@ e) Run the script [api-dicom/server/server.js](https://github.com/eriksonJAguiar
 
 - **Step 4:**
 
-a) To build a Off-chain network using the IPFS framework we should following this tutorial [IPFS Tutorial](https://medium.com/@s_van_laar/deploy-a-private-ipfs-network-on-ubuntu-in-5-steps-5aad95f7261b) <br \>
-b) The configuration has been made in a Linux machine from Google Cloud, but we can use any Linux machine. This machine was a master node on IPFS network <br \>
-c) Run the script [ipfs-cli-main.go](https://github.com/eriksonJAguiar/bcshield-architecture/tree/master/ipfs-client) using the command **go run ipfs-cli-main.go**. P.s. You should change the IPFS IP <br \>
+a) To build a Off-chain network using the IPFS framework we should following this tutorial [IPFS Tutorial](https://medium.com/@s_van_laar/deploy-a-private-ipfs-network-on-ubuntu-in-5-steps-5aad95f7261b)
+
+b) The configuration has been made in a Linux machine from Google Cloud, but we can use any Linux machine. This machine was a master node on IPFS network
+
+c) Run the script [ipfs-cli-main.go](https://github.com/eriksonJAguiar/bcshield-architecture/tree/master/ipfs-client) using the command **go run ipfs-cli-main.go**. P.s. You should change the IPFS IP
+
 
 - **Step 5:** 
 
-a) In Healthcare providers machines you may run components for observer, local database, and privacy methods <br \>
-b) First, each machine should have installed Docker, golang, and python 3  <br \>
-c) Then, we can run the command to build Docker container for observer. In folder [bcshield-hprovider](https://github.com/eriksonJAguiar/bcshield-architecture/tree/master/bcshield-hprovider) run the script **.\init.sh**  <br \>
+a) In Healthcare providers machines you may run components for observer, local database, and privacy methods
+
+b) First, each machine should have installed Docker, golang, and python 3
+
+c) Then, we can run the command to build Docker container for observer. In folder [bcshield-hprovider](https://github.com/eriksonJAguiar/bcshield-architecture/tree/master/bcshield-hprovider) run the script **.\init.sh**
+
 d) This script will be build a docker containers for obsever, MongoDB local, and privacy methods (K-anonymity and Differencial privacy)
+
 
 ## Team 
 
