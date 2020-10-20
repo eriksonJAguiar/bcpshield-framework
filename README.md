@@ -91,12 +91,57 @@ In short, the architecture can enhance data sharing to research and contribute t
  * **Parameter:** token Hash inserted within metadata imaging.
  * **Return:** Log object as Json.
 
-## How is intergrate with Hyperledger Blockchain?
-
 
 ## How to use ?
 
-Define de basic Commands
+The next steps are about blockchian module: <br \>
+
+- **Step 0:**
+
+a) install docker engine and docker-compose <br \>
+b) install golang <br \>
+c) download hyperledger fabric binaries <br \>
+d) node js version = 10.x and npm version >= 6.x <br \>
+
+- **Step 1:**
+
+a) You should use the folder [hyperledger-network](https://github.com/eriksonJAguiar/bcshield-architecture/tree/master/hyperledger-network) <br />
+b) In folder run the script  **./byfn.sh generate** to build credentials and keys for organization on Hyperledger Fabric <br />
+
+- **Step 2:**
+
+a) To make a smart contract you might use an extension IBM blockchain platform on VSCode <br />
+b) With a smart contract made you should move the contract folder to folder [chaincode](https://github.com/eriksonJAguiar/bcshield-architecture/tree/master/hyperledger-network/chaincode) <br />
+c) In file [scripts/script.sh](https://github.com/eriksonJAguiar/bcshield-architecture/blob/master/hyperledger-network/scripts/script.sh) change variable **CC_SRC_PATH** to path your smart contract (For instance, CC_SRC_PATH="github.com/chaincode/imaging-contract")
+
+- **Step 3:**
+
+a) Before build a blockchain network, if you intent to make a different network you should change this files: <br />
+
+1. [crypto-config.yaml](https://github.com/eriksonJAguiar/bcshield-architecture/blob/master/hyperledger-network/crypto-config.yaml) 
+2. [configtx.yaml](https://github.com/eriksonJAguiar/bcshield-architecture/blob/master/hyperledger-network/configtx.yaml) 
+3. [docker-compose-ca.yaml](https://github.com/eriksonJAguiar/bcshield-architecture/blob/master/hyperledger-network/docker-compose-ca.yaml) 
+4. [docker-compose-couch.yaml](https://github.com/eriksonJAguiar/bcshield-architecture/blob/master/hyperledger-network/docker-compose-couch.yaml) 
+5. [docker-compose-cli.yaml](https://github.com/eriksonJAguiar/bcshield-architecture/blob/master/hyperledger-network/docker-compose-cli.yaml) 
+6. [ccp-generate.sh](https://github.com/eriksonJAguiar/bcshield-architecture/blob/master/hyperledger-network/ccp-generate.sh)
+7. [utils.sh](https://github.com/eriksonJAguiar/bcshield-architecture/blob/master/hyperledger-network/scripts/utils.sh)
+8. [script.sh)](https://github.com/eriksonJAguiar/bcshield-architecture/blob/master/hyperledger-network/scripts/script.sh)
+9. [byfn.sh](https://github.com/eriksonJAguiar/bcshield-architecture/blob/master/hyperledger-network/byfn.sh)
+<br />
+b) To build our network you should run the command **byfn.sh up -s couchdb -a true -l golang -i 1.4.4** <br />
+c) The blokchain network is done <br />
+d) The API to interact with a blokchain can modify in the file [api-dicom/server/server.js](https://github.com/eriksonJAguiar/bcshield-architecture/tree/master/api-dicom/server) <br />
+e) Run the script [api-dicom/server/server.js](https://github.com/eriksonJAguiar/bcshield-architecture/tree/master/api-dicom/server/server.js) to make available the blockchain API for that communicate with other components. You might execute this command **node server.js**
+
+- **Step 4:**
+
+a) To build a Off-chain network using the IPFS framework we should following this tutorial [IPFS Tutorial](https://medium.com/@s_van_laar/deploy-a-private-ipfs-network-on-ubuntu-in-5-steps-5aad95f7261b) <br \>
+b) The configuration has been made in a Linux machine from Google Cloud, but we can use any Linux machine. This machine was a master node on IPFS network <br \>
+c) Run the script [ipfs-cli-main.go](https://github.com/eriksonJAguiar/bcshield-architecture/tree/master/ipfs-client) using the command **go run ipfs-cli-main.go**. P.s. You should change the IPFS IP <br \>
+
+- **Step 5:** 
+
+a) In Healthcare providers machines you may run compents for observer, 
 
 ## Team 
 
@@ -105,5 +150,5 @@ Define de basic Commands
 
 ## Note
 
-This project was funded by São Paulo Research Foundation - FAPESP. However, all opinion, hypothesis, conclusions, or recommendations contains on this repository are responsibility the author and do not reflect FAPESP's vision. 
+This project was funded by São Paulo Research Foundation - FAPESP. However, all opinions, hypothesis, conclusions, or recommendations contains on this repository are responsibility the author and do not reflect FAPESP's vision. 
 
